@@ -1,0 +1,41 @@
+﻿@model ZionAdmin.Repository.ZMRInNewsRepository
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Create</h3><br />
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Create", "ZionInNews", FormMethod.Post, new { @id = "frmZionInNews" }))
+        {
+            <div class="form-group">
+                <label>Text</label>
+                @Html.TextBoxFor(model => model.LinkText, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LinkText)
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+                @Html.TextBoxFor(model => model.URL, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.URL)
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-primary">Submit</button>
+                    <a href="@Url.Action("Index", "ZionInNews")" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('button').click(function (e) {
+            if (jsFormValidation("#frmZionInNews", null, null, null)) {
+                $("#frmZionInNews").submit();
+            } else {
+                e.preventDefault();
+            }
+        });
+    });
+</script>

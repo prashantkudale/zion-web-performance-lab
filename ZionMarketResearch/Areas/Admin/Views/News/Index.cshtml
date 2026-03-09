@@ -1,0 +1,84 @@
+﻿@model PagedList.IPagedList<ZionAdmin.Repository.NewsRepository>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>News</h3>
+<hr />
+<div class="col-md-12">
+    <div class="row margin-bottom-15">
+        <a href="@Url.Action("create", "news")">Create New</a>
+        <form action="@Url.Action("index", "news")" method="get" name="filter">
+            <div>
+                <label><input type="checkbox" name="showNews" onchange="javascript: $('#hdnNews').val($(this).prop('checked'));" value="true" @(ViewBag.IsNews ? "checked" : string.Empty) /> News</label>
+                <label><input type="checkbox" name="showArticle" onchange="javascript: $('#hdnArticle').val($(this).prop('checked'));" value="true" @(ViewBag.IsArticle ? "checked" : string.Empty) /> Articles</label>
+                <button type="submit" class="btn btn-primary">Show</button>
+            </div>
+        </form>
+    </div>
+    <div class="row margin-bottom-15">
+        @using (Html.BeginForm("search", "news", FormMethod.Get, new { Class = "form-inline" }))
+        {
+            <div class="input-group col-md-12">
+                <input type="text" name="id" style="width: 100%;" class="form-control" placeholder="Search" id="searchText" value="@ViewBag.SearchText" />
+                <input type="hidden" name="showNews" id="hdnNews" value="@(ViewBag.IsNews != null && ViewBag.IsNews ? "true" : "false")" />
+                <input type="hidden" name="showArticle" id="hdnArticle" value="@(ViewBag.IsArticle != null && ViewBag.IsArticle ? "true" : "false")" />
+                <span class="input-group-btn" style="width: 70px !important;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </span>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Published Date</th>
+                    <th>News</th>
+                    <th>Type</th>
+                    <th>Url</th>
+                    <th>Active</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ZionAdmin.Repository.NewsRepository news in Model)
+                {
+                    <tr>
+                        <td>@news.PublishedDate.ToString("dd-MMM-yyyy")</td>
+                        <td>
+                            @news.NewsTitle
+                        </td>
+                        <td>
+                            @(news.IsArticle ? "Article" : "News")
+                        </td>
+                        <td>
+                            <a href="/news/@news.NewsUrl" target="_blank">@news.NewsUrl</a>
+                        </td>
+                        <td>
+                            @(news.IsActive ? "Active" : "Inactive")
+                        </td>
+                        <td><a href="@Url.Action("edit", "news", new { id = news.NewsId })">Edit</a></td>
+                        <td><a href="@Url.Action("delete", "news", new { id = news.NewsId })">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @*TODO: Implement paging when search and filter*@
+        @Html.PagedListPager(Model, x => "/admin/news/index?id=" + x + "&showNews=" + ViewBag.IsNews + "&showArticle=" + ViewBag.IsArticle)
+    </div>
+</div>
+<script>
+    var searchValue = $("#searchText").val();
+    var isSearched = searchValue != null && searchValue != "";
+
+    $('.pagination li a').each(function (index) {
+        if (isSearched) {
+            $(this).attr("href", "/admin/news/search?id=" + searchValue + "&page=" + $(this).text() + "&showArticle=" + $("input[name=showArticle]").prop("checked") + "&showNews=" + $("input[name=showNews]").prop("checked"));
+            $(".PagedList-skipToNext > a").attr("href", "/admin/news/search?id=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) + 1) + "&showArticle=" + $("input[name=showArticle]").prop("checked") + "&showNews=" + $("input[name=showNews]").prop("checked"))
+            $(".PagedList-skipToPrevious > a").attr("href", "/admin/news/search?id=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) - 1) + "&showArticle=" + $("input[name=showArticle]").prop("checked") + "&showNews=" + $("input[name=showNews]").prop("checked"))
+        }
+    });
+</script>

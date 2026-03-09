@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Areas.Admin.Repository.VacancyEntity>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Job Vacancy</h3>
+
+<div class="row margin-bottom-15">
+    <a href="@Url.Action("create", "JobVacancy")">Create New</a>
+    <form action="@Url.Action("Search", "JobVacancy")">
+        <div class="col-md-8">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search Job" id="txtSearch" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
+<div class="row margin-bottom-15">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Interview Date</th>
+                    <th>Applications</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var vacancy in Model)
+                {
+                    <tr>
+                        <td>@vacancy.JobTitle</td>
+                        <td>@(vacancy.InterviewDate != null ? ((DateTime)vacancy.InterviewDate).ToString("dd-MM-yyyy") : string.Empty)</td>
+                        <td><a href="@Url.Action("ListJobApplications", "JobVacancy", new { id = vacancy.VacancyId })">View <span class="badge">@vacancy.TotalJobApplications</span></a></td>
+                        <td><a href="@Url.Action("Edit", "JobVacancy", new { id = vacancy.VacancyId})">Edit</a></td>
+                        <td><a href="@Url.Action("Delete", "JobVacancy", new { id = vacancy.VacancyId })">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, x => "/admin/jobvacancy/index/" + x)
+    </div>
+</div>
+<script>
+    var searchValue = $("#txtSearch").val();
+    var isSearched = searchValue != null && searchValue != "";
+
+    $('.pagination li a').each(function (index) {
+        if (isSearched) {
+            $(this).attr("href", "/admin/jobvacancy/search?title=" + searchValue + "&page=" + $(this).text());
+            $(".PagedList-skipToNext > a").attr("href", "/admin/jobvacancy/search?title=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) + 1));
+            $(".PagedList-skipToPrevious > a").attr("href", "/admin/jobvacancy/search?title=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) - 1));
+        }
+    });
+</script>

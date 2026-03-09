@@ -1,0 +1,41 @@
+﻿@model List<ZionMarketResearch.Models.tblreportattribute>
+@{
+    ViewBag.Title = "Report Attribute";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Report Attribute</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <a href="@Url.Action("Create", "ReportAttribute")">Create</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var m in Model)
+                    {
+                        <tr>
+                            <td>
+                                @m.AttributeName
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "ReportAttribute", new { id = m.ID })">Edit</a> | <a href="@Url.Action("Delete", "ReportAttribute", new { id = m.ID })">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

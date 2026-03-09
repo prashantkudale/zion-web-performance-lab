@@ -1,0 +1,8 @@
+﻿@model PagedList.IPagedList<object>
+<div class="total-records">Total Records - @Model.TotalItemCount | Displaying - @(((Model.PageNumber - 1) * 100) + 1) To @(((Model.PageNumber - 1) * 100) + 100)</div>
+<style>
+    .total-records {
+        font-weight: bold;
+        color: #23527c;
+    }
+</style>

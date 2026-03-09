@@ -1,0 +1,20 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@if (Model.RelatedNews != null && Model.RelatedNews.Count() > 0)
+{
+    <div style="margin-top:10px;">
+        <div class="col-sm-2 marquee-heading">
+            Press Release
+        </div>
+        <div class="marquee col-sm-10">
+            <ul>
+                @foreach (var x in Model.RelatedNews)
+                {
+                    <li>@Html.Raw(x)</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <script src="~/Content/js/jquery.marquee.min.js"></script>
+    <script src="~/Content/js/RelatedNews.js"></script>
+    <link href="~/Content/css/RelatedNews.css" rel="stylesheet" />
+}

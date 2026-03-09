@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.ZionInNewsRepository>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "ZMR In the News";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+<style>
+    ul.link-list li {
+        list-style: none;
+        list-style-type: none;
+        line-height: 30px;
+    }
+
+        ul.link-list li a::before {
+            content: circle;
+        }
+</style>
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "ZMR In News"); }
+        <div class="col-md-12 white_section">
+            <h2 class="zmrInNews">ZMR in News</h2>
+            <ul class="link-list">
+                @foreach (var l in (IEnumerable<ZionMarketResearch.Models.ZionInNewsRepository>)Model)
+            {
+                    <li><i class="fa fa-angle-double-right mstyle"></i>&nbsp;<a class="anchorStyle" rel="nofollow" href="@l.URL">@l.LinkText</a></li>
+                }
+            </ul>
+            @Html.PagedListPager(Model, p => "/zmr-in-news/" + p, new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+        </div>
+    </div>
+</section>
+@*<style>
+    i.mstyle {
+        font-size: 22px;
+        color: red;
+        font-weight: bolder;
+    }
+
+    /*a.anchorStyle {
+            font-size: 15px;
+        }*/
+
+    h2.zmrInNews {
+        /*text-align: center;*/
+        background: #cbcbcb;
+        padding: 15px;
+        color: #07589d;
+    }
+
+    .companyName {
+        background-color: red;
+        color: white;
+        padding: 5px;
+    }
+</style>*@

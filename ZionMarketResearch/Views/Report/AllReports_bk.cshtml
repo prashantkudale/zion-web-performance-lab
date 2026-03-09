@@ -1,0 +1,39 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.SearchResultView>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "All Latest Reports: Zion Market Research | Page No " + Model.PageNumber;
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    ViewBag.MetaDescription = "Zion Market Research offers all market reports covering different research categories.";
+    ViewBag.MetaKeywords = "Market research reports, market research, industry research reports, market research analysis, market size, market share, industry trends";
+}
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "All Reports"); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>All Reports</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section_gap">
+    <div class="container">
+        <div class="col-md-8 col-sm-12">
+            <div>
+                @{ Html.RenderPartial("_ReportList", Model); }
+                @{ Html.RenderPartial("_TotalRecord500", ViewData.Model); }
+                @Html.PagedListPager(Model, p => Url.Action("AllReports", "Report", new { page = p }), GlobalConstant.GlobalPagedListOption)
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div>
+                <h3 class="sidebar-title">Upcoming Reports</h3>
+                @{ Html.RenderAction("LatestUpcomingReports", "Report",new { Count = 40}); }
+                <h3 class="sidebar-title">Latest Reports</h3>
+                @{ Html.RenderAction("LatestReport", "Report",new { Count = 37}); }
+            </div>
+        </div>
+    </div>
+</section>
+

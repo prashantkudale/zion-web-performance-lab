@@ -1,0 +1,18 @@
+﻿@model List<ZionMarketResearch.Models.LatestNewsView>
+<div class="panel panel-primary">
+    <div class="panel-heading"><strong><i class="fa fa-newspaper-o" aria-hidden="true"></i> Industry Press Release</strong><a href="@Url.Action("allnews","news")" class="white-text pull-right">View All Industry Press Release</a></div>
+    @foreach (var n in Model)
+    {
+        <div class="panel-body">
+            <p><i class="fa fa-calendar"></i>&nbsp;@n.PublishedDate.Value.ToString("dd-MMM-yyyy")</p>
+            <a href="@n.NewsUrl"><h3>@n.NewsTitle</h3></a>
+            <blockquote>
+                <p class="parasize">
+                    @Html.DisplayFor(x => n.Description)
+                    <span><a href="@n.NewsUrl" rel="nofollow">Read More <i class="fa fa-arrow-circle-right"></i></a></span>
+            </p>
+        </blockquote>
+    </div>
+    }
+    <p class="read-more"><a href="@Url.Action("allnews","news")" rel="nofollow">View All Industry Press Release <i class="fa fa-arrow-circle-right"></i></a></p>
+</div>

@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/areas/admin/content/css/zionadmin.css" />
+    <link rel="stylesheet" href="/areas/admin/content/css/verticalmenu.css" />
+    <link rel="stylesheet" href="/areas/admin/content/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/sunny/jquery-ui.css" />
+</head>
+@{
+    var roles = ((ZionAdmin.Security.CustomPrincipal)User).Roles;
+}
+<body>
+    <div id="allcontainer">
+        <!--<div class="row" id="header">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+        </div>-->
+
+        <div class="col-sm-3">
+
+            <div class="nav-side-menu">
+                <div class="brand">Home</div>
+                <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+                <div class="menu-list">
+                    <div id="clogo">
+                        <a href="/"><img src="/areas/admin/content/images/zionLogo1.png" class="img-responsive" /></a>
+                    </div>
+                    <ul id="menu-content" class="menu-content collapse out">
+                        <li>
+                            <a href="/all-reports">
+                                <i class="fa fa-dashboard fa-lg"></i> Website Reports
+                            </a>
+                            |
+                            <a href="/all-news">
+                                <i class="fa fa-dashboard fa-lg"></i>Website News
+                            </a>
+                        </li>
+                        @if (roles.Contains("ListCategory"))
+                        {
+                    <li>
+                        <a href="/admin/category">
+                            <i class="fa fa-dashboard fa-lg"></i>Category
+                        </a>
+                    </li>}
+                        @if (roles.Contains("ListReport"))
+                        {
+                    <li>
+                        <a href="/admin/report">
+                            <i class="fa fa-dashboard fa-lg"></i>Report
+                        </a>
+                    </li>
+                                    <li>
+                                        <a href="/admin/report/ArchiveReport">
+                                            <i class="fa fa-dashboard fa-lg"></i>Archive Report
+                                        </a>
+                                    </li>}
+                        @if (roles.Contains("DownloadReport"))
+                        {
+                    <li>
+                        <a href="@Url.Action("DownloadReports", "Report")">
+                            <i class="fa fa-dashboard fa-lg"></i>Download Report
+                        </a>
+                    </li>}
+                        @if (roles.Contains("ListNews"))
+                        {
+                    <li>
+                        <a href="/admin/news">
+                            <i class="fa fa-dashboard fa-lg"></i>News
+                        </a>
+                    </li>}
+                        @if (roles.Contains("ListRedirectUrl"))
+                        {
+                    <li>
+                        <a href="/admin/redirecturl">
+                            <i class="fa fa-dashboard fa-lg"></i>Redirect Url
+                        </a>
+                    </li>}
+                        @if (roles.Contains("ListPaymentLink"))
+                        {
+                    <li>
+                        <a href="/admin/paymentlink">
+                            <i class="fa fa-dashboard fa-lg"></i>Payment Link
+                        </a>
+                    </li>}
+                        @if (roles.Contains("ListUser") || roles.Contains("ListRole"))
+                        {
+                    <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                        <a href="#"><i class="fa fa-gift fa-lg"></i>Account <span class="arrow"></span></a>
+                    </li>
+                                    <ul class="sub-menu collapse" id="products">
+                                        @if (roles.Contains("ListUser"))
+                                        {
+                        <li class="active"><a href="/admin/user">User</a></li>}
+                                        @if (roles.Contains("ListRole"))
+                                        {
+                        <li><a href="/admin/role">Role</a></li>}
+                                    </ul>}
+                        @if (roles.Contains("UploadImage"))
+                        {
+                    <li><a href="@Url.Action("upload", "upload")"><i class="fa fa-dashboard fa-lg"></i>Upload Image</a></li>}
+
+                        @if (roles.Contains("CreateZionInNews"))
+                        {
+                    <li><a href="@Url.Action("Index", "ZionInNews")"><i class="fa fa-dashboard fa-lg"></i>Zion In News</a></li>}
+                        @if (roles.Contains("CreateVacancy"))
+                        {
+                    <li><a href="@Url.Action("Index", "JobVacancy")"><i class="fa fa-dashboard fa-lg"></i>Job Vacancy</a></li>}
+
+                        @if (roles.Contains("CreateReport"))
+                        {
+                    <li><a href="@Url.Action("Index", "ReportAttribute")"><i class="fa fa-dashboard fa-lg"></i>Report Attribute</a></li>}
+                        <li>
+                            <a href="/admin/home/logout">
+                                <i class="fa fa-dashboard fa-lg"></i>Sign Out
+                            </a>
+                        </li>
+                        @*
+        <li data-toggle="collapse" data-target="#service" class="collapsed">
+            <a href="#"><i class="fa fa-globe fa-lg"></i>Services <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="service">
+            <li>New Service 1</li>
+            <li>New Service 2</li>
+            <li>New Service 3</li>
+        </ul>
+
+
+        <li data-toggle="collapse" data-target="#new" class="collapsed">
+            <a href="#"><i class="fa fa-car fa-lg"></i>New <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="new">
+            <li>New New 1</li>
+            <li>New New 2</li>
+            <li>New New 3</li>
+        </ul>
+
+
+        <li>
+            <a href="#">
+                <i class="fa fa-user fa-lg"></i>Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa fa-users fa-lg"></i>Users
+            </a>
+        </li>*@
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div id="acontent">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="/areas/admin/content/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/areas/admin/content/js/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="/areas/admin/content/custom/ValidateForm.js" type="text/javascript"></script>
+</body>
+</html>

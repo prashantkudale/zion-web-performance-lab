@@ -1,0 +1,64 @@
+﻿@model PagedList.IPagedList<ZionAdmin.Repository.RoleRepository>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Roles</h4>
+<hr />
+<div class="col-md-12">
+    <div class="row margin-bottom-15">
+        <div class="row margin-bottom-15">
+            <a href="@Url.Action("create", "role")">Create New</a>
+        </div>
+    </div>
+    <div class="row margin-bottom-15">
+        @using (Html.BeginForm("search", "role", FormMethod.Get, new { Class = "form-inline" }))
+        {
+            <div class="input-group col-md-12">
+                <input type="text" name="id" class="form-control" placeholder="Search" value="@ViewBag.SearchText" id="searchText" />
+                <span class="input-group-btn" style="width: 70px !important;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </span>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>User</th>
+                    <th>User Name</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <td>@role.RoleName</td>
+
+                        <td><a href="@Url.Action("edit", "role", new { id = role.Id })">Edit</a></td>
+                        <td><a href="@Url.Action("delete", "role", new { id = role.Id })">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, x => "/role/" + x)
+    </div>
+
+</div>
+
+<script>
+    var searchValue = $("#searchText").val();
+    var isSearched = searchValue != null && searchValue != "";
+
+    $('.pagination li a').each(function (index) {
+        if (isSearched) {
+            $(this).attr("href", "/role/search?id=" + searchValue + "&page=" + $(this).text());
+            $(".PagedList-skipToNext > a").attr("href", "/role/search?id" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) + 1));
+            $(".PagedList-skipToPrevious > a").attr("href", "/role/search?id" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) - 1));
+        }
+    });
+</script>

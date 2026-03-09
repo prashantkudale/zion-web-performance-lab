@@ -1,0 +1,152 @@
+﻿@model ZionAdmin.Repository.NewsRepository
+@{
+    ViewBag.Title = "Create News";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Create News</h3>
+<hr />
+<div class="md-col-12">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert @(ViewBag.ErrorMessage.Contains("true") ? "alert-danger" : "alert-success")">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    @using (Html.BeginForm("create", "news", FormMethod.Post, new { id = "frmNews", Class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Title</label>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(n => n.NewsTitle, new { Class = "form-control", placeholder = "Title whithout special characters. Do not enter (.,#*&!@$)%^(&*)+=_" })
+                @Html.ValidationMessageFor(n => n.NewsTitle)
+            </div>
+            <div class="col-sm-3">
+                <label class="control-label col-sm-7">Append Id?</label>
+                <div class="col-sm-2">
+                    @Html.CheckBoxFor(n => n.AppendId)
+                    @Html.ValidationMessageFor(n => n.AppendId)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">URL</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(n => n.NewsUrl, new { Class = "form-control", placeholder = "Leave blank if you want default URL." })
+                @Html.ValidationMessageFor(r => r.NewsUrl)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Meta Title</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(n => n.MetaTitle, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.MetaTitle)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Meta Description</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(n => n.MetaDescription, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.MetaDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Meta Keywords</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(n => n.MetaKeywords, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.MetaKeywords)
+            </div>
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="CategoryName" class="control-label col-sm-2">News Image</label>
+            <div class="col-sm-10">
+               <input type="file" name="File1" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">News</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(n => n.Description, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.Description)
+            </div>
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="CategoryName" class="control-label col-sm-2">Search Image</label>
+            <div class="col-sm-10">
+                <input type="file" name="File2" />
+            </div>
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="CategoryName" class="control-label col-sm-2">Search Description</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(n => n.SearchPageDescription, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.SearchPageDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Published Date</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(n => n.PublishedDate, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.PublishedDate)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Published By</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(n => n.PublishedBy, new { Class = "form-control", placeholder = "Enter name of published, leave blank if default is needed." })
+                @Html.ValidationMessageFor(r => r.PublishedBy)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Report URL</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(n => n.ReportUrl, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.ReportUrl)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Is Article?</label>
+            <div class="col-sm-10 checkbox">
+                <label>@Html.CheckBoxFor(r => r.IsArticle) (select if this is article.)</label>
+                @Html.ValidationMessageFor(r => r.IsArticle)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Is Active</label>
+            <div class="col-sm-10">
+                <div class="material-switch pull-left">
+                    <input type="checkbox" id="IsActive" name="IsActive" value="true" checked />
+                    <label for="IsActive" class="label-success" style="margin-top:16px;"></label>
+
+                    @Html.ValidationMessageFor(r => r.IsActive)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-primary">Submit</button>
+                <a href="@Url.Action("index", "news")" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    }
+</div>
+<script src="https://cdn.ckeditor.com/4.5.2/standard-all/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('Description', { height: 500 });
+    CKEDITOR.replace('SearchPageDescription');
+    $(document).ready(function () {
+        $('button').click(function (e) {
+            if (jsFormValidation("#frmNews", null, null, null)) {
+                $("#frmNews").submit();
+            } else {
+                e.preventDefault();
+            }
+        });
+        $("#PublishedDate").val(new Date('dd-MM-yy'));
+        $("#PublishedDate").datepicker({
+            dateFormat: 'dd-MM-yy'
+        });
+    });
+</script>
+<link href="~/Areas/Admin/Content/css/switch.css" rel="stylesheet" />

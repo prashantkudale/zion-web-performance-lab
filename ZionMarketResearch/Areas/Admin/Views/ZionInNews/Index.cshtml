@@ -1,0 +1,55 @@
+﻿@model PagedList.IPagedList<ZionAdmin.Repository.ZMRInNewsRepository>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Zion In News Links</h3><br />
+
+<div class="row margin-bottom-15">
+    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Search", "ZionInNews", FormMethod.Get, new { Class = "form-inline" }))
+    {
+        <div class="input-group col-md-12">
+            <input type="text" name="searchText" class="form-control" placeholder="Search" value="@ViewBag.SearchText" id="searchText" />
+            <span class="input-group-btn" style="width: 70px !important;">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </span>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Text</th>
+                    <th>URL</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var n in Model)
+                {
+                    <tr>
+                        <td>
+                            @n.LinkText
+                        </td>
+                        <td>
+                            <a target="_blank" href="@n.URL">@n.URL</a>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { controller = "ZionInNews", id = n.ID })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = n.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, p => "/admin/zioninnews/index/" + p, new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+    </div>
+</div>

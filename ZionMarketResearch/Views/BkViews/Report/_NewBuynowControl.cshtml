@@ -1,0 +1,208 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{
+    var isDiscount = Session["Discount"] != null ? true : false;
+}
+<div class="newBuynow" id="chooselicense">
+    @*<span>Choose License</span>*@
+    <i class="fa fa-question-circle" id="chooseToolTip" data-toggle="tooltip" data-placement="right" data-html="true" style="float:left;margin-top:10px;"></i>
+    @*<select id="chooseLicenseType">
+            <option value="@Model.SingleUserLink">Single User | $ @Model.SingleUser USD</option>
+            <option value="@Model.MultiUserLink">Multi User | $ @Model.MultiUser USD</option>
+            <option value="@Model.CorporateUserLink">Corporate User | $ @Model.CorporateUser USD</option>
+        </select>*@
+    <div id="dd" class="wrapper-dropdown-3">
+        <span>Choose License</span>
+        <ul class="dropdown">
+            <li value="@Model.SingleUserLink" class="defaultSelected">
+                <a href="#">
+                    Single User | $ @if (isDiscount)
+            { <span style="text-decoration:line-through; color:red;">@Model.SingleUser</span> @((Model.SingleUser - (Model.SingleUser * (decimal)0.3)).ToString("0.00")) }
+                    else
+                    { @Model.SingleUser } USD
+                </a>
+            </li>
+            <li value="@Model.MultiUserLink">
+                <a href="#">
+                    Multi User | $ @if (isDiscount)
+            {<span style="text-decoration:line-through; color:red;">@Model.MultiUser</span> @(((decimal)(Model.MultiUser - (Model.MultiUser * (decimal)0.30))).ToString("0.00")) }
+                    else
+                    { @Model.MultiUser } USD
+                </a>
+            </li>
+            <li value="@Model.CorporateUserLink">
+                <a href="#">
+                    Corporate User | $ @if (isDiscount)
+            {<span style="text-decoration:line-through; color:red;">@Model.CorporateUser</span> @(((decimal)(Model.CorporateUser - (Model.CorporateUser * (decimal)0.30))).ToString("0.00"))}
+                    else
+                    { @Model.CorporateUser } USD
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <button class="btn text-uppercase btn-hot" onclick="jsRedirect(dd.getValue());">@(Model.IsUpcoming ? "Pre Book Now" : "Buy Now")</button>
+    <button class="btn text-uppercase btn-primary" onclick="jsRedirect('/custom/@Model.ReportId');">Request Customization</button>
+    @if (Model.FreeAnalysis == null || string.IsNullOrEmpty(Model.FreeAnalysis))
+    {
+        <button class="btn text-uppercase btn-fresh" onclick="jsRedirect('@Model.FreeAnalysisLink')" style="display:none;">Ask For Analyst</button>
+    }
+    <a href="@Url.Action("RequestBrochure", "Report", new { url = Model.URL })" class="btn btn-sunny text-uppercase">Request Free Brochure</a>
+    <a href="@Url.Action("RequestDiscount", "Report", new { url = Model.URL })" class="btn btn-sky text-uppercase">Request Discount</a>
+</div>
+
+<!--Button Style-->
+<style>
+    .askbtn {
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        background: none;
+        cursor: pointer;
+        /*padding: 25px 80px;*/
+        padding: 7px 10px;
+        display: inline-block;
+        /*margin: 15px 30px;*/
+        margin: 13px 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        outline: none;
+        position: relative;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .btn-1 {
+        border: 3px solid #fff;
+        color: #fff;
+    }
+
+    .btn-1a:hover,
+    .btn-1a:active {
+        color: #0e83cd;
+        /*background: #fff;*/
+        background-color: blanchedalmond;
+    }
+
+    .color-1 {
+        background: #0e83cd;
+    }
+
+    .newBuynow {
+        background: #eeeeee;
+        /*text-align: center;*/
+        padding: 10px;
+    }
+
+    #chooseLicenseType {
+        height: 37px;
+        padding: 8px;
+        font-weight: bold;
+    }
+
+    .newBuynow span {
+        font-weight: bold;
+        color: black;
+    }
+
+    .mToolTip {
+        color: white;
+    }
+
+        .mToolTip p {
+            color: white !important;
+        }
+
+    @@media only screen and (max-width: 600px) {
+        #chooselicense button.btn, #chooselicense a.btn, #dd, #chooselicense select {
+            width: 100%;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+    }
+
+    ul.dropdown {
+        z-index: 9;
+    }
+
+    .wrapper-dropdown-3 {
+        margin-left: 19px;
+        float: left;
+        text-align: left;
+        margin-right: 10px;
+    }
+
+        .wrapper-dropdown-3 a {
+            color: black !important;
+        }
+</style>
+<link href="~/css/customselect/style.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#chooseToolTip").attr('title', '<div class="mToolTip"><p><strong>Single User</strong> - It allows one person, the buyer, to have sole right and access to the purchased report. Further distribution of product is strictly prohibited.</p><hr/><p><strong>Multi User</strong> - It allows the purchased product to be shared among 5 people within your organization at maximum.</p><hr/><p><strong>Corporate User</strong> - It allows the purchased product to be shared among all employees of your organization irrespective of their geographical location.</p></div>');
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    function jsRedirect(url) {
+        window.open(url, "_blank");
+    }
+
+    function DropDown(el) {
+        this.dd = el;
+        this.placeholder = this.dd.children('span');
+        this.opts = this.dd.find('ul.dropdown > li');
+        this.defaultSelected = this.dd.find('ul.dropdown > li.defaultSelected');
+        this.val = '';
+        this.index = -1;
+        this.initEvents();
+    }
+    DropDown.prototype = {
+        initEvents: function () {
+            var obj = this;
+            if (this.defaultSelected != null) {
+                var opt = this.defaultSelected;
+                obj.val = opt.attr('value');
+                obj.text = opt.text();
+                obj.index = opt.index();
+                obj.html = opt.children().html();
+                obj.placeholder.html(obj.html);
+            }
+
+            obj.dd.on('click', function (event) {
+                $(this).toggleClass('active');
+                return false;
+            });
+
+            obj.opts.on('click', function () {
+                var opt = $(this);
+                obj.val = opt.attr('value');
+                obj.text = opt.text();
+                obj.index = opt.index();
+                obj.html = opt.children().html();
+                obj.placeholder.html(obj.html);
+            });
+        },
+        getValue: function () {
+            return this.val;
+        },
+        getIndex: function () {
+            return this.index;
+        },
+        getText: function () {
+            return this.text;
+        }
+    }
+    var dd = {};
+    $(function () {
+
+        dd = new DropDown($('#dd'));
+
+        $(document).click(function () {
+            // all dropdowns
+            $('.wrapper-dropdown-3').removeClass('active');
+        });
+
+    });
+</script>

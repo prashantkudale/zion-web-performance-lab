@@ -1,0 +1,60 @@
+﻿@model ZionMarketResearch.Models.CategoryReport
+@using PagedList.Mvc
+@{ ViewBag.Title = Model.MetaTitle;
+    ViewBag.MetaDescription = Model.Description;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml"; }
+
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "<a href=" + Url.Action("Index", "Category") + ">Category</a>" + "|" + Model.Category); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>@Model.Category</h1>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+    <div class="category-description">
+        @Html.Raw(Model.Description)
+    </div>}
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid">
+        <div class="col-md-9 col-sm-12">
+            <div>
+                @{ Html.RenderPartial("~/Views/Report/_ReportList.cshtml", Model.Reports); }
+                @*@{ Html.RenderPartial("_TotalRecord100", Model.Reports); }
+                    @Html.PagedListPager(Model.Reports, p => Url.Action("CategoryWithReports", "Category", new { page = p, url = Model.CategoryUrl }), new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })*@
+                @{ Html.RenderPartial("/Views/Report/VueJs/_VueReportList.cshtml", "/get-category-reports/" + (string)Model.CategoryUrl); }
+
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div>
+                <h3 class="sidebar-title">Category Archive</h3>
+                @{Html.RenderAction("GetCategoryWithReportCount", "Category");}
+                <h3 class="sidebar-title">Upcoming Reports</h3>
+                @{ Html.RenderAction("LatestUpcomingReports", "Report", new { Count = 10 }); }
+                <h3 class="sidebar-title">Latest Reports</h3>
+                @{ Html.RenderAction("LatestReport", "Report", new { Count = 10 }); }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    .category-description {
+        backdrop-filter: blur(10px);
+    }
+
+        .category-description p {
+            color: #000;
+            font-size: 18px !important;
+            padding: 15px;
+            text-align: justify;
+        }
+</style>

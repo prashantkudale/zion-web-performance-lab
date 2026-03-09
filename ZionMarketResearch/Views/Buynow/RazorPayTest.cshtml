@@ -1,0 +1,331 @@
+﻿@model ZionMarketResearch.Models.BuynowRepository
+@{
+    ViewBag.Title = (Model.OrderSummary[0].IsUpcoming ? "Prebook - " : "Buy Now - ") + Model.OrderSummary[0].ReportTitle.Substring(0, Model.OrderSummary[0].ReportTitle.ToLower().IndexOf("market") + 6);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ Html.RenderPartial("_breadcrumb", "<a href='/report/" + Model.OrderSummary[0].ReportUrl + "' title='" + Model.OrderSummary[0].ReportTitle + "'>Back to Report: " + Model.OrderSummary[0].ReportTitle.Substring(0, Model.OrderSummary[0].ReportTitle.ToLower().IndexOf("market") + 6) + " </a>|Buy Now"); }
+<div class="row form-with-padding">
+    <div class="col-sm-8">
+        <h1 class="reporttitle">@Model.OrderSummary[0].ReportTitle</h1>
+        <div class="row">
+            <div class="alert alert-info">
+                <i class="fa fa-info-circle"></i> Your personal details safe with us. <a href="/privacy-policy" target="_blank" style="text-decoration:underline;" rel="nofollow">Privacy Policy</a>
+                <a href="https://seal.godaddy.com/verifySeal?sealID=eABH91l0h9MuYRpGoWkiG6NRu7Y2vaTxM5bjm0tMzUTDOhMYnSysInFUHWa0" target="_blank" rel="nofollow">
+                    <img style="cursor:pointer;cursor:pointer;" src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" alt="SSL site seal - click to verify" />
+                </a>
+                <br />
+                <b>Please fill your details below, to @(Model.OrderSummary[0].IsUpcoming ? "prebook" : "purchase") this report:</b>
+            </div>
+            @{ Html.RenderPartial("_ValidationSummary", ViewData.ModelState); }
+            <form class="form-horizontal" id="bform" action="/buynow/@(Model.OrderSummary[0].IsUpcoming ? "prebook" : "index" )" method="post">
+                @Html.HiddenFor(f => f.r, new { value = ZionMarketResearch.Util.Utility.Encryptstring(Model.OrderSummary[0].ReportUrl) })
+                @Html.HiddenFor(f => f.l, new { value = ZionMarketResearch.Util.Utility.Encryptstring(Model.OrderSummary[0].SelectedReportType.ToString()) })
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center lead">@(Model.OrderSummary[0].IsUpcoming ? "Prebook this report now" : "Purchase this report now")</div>
+                    <div class="panel-body">
+                        <fieldset>
+                            <legend>Personal Details:</legend>
+                            <div id="personal">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="Name" class="control-label col-xs-2">Name</label>
+                                            <div class="col-xs-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    @Html.TextBoxFor(f => f.Name, new { Class = "form-control", placeholder = "Enter Name Ex. - John Carter" })
+                                                </div>
+                                                @Html.ValidationMessageFor(f => f.Name)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="Email" class="control-label col-xs-2">Email</label>
+                                            <div class="col-xs-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                    @Html.TextBoxFor(f => f.Email, new { Class = "form-control", placeholder = "Enter Email Id Ex. - john@microsoft.com" })
+                                                </div>
+                                                @Html.ValidationMessageFor(f => f.Email)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="ContactNumber" class="control-label col-xs-2">Phone#</label>
+                                            <div class="col-xs-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                    @Html.TextBoxFor(f => f.ContactNumber, new { Class = "form-control", placeholder = "Enter Phone #" })
+                                                </div>
+                                                @Html.ValidationMessageFor(f => f.ContactNumber)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="Company" class="control-label col-xs-2">Company</label>
+                                            <div class="col-xs-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                                    @Html.TextBoxFor(f => f.Company, new { Class = "form-control", placeholder = "Enter your Company Name" })
+                                                </div>
+                                                @Html.ValidationMessageFor(f => f.Company)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="Title" class="control-label col-xs-2">Title/Desig.</label>
+                                            <div class="col-xs-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                                    @Html.TextBoxFor(f => f.Title, new { Class = "form-control", placeholder = "Enter your designation in company" })
+                                                </div>
+                                                @Html.ValidationMessageFor(f => f.Title)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Address Details:</legend>
+                            <div id="address">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="address" class="control-label col-xs-2">Address</label>
+                                            <div class="col-xs-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                    @Html.TextAreaFor(f => f.Address, new { placeholder = "Enter your address", Class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(f => f.Address)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="zip" class="control-label col-xs-2">ZIP</label>
+                                            <div class="col-xs-10 right-15">
+                                                @Html.TextBoxFor(f => f.ZipCode, new { Class = "form-control", placeholder = "Enter ZIP code" })
+                                                @Html.ValidationMessageFor(f => f.ZipCode)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="city" class="control-label col-xs-2">City</label>
+                                            <div class="col-xs-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                                    @Html.TextBoxFor(f => f.City, new { Class = "form-control", placeholder = "Enter your city name" })
+                                                </div>
+                                                @Html.ValidationMessageFor(f => f.City)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="state" class="control-label col-xs-2">State</label>
+                                            <div class="col-xs-10 right-15">
+                                                @Html.TextBoxFor(f => f.State, new { Class = "form-control", placeholder = "Enter your state name" })
+                                                @Html.ValidationMessageFor(f => f.State)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="country" class="control-label col-xs-2">Country</label>
+                                            <div class="col-xs-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-flag"></i></span>
+                                                    @Html.DropDownListFor(f => f.Country, (List<SelectListItem>)ViewBag.Countries, "-Select Country-", new { Class = "form-control selectpicker" })
+                                                </div>
+                                                @Html.ValidationMessageFor(f => f.Country)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Payment Details:</legend>
+                            <div id="payment">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-xs-2"></label>
+                                        </div>
+                                        <div class="col-xs-11">
+                                            <img src="/captcha" style="margin-left:55px;" id="captcha" /> <a id="refresh" title="Refresh Captcha" style="cursor:pointer;"> <img src="~/images/012_restart-128.png" style="width:32px;" /></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="captcha" class="control-label col-xs-2">Captcha</label>
+                                            <div class="col-xs-10 right-15">
+                                                @Html.TextBoxFor(f => f.Captcha, new { Class = "form-control", placeholder = "Enter captcha" })
+                                                @Html.ValidationMessageFor(f => f.Captcha)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="ptype" class="control-label col-xs-2">Payment</label>
+                                            <div class="col-xs-10 right-15">
+                                                @Html.DropDownListFor(f => f.PaymentType, new List<SelectListItem> {
+                                               new SelectListItem { Text = "-Select Payment-", Value = "" },
+                                               //new SelectListItem { Text = "HDFC", Value = "3" },
+                                               //new SelectListItem { Text = "PayPal", Value = "0" },
+                                               new SelectListItem { Text = "Credit/Debit Card", Value = "5", Selected = true },
+                                               new SelectListItem { Text = "2Checkout", Value = "1" },
+                                               //new SelectListItem { Text = "CCAvenue", Value = "4" },
+                                               new SelectListItem { Text = "Wire Transfer", Value = "2" }
+                                           }, new { Class = "form-control", placeholder = "Select Payment", onchange = "jsChangePaymentMethod();" })
+                                                @Html.ValidationMessageFor(f => f.PaymentType)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <button type="button" id="btnPayNow" class="btn btn-danger btn-lg pull-right">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary" style=" border-color:#cccccc;">
+            <div class="panel-heading" style="background-color:#FF9900!important;"><strong>Order Summary</strong></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <strong>License Type:</strong>
+                        <form role="form" action="" method="post">
+                            <select class="form-control" style="font-weight:bold;font-size:15px;" onchange='jsChange(this,"@Model.OrderSummary[0].ReportUrl", @(Model.OrderSummary[0].IsUpcoming ?  "'prebook'" : "'buynow'" ))'>
+                                <option value="su" @(Model.OrderSummary[0].SelectedReportType == 0 ? "selected" : string.Empty)>Single User | $@Model.OrderSummary[0].SingleUser USD</option>
+                                @if (Model.OrderSummary[0].MultiUser != null && Model.OrderSummary[0].MultiUser > 0)
+                                {
+                                    <option value="mu" @(Model.OrderSummary[0].SelectedReportType == 1 ? "selected" : string.Empty)>Multiuser User | $@Model.OrderSummary[0].MultiUser USD</option>
+                                }
+                                @if (Model.OrderSummary[0].CorporateUser != null && Model.OrderSummary[0].CorporateUser > 0)
+                                {
+                                    <option value="cu" @(Model.OrderSummary[0].SelectedReportType == 2 ? "selected" : string.Empty)>Corporate User | $@Model.OrderSummary[0].CorporateUser USD</option>
+                                }
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" style="background-color:#CCCCCC;"><strong>Total : $@(Model.OrderSummary[0].SelectedReportType == 0 ? Model.OrderSummary[0].SingleUser : Model.OrderSummary[0].SelectedReportType == 1 ? Model.OrderSummary[0].MultiUser : Model.OrderSummary[0].SelectedReportType == 2 ? Model.OrderSummary[0].CorporateUser : 0) USD</strong> </div>
+        </div>
+        @{ Html.RenderPartial("_contact"); }
+    </div>
+</div>
+
+
+<style>
+    .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        top: 0;
+        z-index: 1000;
+        visibility: hidden;
+    }
+
+    .show {
+        visibility: visible;
+    }
+
+
+    .spanner.show, .overlay.show {
+        opacity: 1;
+    }
+
+    .overlay.hide {
+        visibility: hidden;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+    function jsChange(ctl, url, state) {
+        window.location = "/" + state + "/" + $(ctl).val() + "/" + url;
+    }
+</script>
+<style>
+    label.btn.active {
+        background-color: #286090;
+        border-radius: 5px !important;
+        color: white;
+    }
+
+    .form-with-padding {
+        padding: 12px;
+    }
+
+    .btn-next {
+        margin-left: 78%;
+    }
+
+    .lstBuynow > li {
+        float: left;
+        margin-right: 15px;
+        list-style: none;
+        list-style-type: none;
+        /* clear: left; */
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        /* background-color: blue; */
+        border: 1px solid black;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .active {
+        background-color: blue;
+    }
+
+    .form-control-feedback {
+        display: block;
+        margin-top: 10px;
+        right: 0px !important;
+    }
+
+    .right-15 i {
+        right: 15px !important;
+    }
+</style>
+@Scripts.Render("~/bundles/form-validation")
+
+
+@section scripts{
+    @*<script type="text/javascript" src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script src="~/Scripts/serializeform.js"></script>*@
+    @Scripts.Render("~/bundles/checkoutjs");
+    @Scripts.Render("~/bundles/razorpayjs");
+}

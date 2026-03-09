@@ -1,0 +1,125 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+@if (Request.Url.ToString().Contains("toc") || Request.Url.ToString().Contains("methodology"))
+{
+    @section metaTags{
+        <meta name="robots" content="noindex" />
+    }
+}
+<section id="report-title" class="report-title-image white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @if (Model.RelatedNews != null && Model.RelatedNews.Length > 0)
+        {
+            <style>
+                marquee a {
+                    color: #123456 !important;
+                }
+            </style>
+            <div style="background-color:#c5c5c5; position:relative;">
+                <div style="width:15%;float:left;background-color:#123456; padding:5px; border-radius:30px; text-align:center;color:#fff;">@(Request.Browser.IsMobileDevice ? "PR" : "Press Resease")</div>
+                <div style="width:85%;float:left;">
+                    <marquee>
+                        <ul>
+                            <li>@Html.Raw(Model.RelatedNews.First())</li>
+                        </ul>
+                    </marquee>
+                </div>
+            </div>
+            <div style="clear:both;">
+            </div>
+        }
+        @{ Html.RenderPartial("_breadcrumb", Html.Raw(Model.Categories[Model.Categories.Length - 1]) + "|" + Model.ReportTitle.Substring(0, Model.ReportTitle.IndexOf("Market") + 6)); }
+
+        @{ Html.RenderPartial("_ReportInfo"); }
+        <div class="row" id="reportButtons">
+            <div class="col-sm-12 zero-padding">
+                <div class="link-btn divcenter animate__animated animate__delay-1s animate__zoomIn" style="margin-bottom: 10px;">
+                    <a href="@Url.Action("Index", "Custom", new { id = Model.ReportId })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request For Customization</a>
+                    <a href="@Url.Action("RequestBrochure", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Free Brochure</a>
+                    @*<a href="@Url.Action("RequestDiscount", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Discount</a>*@
+                    <a href="@Url.Action("Sample", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Free Sample</a>
+                    <a href="@Url.Action(!Model.IsUpcoming ? "Index" : "Prebook", "BuyNow", new { url = Model.ReportUrl, reporttype = "su" })" class="hvr-wobble-vertical" rel="nofollow noreferrer">@(!Model.IsUpcoming ? "Buy Now" : "Prebook") <i class="fa fa-arrow-right hvr-icon"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+@if (!Model.IsUpcoming)
+{
+    Html.RenderPartial("_PublishedReport", Model);
+}
+else if (Model.IsUpcoming)
+{
+    Html.RenderPartial("_UpcomingReport", Model);
+}
+@if (Model.FAQ != null && Model.FAQ.Count > 0)
+{
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @{Html.RenderPartial("_FAQ");}
+            </div>
+        </div>
+    </section>
+                    }
+@{ Html.RenderPartial("_PopForm", new ZionMarketResearch.Models.AvailPDF { ReportId = Model.ReportId, ReportTitle = Model.ReportTitle }); }
+<style>
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        /* margin: 0 auto; */
+        left: 0;
+        background-color: lightgray;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        var urlSegment = document.URL.split("/");
+        if (urlSegment[urlSegment.length - 2] === 'toc') {
+            $('.nav-tabs a[data-target="TableOfContent"]').tab('show');
+            $("#TableOfContent").addClass("in active");
+        } else if (urlSegment[urlSegment.length - 2] === 'report') {
+            $('.nav-tabs a[data-target="Description"]').tab('show');
+            $("#Description").addClass("in active");
+        } else if (urlSegment[urlSegment.length - 2] === 'methodology') {
+            $('.nav-tabs a[data-target="Methodology"]').tab('show');
+            $("#Methodology").addClass("in active");
+        } else if (urlSegment[urlSegment.length - 2] === 'market-analysis') {
+            $('.nav-tabs a[data-target="FreeAnalysis"]').tab('show');
+            $("#FreeAnalysis").addClass("in active");
+        }
+        var reportDescImg = $("#report-desc img");
+
+        $(reportDescImg).addClass("img-responsive");
+        $(reportDescImg).css("margin", "0 auto");
+    });
+</script>
+@if (!Request.Browser.IsMobileDevice)
+{
+    <script>
+        window.onscroll = function () { myFunction() };
+
+        // Get the header
+        var header = document.getElementById("reportButtons");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+                header.classList.remove("row");
+            } else {
+                header.classList.remove("sticky");
+                header.classList.add("row");
+            }
+        }
+    </script>
+}

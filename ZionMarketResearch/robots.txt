@@ -1,0 +1,17 @@
+Sitemap: https://www.zionmarketresearch.com/sitemap.xml
+User-agent: *
+Disallow: /prebook/
+Disallow: /buynow/
+Disallow: /process/
+Disallow: /Search?*
+Disallow: /thankyou
+Disallow: /login*
+Disallow: /sample/
+Disallow: /inquiry/
+Disallow: /requestdiscount/
+Disallow: /methodology/
+Disallow: /requestbrochure/
+Disallow: /ask-to-analyst/
+Disallow: /download-toc/
+Disallow: /toc/
+Disallow: /custom/

@@ -1,0 +1,48 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.SearchResultView>
+@using PagedList.Mvc
+@{ ViewBag.Title = "All Upcoming Reports: Zion Market Research";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    ViewBag.MetaDescription = "Zion Market Research offers all market uocoming reports covering different research categories.";
+    ViewBag.MetaKeywords = "Market research reports, market research, industry research reports, market research analysis, market size, market share, industry trends"; }
+<script>
+    $(document).ready(function () {
+        if ($(window).width() < 514) {
+            $('.col-sm-8 col-xs-12').removeClass('tab');
+
+        } else {
+            $('.col-sm-8 col-xs-12').addClass('tab');
+        }
+    });
+</script>
+
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "All Upcoming"); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>Ongoing Reports</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section_gap">
+    <div class="container-fluid">
+        <div class="col-md-9 col-sm-12">
+            <div>
+                @{ Html.RenderPartial("_ReportList", Model); }
+                @*@{ Html.RenderPartial("_TotalRecord100", ViewData.Model); }
+                    @Html.PagedListPager(Model, p => Url.Action("AllUpcoming", "Report", new { page = p }), GlobalConstant.GlobalPagedListOption)*@
+                @{ Html.RenderPartial("/Views/Report/VueJs/_VueReportList.cshtml", "/get-all-upcoming-reports"); }
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div>
+                <h3 class="sidebar-title">Category Archive</h3>
+                @{Html.RenderAction("GetCategoryWithReportCount", "Category");}
+                @*<h3 class="sidebar-title">Latest Reports</h3>
+                @{ Html.RenderAction("LatestReport", "Report", new { Count = 10 }); }*@
+            </div>
+        </div>
+    </div>
+</section>

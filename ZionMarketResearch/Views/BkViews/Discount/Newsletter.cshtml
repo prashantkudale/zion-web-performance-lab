@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Newsletter";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    ViewBag.Title = "Year End Sale Offer. Contact us for More discount offers at Zion Market Research";
+    ViewBag.MetaDescription = "Year End Sale Offer on " + DateTime.Now.Date.ToString("dd MM yyyy") + ". More discount offers available at Zion Market Research";
+    ViewBag.MetaKeywords = "Year End Sale Offer Offer, Year End Sale Offer Offer " + DateTime.Now.Year + ", Year End Sale Offer Zion Market Research, Year End Sale Offer Offer Sale, Year End Sale Offer Flash Sale, Year End Sale Offer Deals, Year End Sale Offer Deals 2018, Year End Sale Offer Discount Offers, Year End Sale Offer Discount Online, Cyber Monday Offer, Cyber Monday Flash sale, Cyber Monday Deals, Cyber Monday Discount Offers, Cyber Monday Discount Online, Zion Market Research, Zion Market Research Offers, Zion Market Research Flash Sale, Zion Market Research Sale 2018, Zion Market Research Offers 2018";
+}
+
+<section id="report-title" class="white_section section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="font-size: 20px;text-align: center;margin-top: 13px;"><h1>Please <a href="/contact-us">contact us</a> for more information and discounts</h1></div>
+                        <div style="text-align: center;font-size: 18px;">Contact to <span style="font-weight:bold;"><a href="mailto:sales@zionmarketresearch.com">sales@zionmarketresearch.com</a></span> | <span style="font-weight:bold;">+49-322 210 92714</span> for more details</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="alert alert-info" style="font-size:16px;">
+                    <i class="fa fa-info-circle"></i> Fill below form for more information about discount.
+                </div>
+                @{ Html.RenderAction("ShowForm", "Form", new { FormType = (int)GlobalConstant.FormType.YearEndSale, ReportId = 0 }); }
+                <div>
+                    <div class="viewButton">
+                        <a href="/all-reports">View All Reports</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" style="color: black;font-weight: bold;margin-top: 100px;background: lightgrey;">
+                <ul class="myul" style="margin:0px;padding:30px;">
+                    <li>30 to 60 mins analysis call</li>
+                    <li>
+                        Patent analysis
+                    </li>
+                    <li>
+                        SWOT analysis
+                    </li>
+                    <li>
+                        10 to 15 company profiles
+                    </li>
+                    <li>Primary insights</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+<style>
+    ul.myul {
+        margin-left: 74px;
+        margin-top: 46px;
+        font-size: 22px;
+        line-height: 40px;
+        width: 100%;
+    }
+
+    .myul > li {
+        list-style-image: url('../../images/b_icon1_icon.png');
+    }
+
+    .viewButton {
+        width: 200px;
+        margin-left: 39%;
+        text-align: center;
+        padding: 12px;
+        background-color: #07589d;
+        font-size: 19px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+        .viewButton > a {
+            color: white;
+        }
+</style>

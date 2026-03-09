@@ -1,0 +1,118 @@
+﻿@model string
+<div id="covid-19">
+    <h2>COVID-19</h2>
+    <p class="pandemic">A Global Pandemic</p>
+    <div class="covid-request">
+        <p>Request the coronavirus impact analysis across industries and market</p>
+    </div>
+    <a href="@Model" class="on_analysis">Request impact analysis on this market</a>
+</div>
+
+
+
+<style>
+    #covid-19 {
+        background: url(/images/covid-19_1.png) 0 0 no-repeat;
+        background-size: cover;
+        padding: 20px;
+        margin: 20px 0;
+        height: 550px;
+    }
+
+        #covid-19 h2 {
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        #covid-19 .pandemic {
+            color: #ffffff !important;
+            font-size: 26px !important;
+        }
+
+    .pandemic, .covid-request p {
+        margin-bottom: 75px !important;
+    }
+
+    .covid-request p {
+        font-size: 18px !important;
+        color: #fcff00 !important;
+        font-weight: bold !important;
+    }
+
+    .on_analysis {
+        padding: 30px;
+        background: #ffffff;
+    }
+
+    #covid-19 a {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        color: #fff;
+        text-decoration: none;
+        font-size: 24px;
+        border: 2px solid #fff;
+        margin-bottom: 1rem;
+        background: rgba(0,0,0,0.5);
+        margin-top: 1rem;
+    }
+
+        #covid-19 a:hover {
+            color: #000000;
+            background: rgba(255,240,2,1);
+        }
+
+    .textmark {
+        -webkit-text-stroke: .8px #fcff00;
+    }
+
+    /*@@media only screen and (max-width: 600px) {
+        #covid-19 {
+            background: url(images/covid-19_1.png) 0 0 no-repeat;
+            background-size: cover;
+            padding: 10px;
+            margin: 20px 0;
+            height: 550px;
+        }
+
+            #covid-19 h2 {
+                color: #ffffff;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            #covid-19 .pandemic {
+                color: #ffffff;
+                font-size: 17px;
+            }
+
+        .pandemic, .covid-request p {
+            margin-bottom: 75px;
+        }
+
+        .covid-request p {
+            font-size: 24px;
+            /*color:#cf41fc;
+    color:#0d3f98;*/
+            color: #fcff00;
+            font-weight: bold;
+        }
+
+        .on_analysis {
+            padding: 30px;
+            background: #ffffff;
+        }
+
+        #covid-19 a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 17px;
+            border: 2px solid #fff;
+            margin-bottom: 1rem;
+            background: rgba(0,0,0,0.5);
+            margin-top: 1rem;
+        }
+    }*/
+</style>

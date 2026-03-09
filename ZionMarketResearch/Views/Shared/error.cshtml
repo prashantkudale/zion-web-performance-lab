@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    Response.StatusCode = 500;
+}
+
+@section scripts{
+    <meta name="robots" content="noindex,nofollow">
+}
+
+<section id="report-title" class="report-title-image white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "Error 500");}
+        <div class="col-md-12">
+            <h3>If you think the URL is valid. Let us know about the error.</h3>
+            @{ Html.RenderAction("ShowForm", "Form", new { FormType = (int)ZionMarketResearch.constants.GlobalConstant.FormType.ServerError }); }
+        </div>
+    </div>
+</section>

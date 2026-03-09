@@ -1,0 +1,488 @@
+﻿@model ZionAdmin.Repository.ReportRepository
+@{ ViewBag.Title = "Create Report";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
+<h3>Create Report</h3>
+<hr />
+<div class="col-md-12">
+    @if (ViewBag.ErrorMessage != null)
+    {
+<div class="alert alert-danger">
+    @Html.Raw(ViewBag.ErrorMessage)
+    @Html.ValidationSummary()
+</div>}
+    @using (Html.BeginForm("Create", "Report", FormMethod.Post, new { id = "frmReport", Class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+<div class="form-group">
+    <label for="CategoryName" class="control-label col-sm-2"></label>
+    <label id="lblTitle" class="col-sm-10"></label>
+</div>
+<div class="form-group">
+    <label for="CategoryName" class="control-label col-sm-2">Title</label>
+    <div class="col-sm-6">
+        @Html.TextAreaFor(r => r.ReportTitle, new { Class = "form-control", placeholder = "Title whithout special characters. Do not enter (.,#*&!@$)%^(&*)", onkeyup = "jsChnageTitle(this);", rows=5 })
+        @Html.ValidationMessageFor(r => r.ReportTitle)
+    </div>
+    <div class="col-sm-4">
+        <label class="control-label col-sm-5" for="AppendId">Append Id?</label>
+        <div class="col-sm-2">
+            @Html.CheckBoxFor(r => r.AppendId)
+            @Html.ValidationMessageFor(r => r.AppendId)
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="ReportUrl" class="control-label col-sm-2">URL</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.ReportUrl, new { Class = "form-control", placeholder = "Leave blank if need default URL" })
+        @Html.ValidationMessageFor(r => r.ReportUrl)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2">H1 Tag</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(f => f.MetaKeywordsSample, new { Class = "form-control", placeholder = "H1 Tag for report page" })
+        @Html.ValidationMessageFor(r => r.MetaKeywordsSample)
+    </div>
+</div>
+<div class="form-group">
+    <label for="MetaTitle" class="control-label col-sm-2">Meta Title</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.MetaTitle, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.MetaTitle)
+    </div>
+</div>
+<div class="form-group">
+    <label for="MetaKeywords" class="control-label col-sm-2">Meta Keywords</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.MetaKeywords, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.MetaKeywords)
+    </div>
+</div>
+<div class="form-group">
+    <label for="MetaDescription" class="control-label col-sm-2">Meta Desc.</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.MetaDescription, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.MetaDescription)
+    </div>
+</div>
+
+<div class="form-group" style="display:none;">
+    <label for="File1" class="control-label col-sm-2">Main Page Image</label>
+    <div class="col-sm-10">
+        <input type="file" name="File1" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2">Report Synopsis</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(f => f.MetaDescriptionTOC, new { Class = "form-control", placeholder = "Meta desciption for TOC page" })
+            @Html.ValidationMessageFor(r => r.MetaDescriptionTOC)
+        </div>
+</div>
+<div class="form-group" style="display:none;">
+    <label for="SearchPageDescription" class="control-label col-sm-2">Report Description (first Para)</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.SearchPageDescription, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.SearchPageDescription)
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="MainPageDescription" class="control-label col-sm-2">Main Page Desc.</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.MainPageDescription, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.MainPageDescription)
+    </div>
+</div>
+<div class="form-group">
+    <label for="ReportDescriptionReseller" class="control-label col-sm-2">Reseller Description</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.ResellerMainPageDescription, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.ResellerMainPageDescription)
+    </div>
+</div>
+<div class="form-group">
+    <label for="TableOfContent" class="control-label col-sm-2">Table Of Content</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.TableOfContent, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.TableOfContent)
+    </div>
+</div>
+<div class="form-group">
+    <label for="ListOfFigure" class="control-label col-sm-2">List Of Figure</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.ListOfFigure, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.ListOfFigure)
+    </div>
+</div>
+<div class="form-group">
+    <label for="ListOfFigure" class="control-label col-sm-2">List Of Table</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.ListOfTable, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.ListOfTable)
+    </div>
+</div>
+<div class="form-group">
+    <label for="ListOfChart" class="control-label col-sm-2">List Of Chart</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.ListOfChart, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.ListOfChart)
+    </div>
+</div>
+<div class="form-group">
+    <label for="File2" class="control-label col-sm-2">Search Page Image</label>
+    <div class="col-sm-10">
+        <input type="file" name="File2" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="Methodology" class="control-label col-sm-2">Methodology</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.Methodology, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.Methodology)
+    </div>
+</div>
+<div class="form-group">
+    <label for="FreeAnalysis" class="control-label col-sm-2">Free Analysis</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(r => r.FreeAnalysis, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.FreeAnalysis)
+    </div>
+</div>
+<div class="form-group">
+    <label for="SingleUser" class="control-label col-sm-2">Single User</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.SingleUser, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.SingleUser)
+    </div>
+</div>
+<div class="form-group">
+    <label for="MultiUser" class="control-label col-sm-2">Multi User</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.MultiUser, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.MultiUser)
+    </div>
+</div>
+<div class="form-group">
+    <label for="Corporate" class="control-label col-sm-2">Corporate User</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.Corporate, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.Corporate)
+    </div>
+</div>
+<div class="form-group">
+    <label for="Discount" class="control-label col-sm-2">Discount</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.Discount, new { Class = "form-control", placeholder = "Enter in percentage" })
+        @Html.ValidationMessageFor(r => r.Discount)
+    </div>
+</div>
+<div class="form-group">
+    <label for="PublishedDate" class="control-label col-sm-2">Published Date</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.PublishedDate, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.PublishedDate)
+    </div>
+</div> @*<div class="form-group">
+        <label for="Location" class="control-label col-sm-2">Location</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(r => r.Location, new { Class = "form-control" })
+            @Html.ValidationMessageFor(r => r.Location)
+        </div>
+    </div>*@
+<div class="form-group">
+    <label for="NumberOfPages" class="control-label col-sm-2">Number Of Page</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.NumberOfPages, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.NumberOfPages)
+    </div>
+</div>
+<div class="form-group">
+    <label for="CtaegoryId" class="control-label col-sm-2">Category</label>
+    <div class="col-sm-10">
+        @*@Html.TextBoxFor(r => r.CategoryId, new { Class = "form-control" })*@
+        @Html.DropDownList("ddlCategoryId", ZionAdmin.Repository.CategoryRepository.GetParentCategories(), "-Select Category-", new { Class = "form-control", id = "ddlCategory" })
+        @Html.ValidationMessageFor(r => r.CategoryId)
+        @Html.HiddenFor(r => r.CategoryBreadcrumb)
+        @Html.HiddenFor(r => r.CategoryId)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2">Is Upcoming?</label>
+    <div class="col-sm-10 checkbox">
+        <label>@Html.CheckBoxFor(r => r.IsUpcoming) (Checked checkbox if report is upcoming.)</label>
+        @Html.ValidationMessageFor(r => r.IsUpcoming)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2">Tags</label>
+    <div class="col-sm-10 checkbox">
+        @Html.TextBoxFor(r => r.Tags, new { Class = "form-control", placeholder = "Enter seprated with coma Ex. - tag1,tag2" })
+        @Html.ValidationMessageFor(r => r.Tags)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2">Delivery Format</label>
+    <div class="col-sm-10 checkbox">
+        @Html.DropDownListFor(r => r.DeliveryFormat, new List<SelectListItem>{
+new SelectListItem() {Text = "PDF", Value = "0" },
+new SelectListItem() {Text = "DOC", Value = "1" },
+new SelectListItem() {Text = "Excel", Value = "2" },
+new SelectListItem() {Text = "PPT", Value = "3" },
+new SelectListItem() {Text = "Email", Value = "4" }
+           }, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.DeliveryFormat)
+    </div>
+</div> //------------------------------------------Sample----------------------------------------------------------------------------
+<div style="display:none">
+    <div class="form-group">
+        <label class="control-label col-sm-2">Sample Meta Title</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(f => f.MetaTitleSample, new { Class = "form-control", placeholder = "Meta tile for sample page" })
+            @Html.ValidationMessageFor(r => r.MetaTitleSample)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Sample Meta Description</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(f => f.MetaDescriptionSample, new { Class = "form-control", placeholder = "Meta desciption for sample page" })
+            @Html.ValidationMessageFor(r => r.MetaDescriptionSample)
+        </div>
+    </div>
+
+</div> //------------------------------------------TOC----------------------------------------------------------------------------
+<div style="display:none">
+    <div class="form-group">
+        <label class="control-label col-sm-2">TOC Meta Title</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(f => f.MetaTitleTOC, new { Class = "form-control", placeholder = "Meta tile for TOC page" })
+            @Html.ValidationMessageFor(r => r.MetaTitleTOC)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">TOC Meta Keywords</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(f => f.MetaKeywordsTOC, new { Class = "form-control", placeholder = "Meta keywords for TOC page" })
+            @Html.ValidationMessageFor(r => r.MetaKeywordsTOC)
+        </div>
+    </div>
+</div> //------------------------------------------Free Analysis----------------------------------------------------------------------------
+<div class="form-group">
+    <label class="control-label col-sm-2">Free Ana. Meta Title</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(f => f.MetaTitleFreeAnalysis, new { Class = "form-control", placeholder = "Meta tile for Free Analysis page" })
+        @Html.ValidationMessageFor(r => r.MetaTitleFreeAnalysis)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2">Free Ana. Meta Description</label>
+    <div class="col-sm-10">
+        @Html.TextAreaFor(f => f.MetaDescriptionFreeAnalysis, new { Class = "form-control", placeholder = "Meta desciption for Free ANalysis page" })
+        @Html.ValidationMessageFor(r => r.MetaDescriptionFreeAnalysis)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2">Free Ana. Meta Keywords</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(f => f.MetaKeywordsFreeAnalysis, new { Class = "form-control", placeholder = "Meta keywords for Free Analysis page" })
+        @Html.ValidationMessageFor(r => r.MetaKeywordsFreeAnalysis)
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-sm-2">Report Attribute</label>
+    <div class="col-sm-10">
+        @*@if (ViewBag.ReportAttributes != null)
+            {
+foreach (var rt in (List<ZionMarketResearch.Models.tblreportattribute>)ViewBag.ReportAttributes)
+{
+    <label><input type="checkbox" name="ReportAttribute" value="@rt.ID" />@rt.AttributeName</label>
+}
+            }*@
+        @{ Html.RenderAction("ShowAttributeCheckbox", "ReportAttribute"); }
+    </div>
+</div> //------------------------------------------Inquiry----------------------------------------------------------------------------
+<div style="display:none">
+    <div class="form-group">
+        <label class="control-label col-sm-2">Inquiry Meta Title</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(f => f.MetaTitleInquiry, new { Class = "form-control", placeholder = "Meta tile for Inquiry page" })
+            @Html.ValidationMessageFor(r => r.MetaTitleInquiry)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Inquiry Meta Description</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(f => f.MetaDescriptionInquiry, new { Class = "form-control", placeholder = "Meta desciption for Inquiry page" })
+            @Html.ValidationMessageFor(r => r.MetaDescriptionInquiry)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Inquiry Meta Keywords</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(f => f.MetaKeywordsInquiry, new { Class = "form-control", placeholder = "Meta keywords for Inquiry page" })
+            @Html.ValidationMessageFor(r => r.MetaKeywordsInquiry)
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2">Is Active</label>
+    <div class="col-sm-10">
+        <div class="material-switch pull-left">
+            <input type="checkbox" id="IsActive" name="IsActive" value="true" checked />
+            <label for="IsActive" class="label-success" style="margin-top:16px;"></label>
+            @Html.ValidationMessageFor(r => r.IsActive)
+        </div>
+    </div>
+</div>
+
+<div class="form-group" id="tableApp">
+    <label class="control-label col-sm-2">FAQ <input type="button" class="btn btn-primary btn-sm" value="Add Row" @@click="addRow()" disabled="disableAddButton" /></label>
+    <div class="col-sm-10">
+        <table class="table" id="tblFAQ">
+            <tr v-for="(dt, index) in tableData" key="index">
+<td>
+    <div class="form-group">
+        <label>{{index+1}}. Question </label><input type="button" class="btn btn-sm btn-danger" value="Delete" @@click="RemoveRow(index)" disabled="disableDeleteButton" />
+        <input type="text" class="form-control" name="'FAQ[' + index + '].Question'" v-model="dt.Question" />
+        <input type="hidden" name="'FAQ['+index+'].RowNumber'" value="index+1" />
+    </div>
+    <div class="form-group">
+        <label>Answer</label>
+        <textarea class="form-control editor" name="'FAQ['+ index+'].Answer'" v-model="dt.Answer" id="'editor_'+index"></textarea>
+    </div>
+</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" class="btn btn-primary">Submit</button>
+        <a href="@Url.Action("index", "report")" class="btn btn-default">Cancel</a>
+    </div>
+</div>}
+</div> @*<script src="https://cdn.ckeditor.com/4.5.2/standard-all/ckeditor.js"></script>*@
+<script src="/Areas/Admin/Content/js/ckeditor_4.11.3_standard/ckeditor/ckeditor.js"></script>
+<script src="/Areas/admin/Content/custom/MultiSelect.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    CKEDITOR.replace('MainPageDescription', { height: 500 });
+    CKEDITOR.replace('ResellerMainPageDescription');
+    CKEDITOR.replace('SearchPageDescription');
+    CKEDITOR.replace('MetaDescriptionTOC');
+    CKEDITOR.replace('TableOfContent');
+    CKEDITOR.replace('ListOfFigure');
+    CKEDITOR.replace('ListOfChart');
+    CKEDITOR.replace('FreeAnalysis');
+    CKEDITOR.replace('Methodology');
+    CKEDITOR.replace('ListOfTable');
+
+    $(document).ready(function () {
+        $("#ddlCategory").ZionMultiSelect({
+            dataUrl: "/admin/category/getchildcategory",
+            sendValue: true,
+            onRemoveRefreshData: true,
+            success: function (data) {
+var ddl = $("#ddlCategory");
+var htm = "<option value=''>-Select Category-</option>";
+for (var i = 0; i < data.length; i++) {
+    htm += "<option value='" + data[i].CategoryId + "'>" + data[i].CategoryName + "</option>";
+}
+ddl.html(htm);
+            },
+            refreshUrl: "/admin/category/getparentcategories"
+        });
+
+        $('button').click(function (e) {
+            if (jsFormValidation("#frmReport", null, null, null)) {
+var bread = $("#CategoryId");
+bread.val(selectionValue[selectionValue.length - 1]);
+$("#frmReport").submit();
+            } else {
+e.preventDefault();
+            }
+        });
+        $("#PublishedDate").datepicker({
+            dateFormat: "dd-MM-yy"
+        });
+    });
+    function jsChnageTitle(ctl) {
+        $("#lblTitle").text($(ctl).val());
+    }
+    //var faqRowIndex = 1;
+    //function jsAddRow(e) {
+    //    var allRows = $("#tblFAQ tr");
+    //    faqRowIndex = allRows.length;
+    //    e.preventDefault();
+    //    $("#tblFAQ").append('<tr><td><div class="form-group"><label>' + (faqRowIndex + 1) + '. Question <input type="button" class="btn btn-sm btn-danger" value="Delete" onclick="deleteFAQRow(' + faqRowIndex + ');" /></label><input type="text" class="form-control" name="FAQ[' + faqRowIndex + '].Question" /><input type="hidden" name="FAQ[' + faqRowIndex + '].RowNumber" value="' + (faqRowIndex + 1) + '" /></div><div class="form-group"><label>Answer</label><textarea class="form-control" name="FAQ[' + faqRowIndex + '].Answer"></textarea></div></td></tr>');
+    //    faqRowIndex++;
+    //}
+
+    //function deleteFAQRow(row) {
+    //    debugger;
+    //    $("#tblFAQ tr:nth-child(" + (row + 1) + ")").remove();
+    //}
+</script>
+<script>
+    var tableApp = Vue.createApp({
+        data() {
+            return {
+tableData: [],
+disableAddButton: false,
+disableDeleteButton: false
+            }
+        },
+        methods: {
+            addRow: function () {
+
+//Vue.nextTick(function () {
+//    $("textarea.editor").each(function (ind, item) {
+//        if (CKEDITOR.instances[this.id]) {
+
+//        } else {
+//            CKEDITOR.replace(this.id);
+//        }
+//    });
+//});
+//this.ApplyCkEditor();
+this.tableData.push({ Question: '', Answer: '' });
+Vue.nextTick(function () {
+    CKEDITOR.replace('editor_' + (tableApp.tableData.length - 1));
+});
+            },
+            RemoveRow: function (rowNumber) {
+if (typeof CKEDITOR.instances['editor_' + rowNumber] != 'undefined')
+    CKEDITOR.instances['editor_' + rowNumber].destroy(true);
+tableApp.tableData.splice(rowNumber, 1);
+if (tableApp.tableData.length >= (rowNumber - 1)) {
+    Vue.nextTick(function () {
+        CKEDITOR.replace('editor_' + rowNumber);
+    });
+}
+            },
+            ApplyCkEditor: function () {
+Vue.nextTick(function () {
+    //$("textarea.editor").each(function (ind, item) {
+    //    if (typeof CKEDITOR.instances[item.id] != 'undefined')
+    //        CKEDITOR.instances[item.id].destroy(true);
+    //});
+
+    $("textarea.editor").each(function (ind, item) {
+        CKEDITOR.replace(item);
+        debugger;
+        if (item.value != '') {
+            CKEDITOR.instances[item.id].setContent(item.value);
+        }
+    });
+});
+            }
+        }
+    });
+
+    tableApp.mount('#tableApp');
+
+</script>
+<link href="~/Areas/Admin/Content/css/switch.css" rel="stylesheet" />

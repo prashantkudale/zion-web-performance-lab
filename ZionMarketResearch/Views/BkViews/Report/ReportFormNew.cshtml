@@ -1,0 +1,43 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    var smallTitle = Model.ReportTitle.Substring(0, Model.ReportTitle.IndexOf("Market") + 6);
+}
+@section metaTags{
+    <meta name="robots" content="noindex" />
+}
+<section id="report-title" class="white_section section_gap report-title-image">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>@ViewBag.RequestType</li>
+            <li><a href="@Url.Action("Index", "Report", new { url = Model.ReportUrl })">@smallTitle</a></li>
+        </ul>
+        @{ Html.RenderPartial("~/Views/Report/_ReportInfo.cshtml"); }
+    </div>
+</section>
+
+<section style="padding-top:10px;background: #e7ecea;">
+    <main class="d-flex align-items-center">
+        <div class="container">
+            <h3 class="form-title">@ViewBag.FormTitle @smallTitle</h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    @{Html.RenderAction("ShowForm", "Form", new { FormType = ViewBag.FormType, ReportId = ViewBag.ReportId });}
+                </div>
+            </div>
+            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque. </p>-->
+        </div>
+    </main>
+</section>
+<style>
+    .form-title {
+        text-align: center;
+        padding: 10px;
+        background-color: darkmagenta;
+        color: white;
+        border-radius: 5px 5px 0px 0px;
+        margin-bottom: 0px;
+    }
+</style>

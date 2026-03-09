@@ -1,0 +1,478 @@
+﻿@model ZionAdmin.Repository.ReportRepository
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Edit</h3>
+<hr />
+<div class="col-md-12">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert @(ViewBag.ErrorMessage.Contains(" true") ? "alert-danger" :"alert-success" )">
+            >
+            @ViewBag.ErrorMessage.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[0]
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    @using (Html.BeginForm("Edit", "Report", FormMethod.Post, new { id = "frmReport", Class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(r => r.ReportId)
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Title</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.ReportTitle, new { Class = "form-control", placeholder = "Title whithout special characters. Do not enter (.,#*&!@$)%^(&*)" })
+                @Html.ValidationMessageFor(r => r.ReportTitle)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ReportUrl" class="control-label col-sm-2">URL</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.ReportUrl, new { Class = "form-control", placeholder = "Leave blank if need default URL" })
+                @Html.ValidationMessageFor(r => r.ReportUrl)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="File1" class="control-label col-sm-2">Main Page Image</label>
+            <div class="col-sm-10">
+                <label class="file">
+                    <input type="file" name="File1" onchange="jsGetFileName(this, 'hdnMainPageImage');">
+                    <span class="file-custom"></span>
+                </label>
+                @if (Model.MainPageImagePath != null && Model.MainPageImagePath != string.Empty)
+                {
+                    <img src="/UploadFiles/@Model.MainPageImagePath" style="height:50px; width:100px;" id="img1" />
+                    <span class="fa fa-times" style="cursor: pointer;" title="Remove Image" onclick="jsRemoveImage('hdnMainPageImage', 'img1', this);">Remove</span>
+                }
+                @Html.HiddenFor(r => r.MainPageImagePath, new { id = "hdnMainPageImage" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MainPageDescription" class="control-label col-sm-2">Main Page Desc.</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.MainPageDescription, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.MainPageDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ReportDescriptionReseller" class="control-label col-sm-2">Report Description Reseller</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.ReportDescriptionReseller, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.ReportDescriptionReseller)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="TableOfContent" class="control-label col-sm-2">Table Of Content</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.TableOfContent, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.TableOfContent)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ListOfFigure" class="control-label col-sm-2">List Of Figure</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.ListOfFigure, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.ListOfFigure)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ListOfFigure" class="control-label col-sm-2">List Of Table</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.ListOfTable, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.ListOfTable)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ListOfChart" class="control-label col-sm-2">List Of Chart</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.ListOfChart, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.ListOfChart)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="SearchPageDescription" class="control-label col-sm-2">Search Page Desc.</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.SearchPageDescription, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.SearchPageDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="File2" class="control-label col-sm-2">Search Page Image</label>
+            <div class="col-sm-10">
+                <label class="file">
+                    <input type="file" name="File2">
+                    <span class="file-custom"></span>
+                </label>
+                @if (!string.IsNullOrEmpty(Model.SearchPageImagePath))
+                {
+                    <img src="/UploadFiles/@Model.SearchPageImagePath" style="height:50px; width:100px;" id="img2" />
+                    <span class="fa fa-times" style="cursor: pointer;" title="Remove Image" onclick="jsRemoveImage('hdnSearchPageImage', 'img2', this);">Remove</span>
+                }
+                @Html.HiddenFor(r => r.SearchPageImagePath, new { id = "hdnSearchPageImage" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Methodology" class="control-label col-sm-2">Methodology</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.Methodology, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.Methodology)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FreeAnalysis" class="control-label col-sm-2">Free Analysis</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.FreeAnalysis, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.FreeAnalysis)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="SingleUser" class="control-label col-sm-2">Single User</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.SingleUser, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.SingleUser)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MultiUser" class="control-label col-sm-2">Multi User</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.MultiUser, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.MultiUser)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Corporate" class="control-label col-sm-2">Corporate User</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.Corporate, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.Corporate)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Discount" class="control-label col-sm-2">Discount</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.Discount, new { Class = "form-control", placeholder = "Enter in percentage" })
+                @Html.ValidationMessageFor(r => r.Discount)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PublishedDate" class="control-label col-sm-2">Published Date</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.PublishedDate, "{0:dd-MMM-yyyy}", new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.PublishedDate)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                <label for="Location" class="control-label col-sm-2">Location</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(r => r.Location, new { Class = "form-control" })
+                    @Html.ValidationMessageFor(r => r.Location)
+                </div>
+            </div>*@
+        <div class="form-group">
+            <label for="NumberOfPages" class="control-label col-sm-2">Number Of Page</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.NumberOfPages, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.NumberOfPages)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CtaegoryId" class="control-label col-sm-2">Category</label>
+            <div class="col-sm-10">
+                @Html.DropDownList("ddlCategoryId", from l in ZionAdmin.Repository.CategoryRepository.List().ToList()
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = l.CategoryName,
+                                                        Value = l.CategoryId.ToString()
+                                                    }, "-Select Category-", new { Class = "form-control", id = "ddlCategory" })
+                @Html.ValidationMessageFor(r => r.CategoryId)
+                @Html.HiddenFor(c => c.CategoryId)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MetaTitle" class="control-label col-sm-2">Meta Title</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.MetaTitle, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.MetaTitle)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MetaKeywords" class="control-label col-sm-2">Meta Keywords</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.MetaKeywords, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.MetaKeywords)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MetaDescription" class="control-label col-sm-2">Meta Desc.</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(r => r.MetaDescription, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.MetaDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Is Upcoming?</label>
+            <div class="col-sm-10 checkbox">
+                <label>@Html.CheckBoxFor(r => r.IsUpcoming) (Checked checkbox if report is upcoming.)</label>
+                @Html.ValidationMessageFor(r => r.IsUpcoming)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Tags</label>
+            <div class="col-sm-10 checkbox">
+                @Html.TextBoxFor(r => r.Tags, new { Class = "form-control", placeholder = "Enter seprated with coma Ex. - tag1,tag2" })
+                @Html.ValidationMessageFor(r => r.Tags)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Delivery Format</label>
+            <div class="col-sm-10 checkbox">
+                @Html.DropDownListFor(r => r.DeliveryFormat, new List<SelectListItem>
+           {
+                new SelectListItem() {Text = "PDF", Value = "0" },
+                new SelectListItem() {Text = "DOC", Value = "1" },
+                new SelectListItem() {Text = "Excel", Value = "2" },
+                new SelectListItem() {Text = "PPT", Value = "3" },
+                new SelectListItem() {Text = "Email", Value = "4" }
+           }, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.DeliveryFormat)
+            </div>
+        </div>
+        //------------------------------------------Sample----------------------------------------------------------------------------
+        <div class="form-group">
+            <label class="control-label col-sm-2">Sample Meta Title</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(f => f.MetaTitleSample, new { Class = "form-control", placeholder = "Meta tile for sample page" })
+                @Html.ValidationMessageFor(r => r.MetaTitleSample)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Sample Meta Description</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(f => f.MetaDescriptionSample, new { Class = "form-control", placeholder = "Meta desciption for sample page" })
+                @Html.ValidationMessageFor(r => r.MetaDescriptionSample)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Sample Meta Keywords</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(f => f.MetaKeywordsSample, new { Class = "form-control", placeholder = "Meta keywords for sample page" })
+                @Html.ValidationMessageFor(r => r.MetaKeywordsSample)
+            </div>
+        </div>
+        //------------------------------------------TOC----------------------------------------------------------------------------
+        <div class="form-group">
+            <label class="control-label col-sm-2">TOC Meta Title</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(f => f.MetaTitleTOC, new { Class = "form-control", placeholder = "Meta tile for TOC page" })
+                @Html.ValidationMessageFor(r => r.MetaTitleTOC)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">TOC Meta Description</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(f => f.MetaDescriptionTOC, new { Class = "form-control", placeholder = "Meta desciption for TOC page" })
+                @Html.ValidationMessageFor(r => r.MetaDescriptionTOC)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">TOC Meta Keywords</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(f => f.MetaKeywordsTOC, new { Class = "form-control", placeholder = "Meta keywords for TOC page" })
+                @Html.ValidationMessageFor(r => r.MetaKeywordsTOC)
+            </div>
+        </div>
+        //------------------------------------------Free Analysis----------------------------------------------------------------------------
+        <div class="form-group">
+            <label class="control-label col-sm-2">Free Ana. Meta Title</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(f => f.MetaTitleFreeAnalysis, new { Class = "form-control", placeholder = "Meta tile for Free Analysis page" })
+                @Html.ValidationMessageFor(r => r.MetaTitleFreeAnalysis)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Free Ana. Meta Description</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(f => f.MetaDescriptionFreeAnalysis, new { Class = "form-control", placeholder = "Meta desciption for Free ANalysis page" })
+                @Html.ValidationMessageFor(r => r.MetaDescriptionFreeAnalysis)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Free Ana. Meta Keywords</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(f => f.MetaKeywordsFreeAnalysis, new { Class = "form-control", placeholder = "Meta keywords for Free Analysis page" })
+                @Html.ValidationMessageFor(r => r.MetaKeywordsFreeAnalysis)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Report Attribute</label>
+            <div class="col-sm-10">
+                @{ Html.RenderAction("ShowAttributeCheckbox", "ReportAttribute", new { selectedAttributes = Model.ReportAttribute }); }
+            </div>
+        </div>
+                    //------------------------------------------Inquiry----------------------------------------------------------------------------
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Inquiry Meta Title</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(f => f.MetaTitleInquiry, new { Class = "form-control", placeholder = "Meta tile for Inquiry page" })
+                            @Html.ValidationMessageFor(r => r.MetaTitleInquiry)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Inquiry Meta Description</label>
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(f => f.MetaDescriptionInquiry, new { Class = "form-control", placeholder = "Meta desciption for Inquiry page" })
+                            @Html.ValidationMessageFor(r => r.MetaDescriptionInquiry)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Inquiry Meta Keywords</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(f => f.MetaKeywordsInquiry, new { Class = "form-control", placeholder = "Meta keywords for Inquiry page" })
+                            @Html.ValidationMessageFor(r => r.MetaKeywordsInquiry)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Is Active</label>
+                        <div class="col-sm-10">
+                            <div class="material-switch pull-left">
+                                <input type="checkbox" id="IsActive" name="IsActive" value="true" @(Model.IsActive ? "checked" : "") />
+                                <label for="IsActive" class="label-success" style="margin-top:16px;"></label>
+
+                                @Html.ValidationMessageFor(r => r.IsActive)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="tableApp">
+                        <input type="hidden" value="@Newtonsoft.Json.JsonConvert.SerializeObject(Model.FAQ)" ref="hdnFAQ" />
+                        <label class="control-label col-sm-2">FAQ <input type="button" class="btn btn-primary btn-sm" value="Add Row" @@click="addRow()" /></label>
+                        <div class="col-sm-10">
+                            <table class="table" id="tblFAQ">
+                                <tr v-for="(dt, index) in tableData" :key="index">
+                                    <td>
+                                        <div class="form-group">
+                                            <label>{{index+1}}. Question </label><input type="button" class="btn btn-sm btn-danger" value="Delete" @@click="RemoveRow(index)" />
+                                            <input type="text" class="form-control" :name="'FAQ[' + index + '].Question'" v-model="dt.Question" />
+                                            <input type="hidden" :name="'FAQ['+index+'].RowNumber'" :value="index+1" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Answer</label>
+                                            <textarea class="form-control editor" :name="'FAQ['+ index+'].Answer'" v-model="dt.Answer" :id="'editor_'+index"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-primary">Submit</button>
+                            <a href="@Url.Action("index", "report")" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                    }
+    @Html.HiddenFor(c => c.JsonCategoryBreadcrumb)
+</div>
+<script src="https://cdn.ckeditor.com/4.5.2/standard-all/ckeditor.js"></script>
+<script src="/Areas/admin/Content/custom/MultiSelect.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    CKEDITOR.replace('MainPageDescription');
+    CKEDITOR.replace('ReportDescriptionReseller');
+    CKEDITOR.replace('SearchPageDescription');
+    CKEDITOR.replace('TableOfContent');
+    CKEDITOR.replace('ListOfFigure');
+    CKEDITOR.replace('ListOfChart');
+    CKEDITOR.replace('FreeAnalysis');
+    CKEDITOR.replace('Methodology');
+    CKEDITOR.replace('ListOfTable');
+
+    $(document).ready(function () {
+        $("#ddlCategory").ZionMultiSelect({
+            dataUrl: "/admin/category/getchildcategory",
+            sendValue: true,
+            onRemoveRefreshData: true,
+            success: function (data) {
+                var ddl = $("#ddlCategory");
+                var htm = "<option value=''>-Select Category-</option>";
+                for (var i = 0; i < data.length; i++) {
+                    htm += "<option value='" + data[i].CategoryId + "'>" + data[i].CategoryName + "</option>";
+                }
+                ddl.html(htm);
+            },
+            refreshUrl: "/admin/category/getparentcategories",
+            showValue: $.parseJSON($("#JsonCategoryBreadcrumb").val())
+        });
+
+        $('button').click(function (e) {
+            if (jsFormValidation("#frmReport", null, null, null)) {
+                var bread = $("#CategoryId");
+                bread.val(selectionValue[selectionValue.length - 1]);
+                $("#frmReport").submit();
+            } else {
+                e.preventDefault();
+            }
+        });
+        $("#PublishedDate").datepicker({
+            dateFormat: 'dd-MM-yy'
+        });
+    });
+
+    function jsRemoveImage(hiddenId, ImgId, ctl) {
+        $("#" + hiddenId).val("");
+        $("#" + ImgId).hide();
+        $(ctl).hide();
+    }
+    function jsGetFileName(ctl, hdnCtl) {
+        var filePath = $(ctl).val();
+        var sep = filePath.split("\\");
+        $("#" + hdnCtl).val(sep[sep.length - 1]);
+    }
+    //var faqRowIndex = 1;
+    //function jsAddRow(e) {
+    //    var allRows = $("#tblFAQ tr");
+    //    faqRowIndex = allRows.length - 1;
+    //    e.preventDefault();
+    //    $("#tblFAQ").append('<tr><td><div class="form-group"><label>' + (faqRowIndex + 1) + '. Question</label><input type="text" class="form-control" name="FAQ[' + faqRowIndex + '].Question" /><input type="hidden" name="FAQ[' + faqRowIndex + '].RowNumber" value="' + (faqRowIndex + 1) + '" /></div><div class="form-group"><label>Answer</label><textarea class="form-control" name="FAQ[' + faqRowIndex + '].Answer"></textarea></div></td></tr>');
+    //    faqRowIndex++;
+    //}
+</script>
+<script>
+    var tableApp = new Vue({
+        el: '#tableApp',
+        data: {
+            tableData: []
+        },
+        mounted: function () {
+            this.tableData = JSON.parse(this.$refs.hdnFAQ.value);
+            Vue.nextTick(function () {
+                $("textarea.editor").each(function (ind, item) {
+                    if (CKEDITOR.instances[this.id]) {
+
+                    } else {
+                        CKEDITOR.replace(this.id);
+                    }
+                });
+            });
+        },
+        methods: {
+            addRow: function () {
+                this.tableData.push({ Question: '', Answer: '' });
+                $("textarea.editor").each(function (ind, item) {
+                    if (CKEDITOR.instances[this.id]) {
+
+                    } else {
+                        CKEDITOR.replace(this.id);
+                    }
+                });
+            },
+            RemoveRow: function (rowNumber) {
+                this.tableData.splice(rowNumber, 1);
+            }
+        }
+    });
+</script>
+<link href="~/Areas/Admin/Content/css/switch.css" rel="stylesheet" />

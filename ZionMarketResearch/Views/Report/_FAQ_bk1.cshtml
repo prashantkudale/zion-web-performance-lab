@@ -1,0 +1,154 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{
+    var sb = new System.Text.StringBuilder();
+    sb.Append("{\"@context\": \"https://schema.org\",\"@type\": \"FAQPage\",\"mainEntity\": [");
+    foreach (var faq in Model.FAQ)
+    {
+        sb.Append("{\"@type\": \"Question\",\"name\": \"" + faq.Question + "\",\"acceptedAnswer\": {\"@type\": \"Answer\",\"text\": \"" + Html.Raw(faq.Answer) + "&nbsp;" + "<a href='" + Url.Action("Index", "Report", new { url = Model.ReportUrl }) + "'>read more...</a>" + "\"}},");
+    }
+    sb.Append("]}");
+}
+<hr />
+<h4>Frequently Asked Questions</h4>
+@*<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    @for (int i = 0; i < Model.FAQ.Count; i++)
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading_@i">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#@i" aria-expanded="false" aria-controls="collapseOne">
+                    <h4 class="panel-title">
+                        @Model.FAQ[i].Question
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </h4>
+                </a>
+            </div>
+            <div id="@i" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_@i">
+                <div class="panel-body">
+                    @Html.Raw(Model.FAQ[i].Answer)
+                </div>
+            </div>
+        </div>
+    }
+</div>*@
+
+
+<div class="faq-content">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        @for (int i = 0; i < Model.FAQ.Count; i++)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="@("#faq" + i)">
+                            <span>@Model.FAQ[i].Question</span>
+                        </a>
+                    </h4>
+                </div>
+                <div id="@("faq" + i)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        @Html.Raw(Model.FAQ[i].Answer)
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .faq-content #accordion .panel-title > a.accordion-toggle::before,
+    .faq-content #accordion a[data-toggle="collapse"]::before {
+        content: "−";
+        float: left;
+        font-family: 'Glyphicons Halflings';
+        margin-right: 1em;
+        margin-left: 10px;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 300;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 10px;
+        background: #ff9900;
+    }
+
+    .faq-content #accordion .panel-title > a.accordion-toggle.collapsed::before,
+    .faq-content #accordion a.collapsed[data-toggle="collapse"]::before {
+        content: "+";
+        color: #fff;
+        font-size: 10px;
+        font-weight: 300;
+        background: #333;
+    }
+
+    .faq-content {
+        float: left;
+        width: 100%;
+    }
+
+        .faq-content .panel-heading {
+            padding-left: 0px;
+            border-radius: 0px !important;
+        }
+
+            .faq-content .panel-heading a {
+                text-decoration: none;
+            }
+
+        .faq-content .panel {
+            border-radius: 0px !important;
+        }
+
+        .faq-content .panel-default {
+        }
+
+        .faq-content .panel-heading {
+            background: #f3f3f3 !important;
+            color: #666666;
+        }
+
+        .faq-content .panel-body {
+            font-size: 14px;
+            color: #666666;
+        }
+
+    .faq-saelect {
+        background: #f3f3f3;
+        padding: 15px;
+        border-bottom: 2px solid #666666;
+        float: left;
+        width: 100%;
+        margin-bottom: 20px;
+        margin-top: -10px;
+    }
+
+        .faq-saelect span {
+            font-size: 16px;
+            color: #333;
+            margin-right: 20px;
+        }
+
+        .faq-saelect select {
+            border: 1px solid #dcdcdc;
+            color: #999999;
+            width: 300px;
+            height: 40px;
+        }
+
+    .faq-content .panel {
+        border-top: none !important;
+        border-right: none !important;
+        border-left: none !important;
+    }
+
+    .faq-content .panel-body {
+        border: 1px solid #f3f3f3;
+    }
+</style>
+
+<script type="application/ld+json">
+    @Html.Raw(sb.ToString().Replace("}},]", "}}]"))
+</script>

@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h3>Report Information</h3>
+<hr />
+<div class="row" id="app">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Keyword</label>
+            <input type="text" class="form-control" v-model="keyword" />
+        </div>
+        <div class="form-group">
+            <label>Players</label>
+            <textarea class="form-control" :value="players"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Segments</label>
+            <button class="btn btn-primary" v-on:click="addSegment">Add</button>
+            <div class="row" v-for="(item, index) in segments">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Segment</label>
+                        <input type="text" class="form-control" v-model="item.segment" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Sub Segments</label>
+                        <textarea class="form-control" v-model="item.subsegment"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-danger" @@click="removeSegment(index)">Remove</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            reportID: 0,
+            keyword: '',
+            companies: [],
+            baseYear: 0,
+            segments: [],
+            players: '',
+            columns: []
+        },
+        mounted: function () {
+            axios.get('/admin/ReportInformation/GetColumns')
+                .then(res => {
+                    this.columns = res.data;
+                });
+        },
+        methods: {
+            addSegment: function () {
+                this.segments.push({
+                    segment: '',
+                    subsegment: ''
+                });
+            },
+            removeSegment: function (ind) {
+                this.segments.splice(ind, 1);
+            },
+            save: function () {
+                let keywordID = this.columns.filter(item => {
+                    return item.CoumnName === 'KEYWORD';
+                });
+
+                let segmentID = this.columns.filter(item => {
+                    return item.ColumnName === 'SEGMENT';
+                });
+
+                let subsegmentID = this.columns.filter(item => {
+                    return item.ColumnName === 'SUB_SEGMENT';
+                });
+
+                let playersID = this.columns.filter(item => {
+                    return item.ColumnName === 'PLAYERS';
+                });
+
+                let postValues = [{
+                    ReportID: this.reportID,
+                    ColumnID: keywordID[0].ID,
+                    ColumnValue: this.keyword
+                }];
+
+                this.segments.forEach((item, index) => {
+                    let obj = {
+                        ReportID: this.reportID,
+                        ColumnID: segmentID[0].ID,
+                        ColumnValue: item.segment,
+                        Child: [],
+                        Order: index + 1
+                    };
+                    item.subsegment.forEach((ss, ind) => {
+                        obj.Child.push({
+                            ReportID: this.reportID,
+                            ColumnID: subsegmentID[0].ID,
+                            ColumnValue: ss,
+                            Order: ind + 1
+                        });
+                    })
+                    postValues.push(obj);
+                })
+
+                postValues.push({
+                    ReportID: this.reportID,
+                    ColumnID: playersID[0].ID,
+                    ColumnValue: this.players
+                });
+
+                axios.post('/admin/reportinformation/create', postValues)
+                    .then(res => {
+                        console.log(res.data);
+                    });
+            }
+        }
+    });
+</script>

@@ -1,0 +1,39 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.SearchResultView>
+@using PagedList.Mvc
+@{ ViewBag.Title = "Search Result";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml"; }
+<section id="report-title" class="report-title-image white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "Search - " + Request.Params["q"]); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>Search Reports - @Request.Params["q"]</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="grey_section section_gap">
+    <div class="container-fluid">
+
+        <div class="col-md-9 col-xs-12">
+            @if (Model != null && Model.Count > 0)
+            {
+                Html.RenderPartial("~/Views/Report/_ReportListWithList.cshtml", Model);@*Html.RenderPartial("_TotalRecord", ViewData.Model);
+                    @Html.PagedListPager(Model, p => Url.Action("SimpleSearch", "Search", new { page = p, q = ViewBag.SearchText }), new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })*@ //@Html.PagedListPager(Model, p => Url.Action("SimpleSearch", "Search", new { page = p, q = Request.QueryString["q"] }), new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+            }
+            else
+            {
+<div class="alert alert-info"><strong class="redText">Not able to find what you are looking for?</strong><br />Let us know and our market research experts will help you.</div>Html.RenderAction("ShowForm", "Form", new { FormType = 6, SearchText = Request.Params["q"] });
+}
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div>
+                <h3 class="sidebar-title">Upcoming Reports</h3>
+                @{ Html.RenderAction("LatestUpcomingReports", "Report", new { Count = 10 }); }
+                <h3 class="sidebar-title">Latest Reports</h3>
+                @{ Html.RenderAction("LatestReport", "Report", new { Count = 10 }); }
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db8e2e5d4c774cd5b24cc4751e7a2dcc" Name="Diagram1" ZoomLevel="48">
+        <EntityTypeShape EntityType="ZionDbModel.relactionrole" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.relreportattribute" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.relreportbuyer" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.relreportcategory" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.relreportdomain" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.stagging_tblreportinformation" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.stagingtblreportinformation" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblaction" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tbladminlogin" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblauthor" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblbuyerinformation" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblcart" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblcartitem" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblcategory" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblcolumn" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblcolumnvalue" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblcontinent" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblcountry" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblcountry1" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tbldomain" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblfeedback" Width="1.5" PointX="6.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblform" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblinquiry" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblipaddress" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tbljobapplication" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tbljobvacancy" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblkey" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblmail" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblnew" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblpayerinformation" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblpaymentlink" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblpublisher" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblredirection" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblregister" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblreportattribute" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblreportfaq" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblreportinformation" Width="3" PointX="18.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblreportscope_column" Width="1.5" PointX="4.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblreportscope_table" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblreporttype" Width="1.5" PointX="18.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblreseller_reportinformation" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblrole" Width="1.5" PointX="16.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblsearchhistory" Width="1.5" PointX="18.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblsubscription" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tbltag" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tbluserrole" Width="1.5" PointX="23.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tbluser" Width="1.5" PointX="23.625" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblzioninnew" Width="1.5" PointX="12.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblzionmail" Width="1.5" PointX="23.875" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.temptblreports3" Width="1.5" PointX="20.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZionDbModel.tblvisitor" Width="1.5" PointX="20.75" PointY="19.75" IsExpanded="true" />
+        <AssociationConnector Association="ZionDbModel.fk_countries_continents" ManuallyRouted="false" />
+        <AssociationConnector Association="ZionDbModel.fk_JobID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

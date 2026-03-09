@@ -1,0 +1,30 @@
+﻿@model ZionMarketResearch.Models.CorporateEmailRepository
+@{Html.RenderPartial("_ValidationSummary", ViewData.ModelState);}
+@{
+    ViewBag.Title = "ShowCorporateEmail";
+}
+
+<form class="well form-horizontal zionform" action="/form/CorporateEmailSubmit" method="post" id="contact_form_@ViewBag.FormType" style="background-color:inherit;border:none;">
+    <input type="hidden" id="CrmLeadID" name="CrmLeadID" value="@ViewBag.CrmLeadID">
+    <input type="hidden" id="Id" name="Id" value="@ViewBag.Id">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Corporate E-Mail for Faster Response</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    @Html.TextBoxFor(f => f.Email, new { placeholder = "myname@example.com", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Email)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-9">
+                <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+
+</form>

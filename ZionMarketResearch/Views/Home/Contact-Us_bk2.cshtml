@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Contact US - Zion Market Research";
+    ViewBag.MetaDescription = "Contact Us - Please let us know what type of information you are looking for? Our committed Research and Sales Team is here to answer all your queries with prompt response.";
+    ViewBag.MetaKeywords = "Contact Us, Zion Market Research, Ask to Analyst";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "Contact Us"); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>Contact Us</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="col-sm-8 col-xs-12">
+            <div class="contact">
+                <div class="col-md-12 tab">
+                    <div class="contact-form tab-content">
+                        @{ Html.RenderAction("ShowForm", "Form", new { FormType = (int)ZionMarketResearch.constants.GlobalConstant.FormType.ContactUs }); }
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+
+        </div>
+
+        <div class="col-sm-4 col-xs-12">
+            <div class="custom_box">
+                <!--<h1 class="heading">Why Choose Zion Market Research</h1>-->
+                <h3>Corporate Office</h3>
+                Zion Market Research<br /> 244 Fifth Avenue, Suite N202<br /> New York, 10001, United States<br /> Tel: <a href="tel:+49-322 210 92714">+1 (844) 845-5245</a><br /> USA/Canada Toll Free No.<a href="tel:+1 (855) 465-4651">+1 (855) 465-4651</a>
+            </div>
+            <div class="custom_box">
+                <h3>Asia Pacific Office</h3>
+
+                3rd Floor,<br /> Mrunal Paradise, Opp Maharaja Hotel,
+                </br/> Pimple Gurav, Pune 411061,<br /> Maharashtra, India
+                </br/> Phone No <a href="tel:020-46277770">020-46277770</a>
+
+            </div>
+            <div class="custom_box">
+                <h3>Contact :</h3>
+
+                US OFFICE NO <strong><a href="tel:+1 (844) 845-5245">+1 (844) 845-5245</a></strong>
+                <br />US/CAN TOLL FREE <strong><a href="tel:+1 (855) 465-4651">+1 (855) 465-4651</a></strong>
+                <br />Email: <strong><a href="mailto:sales@zionmarketresearch.com">sales@zionmarketresearch.com</a></strong>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!--Header end -->

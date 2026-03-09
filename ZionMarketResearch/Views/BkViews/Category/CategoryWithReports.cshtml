@@ -1,0 +1,19 @@
+﻿@model ZionMarketResearch.Models.CategoryReport
+@using PagedList.Mvc
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+<section id="report-title" class="white_section section_gap">
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "<a href=" + Url.Action("Index", "Category") + ">Category</a>" + "|" + Model.Category); }
+        <div class="col-sm-9 col-xs-12">
+            @{ Html.RenderPartial("~/Views/Report/_ReportList.cshtml", Model.Reports); }
+            @{ Html.RenderPartial("_TotalRecord", Model.Reports); }
+            @Html.PagedListPager(Model.Reports, p => Url.Action("CategoryWithReports", "Category", new { page = p, url = Model.CategoryUrl }), new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+        </div>
+    </div>
+</section>
+

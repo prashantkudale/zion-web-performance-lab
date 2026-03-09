@@ -1,0 +1,62 @@
+﻿@model ZionMarketResearch.Models.SearchParam
+<form action="/simplesearch" method="get">
+    <div class="row" id="searchsection">
+        <p>
+            <center>
+                <div class="input-group col-sm-8" style="padding: 8px;">
+                    <input type="text" class="form-control input-lg" id="q" placeholder="Search&hellip;" name="q" value="@Request.QueryString["q"]" />
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-warning" id="btnsearchhome">Search</button>
+                    </span>
+                </div>
+            </center>
+        </p>
+        <p align="right" style="float: right; padding-right: 211px; color: #FFFFFF;"><a href="#myAdvancedsearch" data-toggle="modal">Advanced Search</a></p>
+    </div>
+</form>
+<!-- Modal HTML -->
+<div id="myAdvancedsearch" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><strong>Advance Search</strong></h4>
+            </div>
+            <div class="modal-body">
+                <form action="/advancesearch" method="get">
+                    <div class="form-group">
+                        <label for="inputsearch">Search For :</label>
+                        <input type="text" id="inputSearch" placeholder="Enter Report Keyword" value="@Request.QueryString["z"]" name="z" />
+                    </div>
+                    <div class="form-group">
+                        <label for="reporttype">Report Type :</label>
+                        <br />
+                        <input type="radio" name="n" value="0" @( Request.QueryString["n"] == "0" ? "checked" : "" ) />All
+                        <input type="radio" name="n" value="1" @( Request.QueryString["n"] == "1" ? "checked" : "" ) />Upcomming
+                        <input type="radio" name="n" value="2" @( Request.QueryString["n"] == "2" ? "checked" : "" ) />Published
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Category :</label>
+                        @Html.DropDownListFor(x => x.i, from c in ZionMarketResearch.Models.CategoryRepository.GetAllCategories()
+                                                        select new SelectListItem
+                                                        {
+                                                            Text = c.CategoryName,
+                                                            Value = c.CategoryId.ToString(),
+                                                            Selected = c.CategoryId.ToString() == Request.QueryString["i"]
+                                                        }, "-Select Category-", new { Class = "form-control" })
+                    </div>
+                    <button type="submit" class="btn btn-warning">Search</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+@*<link href="~/css/autocomplete.css" rel="stylesheet" />
+<script src="~/js/jquery.autocomplete.js"></script>
+<script src="~/js/autocomplete.js"></script>*@
+
+@Styles.Render("~/bundles/autocompletecss")
+@Scripts.Render("~/bundles/autocompletejs")

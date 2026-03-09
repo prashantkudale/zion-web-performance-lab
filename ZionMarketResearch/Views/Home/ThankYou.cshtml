@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    ViewBag.Title = "Thank you";
+}
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <h1 class="text-center">Thank you !!!</h1>
+</section>
+<section class="container-fluid">
+    <div class="container" style="position:relative;">
+        @Html.Raw(ViewBag.Message)
+    </div>
+</section>
+
+@section metaTags{
+    <meta name="robots" content="noindex" />
+}

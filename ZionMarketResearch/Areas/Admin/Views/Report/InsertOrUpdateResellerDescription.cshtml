@@ -1,0 +1,38 @@
+﻿@model ZionAdmin.Repository.ReportRepository.ResellerDescription
+@{
+    ViewBag.Title = "InsertOrUpdateResellerDescription";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h3>Reseller Description</h3>
+<hr />
+@using (Html.BeginForm("InsertOrUpdateResellerDescription", "Report", FormMethod.Post, new { Class = "form-horizontal" }))
+{
+    @Html.HiddenFor(model => model.ReportID)
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-sm-2">Title</label>
+            <div class="col-sm-10">
+                <span>@Model.ReportTitle</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Description" class="control-label col-sm-2">Description</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="@Url.Action("index", "report")" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="/Areas/Admin/Content/js/ckeditor_4.11.3_standard/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('Description');
+</script>

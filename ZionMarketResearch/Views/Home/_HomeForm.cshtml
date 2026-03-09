@@ -1,0 +1,55 @@
+﻿@model ZionMarketResearch.Models.AskInfo
+<div class="form-container">
+    <h2>Ask Question<span>To learn more about our service offerings</span></h2>
+    <form id="frmAskInfo">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                @Html.TextBoxFor(model => model.FirstName, new { Class = "normal small", placeholder = "First Name" })
+                @Html.ValidationMessageFor(model => model.FirstName)
+
+                @Html.TextBoxFor(model => model.LastName, new { Class = "normal small last", placeholder = "Last Name" })
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                @Html.TextBoxFor(model => model.Email, new { Class = "normal", placeholder = "Business Email", type="email" })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                @Html.TextBoxFor(model => model.Phone, new { Class = "normal", placeholder = "Phone #", type = "tel" })
+                @Html.ValidationMessageFor(model => model.Phone)
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                @Html.TextAreaFor(model => model.Comment, new { Class = "normal medium", placeholder = "Detail Information" })
+                @Html.ValidationMessageFor(model => model.Comment)
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <input type="button" class="button" value="Request Information" id="btnAskInfo" />
+            </div>
+        </div>
+    </form>
+</div>
+@Scripts.Render("~/bundles/form-validation")
+    <script>
+        $(document).ready(function () {
+            $("#btnAskInfo").click(function () {
+                if ($("#frmAskInfo").valid()) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/form/AskInfo',
+                        data: $("#frmAskInfo").serializeFormJSON(),
+                        success: function (res) {
+                            $("#frmAskInfo").parent().html(res.html);
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <style>
+        .input-validation-error {
+            border: 2px solid red !important;
+        }
+    </style>

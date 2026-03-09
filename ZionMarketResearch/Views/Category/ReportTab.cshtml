@@ -1,0 +1,30 @@
+﻿@model ZionMarketResearch.Models.CategoryReport
+<div class="tab" role="tabpanel">
+    @*<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#menu0">All Reports</a></li>
+        <li><a data-toggle="tab" href="#menu1">Published</a></li>
+        <li><a data-toggle="tab" href="#menu2">Upcoming</a></li>
+    </ul>*@
+    <br />
+    <div class="tab-content">
+        <div id="menu0" class="tab-pane fade in active">
+            @{ Html.RenderPartial("~/Views/Report/_ReportList.cshtml", Model.Reports); }
+            @{ Html.RenderPartial("/Views/Report/VueJs/_VueReportList.cshtml", "/get-category-reports/" + (string)Model.CategoryUrl); }
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            @*@{ Html.RenderPartial("~/Views/Report/_ReportList.cshtml", Model.PublishedReports); }
+            @{ Html.RenderPartial("/Views/Report/VueJs/_VueReportList.cshtml", "/get-category-reports-published/" + (string)Model.CategoryUrl); }*@
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            @*@{ Html.RenderPartial("~/Views/Report/_ReportList.cshtml", Model.UpcomingReports); }
+            @{ Html.RenderPartial("/Views/Report/VueJs/_VueReportList.cshtml", "/get-category-reports-upcoming/" + (string)Model.CategoryUrl); }*@
+        </div>
+    </div>
+</div>
+
+<style>
+    .tab-content p {
+        line-height: 22px !important;
+        font-size: 14px !important;
+    }
+</style>

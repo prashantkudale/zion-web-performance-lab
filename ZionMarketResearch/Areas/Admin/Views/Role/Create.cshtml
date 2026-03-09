@@ -1,0 +1,64 @@
+﻿@model ZionAdmin.Repository.RoleRepository
+@{
+    ViewBag.Title = "Create Role";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var action = ZionAdmin.Repository.ActionRepository.List().ToList();
+}
+
+<h4>Create Role</h4>
+<hr />
+<div class="col-md-12">
+    <div class="row">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert @(ViewBag.ErrorMessage.Contains("true") ? "alert-danger" : "alert-success")">
+                @Html.ValidationSummary()
+            </div>
+        }
+    </div>
+    @using (Html.BeginForm("create", "role", FormMethod.Post, new { Class = "horizontal-form", id = "frmrole" }))
+    {
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Role</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(r => r.RoleName, new { Class = "form-control" })
+                @Html.ValidationMessageFor(r => r.RoleName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Actions</label>
+            <div class="col-sm-10">
+                @*@Html.HiddenFor(r => r.Actions, new { Class = "form-control" })*@
+                @*@Html.ListBox("actions", from a in ZionAdmin.Repository.ActionRepository.List().ToList()
+                    select new SelectListItem
+                    {
+                        Text = a.Action,
+                        Value = a.Id.ToString()
+                    })*@
+                @foreach (var act in action)
+                {
+                    <input type="checkbox" name="actions" value="@act.Id" /> @act.Action <br/>
+                }
+                @Html.ValidationMessageFor(r => r.Actions)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-primary">Submit</button>
+                <a href="@Url.Action("index", "role")" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        $('button').click(function (e) {
+            if (jsFormValidation("#frmrole", null, null, null)) {
+                $("#frmrole").submit();
+            } else {
+                e.preventDefault();
+            }
+        });
+    });
+</script>

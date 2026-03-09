@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Download Reports";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Download Reports</h3>
+<div class="col-md-12">
+    <div class="row">
+        <div class="margin-bottom-15">
+            <form class="form-inline" action="@Url.Action("DownloadReports", "report")" method="post" id="frmSearch">
+                <div class="input-group col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input id="fromDate" type="text" class="form-control" name="FromDate" placeholder="From Date" required />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="toDate" class="form-control" name="ToDate" placeholder="To Date" required />
+                        </div>
+                        <div class="col-md-3">
+                            <select name="ReportStatus" class="form-control">
+                                <option value="1">Upcoming</option>
+                                <option value="2">Published</option>
+                                <option value="3" selected="selected">Both (Upcoming and Published)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="input-group-btn" style="width: 70px !important;">
+                        <button type="submit" class="btn btn-primary">Download</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#fromDate").datepicker({
+            dateFormat: 'mm-dd-yy'
+        });
+        $("#toDate").datepicker({
+              dateFormat: 'mm-dd-yy'
+        });
+        $("#frmSearch").submit(function (e) {
+            var d1 = $("#fromDate").datepicker('getDate');
+            var d2 = $("#toDate").datepicker('getDate');
+
+            if (d1 == null || d1 == undefined || d2 == null || d2 == undefined) {
+                e.preventDefault();
+                alert("Both Dates are required.");
+                return;
+            }
+
+            $("#frmSearch").submit();
+
+            //if ((d2 - d1) / (1000 * 60 * 60 * 24 * 30) > 3) {
+            //    e.preventDefault();
+            //    alert("Please choose the date within 3 Months only.");
+            //} else {
+            //    $("#frmSearch").submit();
+            //}
+        });
+    });
+</script>

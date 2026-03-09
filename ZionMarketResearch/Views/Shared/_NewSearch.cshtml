@@ -1,0 +1,69 @@
+﻿@*@if (Request.Url.ToString().Contains("/notfound?") || Request.Url.ToString().Contains("/report/") || Request.Url.ToString().Contains("/all-reports/") || Request.Url.ToString().Contains("/sample/"))
+    {*@
+<style>
+    .search {
+        width: 100%;
+        position: relative;
+        display: flex;
+    }
+
+    .searchTerm {
+        width: 100%;
+        border: 0px solid #024973;
+        border-right: none;
+        padding: 15px;
+        height: 55px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #9DBFAF;
+    }
+
+        .searchTerm:focus {
+            color: #123456;
+            font-size: 18px;
+            font-family: Tahoma, sans-serif;
+        }
+
+    .searchButton {
+        width: 80px;
+        height: 55px;
+        border: 0px solid #024973;
+        background: #00B4CC;
+        text-align: center;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    /*Resize the wrap to see the search bar change!*/
+
+    .wrap {
+        width: 70%;
+        /*position: absolute;*/
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #search-section {
+        margin: 50px 0px 100px 0px;
+    }
+
+        #search-section p {
+            margin: auto 0;
+            width: 100%;
+        }
+</style>
+@*}*@
+<div id="search-section">
+    <div class="wrap col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="search">
+            <input value="@Request.QueryString["q"]" type="text" class="searchTerm autocomplete" id="q" placeholder="What are you looking for?" onkeyup="KeyUp(event)">
+            <button id="btnSearch" type="button" class="searchButton" aria-label="Search" onclick="SimpleSearch()">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div style="clear:both;">
+</div>

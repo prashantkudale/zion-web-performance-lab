@@ -1,0 +1,95 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+<section id="report-desc" class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tab" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a data-target="Description" href="@Url.Action("Index", "Report", new { url = Model.ReportUrl })" aria-controls="home" rel="nofollow"><i class="fa fa-align-left" aria-hidden="true"></i> Description</a></li>
+                    <li role="presentation">
+                        <a data-target="TableOfContent" href="@Url.Action("TOC","Report", new { url = Model.ReportUrl })" rel="nofollow" aria-controls="profile">
+                            <i class="fa fa-list" aria-hidden="true"></i><span>Table of Content</span>
+                        </a>
+                    </li>
+                    <li role="presentation"><a href="@Url.Action("Sample", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-paper-plane" aria-hidden="true"></i> Request Free Sample </a></li>
+                    <li role="presentation"><a href="@Url.Action("Inquiry", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Buying Inquiry </a></li>
+                    <li role="presentation"><a data-target="Methodology" href="@Url.Action("Methodology", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-file-text" aria-hidden="true"></i> Methodology </a></li>
+                    <li role="presentation"><a data-target="FreeAnalysis" href="@Url.Action("Analysis", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-file-text" aria-hidden="true"></i> Free Analysis </a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane fade" id="Description" style="text-align:justify;">
+                        <h3>Description</h3>
+                        @Html.Raw(Model.MainPageDescription)
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="TableOfContent" style="text-align:justify;">
+                        <h3>Table Of Content</h3>
+                        @Html.Raw(Model.TableOfContent)
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Methodology" style="text-align:justify;">
+                        <h3>Methodology</h3>
+                        @Html.Raw(Model.Methodology)
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.FreeAnalysis))
+                    {
+                        <div role="tabpanel" class="tab-pane fade" id="FreeAnalysis" style="text-align:justify;">
+                            <h3>Free Analysis</h3>
+                            @Html.Raw(Model.FreeAnalysis)
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- </div>
+                </div>
+            </div>-->
+        </div>
+        <!--<div class="col-sm-4">
+
+        </div>-->
+    </div>
+</section>
+@*Show Review if FAQ is not availabel*@
+@if (Model.FAQ == null || Model.FAQ.Count == 0)
+{
+    <script type="application/ld+json">
+        {
+        "@@context": "https://schema.org/",
+        "@@type": "Product",
+        "name": "@Model.ReportTitle",
+        "image": [
+        "https://www.zionmarketresearch.com/images/zionLogo01.png"
+        ],
+        "description": "@Model.MainPageDescription.ZSubstring(0, 100)",
+        "sku": "ZMR-@Model.ReportId",
+        "mpn": "@Model.ReportId",
+        "brand": {"@@type":"Organization", "logo":{"@@type": "ImageObject", "url": "https://www.zionmarketresearch.com/images/zionLogo01.png"}, "name": "Zion Market Research"},
+        "review": {
+        "@@type": "Review",
+        "reviewRating": {
+        "@@type": "Rating",
+        "ratingValue": "4",
+        "bestRating": "5"
+        },
+        "author": {
+        "@@type": "Thing",
+        "name": "Zion Market Research"
+        }
+        },
+        "aggregateRating": {
+        "@@type": "AggregateRating",
+        "ratingValue": "4.4",
+        "reviewCount": "89"
+        },
+        "offers": {
+        "@@type": "Offer",
+        "url": "@Url.Action("Index", "Report", new { url = Model.ReportUrl })",
+        "priceCurrency": "USD",
+        "price": "@Model.SingleUser",
+        "priceValidUntil": "@DateTime.Now.AddYears(1)",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "seller": {"@@type":"Organization", "logo":{"@@type": "ImageObject", "url": "https://www.zionmarketresearch.com/images/zionLogo01.png"}, "name": "Zion Market Research"}
+        }
+        }
+    </script>
+}

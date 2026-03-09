@@ -1,0 +1,135 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+<link href="/css/buynow.css" rel="stylesheet" />
+<div class="panel panel-primary" id="chooselicense">
+    <div class="panel-heading"><strong>Choose License Type:</strong></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="btn-group btn-group-vertical" data-toggle="buttons">
+                <label class="btn active">
+                    <input type="radio" name='gender1' hrefx="@Model.SingleUserLink" checked><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-check-circle-o fa-2x"></i> <span>Single User | <span class="usd">US</span> <span class="@(Model.DiscountSingleUser > 0 ? "discountPrice" : "normalPrice")">$@Model.SingleUser</span>@(Model.DiscountSingleUser > 0 ? Html.Raw(" <span class='discountRealPrice'>$" + Model.DiscountSingleUser + "</span>") : Html.Raw(""))</span>
+                </label>
+                @if (Model.MultiUser != null && Model.MultiUser > 0)
+                {
+                    <label class="btn">
+                        <input type="radio" hrefx="@Model.MultiUserLink" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-check-circle-o fa-2x"></i><span> Multi User | <span class="usd">US</span> <span class="@(Model.DiscountSingleUser > 0 ? "discountPrice" : "normalPrice")">$@Model.MultiUser</span>@(Model.DiscountMultiUser != null ? Html.Raw(" <span class='discountRealPrice'>$" + Model.DiscountMultiUser + "</span>") : Html.Raw(""))</span>
+                    </label>
+                }
+                @if (Model.CorporateUser != null && Model.CorporateUser > 0)
+                {
+                    <label class="btn">
+                        <input type="radio" hrefx="@Model.CorporateUserLink" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-check-circle-o fa-2x"></i><span> Corporate User | <span class="usd">US</span> <span class="@(Model.DiscountSingleUser > 0 ? "discountPrice" : "normalPrice")">$@Model.CorporateUser</span>@(Model.DiscountCorporateUser != null ? Html.Raw(" <span class='discountRealPrice'>$" + Model.DiscountCorporateUser + "</span>") : Html.Raw(""))</span>
+                    </label>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row" id="choosebtn">
+        <div id="container_buttons">
+            <p>
+                <a id="lnkBuyNow" class="a_demo_four" onclick="jsRedirect();">
+                    @(!Model.IsUpcoming ? "Buy Now" : "Pre-Book Now")
+                </a>
+            </p>
+            @if (!Request.Url.ToString().Contains("/payment/"))
+            {
+                <p>
+                    <a id="request" class="a_demo_four" hrefx="/custom/@Model.ReportId">
+                        Request Customization
+                    </a>
+                </p>
+            }
+        </div>
+    </div>
+    <div class="row">
+        @*<a href="#"><img src="/images/buy-now-flashing.gif" /></a>*@
+    </div>
+</div>
+
+
+<script>
+    function jsRedirect() {
+        var selectedRadio = $('input[type="radio"]:checked');
+        window.location = $(selectedRadio[0]).attr("hrefx");
+    }
+</script>
+@if (Model.DiscountSingleUser > 0)
+{
+    <style>
+        #chooselicense > div.panel-body {
+            padding: 10px 0px !important;
+        }
+
+        .discountPrice {
+            text-decoration: line-through;
+            color: red;
+            font-size: 20px !important;
+        }
+
+        #chooselicense > div.panel-body > div > div > label.btn {
+            font-size: 12px !important;
+        }
+
+        @@media (max-width: 599px) and (min-width: 320px) {
+            #chooselicense > div.panel-body > div > div > label.btn > span > span.discountPrice {
+                font-size: 15px !important;
+            }
+
+            span.usd {
+                display: none;
+            }
+
+            .discountRealPrice {
+                font-size: 20px !important;
+            }
+        }
+
+        @@media (min-width: 768px) {
+            .discountRealPrice {
+                font-size: 20px !important;
+            }
+
+            span.usd {
+                font-size: 16px !important;
+            }
+
+            #chooselicense > div.panel-body > div > div > label.btn > span > span.discountPrice {
+                font-size: 15px !important;
+            }
+        }
+
+
+        @@media (min-width: 1024px) {
+            .discountRealPrice {
+                font-size: 22px !important;
+            }
+
+            span.usd {
+                font-size: 18px !important;
+            }
+        }
+    </style>
+}
+else
+{
+    <style>
+        /*.normalPrice, .usd {
+            font-size: 23px !important;
+        }*/
+
+        #chooselicense > div.panel-body > div > div > label.btn span {
+            font-size: 16px !important;
+        }
+
+        #chooselicense > div.panel-body > div > div > label > i.fa.fa-circle-o.fa-2x {
+            font-size: 20px;
+        }
+
+        #chooselicense > div.panel-body > div > div > label > i.fa.fa-circle-o.fa-2x {
+            font-size: 20px;
+        }
+
+        #chooselicense > div.panel-body > div > div > label.btn.active > i.fa.fa-check-circle-o.fa-2x {
+            font-size: 20px;
+        }
+    </style>
+}

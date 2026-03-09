@@ -1,0 +1,65 @@
+﻿@model PagedList.IPagedList<ZionAdmin.Repository.PaymentLinkRepository>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Payment Link";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Payment Link</h4>
+<hr />
+<div class="col-md-12">
+    <div class="row margin-bottom-15">
+        <div class="row margin-bottom-15">
+            <a href="@Url.Action("create", "paymentlink")">Create New</a>
+        </div>
+    </div>
+    <div class="row margin-bottom-15">
+        @using (Html.BeginForm("search", "paymentlink", FormMethod.Get, new { Class = "form-inline" }))
+            {
+            <div class="input-group col-md-12">
+                <input type="text" name="id" style="width: 100%;" class="form-control" placeholder="Search" id="searchText" value="@ViewBag.SearchText" />
+                <span class="input-group-btn" style="width: 70px !important;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </span>
+            </div>
+        }
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Payment Link</th>
+                    <th>Report Title</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.PaymentLink</td>
+                        <td>@p.ReportTitle</td>
+                        <td><a href="@Url.Action("edit", "paymentlink", new { id = p.Id })">Edit</a></td>
+                        <td><a href="@Url.Action("delete", "paymentlink", new { id = p.Id })">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, x => "/paymentlink/index/" + x)
+    </div>
+
+</div>
+
+<script>
+    var searchValue = $("#searchText").val();
+    var isSearched = searchValue != null && searchValue != "";
+
+    $('.pagination li a').each(function (index) {
+        if (isSearched) {
+            $(this).attr("href", "/paymentlink/search?id=" + searchValue + "&page=" + $(this).text());
+            $(".PagedList-skipToNext > a").attr("href", "/paymentlink/search?id=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) + 1));
+            $(".PagedList-skipToPrevious > a").attr("href", "/paymentlink/search?id=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) - 1));
+        }
+    });
+</script>

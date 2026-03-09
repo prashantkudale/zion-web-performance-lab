@@ -1,0 +1,81 @@
+﻿@model List<ZionMarketResearch.Models.VacancyEntity>
+@{ ViewBag.Title = "Career";
+                Layout = "~/Views/Shared/_LayoutInternal.cshtml"; }
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "Career"); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>Career</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid">
+        <div class="col-md-12 tab">
+            <div class="tab-content" style="text-align:justify;">
+                <div class="row">
+                    @if (Model == null || Model.Count == 0)
+                    {
+        <div style="text-align:center;color:red;font-size: 26px" class="alert alert-info">Sorry, We do not have any vacancies now.</div>}
+
+                    @foreach (var v in Model)
+                    {
+        <div class="col-md-3">
+            <div class="w3-card-4 same-height-container" style="margin-bottom: 20px;">
+                <div class="w3-container same-height-header">
+                    <h4>@v.JobTitle</h4>
+                </div>
+                <hr />
+                <div class="w3-container">
+                    @if (v.NumberOfVacancies != null && v.NumberOfVacancies > 0)
+                    {
+    <p>
+        <label>Vacancies :</label>
+        @v.NumberOfVacancies
+    </p>}
+                    @if (v.MinYearExperience != null)
+                    {
+    <p>
+        <label>Experience :</label>
+        @v.MinYearExperience <span>-</span> @v.MaxYearExperience <span>years</span>
+    </p>}
+
+                    @if (v.InterviewDate != null)
+                    {
+    <div class="form-group">
+        <label>Interview Date :</label>
+        <div>@(v.InterviewDate != null ? ((DateTime)v.InterviewDate).ToString("dd-MMM-yyyy") + " - " + ((DateTime)v.InterviewToDate).ToString("dd-MMM-yyyy") : string.Empty)</div>
+    </div>}
+                    @if (!string.IsNullOrEmpty(v.InterviewTime) && v.InterviewTime != "|")
+                    {
+    <div class="form-group">
+        <label>Interview Time :</label>
+        <div>@(v.InterviewTime.Split('|')[0] + " - " + v.InterviewTime.Split('|')[1])</div>
+    </div>}
+                    <p>
+                        <label>Fresher Allowed :</label>
+                        @(v.CanFresherApply ? "Yes" : "No")
+                    </p>
+                </div>
+                <a class="btn btn-primary" style="position: absolute;bottom: 0px;margin-bottom: 24px;margin-left: 10px;" href="@Url.Action("CareerDetail", "Home", new { id = v.VacancyId })">View Details</a>
+            </div>
+
+        </div>}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .same-height-container {
+        height: 374px;
+    }
+
+    .same-height-header {
+        height: 50px;
+    }
+</style>

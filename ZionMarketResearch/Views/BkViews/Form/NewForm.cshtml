@@ -1,0 +1,148 @@
+﻿@model ZionMarketResearch.Models.FormRepository
+<form name="frm-sample" method="post" action="@Url.Action("Submit", "Form")" id="frm_@ViewBag.FormType" style="padding: 20px 50px 20px 50px;background: #ffffff;box-shadow:5px 10px 8px 10px #888888;">
+    @Html.HiddenFor(f => f.ReportId, new { value = ViewBag.ReportId })
+    @Html.HiddenFor(f => f.FormType, new { value = ViewBag.FormType })
+    @Html.HiddenFor(f => f.SearchText, new { value = ViewBag.Search })
+    <input type="hidden" value="@(Request.QueryString["covid19"] != null ? Request.QueryString["covid19"] : "false" )" name="COVID19Analysis" />
+    <input type="hidden" value="@(Request.RawUrl.Contains("/news") ? 1 : 0)" name="fromNews" />
+    <div class="row zero-padding">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="fname" class="sr-only">Name</label>
+                    @Html.TextBoxFor(model => model.Name, new { Class = "form-control", placeholder = "Name" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="emailAddress" class="sr-only">Email Address</label>
+                    @Html.TextBoxFor(model => model.Email, new { Class = "form-control", placeholder = "Email Address", type = "email" })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="phoneNumber" class="sr-only">Phone Number</label>
+                    @Html.TextBoxFor(model => model.Phone, new { Class = "form-control", placeholder = "Phone Number", type = "tel" })
+                    @Html.ValidationMessageFor(model => model.Phone)
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="company_name" class="sr-only">Company Name</label>
+                    @Html.TextBoxFor(model => model.Company, new { Class = "form-control", placeholder = "Company" })
+                    @Html.ValidationMessageFor(model => model.Company)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="user_desig" class="sr-only">Title/Desig.</label>
+                    @Html.TextBoxFor(model => model.Designation, new { Class = "form-control", placeholder = "Designation" })
+                    @Html.ValidationMessageFor(model => model.Designation)
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="user_country" class="sr-only">Country</label>
+                    @Html.DropDownListFor(f => f.Country, (List<SelectListItem>)ViewBag.Countries, "-Select Country-", new { Class = "form-control selectpicker" })
+                    @Html.ValidationMessageFor(model => model.Country)
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="may_help" class="sr-only">How can we help you ?</label>
+                    @Html.TextAreaFor(model => model.Comment, new { Class = "form-control", placeholder = "Customized multi-client reports being one of our unique selling points, do not hesitate to come up with your precise interests in substantially comprehensive way", rows = "5", style = "height: 128px !important;" })
+                    @Html.ValidationMessageFor(model => model.Comment)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="user_zipcode" class="sr-only">Captcha</label>
+                    <img src="/captcha" id="captcha" style="width:100%;" /> @*<a id="refresh" title="Refresh Captcha" style="cursor:pointer;"> <img src="~/images/012_restart-128.png" style="width:32px;" /></a>*@
+                </div>
+            </div>
+
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <label for="captcha_code" class="sr-only">Captch Code</label>
+                    @Html.TextBoxFor(model => model.Captcha, new { Class = "form-control", placeholder = "Captcha", id = "Captcha_" + ViewBag.FormType })
+                    @Html.ValidationMessageFor(model => model.Captcha)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <!-- Submit button !-->
+                    <button type="button" class="btn btn-primary" id="btn_@ViewBag.FormType">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="alert alert-info">
+    <i class="fa fa-info-circle"></i> Your personal details are safe and secured with us. <a href="/privacy-policy" target="_blank" style="text-decoration:underline;" rel="nofollow">Privacy Policy</a>
+    <a href="https://seal.godaddy.com/verifySeal?sealID=eABH91l0h9MuYRpGoWkiG6NRu7Y2vaTxM5bjm0tMzUTDOhMYnSysInFUHWa0" target="_blank" rel="nofollow">
+        <img style="cursor:pointer;cursor:pointer;" src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" alt="SSL site seal - click to verify">
+    </a>
+</div>
+<style>
+    .field-validation-error {
+        color: red !important;
+        font-weight: bold !important;
+    }
+</style>
+@Scripts.Render("~/bundles/form-validation")
+@Scripts.Render("~/bundles/report")
+<script>
+    $(document).ready(function () {
+        $("#btn_@ViewBag.FormType").click(function () {
+            if ($("#frm_@ViewBag.FormType").valid() && ValidateCaptcha("frm_@ViewBag.FormType")) {
+                $("#frm_@ViewBag.FormType").submit();
+            }
+        });
+    });
+
+    function ValidateCaptcha(frmID) {
+        var result = false;
+        $.ajax({
+            type: 'POST',
+            url: '/captcha/validate',
+            async: false,
+            dataType: 'json',
+            data: { "captcha": $("#" + frmID + " input[type=text][name=Captcha]").val() },
+            success: function (res) {
+                if (res == null || !res.Success) {
+                    var captchaMessage = $("#" + frmID + " span[data-valmsg-for=Captcha]");
+                    $(captchaMessage).text("Invalid Captcha");
+                    $(captchaMessage).removeClass("field-validation-error");
+                    $(captchaMessage).addClass("field-validation-error");
+                    result = false;
+                } else {
+                    $(captchaMessage).addClass("field-validation-error");
+                    $(captchaMessage).removeClass("field-validation-error");
+                    result = true;
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+        return result;
+    }
+</script>

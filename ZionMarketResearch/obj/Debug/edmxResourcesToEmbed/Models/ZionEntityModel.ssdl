@@ -1,0 +1,1103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZionDbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="relactionrole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActionId" Type="int" />
+    <Property Name="RoleId" Type="int" />
+  </EntityType>
+  <EntityType Name="relreportattribute">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="int" Nullable="false" />
+    <Property Name="AttributeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="relreportbuyer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="BuyerId" Type="int" />
+    <Property Name="ReportPrice" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="LicenseType" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="relreportcategory">
+    <Key>
+      <PropertyRef Name="relReportCategoryID" />
+    </Key>
+    <Property Name="relReportCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="ReportId" Type="int" />
+  </EntityType>
+  <EntityType Name="relreportdomain">
+    <Key>
+      <PropertyRef Name="relReportDomainID" />
+    </Key>
+    <Property Name="relReportDomainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="int" />
+    <Property Name="DomainID" Type="int" />
+  </EntityType>
+  <EntityType Name="stagging_tblreportinformation">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportTitle" Type="text" />
+    <Property Name="TableofContents" Type="text" />
+    <Property Name="ListOfTable" Type="text" />
+    <Property Name="ListOfFigure" Type="text" />
+    <Property Name="Summary" Type="text" />
+    <Property Name="FullDescription" Type="text" />
+    <Property Name="ReportImage" Type="text" />
+    <Property Name="PublishDate" Type="datetime" Precision="0" />
+    <Property Name="PriceSingleUser" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PriceEnterpriseLicense" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PriceCUL" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Location" Type="int" />
+    <Property Name="DiscountPercentage" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NumberOfPage" Type="int" />
+    <Property Name="Publisher" Type="int" />
+    <Property Name="ReportType" Type="int" />
+    <Property Name="DeliveryFormat" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="MetaTitle" Type="text" />
+    <Property Name="MetaKeywords" Type="text" />
+    <Property Name="MetaDescription" Type="text" />
+    <Property Name="ReportUrl" Type="text" />
+    <Property Name="ListOfCharts" Type="text" />
+  </EntityType>
+  <EntityType Name="stagingtblreportinformation">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportTitle" Type="text" />
+    <Property Name="TableofContents" Type="text" />
+    <Property Name="ListOfTable" Type="text" />
+    <Property Name="ListOfFigure" Type="text" />
+    <Property Name="Summary" Type="text" />
+    <Property Name="FullDescription" Type="text" />
+    <Property Name="ReportImage" Type="text" />
+    <Property Name="PublishDate" Type="text" />
+    <Property Name="PriceSingleUser" Type="text" />
+    <Property Name="PriceEnterpriseLicense" Type="text" />
+    <Property Name="PriceCUL" Type="text" />
+    <Property Name="Location" Type="text" />
+    <Property Name="DiscountPercentage" Type="text" />
+    <Property Name="NumberOfPage" Type="text" />
+    <Property Name="Publisher" Type="text" />
+    <Property Name="ReportType" Type="text" />
+    <Property Name="DeliveryFormat" Type="text" />
+    <Property Name="IsActive" Type="text" />
+    <Property Name="IsDeleted" Type="text" />
+    <Property Name="MetaTitle" Type="text" />
+    <Property Name="MetaKeywords" Type="text" />
+    <Property Name="MetaDescription" Type="text" />
+    <Property Name="ReportUrl" Type="text" />
+    <Property Name="ListOfCharts" Type="text" />
+  </EntityType>
+  <EntityType Name="tblaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbladminlogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="45" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="tblauthor">
+    <Key>
+      <PropertyRef Name="AuthorId" />
+    </Key>
+    <Property Name="AuthorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AuthorName" Type="varchar" MaxLength="500" />
+    <Property Name="AuthorAddress" Type="text" />
+    <Property Name="AuthorContact" Type="varchar" MaxLength="12" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" Precision="0" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedDate" Type="datetime" Precision="0" />
+    <Property Name="AuthorDescription" Type="text" />
+    <Property Name="DomainId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblbuyerinformation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BuyerName" Type="varchar" MaxLength="500" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ReportTitle" Type="text" />
+    <Property Name="Country" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="200" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="12" />
+    <Property Name="State" Type="varchar" MaxLength="45" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="45" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="45" />
+    <Property Name="BuyerAddress" Type="text" />
+    <Property Name="IPAddress" Type="text" Nullable="false" />
+    <Property Name="AccessToken" Type="text" />
+    <Property Name="GuId" Type="text" Nullable="false" />
+    <Property Name="TransactionId" Type="varchar" MaxLength="500" />
+    <Property Name="Designation" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="PaymentThrough" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="100" />
+    <Property Name="TransactionStatus" Type="varchar" MaxLength="1" />
+    <Property Name="Reason" Type="text" />
+    <Property Name="razorpay_payment_id" Type="varchar" MaxLength="100" />
+    <Property Name="razorpay_order_id" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblcart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TotalAmount" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="IsEnable" Type="bool" />
+  </EntityType>
+  <EntityType Name="tblcartitem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CartId" Type="int" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="SelectedType" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="ItemAmount" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="IsEnable" Type="bool" />
+  </EntityType>
+  <EntityType Name="tblcategory">
+    <Key>
+      <PropertyRef Name="pkCategoryID" />
+    </Key>
+    <Property Name="pkCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="300" />
+    <Property Name="ParentCategoryId" Type="int" />
+    <Property Name="PageHeading" Type="varchar" MaxLength="200" />
+    <Property Name="DomainId" Type="int" />
+    <Property Name="SEOPageName" Type="varchar" MaxLength="200" />
+    <Property Name="LinkTitle" Type="varchar" MaxLength="200" />
+    <Property Name="TopDescription" Type="text" />
+    <Property Name="BottomDescription" Type="text" />
+    <Property Name="HomePageDescription" Type="text" />
+    <Property Name="Title" Type="varchar" MaxLength="200" />
+    <Property Name="Keywords" Type="text" />
+    <Property Name="MetaDescription" Type="text" />
+    <Property Name="SEOContentHeader" Type="varchar" MaxLength="200" />
+    <Property Name="SEOFooter" Type="varchar" MaxLength="200" />
+    <Property Name="HomePageImagePath" Type="varchar" MaxLength="500" />
+    <Property Name="HomePageImageAltAttribute" Type="varchar" MaxLength="200" />
+    <Property Name="MainPageImagePath" Type="varchar" MaxLength="200" />
+    <Property Name="MainPageImageAltAttribute" Type="varchar" MaxLength="200" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CategoryUrl" Type="text" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" Precision="0" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedDate" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblcolumn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColumnName" Type="varchar" MaxLength="100" />
+    <Property Name="ColumnType" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="tblcolumnvalue">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColumnID" Type="int" />
+    <Property Name="ColumnValue" Type="varchar" MaxLength="500" />
+    <Property Name="ReportID" Type="int" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Order" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="tblcontinents">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tblcountries">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="full_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="iso3" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="number" Type="usmallint" Nullable="false" />
+    <Property Name="continent_code" Type="char" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblcountry">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="lang" Type="varchar" MaxLength="5" />
+    <Property Name="lang_name" Type="varchar" MaxLength="50" />
+    <Property Name="country_alpha2_code" Type="char" MaxLength="2" />
+    <Property Name="country_alpha3_code" Type="char" MaxLength="3" />
+    <Property Name="country_numeric_code" Type="char" MaxLength="3" />
+    <Property Name="country_name" Type="varchar" MaxLength="200" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbldomain">
+    <Key>
+      <PropertyRef Name="DomainID" />
+    </Key>
+    <Property Name="DomainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DomainName" Type="varchar" MaxLength="500" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblfeedback">
+    <Key>
+      <PropertyRef Name="FeedbackId" />
+    </Key>
+    <Property Name="FeedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="varchar" MaxLength="500" />
+    <Property Name="EmailId" Type="varchar" MaxLength="200" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="Feedback" Type="text" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="FeedbackDateTime" Type="datetime" Precision="0" />
+    <Property Name="FeedbackFor" Type="int" />
+    <Property Name="Uid" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tblforms">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FormName" Type="varchar" MaxLength="500" />
+    <Property Name="IsActive" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblinquiry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="45" />
+    <Property Name="EmailId" Type="varchar" MaxLength="45" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
+    <Property Name="Message" Type="text" />
+    <Property Name="ReportId" Type="varchar" MaxLength="45" />
+    <Property Name="Type" Type="varchar" MaxLength="100" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="500" />
+    <Property Name="DateOfInquiry" Type="datetime" Precision="0" />
+    <Property Name="Designation" Type="varchar" MaxLength="500" />
+    <Property Name="Country" Type="text" />
+    <Property Name="IsMailSentToAdmin" Type="bool" />
+    <Property Name="IsMailSentToUser" Type="bool" />
+    <Property Name="IpAddress" Type="text" />
+  </EntityType>
+  <EntityType Name="tblipaddress">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IpAddress" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="tbljobapplication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobID" Type="int" />
+    <Property Name="FilePath" Type="text" />
+    <Property Name="DateOfApplication" Type="datetime" Precision="0" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="tbljobvacancy">
+    <Key>
+      <PropertyRef Name="VacancyId" />
+    </Key>
+    <Property Name="VacancyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobTitle" Type="varchar" MaxLength="300" />
+    <Property Name="JobDescription" Type="text" />
+    <Property Name="NumberOfVacancies" Type="int" />
+    <Property Name="InterviewDate" Type="datetime" Precision="0" />
+    <Property Name="Displaydate" Type="datetime" Precision="0" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreadtedDate" Type="datetime" Precision="0" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" Precision="0" />
+    <Property Name="Location" Type="varchar" MaxLength="45" />
+    <Property Name="MinYearExperience" Type="decimal" Precision="10" Scale="1" />
+    <Property Name="MaxYearExperience" Type="decimal" Precision="10" Scale="1" />
+    <Property Name="CanFresherApply" Type="bool" />
+    <Property Name="InterviewDateTo" Type="datetime" Precision="0" />
+    <Property Name="InterviewTime" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblkey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="text" />
+    <Property Name="GeneratedOn" Type="datetime" Precision="0" />
+    <Property Name="IsActive" Type="bool" Nullable="false" />
+    <Property Name="IsUsed" Type="bool" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UrlKey" Type="text" />
+    <Property Name="TempIPAddress" Type="text" />
+  </EntityType>
+  <EntityType Name="tblmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="SendingType" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailId" Type="text" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblnews">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="News" Type="text" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="UpdatedDate" Type="datetime" Precision="0" />
+    <Property Name="NewsTitle" Type="text" />
+    <Property Name="NewsUrl" Type="text" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="IsDeleted" Type="bool" />
+    <Property Name="MetaTitle" Type="varchar" MaxLength="200" />
+    <Property Name="MetaDescription" Type="varchar" MaxLength="300" />
+    <Property Name="MetaKeywords" Type="varchar" MaxLength="300" />
+    <Property Name="SearchPageDescription" Type="varchar" MaxLength="500" />
+    <Property Name="MainPageImagePath" Type="varchar" MaxLength="300" />
+    <Property Name="SearchPageImagePath" Type="varchar" MaxLength="300" />
+    <Property Name="MainPageImageAltAttribute" Type="varchar" MaxLength="200" />
+    <Property Name="SearchPageImageAltAttribute" Type="varchar" MaxLength="200" />
+    <Property Name="PublishedDate" Type="datetime" Precision="0" />
+    <Property Name="PublishedBy" Type="varchar" MaxLength="300" />
+    <Property Name="DeletedDate" Type="datetime" Precision="0" />
+    <Property Name="IsArticle" Type="bool" />
+    <Property Name="IsActive" Type="bool" />
+  </EntityType>
+  <EntityType Name="tblpayerinformation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="45" />
+    <Property Name="LastName" Type="varchar" MaxLength="45" />
+    <Property Name="PayerId" Type="text" />
+    <Property Name="Phone" Type="varchar" MaxLength="45" />
+    <Property Name="ShippingAddress" Type="text" />
+    <Property Name="Email" Type="varchar" MaxLength="45" />
+    <Property Name="Status" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="tblpaymentlink">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="ValidTo" Type="datetime" Precision="0" />
+    <Property Name="SingleUserPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IsActive" Type="bool" />
+    <Property Name="Description" Type="text" />
+    <Property Name="PaymentLink" Type="text" />
+    <Property Name="MultiUserPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CorporateUserPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" Precision="0" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedDate" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblpublisher">
+    <Key>
+      <PropertyRef Name="PublisherID" />
+    </Key>
+    <Property Name="PublisherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Publisher" Type="varchar" MaxLength="500" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="15" />
+    <Property Name="ContactPerson" Type="varchar" MaxLength="45" />
+    <Property Name="Address" Type="text" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="PublisherWebsite" Type="varchar" MaxLength="500" />
+    <Property Name="PublisherUrl" Type="text" Nullable="false" />
+    <Property Name="Title" Type="text" />
+    <Property Name="MetaDescription" Type="text" />
+    <Property Name="Keywords" Type="text" />
+    <Property Name="Description" Type="text" />
+  </EntityType>
+  <EntityType Name="tblredirection">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OldUrl" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="NewUrl" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" Precision="0" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedDate" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblregister">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailId" Type="text" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" />
+    <Property Name="Company" Type="varchar" MaxLength="100" />
+    <Property Name="Industry" Type="text" />
+    <Property Name="Location" Type="text" />
+    <Property Name="Summary" Type="text" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="LastLogin" Type="datetime" Precision="0" />
+    <Property Name="LoginBy" Type="int" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tblreportattribute">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AttributeName" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="tblreportfaq">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="text" />
+    <Property Name="Answer" Type="text" />
+    <Property Name="RowNumber" Type="int" />
+    <Property Name="ReportID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblreportinformation">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportTitle" Type="text" />
+    <Property Name="TableofContents" Type="text" />
+    <Property Name="ListOfTable" Type="text" />
+    <Property Name="ListOfFigure" Type="text" />
+    <Property Name="MainPageDescription" Type="text" />
+    <Property Name="SearchPageDescription" Type="text" />
+    <Property Name="PublishDate" Type="datetime" Precision="0" />
+    <Property Name="PriceSingleUser" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PriceEnterpriseLicense" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PriceCUL" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Location" Type="int" />
+    <Property Name="DiscountPercentage" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NumberOfPage" Type="int" />
+    <Property Name="Publisher" Type="int" />
+    <Property Name="ReportType" Type="int" />
+    <Property Name="DeliveryFormat" Type="int" />
+    <Property Name="IsActive" Type="bool" />
+    <Property Name="IsDeleted" Type="bool" />
+    <Property Name="ReportUrl" Type="text" Nullable="false" />
+    <Property Name="MetaKeywords" Type="text" />
+    <Property Name="MetaDescription" Type="text" />
+    <Property Name="MetaTitle" Type="text" />
+    <Property Name="ListOfCharts" Type="text" />
+    <Property Name="IsUpComing" Type="bool" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedDate" Type="date" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="Methodology" Type="text" />
+    <Property Name="CategoryBreadCrumb" Type="text" />
+    <Property Name="FreeAnalysis" Type="text" />
+    <Property Name="MainPageImagePath" Type="text" />
+    <Property Name="SearchPageImagePath" Type="text" />
+    <Property Name="MainPageImageAltAttribute" Type="varchar" MaxLength="200" />
+    <Property Name="SearchPageImageAltAttribute" Type="varchar" MaxLength="200" />
+    <Property Name="Tags" Type="text" />
+    <Property Name="MetaTitleSample" Type="text" />
+    <Property Name="MetaDescriptionSample" Type="text" />
+    <Property Name="MetaKeywordsSample" Type="text" />
+    <Property Name="MetaTitleTOC" Type="text" />
+    <Property Name="MetaDescriptionTOC" Type="text" />
+    <Property Name="MetaKeywordsTOC" Type="text" />
+    <Property Name="MetaTitleFreeAnalysis" Type="text" />
+    <Property Name="MetaDescriptionFreeAnalysis" Type="text" />
+    <Property Name="MetaKeywordsFreeAnalysis" Type="text" />
+    <Property Name="MetaTitleInquiry" Type="text" />
+    <Property Name="MetaDescriptionInquiry" Type="text" />
+    <Property Name="MetaKeywordsInquiry" Type="text" />
+  </EntityType>
+  <EntityType Name="tblreportscope_column">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColumnLabel" Type="varchar" MaxLength="100" />
+    <Property Name="Order" Type="int" />
+  </EntityType>
+  <EntityType Name="tblreportscope_table">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="int" />
+    <Property Name="ColumnID" Type="int" />
+    <Property Name="ColumnValue" Type="varchar" MaxLength="500" />
+    <Property Name="Order" Type="int" />
+  </EntityType>
+  <EntityType Name="tblreporttype">
+    <Key>
+      <PropertyRef Name="ReportTypeID" />
+    </Key>
+    <Property Name="ReportTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportType" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" Precision="0" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedDate" Type="datetime" Precision="0" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblreseller_reportinformation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="int" Nullable="false" />
+    <Property Name="ReportTitle" Type="text" />
+    <Property Name="MainPageDescription" Type="text" />
+    <Property Name="IsUpComing" Type="bool" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedDate" Type="date" />
+    <Property Name="DeletedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="tblroles">
+    <Key>
+      <PropertyRef Name="Roleid" />
+    </Key>
+    <Property Name="Roleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bool" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" Precision="0" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedDate" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblsearchhistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RegisterId" Type="int" />
+    <Property Name="SearchText" Type="text" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="SearchDate" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblsubscription">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegisterId" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="SubscriptionDate" Type="datetime" Precision="0" />
+    <Property Name="IsEnabled" Type="bool" />
+    <Property Name="ReportId" Type="int" />
+    <Property Name="UniqueId" Type="int" />
+  </EntityType>
+  <EntityType Name="tbltag">
+    <Key>
+      <PropertyRef Name="TagId" />
+    </Key>
+    <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TagName" Type="varchar" MaxLength="100" />
+    <Property Name="TagUrl" Type="varchar" MaxLength="45" />
+    <Property Name="IsActive" Type="bool" Nullable="false" />
+    <Property Name="MetaTitle" Type="text" />
+    <Property Name="MetaDescription" Type="text" />
+    <Property Name="MetaKeywords" Type="text" />
+    <Property Name="TagDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="tbluserroles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="IsActive" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblusers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="45" />
+    <Property Name="FirstName" Type="varchar" MaxLength="45" />
+    <Property Name="LastName" Type="varchar" MaxLength="45" />
+    <Property Name="Password" Type="varchar" MaxLength="500" />
+    <Property Name="EmailId" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bool" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="LastLogin" Type="datetime" Precision="0" />
+    <Property Name="IsRemote" Type="bool" />
+    <Property Name="IPAddress" Type="text" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Precision="0" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" Precision="0" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedDate" Type="datetime" Precision="0" />
+    <Property Name="RegisterIP" Type="text" />
+    <Property Name="TempPermitIP" Type="text" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.ziondb.tblvisitors' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblvisitors">
+    <Key>
+      <PropertyRef Name="IpAddress" />
+    </Key>
+    <Property Name="IpAddress" Type="text" Nullable="false" />
+    <Property Name="DateNTime" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblzioninnews">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LinkText" Type="varchar" MaxLength="200" />
+    <Property Name="Url" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="tblzionmail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailID" Type="varchar" MaxLength="500" />
+    <Property Name="IsEnabled" Type="bool" />
+    <Property Name="PublisherId" Type="int" />
+  </EntityType>
+  <EntityType Name="temptblreports3">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" />
+  </EntityType>
+  <Association Name="fk_countries_continents">
+    <End Role="tblcontinents" Type="Self.tblcontinents" Multiplicity="1" />
+    <End Role="tblcountries" Type="Self.tblcountries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblcontinents">
+        <PropertyRef Name="code" />
+      </Principal>
+      <Dependent Role="tblcountries">
+        <PropertyRef Name="continent_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_JobID">
+    <End Role="tbljobvacancy" Type="Self.tbljobvacancy" Multiplicity="0..1" />
+    <End Role="tbljobapplication" Type="Self.tbljobapplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbljobvacancy">
+        <PropertyRef Name="VacancyId" />
+      </Principal>
+      <Dependent Role="tbljobapplication">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Zion_AddCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_CategoryName" Type="varchar" Mode="In" />
+    <Parameter Name="p_CategoryUrl" Type="varchar" Mode="In" />
+    <Parameter Name="p_ParentCategoryId" Type="int" Mode="In" />
+    <Parameter Name="p_PageHeading" Type="varchar" Mode="In" />
+    <Parameter Name="p_Title" Type="varchar" Mode="In" />
+    <Parameter Name="p_TopDescription" Type="text" Mode="In" />
+    <Parameter Name="p_MainPageImage" Type="text" Mode="In" />
+    <Parameter Name="p_MainPageImageAltAttr" Type="varchar" Mode="In" />
+    <Parameter Name="p_HomePageDesc" Type="varchar" Mode="In" />
+    <Parameter Name="p_HomePageImage" Type="text" Mode="In" />
+    <Parameter Name="p_HomePageAltAttr" Type="varchar" Mode="In" />
+    <Parameter Name="p_Keyword" Type="text" Mode="In" />
+    <Parameter Name="p_MetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_Message" Type="text" Mode="Out" />
+    <Parameter Name="p_AppendId" Type="tinyint" Mode="In" />
+    <Parameter Name="p_UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_AddNews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_CategoryId" Type="int" Mode="In" />
+    <Parameter Name="p_Description" Type="text" Mode="In" />
+    <Parameter Name="p_CreatedBy" Type="int" Mode="In" />
+    <Parameter Name="p_Title" Type="text" Mode="In" />
+    <Parameter Name="p_NewsUrl" Type="text" Mode="In" />
+    <Parameter Name="p_ReportUrl" Type="text" Mode="In" />
+    <Parameter Name="p_MetaTitle" Type="varchar" Mode="In" />
+    <Parameter Name="p_MetaDescription" Type="varchar" Mode="In" />
+    <Parameter Name="p_MetaKeywords" Type="varchar" Mode="In" />
+    <Parameter Name="p_SearchPageDescription" Type="varchar" Mode="In" />
+    <Parameter Name="p_MainPageImagePath" Type="varchar" Mode="In" />
+    <Parameter Name="p_SearchPageImagePath" Type="varchar" Mode="In" />
+    <Parameter Name="p_MainPageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_SearchPageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_PublishedBy" Type="varchar" Mode="In" />
+    <Parameter Name="p_PublishedDate" Type="datetime" Mode="In" />
+    <Parameter Name="p_Message" Type="varchar" Mode="Out" />
+    <Parameter Name="p_AppendId" Type="tinyint" Mode="In" />
+    <Parameter Name="p_IsArticle" Type="tinyint" Mode="In" />
+    <Parameter Name="p_IsActive" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="Zion_AddPaymentLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_ReportUrl" Type="varchar" Mode="In" />
+    <Parameter Name="p_ValidTo" Type="datetime" Mode="In" />
+    <Parameter Name="p_SingleUserPrice" Type="decimal" Mode="In" />
+    <Parameter Name="p_MultiUserPrice" Type="decimal" Mode="In" />
+    <Parameter Name="p_CorporateUserPrice" Type="decimal" Mode="In" />
+    <Parameter Name="p_Description" Type="text" Mode="In" />
+    <Parameter Name="p_CreatedBy" Type="int" Mode="In" />
+    <Parameter Name="p_LinkUrl" Type="varchar" Mode="Out" />
+  </Function>
+  <Function Name="Zion_AddRedirectUrl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_FromUrl" Type="varchar" Mode="In" />
+    <Parameter Name="p_ToUrl" Type="varchar" Mode="In" />
+    <Parameter Name="p_CreatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_AddReportinformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_ReportTitle" Type="text" Mode="In" />
+    <Parameter Name="p_TableofContents" Type="text" Mode="In" />
+    <Parameter Name="p_ListOfTable" Type="text" Mode="In" />
+    <Parameter Name="p_ListOfFigure" Type="text" Mode="In" />
+    <Parameter Name="p_MainPageDescription" Type="text" Mode="In" />
+    <Parameter Name="p_SearchPageDescription" Type="text" Mode="In" />
+    <Parameter Name="p_PublishDate" Type="datetime" Mode="In" />
+    <Parameter Name="p_PriceSingleUser" Type="decimal" Mode="In" />
+    <Parameter Name="p_PriceEnterpriseLicense" Type="decimal" Mode="In" />
+    <Parameter Name="p_PriceCUL" Type="decimal" Mode="In" />
+    <Parameter Name="p_Location" Type="int" Mode="In" />
+    <Parameter Name="p_DiscountPercentage" Type="decimal" Mode="In" />
+    <Parameter Name="p_NumberOfPage" Type="int" Mode="In" />
+    <Parameter Name="p_CategoryId" Type="int" Mode="In" />
+    <Parameter Name="p_MetaTitle" Type="text" Mode="In" />
+    <Parameter Name="p_MetaKeywords" Type="text" Mode="In" />
+    <Parameter Name="p_MetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_ListOfCharts" Type="text" Mode="In" />
+    <Parameter Name="p_ReportUrl" Type="text" Mode="In" />
+    <Parameter Name="p_IsActive" Type="tinyint" Mode="In" />
+    <Parameter Name="p_IsUpComing" Type="tinyint" Mode="In" />
+    <Parameter Name="p_CreatedBy" Type="int" Mode="In" />
+    <Parameter Name="p_Methodology" Type="text" Mode="In" />
+    <Parameter Name="p_FreeAnalysis" Type="text" Mode="In" />
+    <Parameter Name="p_MainPageImagePath" Type="text" Mode="In" />
+    <Parameter Name="p_MainPageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_SearchPageImagePath" Type="text" Mode="In" />
+    <Parameter Name="p_SearchPageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_Tags" Type="varchar" Mode="In" />
+    <Parameter Name="p_NewReportId" Type="int" Mode="Out" />
+    <Parameter Name="p_ReportCategoryName" Type="varchar" Mode="Out" />
+    <Parameter Name="p_NewReportUrl" Type="varchar" Mode="Out" />
+    <Parameter Name="p_NewReportTitle" Type="varchar" Mode="Out" />
+    <Parameter Name="p_AppendId" Type="tinyint" Mode="In" />
+    <Parameter Name="p_DeliveryFormat" Type="int" Mode="In" />
+    <Parameter Name="p_SampleMetaTitle" Type="text" Mode="In" />
+    <Parameter Name="p_SampleMetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_SampleMetaKeywords" Type="text" Mode="In" />
+    <Parameter Name="p_TOCMetaTile" Type="text" Mode="In" />
+    <Parameter Name="p_TOCMetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_TOCMetaKeywords" Type="text" Mode="In" />
+    <Parameter Name="p_FreeAnalysisMetaTitle" Type="text" Mode="In" />
+    <Parameter Name="p_FreeAnalysisMetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_FreeAnalysisMetaKeyords" Type="text" Mode="In" />
+    <Parameter Name="p_InquiryMetaTitle" Type="text" Mode="In" />
+    <Parameter Name="p_InquiryMetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_InquiryMetaKeywords" Type="text" Mode="In" />
+    <Parameter Name="p_ReportDescriptionReseller" Type="text" Mode="In" />
+  </Function>
+  <Function Name="Zion_AddRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_RoleName" Type="varchar" Mode="In" />
+    <Parameter Name="p_Actions" Type="text" Mode="In" />
+    <Parameter Name="p_CreatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_UserName" Type="varchar" Mode="In" />
+    <Parameter Name="p_FirstName" Type="varchar" Mode="In" />
+    <Parameter Name="p_LastName" Type="varchar" Mode="In" />
+    <Parameter Name="p_Password" Type="varchar" Mode="In" />
+    <Parameter Name="p_EmailId" Type="varchar" Mode="In" />
+    <Parameter Name="p_UserRoles" Type="varchar" Mode="In" />
+    <Parameter Name="p_RowCount" Type="int" Mode="Out" />
+    <Parameter Name="p_CreatedBy" Type="int" Mode="In" />
+    <Parameter Name="p_RegisteredIp" Type="text" Mode="In" />
+    <Parameter Name="p_IsRemote" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="Zion_AddUserRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_UserId" Type="int" Mode="In" />
+    <Parameter Name="p_RoleIdList" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Zion_GetAllCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb" />
+  <Function Name="Zion_GetAllFeaturedReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_Page" Type="int" Mode="In" />
+    <Parameter Name="p_AttributeName" Type="varchar" Mode="In" />
+    <Parameter Name="p_TotalRecords" Type="int" Mode="Out" />
+  </Function>
+  <Function Name="Zion_GetAllPublishedReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_Page" Type="int" Mode="In" />
+    <Parameter Name="p_TotalRecords" Type="int" Mode="Out" />
+  </Function>
+  <Function Name="Zion_GetAllUpcomingReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_Page" Type="int" Mode="In" />
+    <Parameter Name="p_TotalRecords" Type="int" Mode="Out" />
+  </Function>
+  <Function Name="Zion_GetCategoryWithReportCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb" />
+  <Function Name="Zion_GetReportById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_ReportId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_GetReportByUrl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_ReportUrl" Type="text" Mode="In" />
+  </Function>
+  <Function Name="Zion_GetZionInNewsLinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_limit" Type="int" Mode="In" />
+    <Parameter Name="p_page" Type="int" Mode="In" />
+    <Parameter Name="p_totalRecord" Type="int" Mode="Out" />
+  </Function>
+  <Function Name="Zion_SearchReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_SearchText" Type="varchar" Mode="In" />
+    <Parameter Name="p_Page" Type="int" Mode="In" />
+    <Parameter Name="p_Limit" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_SplitToInt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="str" Type="varchar" Mode="In" />
+    <Parameter Name="cdelimiter" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Zion_UpdateCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_CategoryId" Type="int" Mode="In" />
+    <Parameter Name="p_CategoryUrl" Type="varchar" Mode="In" />
+    <Parameter Name="p_CategoryName" Type="varchar" Mode="In" />
+    <Parameter Name="p_ParentCategoryId" Type="int" Mode="In" />
+    <Parameter Name="p_Title" Type="text" Mode="In" />
+    <Parameter Name="p_Description" Type="text" Mode="In" />
+    <Parameter Name="p_PageHeading" Type="varchar" Mode="In" />
+    <Parameter Name="p_MainPageImagePath" Type="varchar" Mode="In" />
+    <Parameter Name="p_MainPageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_HomePageDescription" Type="varchar" Mode="In" />
+    <Parameter Name="p_HomePageImagePath" Type="varchar" Mode="In" />
+    <Parameter Name="p_HomePageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_MetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_Keyword" Type="text" Mode="In" />
+    <Parameter Name="p_UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_UpdateNews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_CategoryId" Type="int" Mode="In" />
+    <Parameter Name="p_Description" Type="text" Mode="In" />
+    <Parameter Name="p_UpdatedBy" Type="int" Mode="In" />
+    <Parameter Name="p_Title" Type="text" Mode="In" />
+    <Parameter Name="p_NewsId" Type="int" Mode="In" />
+    <Parameter Name="p_ReportUrl" Type="text" Mode="In" />
+    <Parameter Name="p_NewsUrl" Type="text" Mode="In" />
+    <Parameter Name="p_SearchPageDescription" Type="varchar" Mode="In" />
+    <Parameter Name="p_MainPageImagePath" Type="varchar" Mode="In" />
+    <Parameter Name="p_SearchPageImagePath" Type="varchar" Mode="In" />
+    <Parameter Name="p_MainPageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_SearchPageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_MetaTitle" Type="varchar" Mode="In" />
+    <Parameter Name="p_MetaDescription" Type="varchar" Mode="In" />
+    <Parameter Name="p_MetaKeywords" Type="varchar" Mode="In" />
+    <Parameter Name="p_PublishedDate" Type="datetime" Mode="In" />
+    <Parameter Name="p_PublishedBy" Type="varchar" Mode="In" />
+    <Parameter Name="p_IsArticle" Type="tinyint" Mode="In" />
+    <Parameter Name="p_IsActive" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="Zion_UpdatePaymentLInk" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_Id" Type="int" Mode="In" />
+    <Parameter Name="p_SingleUserPrice" Type="decimal" Mode="In" />
+    <Parameter Name="p_MultiUserPrice" Type="decimal" Mode="In" />
+    <Parameter Name="p_CorporateUserPrice" Type="decimal" Mode="In" />
+    <Parameter Name="p_ValidTo" Type="datetime" Mode="In" />
+    <Parameter Name="p_Description" Type="text" Mode="In" />
+    <Parameter Name="p_UpdatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_UpdateRedrectUrl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_Id" Type="int" Mode="In" />
+    <Parameter Name="p_FromUrl" Type="varchar" Mode="In" />
+    <Parameter Name="p_ToUrl" Type="varchar" Mode="In" />
+    <Parameter Name="p_UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_UpdateReportInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_ReportId" Type="int" Mode="In" />
+    <Parameter Name="p_ReportTitle" Type="text" Mode="In" />
+    <Parameter Name="p_TableofContents" Type="text" Mode="In" />
+    <Parameter Name="p_ListOfTable" Type="text" Mode="In" />
+    <Parameter Name="p_ListOfFigure" Type="text" Mode="In" />
+    <Parameter Name="p_MainPageDescription" Type="text" Mode="In" />
+    <Parameter Name="p_SearchPageDescription" Type="text" Mode="In" />
+    <Parameter Name="p_PublishDate" Type="datetime" Mode="In" />
+    <Parameter Name="p_SingleUser" Type="decimal" Mode="In" />
+    <Parameter Name="p_MultiUser" Type="decimal" Mode="In" />
+    <Parameter Name="p_CorporateUser" Type="decimal" Mode="In" />
+    <Parameter Name="p_Location" Type="varchar" Mode="In" />
+    <Parameter Name="p_DiscountPercentage" Type="decimal" Mode="In" />
+    <Parameter Name="p_NumberOfPage" Type="int" Mode="In" />
+    <Parameter Name="p_MetaTitle" Type="text" Mode="In" />
+    <Parameter Name="p_MetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_MetaKeywords" Type="text" Mode="In" />
+    <Parameter Name="p_ListOfCharts" Type="text" Mode="In" />
+    <Parameter Name="p_ReportUrl" Type="text" Mode="In" />
+    <Parameter Name="p_CategoryId" Type="int" Mode="In" />
+    <Parameter Name="p_IsActive" Type="tinyint" Mode="In" />
+    <Parameter Name="p_UserId" Type="int" Mode="In" />
+    <Parameter Name="p_Methodology" Type="text" Mode="In" />
+    <Parameter Name="p_IsUpcoming" Type="tinyint" Mode="In" />
+    <Parameter Name="p_FreeAnalysis" Type="text" Mode="In" />
+    <Parameter Name="p_MainPageImagePath" Type="text" Mode="In" />
+    <Parameter Name="p_SearchPageImagePath" Type="text" Mode="In" />
+    <Parameter Name="p_MainPageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_SearchPageImageAltAttribute" Type="varchar" Mode="In" />
+    <Parameter Name="p_UpdateReportId" Type="int" Mode="Out" />
+    <Parameter Name="p_UpdateReportTitle" Type="text" Mode="Out" />
+    <Parameter Name="p_UpdateCategory" Type="varchar" Mode="Out" />
+    <Parameter Name="p_UpdateReportUrl" Type="text" Mode="Out" />
+    <Parameter Name="p_RowCount" Type="int" Mode="Out" />
+    <Parameter Name="p_DeliveryFormat" Type="int" Mode="In" />
+    <Parameter Name="p_SampleMetaTitle" Type="text" Mode="In" />
+    <Parameter Name="p_SampleMetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_SampleMetaKeywords" Type="text" Mode="In" />
+    <Parameter Name="p_TOCMetaTile" Type="text" Mode="In" />
+    <Parameter Name="p_TOCMetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_TOCMetaKeywords" Type="text" Mode="In" />
+    <Parameter Name="p_FreeAnalysisMetaTitle" Type="text" Mode="In" />
+    <Parameter Name="p_FreeAnalysisMetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_FreeAnalysisMetaKeyords" Type="text" Mode="In" />
+    <Parameter Name="p_InquiryMetaTitle" Type="text" Mode="In" />
+    <Parameter Name="p_InquiryMetaDescription" Type="text" Mode="In" />
+    <Parameter Name="p_InquiryMetaKeywords" Type="text" Mode="In" />
+    <Parameter Name="p_ResellerDescription" Type="text" Mode="In" />
+  </Function>
+  <Function Name="Zion_UpdateRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_RoleId" Type="int" Mode="In" />
+    <Parameter Name="p_RoleName" Type="varchar" Mode="In" />
+    <Parameter Name="p_Actions" Type="varchar" Mode="In" />
+    <Parameter Name="p_RowCount" Type="int" Mode="Out" />
+    <Parameter Name="p_UpdatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Zion_UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ziondb">
+    <Parameter Name="p_UserId" Type="int" Mode="In" />
+    <Parameter Name="p_UserName" Type="varchar" Mode="In" />
+    <Parameter Name="p_UserRoles" Type="varchar" Mode="In" />
+    <Parameter Name="p_RowCount" Type="int" Mode="Out" />
+    <Parameter Name="p_UpdatedBy" Type="int" Mode="In" />
+    <Parameter Name="p_RoleIdList" Type="varchar" Mode="In" />
+    <Parameter Name="p_RegisteredIP" Type="text" Mode="In" />
+    <Parameter Name="p_IsRemote" Type="tinyint" Mode="In" />
+  </Function>
+  <EntityContainer Name="ZionDbModelStoreContainer">
+    <EntitySet Name="relactionrole" EntityType="Self.relactionrole" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="relreportattribute" EntityType="Self.relreportattribute" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="relreportbuyer" EntityType="Self.relreportbuyer" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="relreportcategory" EntityType="Self.relreportcategory" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="relreportdomain" EntityType="Self.relreportdomain" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="stagging_tblreportinformation" EntityType="Self.stagging_tblreportinformation" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="stagingtblreportinformation" EntityType="Self.stagingtblreportinformation" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblaction" EntityType="Self.tblaction" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tbladminlogin" EntityType="Self.tbladminlogin" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblauthor" EntityType="Self.tblauthor" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblbuyerinformation" EntityType="Self.tblbuyerinformation" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblcart" EntityType="Self.tblcart" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblcartitem" EntityType="Self.tblcartitem" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblcategory" EntityType="Self.tblcategory" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblcolumn" EntityType="Self.tblcolumn" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblcolumnvalue" EntityType="Self.tblcolumnvalue" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblcontinents" EntityType="Self.tblcontinents" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblcountries" EntityType="Self.tblcountries" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblcountry" EntityType="Self.tblcountry" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tbldomain" EntityType="Self.tbldomain" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblfeedback" EntityType="Self.tblfeedback" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblforms" EntityType="Self.tblforms" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblinquiry" EntityType="Self.tblinquiry" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblipaddress" EntityType="Self.tblipaddress" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tbljobapplication" EntityType="Self.tbljobapplication" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tbljobvacancy" EntityType="Self.tbljobvacancy" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblkey" EntityType="Self.tblkey" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblmail" EntityType="Self.tblmail" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblnews" EntityType="Self.tblnews" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblpayerinformation" EntityType="Self.tblpayerinformation" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblpaymentlink" EntityType="Self.tblpaymentlink" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblpublisher" EntityType="Self.tblpublisher" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblredirection" EntityType="Self.tblredirection" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblregister" EntityType="Self.tblregister" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblreportattribute" EntityType="Self.tblreportattribute" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblreportfaq" EntityType="Self.tblreportfaq" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblreportinformation" EntityType="Self.tblreportinformation" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblreportscope_column" EntityType="Self.tblreportscope_column" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblreportscope_table" EntityType="Self.tblreportscope_table" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblreporttype" EntityType="Self.tblreporttype" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblreseller_reportinformation" EntityType="Self.tblreseller_reportinformation" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblroles" EntityType="Self.tblroles" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblsearchhistory" EntityType="Self.tblsearchhistory" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblsubscription" EntityType="Self.tblsubscription" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tbltag" EntityType="Self.tbltag" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tbluserroles" EntityType="Self.tbluserroles" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblusers" EntityType="Self.tblusers" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblzioninnews" EntityType="Self.tblzioninnews" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblzionmail" EntityType="Self.tblzionmail" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="temptblreports3" EntityType="Self.temptblreports3" Schema="ziondb" store:Type="Tables" />
+    <EntitySet Name="tblvisitors" EntityType="Self.tblvisitors" store:Type="Tables" store:Schema="ziondb">
+      <DefiningQuery>SELECT 
+`tblvisitors`.`IpAddress`, 
+`tblvisitors`.`DateNTime`
+ FROM `tblvisitors` AS `tblvisitors`</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_countries_continents" Association="Self.fk_countries_continents">
+      <End Role="tblcontinents" EntitySet="tblcontinents" />
+      <End Role="tblcountries" EntitySet="tblcountries" />
+    </AssociationSet>
+    <AssociationSet Name="fk_JobID" Association="Self.fk_JobID">
+      <End Role="tbljobvacancy" EntitySet="tbljobvacancy" />
+      <End Role="tbljobapplication" EntitySet="tbljobapplication" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

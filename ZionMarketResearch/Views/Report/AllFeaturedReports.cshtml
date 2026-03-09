@@ -1,0 +1,37 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.SearchResultView>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "All Featured Reports: Zion Market Research";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MetaDescription = "Zion Market Research offers all market reports covering different research categories.";
+    ViewBag.MetaKeywords = "Market research reports, market research, industry research reports, market research analysis, market size, market share, industry trends";
+}
+<h3>
+    All Featured Reports
+    @if (HttpContext.Current.Session["Discount"] != null)
+    { <span style="color:red;font-weight:bold;">Black Friday Sale Flat 30% Off</span> }
+</h3>
+<div class="row">
+    <div class="col-sm-8">
+        <div id="report_list">
+            @foreach (var report in Model)
+            {
+                <div class="row adshadow">
+                    <div class="reporticon"></div><h4><a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })">@report.ReportTitle</a> @(!string.IsNullOrEmpty(report.ReportAttribute) ? Html.Raw("<span class='badge badge-primary' style='padding: 8px;background-color:#dc3545;'>" + report.ReportAttribute + "</span>") : new HtmlString(""))</h4>
+                    <div class="reportdesc">
+                        <p class="subhead"> <strong>@(!report.IsUpcoming && report.PublishedDate != null ? report.PublishedDate.Value.ToString("MMM-yyyy") + " | " : string.Empty) @Html.Raw(report.Categories[report.Categories.Length - 1]) | Price : $ @report.SingleUser |  @(report.NumberOfPages != null && report.NumberOfPages > 0 ? "Pages: " + report.NumberOfPages + " | " : string.Empty) Report Code: ZMR-@report.ReportId | Report Format : <i class="fa @report.DeliveryFormatClass" aria-hidden="true"></i> | Status : @(report.IsUpcoming ? "Upcoming" : "Published")</strong> </p>
+                    </div>
+                    <div class="rep-description">
+                        <p>@Html.DisplayFor(x => report.Description)...<span><a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })" rel="nofollow">Read More <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></span> </p>
+                    </div>
+                </div>
+            }
+        </div>
+        @{ Html.RenderPartial("_TotalRecord", ViewData.Model); }
+        @Html.PagedListPager(Model, p => Url.Action("AllFeaturedReports", "Report", new { page = p }), new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+    </div>
+    <div class="col-sm-4">
+        @{Html.RenderAction("latestupcomingreports", "report");}
+        @{Html.RenderAction("latestreport", "report");}
+    </div>
+</div>

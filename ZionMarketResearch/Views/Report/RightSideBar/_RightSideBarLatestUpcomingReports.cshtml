@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ZionMarketResearch.Models.LatestUpComingReportView>
+@foreach (var report in Model)
+{
+    <div class="heading reportlist_box">
+        <div class="col-sm-12 zero-padding">
+            <div class="topbadge">
+                @if (report.PublishedDate != null)
+                { <span class="badge"><i class="fa fa-calendar" aria-hidden="true"></i>  @report.PublishedDate.Value.ToString("dd-MMM-yyyy") </span>}
+                <span class="badge"> <i class="fa fa-tags" aria-hidden="true"></i> Upcoming </span>
+            </div>
+            <h2 class="reporttitle no-left-border"> <a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })">@report.ReportTitle</a></h2>
+            @if (report.Categories != null && report.Categories.Length > 0)
+            {<span class="bottombadge reportTitle-readmore"><i class="fa fa-th-large" aria-hidden="true"></i> @Html.Raw(report.Categories[@report.Categories.Length - 1]) </span>}
+            <span class="bottombadge reportTitle-readmore"> <a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })" rel="nofollow">Read More <i class="fa fa-arrow-circle-right"></i></a></span>
+        </div>
+    </div>
+}

@@ -1,0 +1,58 @@
+﻿<div id="allnews">
+    <div class="heading reportlist_box" v-if="allNews.length > 0" v-for="news in allNews">
+        <div class="col-sm-12 zero-padding">
+            <div class="topbadge">
+                <span class="badge"><i class="fa fa-calendar" aria-hidden="true"></i>  {{news.PublishedDate | formatDate}} </span>
+            </div>
+            <h2 class="reporttitle"> <a :href="'/news/' + news.NewsUrl">{{news.NewsTitle}}</a></h2>
+            <p>{{news.Description}} <span><a :href="'/news/' + news.NewsUrl" rel="nofollow" style="color:#123456!important;">Read More <i class="fa fa-arrow-circle-right"></i></a></span></p>
+        </div>
+    </div>
+    <button class="btn btn-primary button-load-more" @@click="getAllNews(currentPage)" :disabled="loading" style="">Load More Pressrelease</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<style>
+    .button-load-more {
+        margin-left: 35%;
+    }
+
+    @@media (min-width:500px) {
+        .button-load-more {
+            margin-left: 35%;
+        }
+    }
+
+    @@media (max-width:499px) {
+        .button-load-more {
+            margin-left: 0px;
+        }
+    }
+</style>
+<script>
+    var allNews = new Vue({
+        el: '#allnews',
+        data: {
+            allNews: [],
+            currentPage: 2,
+            loading: false
+        },
+        methods: {
+            getAllNews: function (page) {
+                this.loading = true;
+                fetch('/json-all-news/' + page)
+                    .then(res => res.json())
+                    .then(res => {
+                        this.allNews = this.allNews.concat(res);
+                        this.currentPage++;
+                        this.loading = false;
+                    });
+            }
+        }
+    });
+    Vue.filter('formatDate', function (value) {
+        if (value) {
+            return moment(String(value)).format('DD-MMM-YYYY')
+        }
+    });
+</script>

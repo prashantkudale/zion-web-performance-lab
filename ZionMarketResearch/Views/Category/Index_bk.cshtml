@@ -1,0 +1,289 @@
+﻿@{
+    ViewBag.Title = "All Categories - Zion Market Research";
+    ViewBag.MetaDescription = "All Categories";
+    ViewBag.MetaKeywords = "All Categories";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "Category"); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>Industries</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="tab">
+            <div class="col-sm-12 col-xs-12 zero-padding tab-content">
+                <div class="latest-report-category-section zero-padding">
+                    <div class="category-wrapper">
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "technology-media" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Technology-Media_lg.jpg"></span>
+                                        <!--<span><img src="images/category-icons/food.png" class="bottomright"></span>-->
+                                        <div class="bg-image1"></div>
+                                        <div class="bg-text">
+                                            <h3>Technology & Media</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "technology-media" })" rel="nofollow">Read More</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "healthcare" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Healthcare_lg.jpg"></span>
+                                        <!--<div class="bg-image21"></div>-->
+                                        <div class="bg-text">
+                                            <h3>Healthcare</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "healthcare" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "chemical-materials" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Chemical-Materials_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Chemical & Materials</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "chemical-materials" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "heavy-industry" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Heavy-Industry_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Heavy Industry</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "heavy-industry" })" rel="nofollow">Read More</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "medical-device" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Medical-Device_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Medical Device</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "medical-device" })" rel="nofollow">Read More</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "food-beverage" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/food-beverage_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Food & Beverage</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "food-beverage" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "semiconductor-electronics" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Semiconductor-Electronics_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Semiconductor & Electronics</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "semiconductor-electronics" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "pharmaceutical" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Pharmaceutical_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Pharmaceutical</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "pharmaceutical" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "consumer-goods" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Consumer-Goods_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Consumer Goods</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "consumer-goods" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!--</div>-->
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "energy-mining" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Energy-Mining_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Energy & Mining</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "energy-mining" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "packaging" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Packaging_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Packaging</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "packaging" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "automotive" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Automotive_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Automotive</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "automotive" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "biotechnology" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Biotechnology_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Biotechnology</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "biotechnology" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("CategoryWithReports", "Category", new { url = "defense-security" })">
+                            <div class="col-sm-4 zero-padding">
+                                <div class="mr-10">
+                                    <div class="category_box">
+                                        <span><img src="~/images/category/Defense-Security_lg.jpg"></span>
+                                        <div class="bg-text">
+                                            <h3>Defense & Security</h3>
+                                            <a href="@Url.Action("CategoryWithReports", "Category", new { url = "defense-security" })" rel="nofollow">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <!--category-wrapper-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .bg-image {
+        background-image: url('images/category/Consumer-Goods_lg.jpg');
+        * Add the blur effect */ filter: blur(1px);
+        -webkit-filter: blur(1px);
+        opacity: 0.5;
+        /* Full height */
+        height: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        /*background-size: cover;*/
+        background-size: 100%;
+    }
+
+    .bg-image2 {
+        background-image: url('images/category/Healthcare_lg.jpg');
+        * Add the blur effect */ filter: blur(1px);
+        -webkit-filter: blur(1px);
+        opacity: 0.5;
+        /* Full height */
+        height: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        /*background-size: cover;*/
+        background-size: 100%;
+    }
+    /* Position text in the middle of the page/image */
+
+    .bg-text {
+        color: #123456;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 95%;
+        padding: 25px;
+        /*text-align: center;*/
+    }
+
+        .bg-text a {
+            color: #000000 !important;
+            text-decoration: underline;
+        }
+
+        .bg-text h3,
+        .bg-text p {
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+
+    .category_box {
+        /*1373*/
+        max-width: 97% !important;
+    }
+
+    .bg-text h3 {
+        font-size: 20px;
+    }
+
+    .category_box span img {
+        opacity: 0.5;
+    }
+</style>

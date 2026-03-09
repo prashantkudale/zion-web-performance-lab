@@ -1,0 +1,20 @@
+﻿.marquee li {
+    list-style: none;
+    list-style-type: none;
+    padding: 5px;
+}
+
+.marquee {
+    overflow: hidden;
+    background-color: #D7D9CE;
+    height: 31px;
+}
+
+.marquee-heading {
+    padding: 0;
+    font-size: 15px;
+    background-color: #FFC857;
+    border-radius: 5px 0px 0px 5px;
+    padding: 5px;
+    font-weight: bold;
+}

@@ -1,0 +1,30 @@
+﻿@model ZionMarketResearch.Models.tblreportattribute
+@{
+    ViewBag.Title = "Report Attributes";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Report Attribute</h3>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Create", "ReportAttribute", FormMethod.Post, new { @id = "frmReportAttribute" }))
+        {
+            <div class="form-group">
+                <label>Attribute</label>
+                @Html.TextBoxFor(model => model.AttributeName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AttributeName)
+            </div>
+            <button class="btn btn-primary" onclick="submitForm();">Add</button>
+        }
+    </div>
+</div>
+<script>
+    function submitForm() {
+        if (jsFormValidation("#frmReportAttribute", null, null, null)) {
+            $("#frmReportAttribute").submit();
+        } else {
+            e.preventDefault();
+        }
+    }
+</script>

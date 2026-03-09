@@ -1,0 +1,241 @@
+/*! CSS Used from: https://www.zionmarketresearch.com/Content/css/bootstrap.min.css ; media=screen */
+.modal-dialog {
+    z-index: 9999 !important;
+}
+.logo{
+    width: 20%;
+    float: left;
+}
+.navbar-wrapper {
+    background: #ffffff !important;
+}
+.img-responsive{
+    display: block;
+    max-width: 100%;
+    height: auto!important;
+}
+.navArea{float:right;}
+.navbar-header{display:block!important;}
+.nav>li>a{display:inline-block;}
+.navbar-nav>li{float:none;display:inline-block;}
+.navbar-nav{margin:0 auto;float:none;text-align:right;}
+.navbar-toggle{margin-top:14px;}
+.navbar-wrapper{margin-top:0;height:70px;position:relative;z-index:15;}
+.navbar-collapse{padding:0;}
+.navbar.navbar-inverse.navbar-static-top{margin:0 auto;background:none;color:#fff;border:none;font-size:14px;font-weight:700;text-transform:uppercase;}
+.navbar.navbar-inverse.navbar-static-top a {color: #123456 !important;padding: 31px 12px 20px 15px !important;line-height: 5px !important;text-align:center;}
+/*.navbar.navbar-inverse.navbar-static-top a{color:#fff;padding:31px 12px;line-height:18px;}*/
+    .navbar.navbar-inverse.navbar-static-top a:hover {
+        background-color: inherit !important;
+        background: none !important;
+        border-bottom: 2px solid !important;
+    }
+
+.navbar.navbar-inverse.navbar-static-top a:hover{background-color:inherit;background:none;border-bottom:2px solid;}
+
+
+#report-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(https://www.zionmarketresearch.com/images/images06.webp) !important;
+    background-position: center;
+    background-size: cover;
+    opacity: .4;
+}
+.link-btn a:first-child {
+    background: #9a1750;
+}
+.link-btn a:nth-child(2) {
+    background: #376e6f;
+}
+.link-btn a {
+    font-size: 14px;
+    text-align: center;
+    padding: 0.9rem 0.8rem;
+    margin-bottom: 0.7rem;
+    border-radius: 25px;
+    text-decoration: none;
+}
+#news_section a.hvr-wobble-vertical {
+    color: #fff !important;
+}
+#report-title {
+    position: relative;
+    background-color: #e7ecea;
+   /* margin-top: 25px;*/
+       
+}
+.section_gap {
+    padding: 10px 0 25px !important;
+}
+
+.blue_section {
+    background-color: #2f4e71;
+}
+.footer {
+    padding: 10px 0 !important;
+    background-color: #243c58;
+   
+}
+.footer p {
+    font-size: 13px;
+    color: #dcdce5;
+    padding: 0;
+}
+.breadcrumb {
+    margin-bottom: 8px !important;
+    position: relative;
+    opacity: .8;
+}
+.breadcrumb {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+.heading h1 {
+    color: #23527c;
+    font-size: 30px;
+    padding-left: 15px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.search{width:100%;position:relative;display:flex;}
+.searchTerm{width:100%;border:0px solid #024973;border-right:none;padding:15px;height:55px;border-radius:5px 0 0 5px;outline:none;color:#9DBFAF;}
+.searchTerm:focus{color:#123456;font-size:18px;font-family:Tahoma, sans-serif;}
+.searchButton{width:80px;height:55px;border:0px solid #024973;background:#00B4CC;text-align:center;color:#fff;border-radius:0 5px 5px 0;cursor:pointer;font-size:20px;}
+.wrap{width:70%!important;top:50%;left:50%;transform:translate(-50%, -50%);}
+#search-section{margin:50px 0px 100px 0px;}
+/*! CSS Used from: https://www.zionmarketresearch.com/bundles/autocompletecss?v=r7_rJNjyWqwasnuFr0xN2YLqb4elIJM8j-BD273-Skc1 */
+.autocomplete-suggestions{border:1px solid #999;background:#fff;overflow:auto;}
+
+@media screen{
+a{background-color:transparent;}
+a:active,a:hover{outline:0;}
+img{border:0;}
+@media print{
+*,:before,:after{color:#000!important;text-shadow:none!important;background:transparent!important;-webkit-box-shadow:none!important;box-shadow:none!important;}
+a,a:visited{text-decoration:underline;}
+a[href]:after{content:" (" attr(href) ")";}
+img{page-break-inside:avoid;}
+img{max-width:100%!important;}
+p{orphans:3;widows:3;}
+}
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+:before,:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+a{color:#337ab7;text-decoration:none;}
+a:hover,a:focus{color:#23527c;text-decoration:underline;}
+a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+img{vertical-align:middle;}
+h5{font-family:inherit;font-weight:500;line-height:1.1;color:inherit;}
+h5{margin-top:10px;margin-bottom:10px;}
+h5{font-size:14px;}
+p{margin:0 0 10px;}
+ul{margin-top:0;margin-bottom:10px;}
+.row{margin-right:-15px;margin-left:-15px;}
+.col-md-2,.col-lg-2,.col-md-3,.col-lg-3,.col-md-4,.col-lg-4,.col-sm-6,.col-xs-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px;}
+.col-xs-12{float:left;}
+.col-xs-12{width:100%;}
+@media (min-width:768px){
+.col-sm-6{float:left;}
+.col-sm-6{width:50%;}
+}
+@media (min-width:992px){
+.col-md-2,.col-md-3,.col-md-4{float:left;}
+.col-md-4{width:33.33333333%;}
+.col-md-3{width:25%;}
+.col-md-2{width:16.66666667%;}
+}
+@media (min-width:1200px){
+.col-lg-2,.col-lg-3,.col-lg-4{float:left;}
+.col-lg-4{width:33.33333333%;}
+.col-lg-3{width:25%;}
+.col-lg-2{width:16.66666667%;}
+}
+.row:before,.row:after{display:table;content:" ";}
+.row:after{clear:both;}
+}
+/*! CSS Used from: https://www.zionmarketresearch.com/Content/css/main.min.css ; media=screen */
+@media screen{
+*{padding:0;margin:0;}
+a{text-decoration:none;color:#f5d76e;outline:none;}
+a:hover,a:focus{color:inherit;text-decoration:underline;}
+img{max-width:100%;}
+p{font-family:'Open Sans',sans-serif;font-size:14px;line-height:24px;font-weight:400;padding-bottom:22px;margin:0;}
+h5{color:#000;font-family:'Montserrat',sans-serif;}
+h5{font-family:'Open Sans',sans-serif;font-size:14px;line-height:24px;font-weight:400;margin:0 0 15px;color:#fff;}
+.bottomfourcol p{color:#dcdce5;font-weight:400;font-size:13px;line-height:24px;margin-bottom:20px;padding:0;}
+.socialshare{font-size:0;letter-spacing:0;}
+.socialshare a{background:#242526;display:inline-block;vertical-align:top;height:50px;width:50px;line-height:30px;margin:2px;text-align:center;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;transition:all .3s ease-in-out;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;}
+.socialshare a i{color:#fff;font-size:31px;line-height:50px;}
+.socialshare a:hover{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);transform:scale(1.1);}
+.socialshare a:hover i{color:#fff;}
+ul.footerLinks{list-style:none;padding:0;margin:0;}
+ul.footerLinks li{font-family:'Open Sans',sans-serif;display:block;padding:12px 0;margin:0;border-bottom:1px solid #4e6886;}
+ul.footerLinks li a{font-size:13px;line-height:24px;font-weight:400;color:#dcdce5;text-decoration:none;}
+ul.footerLinks li span{display:block;color:#c0c0ca;}
+.contactInfo ul{list-style:none;padding:0;margin:0;font-size:0;letter-spacing:0;}
+.contactInfo ul li{display:inline-block;margin:0 2px 0 0;padding:0;}
+ul.list{padding:0;margin:0;list-style-position:inside;}
+ul.list li{font-family:'Open Sans',sans-serif;font-size:13px;line-height:24px;font-weight:400;color:#dcdce5;text-decoration:none;padding:0;margin:0 0 5px;}
+@media screen and (max-width:810px){
+.bottomfourcol .col-sm-6{margin-bottom:15px;}
+}
+
+/*! CSS Used from: https://www.zionmarketresearch.com/Content/css/font-awesome.min.css */
+.fa{display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.fa-twitter:before{content:"\f099";}
+.fa-facebook:before{content:"\f09a";}
+.fa-pinterest:before{content:"\f0d2";}
+.fa-linkedin:before{content:"\f0e1";}
+.fa-angle-double-right:before{content:"\f101";}
+/*! CSS Used from: https://www.zionmarketresearch.com/Content/css/custom.min.css */
+@media only screen and (max-width:600px){
+.link-btn a {
+    font-size: 14px;
+    display: block!important;
+}
+.heading h1 {
+    color: #23527c;
+    font-size: 24px;
+    padding-left: 0px!important;
+    font-weight: bold;
+}
+.wrap {
+    width: 100%!important;
+    /* position: absolute; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#search-section {
+    margin: 15px 0px 30px 0px!important;
+}
+.bottomAbout{padding-left:20px!important;}
+}
+img{max-width:97%;padding:0;margin:0 0 1.45rem;border-radius:5px;}
+.how-it-work li,.our-company li{list-style-type:none!important;}
+ul.footerLinks li a{font-size:14px!important;line-height:24px;font-weight:400;color:#dcdce5;text-decoration:none;}
+.bottomAbout{padding-left:40px;}
+p{padding-bottom:15px!important;}
+a:hover,a:focus{outline:none;text-decoration:none;}
+li{font-size:14px!important;line-height:22px!important;}
+/*! CSS Used from: https://www.zionmarketresearch.com/Content/css/style_report32.min.css */
+p,li{font-family:'Roboto',sans-serif!important;}
+p,li{font-size:15px!important;line-height:28px!important;}
+
+#news_section table{border-collapse:collapse;width:80%;margin:25px auto;box-shadow:0px 0px 8px 5px;}
+#news_section table tr td:nth-child(2) {width: 75%;}
+#news_section table tr:nth-child(even) {background-color: #fff;}
+
+#news_section table th{text-align:center;background:#cdd8d8;color:#000;border:1px solid black;padding:10px;}
+.blue_section{background-color:#2f4e71;}.blue_section a{color:#F8EABA;}.blue_section a:hover{color:#fff;}
+.bottomfourcol p{color:#fff;font-weight:400;font-size:13px;line-height:24px;margin-bottom:20px;padding:0;}
+#news_section table td{text-align:left;padding:10px;border:1px solid black;border:400;font-weight:bold;background-color:transparent;}
+/*! CSS Used fontfaces */
+@font-face{font-family:'Roboto';font-style:italic;font-weight:300;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TjASc3CsTKlA.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}

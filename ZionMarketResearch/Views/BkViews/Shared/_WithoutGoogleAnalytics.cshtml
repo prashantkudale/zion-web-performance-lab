@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta id="MetaAuthor" name="AUTHOR" content="Zion Market Research" />
+    <meta name="REVISIT-AFTER" content="1 DAYS" />
+    <meta name="RATING" content="GENERAL" />
+    <meta http-equiv="PAGE-ENTER" content="RevealTrans(duration=5,transition=12)" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="text/javascript" http-equiv="Content-Script-Type" />
+    <meta content="text/css" http-equiv="Content-Style-Type" />
+    <meta id="MetaDescription" name="DESCRIPTION" content="@ViewBag.MetaDescription" />
+    <meta id="MetaKeywords" name="KEYWORDS" content="@ViewBag.MetaKeywords" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    @*<link rel="stylesheet" href="/css/custom.css" />
+        <link rel="stylesheet" href="/css/font-awesome.css" />*@
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+    @Styles.Render("~/bundles/maincss")
+    @Scripts.Render("~/bundles/mainscript")
+
+    <script>
+        /*! Main */
+        jQuery(document).ready(function ($) {
+
+            // Fixa navbar ao ultrapassa-lo
+            var navbar = $('#navbar-main'),
+                    distance = navbar.offset().top,
+                $window = $(window);
+
+            $window.scroll(function () {
+                if ($window.scrollTop() >= distance) {
+                    navbar.removeClass('navbar-fixed-top').addClass('navbar-fixed-top');
+                    $("body").css("padding-top", "70px");
+                } else {
+                    navbar.removeClass('navbar-fixed-top');
+                    $("body").css("padding-top", "0px");
+                }
+            });
+
+            $('ul.nav li.dropdown').hover(function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+            }, function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#myTab a").click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tip-top").tooltip({
+                placement: 'top'
+            });
+
+        });
+    </script>
+
+    <link href='https://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css' />
+    <script>
+        function ScrollMe(elementToScroll) {
+            $('html, body').animate({
+                scrollTop: $(elementToScroll).offset().top - 50
+            }, 2000);
+        }
+    </script>
+</head>
+
+<body style="font-family: 'Hind', sans-serif;">
+    <div class="container shadow">
+        <header class="page-header">
+            <div class="row" id="topbar"><p><i class="fa fa-envelope" aria-hidden="true"></i> Email:sales@zionmarketresearch.com</p></div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="/">
+                        <h2>
+                            <img src="/images/zionLogo01.png" class="img-responsive" id="logo" alt="Zion Market Research" />
+                        </h2>
+                    </a>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row" id="contactlist">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-3">
+                            <strong>+1-386-310-3803</strong><br />
+                            <span class="contactaddress">(US OFFICE NO)</span>
+                        </div>
+                        <div class="col-sm-3">
+                            <strong>+49 322 210 92714</strong><br />
+                            <span class="contactaddress">(GMT OFFICE HOURS)</span>
+                        </div>
+                        <div class="col-sm-3">
+                            <strong>+1-855-465-4651</strong><br />
+                            <span class="contactaddress">(US/CAN TOLL FREE)</span>
+                        </div>
+                    </div>
+                    <div class="row" id="social">
+                        <p>
+                            <a href="https://www.facebook.com/zionmarketresearch" id="fb" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a> <a href="https://twitter.com/zion_research" id="twitter" target="_blank"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a> <a href="https://www.linkedin.com/company/zion-market-research" id="linkedin" target="_blank"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a> <a href="https://plus.google.com/u/0/105400160058732583867/posts" id="gplus" target="_blank"><i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i></a> <a href="#" id="pin"><i class="fa fa-pinterest-square fa-2x" aria-hidden="true"></i></a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <div class="row navbg">
+            <nav id="navbar-main" class="navbar navbar-default">
+                <div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/" rel="nofollow"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a></li>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Category <b class="caret"></b></a>
+                                <ul role="menu" class="dropdown-menu">
+                                    @foreach (var c in ZionMarketResearch.Models.CategoryRepository.GetParentCategory())
+                                    {
+                                        <li><a href="@c.CategoryUrl">@c.CategoryName</a></li>
+                                    }
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">News Room <b class="caret"></b></a>
+                                <ul role="menu" class="dropdown-menu">
+                                    <li><a href="/all-news">News</a></li>
+                                    <li><a href="/all-articles">Articles</a></li>
+                                    @*<li><a href="/blog">Blog</a></li>*@
+                                </ul>
+                            </li>
+                            <li><a href="/about-us">About Us</a></li>
+                            <li><a href="/contact-us">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+
+
+        <section>
+            @{ Html.RenderAction("ShowSearch", "Search"); }
+
+            @RenderBody()
+
+        </section>
+        @{ Html.RenderPartial("_footer"); }
+        <div id="copyright" class="row">Copyright © @DateTime.Now.Date.AddYears(-1).Year - @DateTime.Now.Date.Year, All Rights Reserved by Zion Market Reserch</div>
+
+
+        <div class="container">
+
+            <div id="myAdvancedsearch" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><strong>Advance Search</strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputsearch">Search For :</label>
+                                    <input type="text" class="form-control" id="inputSearch" placeholder="Enter Report Keyword" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="reporttype">Report Type :</label>
+                                    <br />
+                                    <input type="radio" name="optradio" />All
+
+                                    <input type="radio" name="optradio" />Upcomming
+
+                                    <input type="radio" name="optradio" />Published
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="sel1">Category :</label>
+                                    <select class="form-control" id="sel1">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn btn-warning">Search</button>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        _atrk_opts = { atrk_acct: "FFNDn1QolK105T", domain: "zionmarketresearch.com", dynamic: true };
+        (function () { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(as, s); })();
+
+    </script>
+    <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=FFNDn1QolK105T" style="display:none" height="1" width="1" alt="" /></noscript>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model string
+@{
+    string[] sp = null;
+    bool isSplit = Model.Contains("|");
+    string json = "{\"@type\": \"Thing\", \"name\": \"<a href=\'https://www.zionmarketresearch.com/\'>Home</a>\"},";
+    if (isSplit)
+    {
+        sp = Model.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+    }
+}
+
+<ul class="breadcrumb">
+    <li><a href="/" rel="nofollow">Home</a></li>
+    @if (isSplit)
+    {
+        foreach (var x in sp)
+        {
+            json += "{\"@type\": \"Thing\",\"name\": \"" + x + "\"},";
+            <li>@Html.Raw(x)</li>
+        }
+        json = json.Substring(0, json.LastIndexOf(","));
+    }
+    else
+    {
+        <li>@Model</li>
+        json += "{\"@type\": \"Thing\",\"name\": \"" + Model + "\"}";
+    }
+</ul>
+<script type="application/ld+json">
+    {
+    "@@context": "http://www.schema.org/",
+    "@@type": "WebPage",
+    "breadCrumb": {
+    "@@type": "BreadcrumbList",
+    "itemListElement":{
+    "@@type": "ListItem",
+    "item": [
+    @Html.Raw(json)
+    ]
+    }
+    }
+    }
+</script>

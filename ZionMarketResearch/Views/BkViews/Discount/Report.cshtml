@@ -1,0 +1,84 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<input type="hidden" id="ru" value="@ViewBag.ReportUrl" />
+<div class="row" id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><a href="/" rel="nofollow">Home</a></li>
+        @foreach (string c in Model.Categories)
+        {
+            <li>@Html.Raw(c)</li>
+        }
+        <li>@Model.BreadCrumbTitle</li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="margin-left-15">
+                @{ Html.RenderPartial("~/Views/Report/RelatedNewsView/_RelatedNews.cshtml", Model); }
+            </div>
+        </div>
+        <div class="row">
+            <div class="margin-left-15">
+                <h1 class="reporttitle">@Model.ReportTitle</h1>
+                @if (!string.IsNullOrEmpty(Model.MetaDescription) && !Model.IsUpcoming)
+                {
+                    <p class="title-summary">
+                        <i class="fa fa-quote-left"></i> @Model.MetaDescription <i class="fa fa-quote-right"></i>
+                    </p>
+                }
+
+                <p>
+                    <strong style="color:#23527c;">@(!Model.IsUpcoming && Model.PublishedDate != null ? Html.Raw("<i class=\"fa fa-calendar\"></i> " + Model.PublishedDate.Value.ToString("dd-MMM-yyyy") + " |") : Html.Raw(""))  @(Model.NumberOfPages != null && Model.NumberOfPages > 0 ? Html.Raw("<i class=\"fa fa-file-text\" aria-hidden=\"true\"></i> Number of pages: " + Model.NumberOfPages.ToString() + " | ") : Html.Raw("")) <i class="fa fa-file-code-o" aria-hidden="true"></i> Report Code: ZMR-@Model.ReportId | Report Format : <i class="fa @ViewBag.DeliveryFormat"></i> | Status : @(Model.IsUpcoming ? "Upcoming" : "Published") @(Model.IsUpcoming ? Html.Raw("| <button type=\"button\" class=\"btn btn-danger btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Notify Me</button>") : Html.Raw("") )</strong>
+                </p>
+                @if (Model.IsUpcoming)
+                {
+                    Html.RenderPartial("_UpcomingReport", Model);
+                }
+                else
+                {
+                    Html.RenderPartial("/Views/Report/_PublishedReport.cshtml", Model);
+                }
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="margin-left-15">
+                @{Html.RenderAction("RelatedReports", "Report", new { id = ZionMarketResearch.Util.Utility.Encryptstring(Model.ReportId.ToString()) });}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        @{ Html.RenderPartial("/Views/Report/_BuynowControl.cshtml", Model);}
+
+        @if (!Model.IsUpcoming)
+        {
+            Html.RenderAction("LatestReport", "Report", new { isSideBar = true });
+            Html.RenderAction("latestupcomingreports", "report", new { isSideBar = true });
+        }
+        else
+        {
+            Html.RenderAction("latestupcomingreports", "report", new { isSideBar = true });
+            Html.RenderAction("latestreport", "report", new { isSideBar = true });
+        }
+    </div>
+</div>
+@if (Model.IsUpcoming)
+{
+    Html.RenderAction("ShowNotify", "Notify");
+}
+<style>
+    .checbox-label {
+        width: 100%;
+        cursor: pointer;
+    }
+
+        .checbox-label > input[type=checkbox] {
+            width: 5%;
+        }
+</style>
+<script src="~/js/Report.js"></script>

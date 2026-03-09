@@ -1,0 +1,24 @@
+﻿.heading p.top-heading {
+    font-size: 36px !important;
+    border-color: #f5d76e !important;
+    color: #273342;
+    display: block;
+    line-height: 50px !important;
+    text-transform: uppercase;
+    padding: 22px;
+    border-left: 8px solid;
+    font-weight: bold;
+    
+}
+
+    .heading p.top-heading span {
+        display: block;
+    }
+
+p.top-heading span {
+    font-size: 20px !important;
+    line-height: 10px;
+}
+.faq-title {
+    color: #fff !important;
+}

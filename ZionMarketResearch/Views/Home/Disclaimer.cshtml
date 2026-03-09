@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Disclaimer: Zion Market Research";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MetaDescription = "Disclaimer:  Zion Market Research";
+    ViewBag.MetaKeywords = "Disclaimer,Zion Market Research";
+}
+
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "Disclaimer"); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>Disclaimer of Warranties and Limitation of Liability</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="col-sm-8 col-xs-12">
+            <div class="contact">
+                <div class="col-md-12 tab">
+                    <div class="tab-content" style="text-align:justify;">
+                        <p><span>This site is provided by Zion Market Research on an "as is" and "as available" basis. Zion Market Research makes no representations or warranties of any kind express or implied, as to the operation of this site or the information, content, materials, or products included on this site. You expressly agree that your use of this site is at your sole risk.</span></p>
+                        
+                        <p><span>To the full extent permissible by applicable law, Zion Market Research disclaims all warranties, express or implied, including, but not limited to, implied warranties of merchantability and fitness for a particular purpose.</span></p>
+                        
+                        <p><span>Zion Market Research does not warrant that this site, its servers, or e-mail sent from Zion Market Research is free of viruses or other harmful components. Zion Market Research will not be liable for any damages of any kind arising from the use of this site, but not limited to direct, indirect, incidental, corrective, and consequential damages.</span></p>
+                        
+                        <p><span>This particular Disclaimer is subject to change and can be modified at any given point in terms to new policies or products made available.</span></p>
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+
+        </div>
+        <div class="col-md-4 divtopmargin">
+            @{ Html.RenderPartial("_contact"); }
+        </div>
+    </div>
+</section>
+
+@section metaTags{
+    <meta name="robots" content="noindex,nofollow" />
+}

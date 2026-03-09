@@ -1,0 +1,8 @@
+﻿<div class="wrap" style="z-index:8;">
+    <div class="search">
+        <input value="@Request.QueryString["q"]" type="text" class="searchTerm autocomplete" id="q" placeholder="What are you looking for?" onkeyup="KeyUp(event)">
+        <button type="submit" class="searchButton" onclick="SimpleSearch()">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+</div>

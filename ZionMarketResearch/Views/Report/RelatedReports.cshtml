@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ZionMarketResearch.Models.SearchResultView>
+@if (Model != null)
+{
+    <h4>Related Reports</h4>
+    <div id="report_list">
+
+        @foreach (var report in Model)
+        {
+            <div class="row adshadow">
+                <div class="reporticon"></div><h4><a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })">@report.ReportTitle</a></h4>
+                <div class="reportdesc">
+                    <p class="subhead"> <strong>@(report.PublishedDate != null ? report.PublishedDate.Value.ToString("MMM-yyyy") + " |" : string.Empty) Price : $ @report.SingleUser | @(report.NumberOfPages != null && report.NumberOfPages > 0 ? "Pages: " + report.NumberOfPages + " |" : string.Empty) Report Code: ZMR-@report.ReportId | Report Format: <i class="fa @report.DeliveryFormatClass" aria-hidden="true"></i></strong> </p>
+                </div>
+
+                <div class="rep-description">
+                    <p>@Html.DisplayFor(x => report.Description)...<span><a rel="nofollow" href="@Url.Action("Index", "Report", new { url = report.ReportUrl })">Read More <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></span> </p>
+                </div>
+            </div>
+        }
+    </div>
+}

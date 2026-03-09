@@ -1,0 +1,40 @@
+﻿@model ZionMarketResearch.Models.CategoryReport
+@using PagedList.Mvc
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "<a href=" + Url.Action("Index", "Category") + ">Category</a>" + "|" + Model.Category); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>@Model.Category</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="col-md-8 col-sm-12">
+            <div>
+                @{ Html.RenderPartial("~/Views/Report/_ReportList.cshtml", Model.Reports); }
+                @{ Html.RenderPartial("_TotalRecord100", Model.Reports); }
+                @Html.PagedListPager(Model.Reports, p => Url.Action("CategoryWithReports", "Category", new { page = p, url = Model.CategoryUrl }), new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div>
+                <h3 class="sidebar-title">Upcoming Reports</h3>
+                @{ Html.RenderAction("LatestUpcomingReports", "Report", new { Count = 40 }); }
+                <h3 class="sidebar-title">Latest Reports</h3>
+                @{ Html.RenderAction("LatestReport", "Report", new { Count = 37 }); }
+            </div>
+        </div>
+    </div>
+</section>
+

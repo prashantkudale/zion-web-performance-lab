@@ -1,0 +1,92 @@
+﻿@model ZionAdmin.Repository.UserRepository
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var roles = ZionAdmin.Repository.RoleRepository.List().ToList();
+}
+
+<h4>Edit User</h4>
+<hr/>
+<div class="col-md-12">
+    <div class="row">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert @(ViewBag.ErrorMessage.Contains("true") ? "alert-danger" : "alert-success")">
+                @ViewBag.ErrorMessage.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[0]
+                @Html.ValidationSummary()
+            </div>
+        }
+        @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { id = "frmUser", Class = "form-horizontal" }))
+        {
+            @Html.HiddenFor(u => u.Id)
+            <div class="form-group">
+                <label for="CategoryName" class="control-label col-sm-2">User Name</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(u => u.UserName, new { Class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.UserName)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CategoryName" class="control-label col-sm-2">First Name</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(u => u.FirstName, new { Class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.FirstName)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CategoryName" class="control-label col-sm-2">Last Name</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(u => u.LastName, new { Class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.LastName)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CategoryName" class="control-label col-sm-2">Email</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(u => u.EmailId, new { Class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.EmailId)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CategoryName" class="control-label col-sm-2">Email</label>
+                <div class="col-sm-10">
+                    @foreach (var role in roles)
+                    {
+                        <input type="checkbox" value="@role.Id" name="UserRoles" @(Model.UserRoles.Contains(role.Id.ToString()) ? "checked" : string.Empty) /> @role.RoleName <br />
+                    }
+                    @Html.ValidationMessageFor(u => u.EmailId)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="IsRemote" class="control-label col-sm-2">Login From anywhere?</label>
+                <div class="col-sm-10">
+                    <label>@Html.CheckBoxFor(u => u.IsRemote) Check if user needs to login from anywhere.</label>
+                    @Html.ValidationMessageFor(u => u.IsRemote)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CategoryName" class="control-label col-sm-2">Registered IP</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(u => u.RegisteredIP, new { Class = "form-control", Value = Request.UserHostAddress })
+                    @Html.ValidationMessageFor(u => u.RegisteredIP)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-primary">Submit</button>
+                    <a href="@Url.Action("index","user")" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    $('button').click(function (e) {
+        if (jsFormValidation("#frmUser", null, null, null)) {
+            $("#frmUser").submit();
+        } else {
+            e.preventDefault();
+        }
+    });
+</script>
+

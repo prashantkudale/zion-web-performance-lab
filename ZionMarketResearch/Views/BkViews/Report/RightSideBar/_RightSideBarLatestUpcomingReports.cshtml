@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ZionMarketResearch.Models.LatestUpComingReportView>
+<div class="panel panel-primary">
+    <div class="panel-heading"><strong><i class="fa fa-file-text" aria-hidden="true"></i> Latest Upcoming Reports</strong></div>
+    @foreach (var report in Model)
+    {
+        <div class="panel-body">
+            <p><i class="fa fa-th-large" aria-hidden="true"></i> @report.Categories[report.Categories.Length - 1]</p>
+            <a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })">
+                <h3>@report.ReportTitle</h3>
+            </a>
+        </div>
+    }
+    <p class="read-more"><a href="@Url.Action("AllUpcoming", "Report")" rel="nofollow">View All Upcoming Reports <i class="fa fa-arrow-circle-right"></i></a></p>
+</div>

@@ -1,0 +1,243 @@
+﻿<!--wrapper start-->
+<div class="wrapper trendingreports" id="wrapper">
+    <div class="tabordion">
+        <section v-for="(cat,index) in categories">
+            <input type="radio" name="sections" :id="'option1_' + index" :value="index" v-model="selectedRadio">
+            <label :for="'option1_' + index">{{cat.CategoryName}}</label>
+            <article :id="'article_' + index">
+                <div>
+                    <div style="border-bottom:2px solid #c5c5c5;" v-for="r in cat.Reports">
+                        <h4 class="reporttitle" :title="r.ReportTitle"><a :href="'/report/' + r.ReportUrl">{{r.ReportTitle}}</a></h4>
+                        <p>Report Format: .pdf | Price: ${{r.SingleUser}} </p>
+                    </div>
+                </div>
+                <div v-if="loading">Loading....</div>
+            </article>
+        </section>
+    </div>
+</div>
+
+<style>
+    .trendingreports {
+        width: 100%;
+    }
+
+        .trendingreports h4 {
+            width: 55em;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+    .tabordion {
+        color: #333;
+        display: block;
+        font-family: arial, sans-serif;
+        margin: auto;
+        position: relative;
+        width: 80%;
+    }
+
+        .tabordion input[name="sections"] {
+            left: -9999px;
+            position: absolute;
+            top: -9999px;
+        }
+
+        .tabordion section {
+            display: block;
+        }
+
+            .tabordion section label {
+                border: 1px solid #fff;
+                cursor: pointer;
+                display: block;
+                font-size: 1.2em;
+                font-weight: bold;
+                padding: 15px 20px;
+                position: relative;
+                width: 180px;
+                z-index: 100;
+            }
+
+            .tabordion section article {
+                display: none;
+                left: 235px;
+                min-width: 300px;
+                padding: 0 0 0 21px;
+                position: absolute;
+                top: 0;
+                border-left: 2px solid #c5c5c5;
+            }
+
+                .tabordion section article:after {
+                    /*background-color: #ccc;*/
+                    bottom: 0;
+                    content: "";
+                    display: block;
+                    left: -229px;
+                    position: absolute;
+                    top: 0;
+                    width: 220px;
+                    z-index: 1;
+                }
+
+        .tabordion input[name="sections"]:checked + label {
+            /*color: #bbb;*/
+        }
+
+        .tabordion input[name="sections"]:checked ~ article {
+            display: block !important;
+        }
+
+    @@media(max-width: 533px) {
+        .tabordion {
+            width: 100%;
+        }
+
+            .tabordion section label {
+                font-size: 1em;
+                width: 160px;
+            }
+
+            .tabordion section article {
+                left: 180px;
+                min-width: 270px;
+            }
+
+                .tabordion section article:after {
+                    /*background-color: #ccc;*/
+                    bottom: 0;
+                    content: "";
+                    display: block;
+                    left: -199px;
+                    position: absolute;
+                    top: 0;
+                    width: 170;
+                }
+    }
+
+    @@media (max-width: 768px) {
+        .tabordion {
+            width: 100%;
+        }
+    }
+
+
+    @@media (min-width: 1366px) {
+        .tabordion {
+            width: 100%;
+        }
+    }
+
+    /*.trendingreports h4 {
+        overflow: hidden;
+        max-width: 400px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }*/
+
+    .trending_bg {
+        background-image: url('/images/trending_bg.png');
+        background-size: cover;
+    }
+
+    .trending_content {
+        background-color: #fcfbfac4;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0px 10px 30px 0px #d4d3d1;
+    }
+
+    .tabordion section label {
+        background: #355474;
+        border: 1px solid #c4bfbf;
+        cursor: pointer;
+        display: block;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 15px 20px;
+        position: relative;
+        width: 220px !important;
+        z-index: 100;
+        /*border-left: inset #2c7fdc !important;*/
+        border-radius: 27px 0px;
+        color: #fff;
+    }
+</style>
+@*<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+    var trendingReport = new Vue({
+        el: '.trendingreports',
+        data: {
+            reports: [],
+            categories: [],
+            loading: false,
+            selectedRadio: -1
+        },
+        mounted: function () {
+            this.getAllCategories();
+        },
+        methods: {
+            getAllCategories: function () {
+                this.loading = true;
+                this.categories = [{
+                    CategoryUrl: 'technology-media',
+                    CategoryName: 'Technology & Media',
+                    Reports: []
+                }, {
+                    CategoryUrl: 'chemical-materials',
+                    CategoryName: 'Chemical & Materials',
+                    Reports: []
+                }, {
+                    CategoryUrl: 'medical-device',
+                    CategoryName: 'Medical Device',
+                    Reports: []
+                }, {
+                    CategoryUrl: 'food-beverage',
+                    CategoryName: 'Food & Beverage',
+                    Reports: []
+                }, {
+                    CategoryUrl: 'pharmaceutical',
+                    CategoryName: 'Pharmaceutical',
+                    Reports: []
+                }, {
+                    CategoryUrl: 'healthcare',
+                    CategoryName: 'Healthcare',
+                    Reports: []
+                }];
+                this.loading = false;
+                this.categories.forEach((item, index) => {
+                    this.getCategoryWiseReports(item.CategoryUrl, index);
+                });
+                //fetch('/get-all-parent-categories')
+                //    .then(res => res.json())
+                //    .then(res => {
+                //        res.forEach(item => {
+                //            let sp = item.CategoryUrl.split('/');
+                //            item.CategoryUrl = sp[sp.length - 1];
+                //        });
+                //        this.categories = res;
+                //        this.loading = false;
+                //        this.selectedRadio = this.categories[0].CategoryId;
+                //        this.getCategoryWiseReports(this.categories[0].CategoryUrl, 0);
+                //    });
+            },
+            getCategoryWiseReports: function (categoryUrl, index) {
+                //this.reports = [];
+                if (this.categories[index].Reports === undefined || this.categories[index].Reports.length == 0) {
+                    fetch(`/get-category-reports/${categoryUrl}?maxRows=5`)
+                        .then(res => res.json())
+                        .then(res => {
+                            this.categories[index].Reports = res;
+                            this.loading = false;
+                            if (this.selectedRadio < 0) {
+                                this.selectedRadio = 0;
+                            }
+                        });
+                }
+            }
+        }
+    })
+</script>

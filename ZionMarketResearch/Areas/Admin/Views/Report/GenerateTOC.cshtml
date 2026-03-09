@@ -1,0 +1,1027 @@
+﻿@{
+    ViewBag.Title = "Generate TOC";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Generate TOC</h3>
+<hr />
+<div class="container" id="generateTOC">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Volume</label>
+                <input type="text" name="Volume" class="form-control" v-model="Volume" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Revenue</label>
+                <input type="text" name="Revenue" class="form-control" v-model="Revenue" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>From Year</label>
+                <input type="text" class="form-control" v-model="FromYear" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>To Year</label>
+                <input type="text" class="form-control" v-model="ToYear" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Base Year</label>
+                <input type="text" class="form-control" v-model="BaseYear" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Keyword</label>
+                <input type="text" name="Keyword" class="form-control" v-model="Keyword" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Drivers <small>(One at a line OR Coma seprated)</small></label>
+                <textarea class="form-control" v-model="drivers" v-on:change="Format('drivers')"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Restraints <small>(One at a line OR Coma seprated)</small></label>
+                <textarea class="form-control" v-model="restraints" v-on:change="Format('restraints')"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Opportunities <small>(One at a line OR Coma seprated)</small></label>
+                <textarea class="form-control" v-model="opportunities" v-on:change="Format('opportunities')"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Challenges <small>(One at a line OR Coma seprated)</small></label>
+                <textarea class="form-control" v-model="chalanges" v-on:change="Format('chalanges')"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Companies <small>(One at a line OR Coma seprated)</small></label>
+                <textarea class="form-control" v-model="Companies" v-on:change="FormatCompany()"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Segmentation</label>
+                <input type="text" v-model="SegmentName" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Segment Type</label>
+                <select class="form-control" v-model="SegmentType">
+                    <option value="">-Select-</option>
+                    <option value="1">Main Segment</option>
+                    <option value="2">Sub Segment</option>
+                    <option value="3">Child Segment</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button :disabled="SegmentName == '' || SegmentType == ''" class="btn btn-primary" @@click="AddSegment()">Add Segment</button>
+        </div>
+    </div>
+    <div class="row">
+        <div id="segments" style="padding:20px;" class="output">
+            <ul>
+                <li v-for="(s, parentIndex) in Segment.SubSegment" v-bind:key="s.Index">
+                    {{s.SegmentName}}
+                    <i class="fa fa-trash-o remove" v-on:click="Remove(parentIndex, -1)"></i>
+                    <ul v-if="s.SubSegment">
+                        <li v-for="(ss, childIndex) in s.SubSegment" v-bind:key="ss.Index">
+                            {{ss.SegmentName}}
+                            <i class="fa fa-trash-o remove" v-on:click="Remove(parentIndex, childIndex)"></i>
+                            <ul v-if="ss.SubSegment">
+                                <li v-for="(sss, index) in ss.SubSegment" :key="index">
+                                    {{sss.SegmentName}}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Region</label>
+                <input type="text" class="form-control" v-model="Region" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Country</label>
+                <select class="form-control" id="ddlRC" v-model="RCType">
+                    <option value="">-Select-</option>
+                    <option value="1">Region</option>
+                    <option value="2">Country</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label></label>
+                <button class="btn btn-primary" @@click="AddRegion()">Add</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Is Global?</label>
+                <label class="form-control">
+                    <input type="checkbox" v-on:change="Global()"
+                           v-model="IsGlobal" />
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="outputRC" style="padding: 20px;">
+            <ul v-if="RC.length">
+                <li v-for="(r, regionIndex) in RC" v-bind:key="r.Index">
+                    {{r.RegionName}}
+                    <i class="fa fa-trash-o remove" v-on:click="RemoveRegionCountry(regionIndex, -1)"></i>
+                    <ul v-if="r.Country">
+                        <li v-for="(c, countryIndex) in r.Country" v-bind:key="c.Index">
+                            {{c.CountryName}}
+                            <i class="fa fa-trash-o remove" v-on:click="RemoveRegionCountry(regionIndex, countryIndex)"></i>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h5>List Of Figures</h5>
+            <div id="toclist" ref="toclist">
+                <toc-Template :item="dt" :parentIndx="1" name="toc" v-if="dt && dt.length > 0" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h5>List Of Figures</h5>
+            <div id="lof" ref="lof">
+                <toc-Template :item="listoffigures" name="lof" v-if="listoffigures && listoffigures.length > 0" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h5>List Of Tables</h5>
+            <div id="lot" ref="lot">
+                <toc-Template :item="listOfTables" name="lot" v-if="listOfTables && listOfTables.length > 0" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div style="display:flex;">
+                <button class="btn btn-danger" @@click="createTOC()">Generate TOC</button>
+                <button class="btn btn-primary" @@click="updateTableOfContent()" style="margin-left: 5px;" :disabled="!isTOCGenerated || isProcessingData">Save</button>
+                <button class="btn btn-warning" style="margin-left: 5px;">Cancel</button>
+                <button @@click="save()" class="btn btn-info" :disabled="isProcessingData">Save Data Only</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/vue@3"></script>
+<script type="text/x-template" id="toc-template">
+    <ul v-if="item && item.length > 0">
+        <li v-for="(v, vindex) in item" :key="v.itemText_vindex">
+            {{v.itemText}}
+            <toc-Template :item="v.SubItem" />
+        </li>
+    </ul>
+</script>
+<script>
+
+    var currentSegmentIndex = -1;
+    var currentSubSegmentIndex = -1;
+    var Company = [];
+    var Year = [];
+    var vm = Vue.createApp({
+        data() {
+            return {
+                Segment: {
+                    SubSegment: []
+                },
+                SegmentType: '',
+                RC: [],
+                RCType: '',
+                IsVolume: false,
+                Volume: '',
+                Revenue: '',
+                Keyword: '',
+                FromYear: '',
+                ToYear: '',
+                BaseYear: '',
+                Country: '',
+                IsGlobal: false,
+                Companies: '',
+                SegmentName: '',
+                Region: '',
+                DisableSubmit: false,
+                applicationHost: '',
+                Drivers: [],
+                drivers: '',
+                Restraints: [],
+                restraints: '',
+                Opportunities: [],
+                opportunities: '',
+                Chalanges: [],
+                chalanges: '',
+                Company: [],
+                dt: [],
+                IsCross: true,
+                Chapter: 0,
+                listoffigures: [],
+                listOfTables: [],
+                reportID: 0,
+                isTOCGenerated: false,
+                isProcessingData: false
+            }
+        },
+        methods: {
+            createListOfTables: function () {
+                this.listOfTables = [];
+                let index = 1;
+                this.listOfTables.push({
+                    itemText: `${index++}. Global ${this.Keyword} Market: Snapshot`
+                }, {
+                    itemText: `${index++}. Drivers of the ${this.Keyword} Market: impact analysis`
+                });
+
+                this.RC.forEach((r, rIndex) => {
+                    this.Segment.SubSegment.forEach((s, sIndex) => {
+                        this.listOfTables.push({
+                            itemText: `${index++}. ${r.RegionName} ${this.Keyword} Market revenue, By ${s.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`
+                        });
+                        
+                        if (this.Volume && this.Volume.trim() !== '') {
+                            this.listOfTables.push({
+                                itemText: `${index++}. ${r.RegionName} ${this.Keyword} Market revenue, By ${s.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Volume})`
+                            });
+                        }
+                    });
+
+                    r.Country.forEach((c, cIndex) => {
+                        this.Segment.SubSegment.forEach((s, sIndex) => {
+                            this.listOfTables.push({
+                                itemText: `${index++}. ${c.CountryName} ${this.Keyword} Market revenue, By ${s.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`
+                            });
+                            if (this.Volume && this.Volume.trim() !== '') {
+                                this.listOfTables.push({
+                                    itemText: `${index++}. ${c.CountryName} ${this.Keyword} Market revenue, By ${s.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Volume})`
+                                });
+                            }
+                        });
+                    })
+
+                });
+            },
+            createListOfFigures: function () {
+                this.listoffigures = [];
+                let index = 5;
+                this.listoffigures.push({
+                    itemText: '1. Market research Type',
+                    SubItem: []
+                }, {
+                    itemText: '2. Market research methodology',
+                    SubItem: []
+                }, {
+                    itemText: `3. Global ${this.Keyword} Market, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`,
+                    SubItem: []
+                }, {
+                    itemText: '4. Porter’s Five Forces Analysis',
+                    SubItem: []
+                }, ...this.Segment.SubSegment.map((s, sInex) => {
+                    return {
+                        itemText: `${index++}. Global ${this.Keyword} Market attractiveness, By ${s.SegmentName}`,
+                        SubItem: []
+                    }
+                }));
+
+                let figsegment = [];
+
+                this.Segment.SubSegment.forEach((s, sIndex) => {
+                    figsegment.push({
+                        itemText: `${index++}. Global ${this.Keyword} Market share by ${s.SegmentName}, ${this.FromYear} and ${this.ToYear} (${this.Revenue})`,
+                        SubItem: []
+                    });
+                    debugger;
+                    if (this.Volume && this.Volume.trim() !== '') {
+                        figsegment.push({
+                            itemText: `${index++}. Global ${this.Keyword} Market share by ${s.SegmentName}, ${this.FromYear} and ${this.ToYear} (${this.Volume})`,
+                            SubItem: []
+                        });
+                    }
+
+                    s.SubSegment.forEach((ss, ssIndex) => {
+                        figsegment.push({
+                            itemText: `${index++}. Global ${this.Keyword} Market by ${ss.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`
+                        });
+                        
+                        if (this.Volume && this.Volume.trim() !== '') {
+                            figsegment.push({
+                                itemText: `${index++}. Global ${this.Keyword} Market by ${ss.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Volume})`
+                            });
+                        }
+                    })
+                });
+                this.listoffigures = [...this.listoffigures, ...figsegment];
+                this.listoffigures.push({
+                    itemText: `${index++}. Global ${this.Keyword} Market share, by Region, ${this.FromYear} and ${this.ToYear}`,
+                    SubItem: []
+                }, ...this.RC.map((r, rIndex) => {
+                    return {
+                        itemText: `${index++}. ${r.RegionName} ${this.Keyword} Market, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`
+                    }
+                }));
+            },
+            createTOC: function () {
+                //format everything
+                this.Format('drivers');
+                this.Format('restraints');
+                this.Format('opportunities');
+                this.Format('chalanges');
+
+                this.isTOCGenerated = true;
+                this.dt = [];
+                this.dt.push({
+                    itemText: 'Chapter 1. Preface',
+                    SubItem: [{
+                        itemText: '1.1 Report Description and Scope',
+                        SubItem: []
+                    }, {
+                        itemText: '1.2 Research scope',
+                        SubItem: []
+                    }, {
+                        itemText: '1.3 Research methodology',
+                        SubItem: [{
+                            itemText: '1.3.1 Market Research Type',
+                            SubItem: []
+                        }, {
+                            itemText: '1.3.2 Market research methodology',
+                            SubItem: []
+                        }]
+                    }]
+                }, {
+                    itemText: 'Chapter 2. Executive Summary',
+                    SubItem: [{
+                        itemText: `2.1 Global  ${this.Keyword} Market, (${this.FromYear} - ${this.ToYear}) (${this.Revenue})`
+                    }, {
+                        itemText: `2.2 Global ${this.Keyword} Market : snapshot`,
+                        SubItem: []
+                    }]
+                }, {
+                    itemText: `Chapter 3. Global ${this.Keyword}  Market - Industry Analysis`,
+                    SubItem: [{
+                        itemText: `3.1 ${this.Keyword} Market: Market Dynamics`,
+                        SubItem: []
+                    }, {
+                        itemText: '3.2 Market Drivers',
+                        SubItem: this.Drivers.map((d, i) => {
+                            return {
+                                itemText: `3.2.${(i + 1)} ${d.itemText}`,
+                                SubItem: []
+                            };
+                        })
+                    }, {
+                        itemText: '3.3 Market Restraints',
+                        SubItem: this.Restraints.map((r, i) => {
+                            return {
+                                itemText: `3.3.${i + 1}. ${r.itemText}`,
+                                SubItem: []
+                            }
+                        })
+                    }, {
+                        itemText: '3.4 Market Opportunities',
+                        SubItem: this.Opportunities.map((o, i) => {
+                            return {
+                                itemText: `3.4.${i + 1}. ${o.itemText}`,
+                                SubItem: []
+                            }
+                        })
+                    }, {
+                        itemText: '3.5 Market Challenges',
+                        SubItem: this.Chalanges.map((c, i) => {
+                            return {
+                                itemText: `3.5.${i + 1}. ${c.itemText}`,
+                                SubItem: []
+                            }
+                        })
+                    }, {
+                        itemText: '3.6 Porter’s Five Forces Analysis',
+                        SubItem: []
+                    }, {
+                        itemText: '3.7 Market Attractiveness Analysis',
+                        SubItem: this.Segment.SubSegment.map((s, i) => {
+                            return {
+                                itemText: `3.7.${(i + 1)} Market attractiveness analysis By ${s.SegmentName}`,
+                                SubItem: []
+                            };
+                        })
+                    }]
+                }, {
+                    itemText: `Chapter 4. Global ${this.Keyword} Market- Competitive Landscape`,
+                    SubItem: [{
+                        itemText: '4.1 Company market share analysis',
+                        SubItem: [{
+                            itemText: `4.1.1 Global ${this.Keyword} Market: company market share, ${this.BaseYear}`
+                        }]
+                    }, {
+                        itemText: '4.2 Strategic development',
+                        SubItem: [{
+                            itemText: '4.2.1 Acquisitions & mergers',
+                            SubItem: [],
+                        }, {
+                            itemText: '4.2.2 New Product launches',
+                            SubItem: []
+                        }, {
+                            itemText: '4.2.3 Agreements, partnerships, cullaborations, and joint ventures',
+                            SubItem: []
+                        }, {
+                            itemText: '4.2.4 Research and development and Regional expansion',
+                            SubItem: []
+                        }]
+                    }, {
+                        itemText: '4.3 Price trend analysis',
+                        SubItem: []
+                    }]
+                }, ...this.Segment.SubSegment.map((s, i) => {
+                    this.Chapter = (4 + i + 1);
+                    return {
+                        itemText: `Chapter ${(4 + i + 1)}. Global ${this.Keyword} Market - ${s.SegmentName} Analysis`,
+                        SubItem: [{
+                            itemText: `${(4 + i + 1)}.1 Global ${this.Keyword} Market overview: By ${s.SegmentName}`,
+                            SubItem: [{
+                                itemText: `${(4 + i + 1)}.1.1 Global ${this.Keyword} Market share, By ${s.SegmentName}, ${this.BaseYear} and ${this.ToYear}`
+                            }]
+                        }, ...s.SubSegment.map((ss, i2) => {
+                            if (this.Volume && this.Volume.trim() !== '') {
+                                return {
+                                    itemText: `${(4 + i + 1)}.${i2 + 2} ${ss.SegmentName}`,
+                                    SubItem: [{
+                                        itemText: `${(4 + i + 1)}.${i2 + 2}.1 Global ${this.Keyword} Market by ${ss.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`
+                                    }, {
+                                        itemText: `${(4 + i + 1)}.${i2 + 2}.2 Global ${this.Keyword} Market by ${ss.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Volume})`
+                                    }]
+                                };
+                            } else {
+                                return {
+                                    itemText: `${(4 + i + 1)}.${i2 + 2} ${ss.SegmentName}`,
+                                    SubItem: [{
+                                        itemText: `${(4 + i + 1)}.${i2 + 2}.1 Global ${this.Keyword} Market by ${ss.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`
+                                    }]
+                                };
+                            }
+                        })]
+                    };
+
+                }));
+
+                let regionalseg = [];
+
+                this.RC.forEach((rc, i) => {
+                    regionalseg.push({
+                        itemText: `${this.Chapter + 1}.${i + 3}. ${rc.RegionName}`,
+                        SubItem: [{
+                            itemText: `${this.Chapter + 1}.${i + 3}.${i + 1} ${rc.RegionName} ${this.Keyword} Market, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`,
+                            SubItem: [{
+                                itemText: `${this.Chapter + 1}.${i + 3}.${i + 1}.1 ${rc.RegionName} ${this.Keyword} Market, by Country, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`
+                            }]
+                        }]
+                    });
+                    if (this.Volume && this.Volume.trim() !== '') {
+                        regionalseg.push({
+                            itemText: `${this.Chapter + 1}.${i + 3}. ${rc.RegionName}`,
+                            SubItem: [{
+                                itemText: `${this.Chapter + 1}.${i + 3}.${i + 1} ${rc.RegionName} ${this.Keyword} Market, ${this.FromYear} - ${this.ToYear} (${this.Volume})`,
+                                SubItem: [{
+                                    itemText: `${this.Chapter + 1}.${i + 3}.${i + 1}.1 ${rc.RegionName} ${this.Keyword} Market, by Country, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`
+                                }]
+                            }]
+                        });
+                    }
+                    this.Segment.SubSegment.forEach((ss, ssi) => {
+                        regionalseg.push({
+                            itemText: `${this.Chapter + 1}.${ssi + 4} ${rc.RegionName} ${this.Keyword} Market, by ${ss.SegmentName}, ${this.FromYear} - ${this.ToYear}`,
+                            SubItem: [{
+                                itemText: `${this.Chapter + 1}.${ssi + 4}.1 ${rc.RegionName} ${this.Keyword} Market, by ${ss.SegmentName}, ${this.FromYear} - ${this.ToYear} (${this.Revenue})`,
+                                SubItem: []
+                            }]
+                        });
+                    });
+                });
+
+                this.dt.push({
+                    itemText: `Chapter ${this.Chapter + 1}. ${this.Keyword} Market - Regional Analysis`,
+                    SubItem: [{
+                        itemText: `${this.Chapter + 1}.1 Global ${this.Keyword} Market Regional Overview`,
+                        SubItem: []
+                    }, {
+                        itemText: `${this.Chapter + 1}.2 Global ${this.Keyword} Market Share, by Region, ${this.BaseYear} & ${this.ToYear} (${this.Revenue})`,
+                        SubItem: []
+                    }, ...regionalseg]
+                });
+
+
+
+                //this.dt = [...this.dt, ...regionalseg];
+
+                this.FormatCompany();
+
+                
+
+                this.dt.push({
+                    itemText: `Chapter ${this.Chapter + 2}. Company Profiles`,
+                    SubItem: this.Company.map((c, i) => {
+                        return {
+                            itemText: `${this.Chapter + 2}.${i + 1} ${c.CompanyName}`,
+                            SubItem: [{
+                                itemText: `${this.Chapter + 2}.${i + 1}.1 Overview`,
+                                SubItem: []
+                            }, {
+                                itemText: `${this.Chapter + 2}.${i + 1}.2 Financials`,
+                                SubItem: []
+                            }, {
+                                itemText: `${this.Chapter + 2}.${i + 1}.3 Product Portfolio`,
+                                SubItem: []
+                            }, {
+                                itemText: `${this.Chapter + 2}.${i + 1}.4 Business Strategy`,
+                                SubItem: []
+                            }, {
+                                itemText: `${this.Chapter + 2}.${i + 1}.5 Recent Developments`,
+                                SubItem: []
+                            }]
+                        };
+                    })
+                });
+                this.createListOfFigures();
+                this.createListOfTables();
+            },
+            AddSegment: function () {
+                if (this.SegmentType == '1') {
+                    let s1 = this.Segment.SubSegment.length;
+                    this.Segment.SubSegment.push({
+                        Index: s1 > 0 ? s1 : 0,
+                        SegmentName: this.SegmentName,
+                        SubSegment: []
+                    });
+                } else if (this.SegmentType == '2') {
+                    let s2 = this.Segment.SubSegment[this.Segment.SubSegment.length - 1].SubSegment.length;
+                    this.Segment.SubSegment[this.Segment.SubSegment.length - 1].SubSegment.push({
+                        Index: s2 > 0 ? s2 : 0,
+                        SegmentName: this.SegmentName,
+                        SubSegment: []
+                    });
+                } else {
+                    let s3 = this.Segment.SubSegment[this.Segment.SubSegment.length - 1].SubSegment[this.Segment.SubSegment[this.Segment.SubSegment.length - 1].SubSegment.length - 1].SubSegment.length;
+                    this.Segment.SubSegment[this.Segment.SubSegment.length - 1].SubSegment[this.Segment.SubSegment[this.Segment.SubSegment.length - 1].SubSegment.length - 1].SubSegment.push({
+                        Index: s3 > 0 ? s3 : 0,
+                        SegmentName: this.SegmentName,
+                        SubSegment: []
+                    });
+                }
+            },
+            Remove: function (parentIndex, childIndex) {
+                if (childIndex > -1) {
+                    this.Segment.SubSegment[parentIndex].SubSegment.splice(childIndex, 1);
+                } else {
+                    this.Segment.SubSegment.splice(parentIndex, 1);
+                }
+            },
+            AddRegion: function () {
+                if (this.RCType == "1") {
+                    this.RC.push({
+                        Index: this.RC.length > 0 ? this.RC.length - 1 : 0,
+                        RegionName: this.Region,
+                        Country: [],
+                        isFirstRegion: this.RC.length === 0
+                    });
+                } else {
+                    this.RC[this.RC.length - 1].Country.push({
+                        Index: this.RC[this.RC.length - 1].Country.length > 0 ? this.RC[this.RC.length - 1].Country.length - 1 : 0,
+                        CountryName: this.Region,
+                        isFirstCountry: this.RC[this.RC.length - 1].Country.length === 0
+                    });
+                }
+            },
+            RemoveRegionCountry: function (regionIndex, countryIndex) {
+                if (countryIndex > -1) {
+                    this.RC[regionIndex].Country.splice(countryIndex, 1);
+                } else {
+                    this.RC.splice(regionIndex, 1);
+                }
+            },
+            Global: function () {
+                this.RC = [];
+                if (this.IsGlobal) {
+                    this.RC.push({
+                        Index: 0,
+                        RegionName: 'North America',
+                        Country: [{
+                            Index: 0,
+                            CountryName: 'U.S.'
+                        }, {
+                            Index: 1,
+                            CountryName: 'Canada'
+                        }],
+                        isFirstRegion: true
+                    });
+                    this.RC.push({
+                        Index: 1,
+                        RegionName: 'Europe',
+                        Country: [{
+                            Index: 0,
+                            CountryName: 'Germany'
+                        }, {
+                            Index: 1,
+                            CountryName: 'France'
+                        }, {
+                            Index: 2,
+                            CountryName: 'U.K.'
+                        }, {
+                            Index: 3,
+                            CountryName: 'Italy'
+                        }, {
+                            Index: 4,
+                            CountryName: 'Spain'
+                        }, {
+                            Index: 5,
+                            CountryName: 'Rest of Europe'
+                        }],
+                        isFirstRegion: false
+                    });
+                    this.RC.push({
+                        Index: 2,
+                        RegionName: 'Asia Pacific',
+                        Country: [{
+                            Index: 0,
+                            CountryName: 'China'
+                        }, {
+                            Index: 1,
+                            CountryName: 'Japan'
+                        }, {
+                            Index: 3,
+                            CountryName: 'India'
+                        }, {
+                            Index: 4,
+                            CountryName: 'South  Korea'
+                        }, {
+                            Index: 5,
+                            CountryName: 'South-East Asia'
+                        }, {
+                            Index: 6,
+                            CountryName: 'Rest of Asia Pacific'
+                        },],
+                        isFirstRegion: false
+                    });
+
+                    this.RC.push({
+                        Index: 3,
+                        RegionName: 'Latin America',
+                        Country: [{
+                            Index: 0,
+                            CountryName: 'Brazil'
+                        }, {
+                            Index: 1,
+                            CountryName: 'Mexico'
+                        }, {
+                            Index: 2,
+                            CountryName: 'Rest of Latin America'
+                        }],
+                        isFirstRegion: false
+                    });
+
+                    this.RC.push({
+                        Index: 4,
+                        RegionName: 'The Middle-East and Africa',
+                        Country: [{
+                            Index: 0,
+                            CountryName: 'GCC Countries'
+                        }, {
+                            Index: 1,
+                            CountryName: 'South Africa'
+                        }, {
+                            Index: 2,
+                            CountryName: 'Rest of Middle-East Africa'
+                        }],
+                        isFirstRegion: false
+                    });
+                }
+            },
+            FormatCompany: function () {
+                Company = [];
+                var companies = this.Companies.indexOf('\n') > -1 ? this.Companies.split('\n') : this.Companies.split(',');
+                for (var i = 0; i < companies.length; i++) {
+                    if (companies[i].trim() != '') {
+                        Company.push({
+                            CompanyName: companies[i].trim(),
+                            isFirstCompany: Company.length === 0
+                        });
+                    }
+                }
+                this.Company = Company;
+                var fromYear = parseInt(this.FromYear);
+                var toYear = parseInt(this.ToYear);
+
+                for (var j = fromYear; j <= toYear; j++) {
+                    Year.push({
+                        YearNumber: j
+                    });
+                }
+            },
+            Format: function (t) {
+                var ds = [];
+                switch (t) {
+                    case 'drivers':
+                        ds = this.drivers.indexOf('\n') > -1 ? this.drivers.split('\n') : this.drivers.split(',');
+                        this.Drivers = [];
+                        for (var i = 0; i < ds.length; i++) {
+                            if (ds[i].trim() != '') {
+                                this.Drivers.push({
+                                    itemText: ds[i].trim(),
+                                    isFirstDriver: ds.length === 0
+                                });
+                            }
+                        }
+                        break;
+                    case 'restraints':
+                        ds = this.restraints.indexOf('\n') > -1 ? this.restraints.split('\n') : this.restraints.split(',');
+                        this.Restraints = [];
+                        for (var i = 0; i < ds.length; i++) {
+                            if (ds[i].trim() != '') {
+                                this.Restraints.push({
+                                    itemText: ds[i].trim(),
+                                    isFirstRestraint: ds.length === 0
+                                });
+                            }
+                        }
+                        break;
+                    case 'opportunities':
+                        ds = this.opportunities.indexOf('\n') > -1 ? this.opportunities.split('\n') : this.opportunities.split(',');
+                        this.Opportunities = [];
+                        for (var i = 0; i < ds.length; i++) {
+                            if (ds[i].trim() != '') {
+                                this.Opportunities.push({
+                                    itemText: ds[i].trim(),
+                                    isFirstOppurtunity: ds.length === 0
+                                });
+                            }
+                        }
+                        break;
+                    case 'chalanges':
+                        ds = this.chalanges.indexOf('\n') > -1 ? this.chalanges.split('\n') : this.chalanges.split(',');
+                        this.Chalanges = [];
+                        for (var i = 0; i < ds.length; i++) {
+                            if (ds[i].trim() != '') {
+                                this.Chalanges.push({
+                                    itemText: ds[i].trim(),
+                                    isFirstChalange: ds.length === 0
+                                });
+                            }
+                        }
+                        break;
+                }
+            },
+            updateTableOfContent: function () {
+                this.isProcessingData = true;
+                if (this.reportID > 0) {
+                    if (confirm('Would you like to save data ?')) {
+                        this.save();
+                    }
+                    fetch('/admin/report/SaveTableOfContent', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                        },
+                        body: JSON.stringify({
+                            reportID: this.reportID,
+                            tableOfContent: this.$refs.toclist.innerHTML,
+                            listOfFigures: this.$refs.lof.innerHTML,
+                            listOfTables: this.$refs.lot.innerHTML
+                        })
+                    }).then(res => res.json())
+                        .then(res => {
+                            this.isProcessingData = false;
+                        });
+                } else {
+                    alert('Report ID is not valid!!');
+                }
+            },
+            save: function () {
+                this.isProcessingData = true;
+
+                if (this.reportID == 0) {
+                    alert('Report Id is not valid!!');
+                    return;
+                }
+
+                let sendData = [{
+                    ColumnName: 'Keyword',
+                    ColumnValue: this.Keyword,
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'Revenue',
+                    ColumnValue: this.Revenue,
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'Volume',
+                    ColumnValue: this.Volume,
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'FromYear',
+                    ColumnValue: this.FromYear,
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'ToYear',
+                    ColumnValue: this.ToYear,
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'BaseYear',
+                    ColumnValue: this.BaseYear,
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'Drivers',
+                    ColumnValue: this.Drivers.map(d => { return d.itemText.trim(); }).join('|'),
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'Restraints',
+                    ColumnValue: this.Restraints.map(r => { return r.itemText.trim(); }).join('|'),
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'Opportunities',
+                    ColumnValue: this.Opportunities.map(o => { return o.itemText.trim(); }).join('|'),
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'Challenges',
+                    ColumnValue: this.Chalanges.map(c => { return c.itemText.trim(); }).join('|'),
+                    ReportID: this.reportID
+                }, {
+                    ColumnName: 'Players',
+                    ColumnValue: this.Company.map(c => { return c.CompanyName.trim(); }).join('|'),
+                    ReportID: this.reportID
+                }, ...this.Segment.SubSegment.map(s => {
+                    return {
+                        ColumnName: 'Segment',
+                        ColumnValue: s.SegmentName,
+                        ReportID: this.reportID,
+                        Child: s.SubSegment.map(ss => {
+                            return {
+                                ColumnName: 'SubSegment',
+                                ColumnValue: ss.SegmentName,
+                                ReportID: this.reportID
+                            };
+                        })
+                    };
+                })];
+
+
+
+                fetch('/admin/report/InsertOrUpdateReportData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                        reportID: this.reportID,
+                        reportData: sendData
+                    })
+                }).then(res => res.json())
+                    .then(res => {
+                        if (res && res.Success) {
+                            alert('Data has been saved!!');
+                        }
+                    });
+            },
+            getReportData: function () {
+                fetch(`/admin/report/GetReportData?reportID=${this.reportID}`, {
+                    method: 'GET',
+
+                }).then(res => res.json())
+                    .then(res => {
+                        console.log(res);
+
+                        let dbRevenue = filterValue('Revenue', res);
+                        
+                        this.Revenue = dbRevenue[0].ColumnValue;
+
+                        let dbVolume = filterValue('Volume', res);
+                        this.Volume = dbVolume[0].ColumnValue;
+
+                        let dbFromYear = filterValue('FromYear', res);
+                        this.FromYear = dbFromYear[0].ColumnValue;
+
+                        let dbToYear = filterValue('ToYear', res);
+                        this.ToYear = dbToYear[0].ColumnValue;
+
+                        let dbBaseYear = filterValue('BaseYear', res);
+                        this.BaseYear = dbBaseYear[0].ColumnValue;
+
+                        let dbKeyword = filterValue('Keyword', res);
+                        this.Keyword = dbKeyword[0].ColumnValue;
+
+                        let dbDrivers = filterValue('Drivers', res);
+                        this.drivers = dbDrivers[0].ColumnValue?.replace('|', ',');
+
+                        let dbRestraints = filterValue('Restraints', res);
+                        this.restraints = dbRestraints[0].ColumnValue?.replace(/\|/igm, ',');
+
+                        let dbOpportunities = filterValue('Opportunities', res);
+                        this.opportunities = dbOpportunities[0].ColumnValue?.replace(/\|/igm, ',');
+
+                        let dbChallenges = filterValue('Challenges', res);
+                        this.chalanges = dbChallenges[0].ColumnValue?.replace(/\|/igm, ',');
+
+                        let dbSegment = filterValue('Segment', res);
+                        let dbSubSegment = filterValue('SubSegment', res);
+                        this.Segment.SubSegment = [];
+                        dbSegment.forEach(s => {
+                            this.Segment.SubSegment.push({
+                                SegmentName: s.ColumnValue,
+                                SubSegment: []
+                            });
+                            let subSegments = dbSubSegment.filter(x => {
+                                console.log(s.Id);
+                                return x.ParentID == s.ID;
+                            });
+                            subSegments[0].ColumnValue.split(',').forEach(y => {
+                                this.Segment.SubSegment[this.Segment.SubSegment.length - 1].SubSegment.push({
+                                    SegmentName: y.trim()
+                                });
+                            });
+                        });
+
+                        let dbPlayers = filterValue('Players', res);
+                        this.Companies = dbPlayers[0].ColumnValue?.replace(/\|/igm, ',');
+                    });
+            }
+        },
+        components: {
+            'tocTemplate': tocTemplate
+        },
+        mounted: function () {
+            let urlFragments = window.location.href.split('/');
+            this.reportID = parseInt(urlFragments[urlFragments.length - 1]);
+            if (this.reportID > 0) {
+                this.getReportData();
+            }
+        }
+    });
+    var tocTemplate = vm.component('TocTemplate', {
+        template: '#toc-template',
+        props: {
+            item: [],
+            parentindex: 0,
+        },
+        mounted: function () {
+
+        },
+        data: function () {
+            return {
+
+            }
+        }
+    });
+    vm.mount('#generateTOC');
+
+    function filterValue(columnName, data) {
+        return data.filter(x => {
+            return x.ColumnName == columnName;
+        });
+    }
+</script>
+
+

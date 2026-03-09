@@ -1,0 +1,498 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@using ZionAdmin.Security;
+@using ZionMarketResearch.Models;
+@{ Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    var smallTitleIndex = Model.ReportTitle.IndexOf(new string[] { " Market ", " Market:", " Market,", " Market-", ":" });
+    var h1Title = smallTitleIndex > -1 ? Model.ReportTitle.Substring(0, smallTitleIndex).Replace("Global ", string.Empty) : Model.ReportUrl.Replace("-", " ").ToProperCasing().Replace("Global", string.Empty).Replace(" Market", string.Empty);
+    var h1Title1 = h1Title.Length > 40 ? h1Title.Substring(0, 39) : h1Title;
+var userIdentity = ((ZionAdmin.Security.CustomPrincipal)System.Web.HttpContext.Current.Session["User"]); }
+@if (Request.Url.ToString().Contains("/toc/") || Request.Url.ToString().Contains("/methodology/") ||
+    (Request.QueryString["rs"] != null && Convert.ToBoolean(Request.QueryString["rs"])))
+{
+    @section metaTags{
+        <meta name="robots" content="noindex,nofollow" />
+
+    }}
+else
+{
+    @section metaTags{
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        @*<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-624d9996e3915482"></script>*@
+    }
+}
+<style>
+    .pulse-button {
+        position: relative;
+        /*width: 100px;
+    height: 100px;*/
+        padding: 15px 30px 15px 30px !important;
+        border: none;
+        box-shadow: 0 0 0 0 rgba(255, 191, 9, 0.7);
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 17px;
+        background-color: #ffbf09;
+        cursor: pointer;
+        -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+        -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+        -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+        animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+        color: black;
+    }
+
+        .pulse-button:hover {
+            -webkit-animation: none;
+            -moz-animation: none;
+            -ms-animation: none;
+            animation: none;
+            color: #ffffff;
+        }
+
+    @@-webkit-keyframes pulse {
+        to {
+            box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+        }
+    }
+
+    @@-moz-keyframes pulse {
+        to {
+            box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+        }
+    }
+
+    @@-ms-keyframes pulse {
+        to {
+            box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+        }
+    }
+
+    @@keyframes pulse {
+        to {
+            box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);
+        }
+    }
+
+
+    .report-box {
+        margin-top: 5px;
+        background: #fdffff;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        border-radius: 0.5rem;
+        padding: 2.0rem;
+        -webkit-box-shadow: 0 1px 1px 1px #ebebeb;
+        /* box-shadow: 0 1px 6px 4px #ebebeb; */
+        box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+    }
+
+        .report-box input[type="radio"]:checked + label {
+            border: none;
+            background: #fff !important;
+        }
+
+        .report-box ul li img {
+            height: auto;
+            display: inline;
+        }
+
+    #covid-19_sec {
+        height: 500px;
+        width: auto;
+        background-image: url(/images/covid-19_bg2.png);
+    }
+
+        #covid-19_sec p {
+            padding: 138px 10px 20px 30px;
+            width: 100%;
+            font-size: 18px !important;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+            #covid-19_sec p a {
+                bottom: 0;
+                color: #000000 !important;
+            }
+</style>
+<style>
+    #share_button {
+        margin-top: 10px;
+        /*border: 1px solid #1EAEAD;*/
+        padding: 10px;
+        background-color: #ffffff;
+        width: 100%;
+    }
+
+        #share_button a {
+            color: #fff;
+        }
+
+    .share_btn {
+        width: 100%;
+        border: 0px !important;
+        padding: 12px 5px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    #share_button .btn1 {
+        background-color: #457eab;
+    }
+
+    #share_button .btn2 {
+        background-color: #3e4b60;
+    }
+
+    #share_button .btn4 {
+        background-color: #b8116f;
+    }
+
+    #share_button .btn5 {
+        background-color: #06766f;
+    }
+
+
+</style>
+<link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/report_css.css" />
+<section id="report-title" class="report-title-image white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container-fluid">
+        @{ Html.RenderPartial("_breadcrumb", Html.Raw(Model.Categories[Model.Categories.Length - 1]) + "|" + (Model.ReportTitle.Contains("Market") ? (Model.ReportTitle.Substring(0, Model.ReportTitle.IndexOf(new string[] { "Market ", "Market-", "Market:", "Market," })) + " Market") : Model.ReportUrl.Replace("-", " ").ToProperCasing().Replace("Global", string.Empty).Replace(" Market", string.Empty) + " Market"));}
+        <div id="heading-bg" style="position:relative; margin-bottom: 8px; background: rgb(23,66,173); background: linear-gradient(355deg, rgba(23,66,173,1) 8%, rgba(29,106,156,1) 87%); font-size: 16px; text-align: center; padding: 20px 0px 15px;">
+            <h1 style="color:#ffffff; font-size:20px;">@h1Title @if (Request.Path.Contains("/market-analysis/")) { @Html.Raw("Market - Global Industry Analysis") } else { if (!String.IsNullOrEmpty(Model.MetaKeywordsSample)) { @Html.Raw(Model.MetaKeywordsSample) } else {@Html.Raw("Market Size, Share, Growth Report 2030")} }</h1>
+
+</div>
+        @{ Html.RenderPartial("_ReportInfo"); }
+        <div class="row hide" id="reportButtons">
+            <div class="container-fluid">
+                <div class="col-sm-2">
+                    <div class="logo">
+                        <img src="/images/zion-market-research-logo.png" class="img-responsive saturate1" width="104px" height="56px" title="Zion Market Research - @h1Title, Business Consulting Services &amp; Solutions" alt="Zion Market Research">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <p style="color: #024973; font-size: 20px !important; margin: 0px; padding: 23px 0px; font-weight: 700; font-family: 'Montserrat',sans-serif !important;"> @h1Title1 Market</p>
+                </div>
+
+                <div class="col-sm-5 zero-padding">
+                    <div class="link-btn divcenter animate__animated animate__delay-1s animate__zoomIn" style="margin-bottom: 10px;">
+                        <a rel="nofollow" href="@Url.Action("Index", "Custom", new { id = Model.ReportId })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request For Customization</a>
+                        @*<a href="@Url.Action("RequestBrochure", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Free Brochure</a>*@
+                        @*<a href="@Url.Action("RequestDiscount", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Discount</a>*@
+                        <a rel="nofollow" href="@Url.Action("Sample", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Free Sample</a>
+                        <a rel="nofollow" href="@Url.Action(!Model.IsUpcoming ? "Index" : "Prebook", "BuyNow", new { url = Model.ReportUrl, reporttype = "su" })" class="pulse-button" rel="nofollow noreferrer">@(!Model.IsUpcoming ? "Buy Now" : "Prebook") <i class="fa fa-arrow-right hvr-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="row">
+                <div class="col-md-12">
+                    <div class="addthis_inline_share_toolbox" style="text-align:center"></div>
+                </div>
+            </div>*@
+    </div>
+    @if (userIdentity != null && (userIdentity.IsInRole("Admin") || userIdentity.IsInRole("EditReport")))
+    {
+        <section class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align:center;">
+                    <button class="btn btn-primary" onclick="UpdateChanges()">Save</button>
+                    <label style="color: black;"><input type="checkbox" value="true" id="copyToReseller" /> Copy To Reseller?</label>
+                </div>
+            </div>
+        </section>}
+</section>
+
+@if (!Model.IsUpcoming)
+{
+    Html.RenderPartial("_PublishedReport", Model);
+}
+else if (Model.IsUpcoming)
+{
+    Html.RenderPartial("_UpcomingReport", Model);
+}
+<section class="white_section section_gap" id="testimonial">
+    <div class="container">
+        <div class="heading">
+            <p class="top-heading"><span>Happy</span>Clients</p>
+        </div>
+        <div id="myclientCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myclientCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myclientCarousel" data-slide-to="1"></li>
+                <li data-target="#myclientCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+               <div class="item active">
+                    <div class="l-box">
+                        <img src="/images/client_img/zmr_client_slider_1.png" alt="bridgestone" width="1331px" height="259px" loading="lazy" />
+                    </div>
+                </div>
+                <div class="item">
+
+                    <div class="l-box">
+                        <img src="/images/client_img/zmr_client_slider_2.png" alt="mckinsey" width="1331px" height="259px" loading="lazy"/>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="l-box">
+                        <img src="/images/client_img/zmr_client_slider_3.png" alt="ti" width="1331px" height="259px" loading="lazy" />
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myclientCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myclientCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+@*@{ Html.RenderPartial("_PopForm", new ZionMarketResearch.Models.AvailPDF { ReportId = Model.ReportId, ReportTitle = Model.ReportTitle }); }*@
+<style>
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        /* margin: 0 auto; */
+        left: 0;
+        background-color: #fff;
+    }
+
+    @@media only screen and (max-width: 600px) {
+        #reportButtons {
+            display: none !important;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        /* .sticky-right-sidebar {
+            position: fixed;
+            right: 10px;
+            top: 17%;
+            width: 25%;
+        }*/
+    }
+</style>
+@if (userIdentity != null && (userIdentity.IsInRole("Admin") || userIdentity.IsInRole("EditReport")))
+{
+
+    <script src="/Areas/Admin/Content/js/ckeditor_4.11.3_standard/ckeditor/ckeditor.js"></script>
+    <script>
+                    var descriptionEditor = CKEDITOR.inline('Descriptionss');
+
+                    $("#Descriptionss").attr('contenteditable', 'true');
+                    //CKEDITOR.inline('TableOfContentss');
+
+                    //descriptionEditor.config.disallowed = 'table';
+
+                    function UpdateChanges() {
+                        $.ajax({
+                            url: '/updatereportdescription',
+                            type: 'POST',
+                            contentType: 'application/json; charset=utf-8',
+                            data: JSON.stringify({
+                                ReportID: @ZionMarketResearch.Util.Utility.Decryptstring(ViewBag.ReportID),
+                                ReportDescription: descriptionEditor.getData(),
+                                CopyToReseller: $("#copyToReseller").prop('checked')
+                            }),
+                            success: function (res) {
+                                if (res > 0) {
+                                    alert('Report has been updated.');
+                                }
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            }
+                        });
+                    }
+    </script>
+}
+
+<script>
+
+    $(document).ready(function () {
+        var urlSegment = document.URL.split("/");
+        if (urlSegment[urlSegment.length - 2] === 'toc') {
+            $('.nav-tabs a[data-target="TableOfContent"]').tab('show');
+            $("#TableOfContent").addClass("in active");
+        } else if (urlSegment[urlSegment.length - 2] === 'report') {
+            $('.nav-tabs a[data-target="Description"]').tab('show');
+            $("#Description").addClass("in active");
+        } else if (urlSegment[urlSegment.length - 2] === 'methodology') {
+            $('.nav-tabs a[data-target="Methodology"]').tab('show');
+            $("#Methodology").addClass("in active");
+        } else if (urlSegment[urlSegment.length - 2] === 'market-analysis') {
+            $('.nav-tabs a[data-target="FreeAnalysis"]').tab('show');
+            $("#FreeAnalysis").addClass("in active");
+        }
+        //var reportDescImg = $("#report-desc img");
+
+        //$(reportDescImg).addClass("img-responsive");
+        //$(reportDescImg).css("margin", "0 auto");
+
+
+    });
+</script>
+@if (!Request.Browser.IsMobileDevice)
+{
+    <script>
+        window.onscroll = function () { myFunction() };
+
+        // Get the header
+        var header = document.getElementById("reportButtons");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        var buynow = document.getElementsByClassName('buynow-control');
+        var buynowOffset = buynow[0].offsetHeight;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+                header.classList.remove("row");
+                header.classList.remove("hide");
+            } else {
+                header.classList.remove("sticky");
+                header.classList.add("row");
+                header.classList.add("hide");
+            }
+            if (window.pageYOffset > buynowOffset + 1000) {
+                $(".buynow-control").addClass("sticky-right-sidebar");
+            } else {
+                $(".buynow-control").removeClass("sticky-right-sidebar");
+            }
+
+            if (window.pageYOffset > $(".buynow-control").parent()[0].offsetHeight + 1000) {
+                $(".buynow-control").addClass('stick-to-bottm');
+            } else {
+                $(".buynow-control").removeClass('stick-to-bottm');
+            }
+
+        }
+
+
+    </script>
+}
+
+<style>
+
+    /* .stick-to-bottm {
+        position: relative;
+        transform: translate3d(18px, 2558px, 0px);
+        width: 95%;
+    }*/
+
+    #Descriptionss table {
+        border-collapse: collapse;
+        width: 70%;
+        margin: 0 auto;
+        box-shadow: 0px 0px 8px 5px;
+    }
+
+    #Descriptionss h1 {
+        font-size: 30px;
+    }
+
+    /*#Descriptionss h2 {
+        font-size: 23px;
+    }
+
+    #Descriptionss h3 {
+        font-size: 26px;
+    }
+
+    #Descriptionss h4 {
+        font-size: 24px;
+    }
+
+    #Descriptionss h5 {
+        font-size: 22px;
+    }
+
+    #Descriptionss h6 {
+        font-size: 20px;
+    }*/
+
+    #Descriptionss h1, #Descriptionss h2, #Descriptionss h3, #Descriptionss h4, #Descriptionss h5, #Descriptionss h6 {
+        color: #024973;
+        font-size: 22px;
+    }
+
+    @@media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        #Descriptionss table {
+            width: 100%;
+        }
+    }
+
+    #Descriptionss table th {
+        text-align: center;
+        background: #819595;
+        color: #fff;
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    #Descriptionss table td {
+        padding: 10px;
+        border: 1px solid black;
+        border: 400;
+        font-weight: bold;
+        background-color: transparent;
+    }
+
+    #TableOfContent > ul > li {
+        font-weight: bold;
+    }
+
+        #TableOfContent > ul > li ul {
+            font-weight: normal;
+        }
+
+    .related-news a {
+        font-size: 18px;
+        color: #000;
+    }
+
+    .related-news li:hover a {
+        color: #fff;
+    }
+
+    .related-news li:hover {
+        background-color: #000;
+    }
+
+    .related-news li {
+        padding: 10px;
+        list-style-type: none;
+        background-color: #f3f3f3;
+        margin: 5px;
+        /* color: grey; */
+    }
+
+    .related-news small {
+        display: block;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .related-news li:hover small {
+        color: #fff;
+    }
+</style>

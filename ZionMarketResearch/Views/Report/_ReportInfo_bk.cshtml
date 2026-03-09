@@ -1,0 +1,28 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+<div class="heading">
+
+    <h1 class="reporttitle animate__animated animate__bounce" style="position:relative;">
+        @Model.ReportTitle
+    </h1>
+
+    <div class="reportin-info divcenter">
+        @if (Model.PublishedDate != null)
+        {
+            <span class="badge"><i class="fa fa-calendar" aria-hidden="true"></i> Published Date: @Model.PublishedDate.Value.ToString("dd-MMM-yyyy")</span>}
+        @if (Model.Categories != null && Model.Categories.Length > 0)
+        {
+            <span class="badge"><i class="fa fa-th-large" aria-hidden="true"></i> Category: @Html.Raw(Model.Categories[Model.Categories.Length - 1])</span>}
+        <span class="badge"><i class="fa fa-file-pdf-o"></i> Report Format : PDF</span>
+        @if (Model.NumberOfPages != null && Model.NumberOfPages > 0)
+        {
+            <span class="badge"><i class="fa fa-book" aria-hidden="true"></i> Pages: @Model.NumberOfPages</span>}
+        <span class="badge"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Report Code: ZMR-@Model.ReportId</span>
+        <span class="badge"><i class="fa fa-tags" aria-hidden="true"></i> Status : @(!Model.IsUpcoming ? "Published" : "Upcoming")</span>
+    </div>
+    @if (!Model.IsUpcoming && !string.IsNullOrEmpty(Model.MetaDescription))
+    {
+        <p class="title-summary">
+            <i class="fa fa-quote-left"></i> @Model.MetaDescription <i class="fa fa-quote-right"></i>
+        </p>
+    }
+</div>

@@ -1,0 +1,5 @@
+﻿@model string
+@{
+    string d = ZionMarketResearch.Util.Utility.StripHTML(Model);
+}
+@(d != null && d.Length > 300 ? d.Substring(0, 300) : d )

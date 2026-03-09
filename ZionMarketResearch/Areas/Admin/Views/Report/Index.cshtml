@@ -1,0 +1,91 @@
+﻿@model PagedList.IPagedList<ZionAdmin.Repository.ReportRepository>
+@using PagedList.Mvc
+@{ ViewBag.Title = "Reports";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
+<h3>Reports</h3>
+<hr />
+<div class="col-md-12">
+    <div class="row">
+        <div class="row margin-bottom-15">
+            <a href="@Url.Action("create", "report")">Create New</a>
+            <form action="@Url.Action("index", "report")" method="get">
+                <div>
+                    <label><input type="checkbox" name="showUpcoming" onchange="javascript: $('#hdnUpcoming').val($(this).prop('checked'))" value="true" @(ViewBag.ShowUpcoming != null && ViewBag.ShowUpcoming ? "checked" : string.Empty) /> Upcoming</label>
+                    <label><input type="checkbox" name="showPublished" onchange="javascript: $('#hdnPublished').val($(this).prop('checked'))" value="true" @(ViewBag.ShowPublished != null && ViewBag.ShowPublished ? "checked" : string.Empty) /> Published</label>
+                    <label><input type="checkbox" name="showIsDeleted" onchange="javascript: $('#hdnIsDeleted').val($(this).prop('checked'))" value="true" @(ViewBag.ShowIsDeleted != null && ViewBag.ShowIsDeleted? "checked" : string.Empty) /> Deleted</label>
+                    <button type="submit">Show</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row margin-bottom-15">
+        @using (Html.BeginForm("search", "report", FormMethod.Get, new { Class = "form-inline" }))
+        {
+        <div class="input-group col-md-12">
+            <input type="text" name="id" class="form-control" placeholder="Search" value="@ViewBag.SearchText" id="searchText" />
+            <input type="hidden" id="hdnPublished" name="showPublished" value="@(ViewBag.ShowPublished != null && ViewBag.ShowPublished ? "true" : "false")" />
+            <input type="hidden" id="hdnUpcoming" name="showUpcoming" value="@(ViewBag.ShowUpcoming != null && ViewBag.ShowUpcoming ? "true" : "false")" />
+            <input type="hidden" id="hdnIsDeleted" name="showIsDeleted" value="@(ViewBag.ShowIsDeleted != null && ViewBag.ShowIsDeleted ? "true" : "false")" />
+            <span class="input-group-btn" style="width: 70px !important;">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </span>
+        </div>}
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Delete Action</th>
+                    <th>Published Date</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Url</th>
+                    <th>Reseller Description</th>
+                    <th colspan="4">Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var report in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Delete", "delete", new { id = report.ReportId },
+
+                                                             new { onclick = "return confirm('Are sure wants to delete?');" })
+                    </td>
+                    <td>@(report.PublishedDate.HasValue ? report.PublishedDate.Value.ToString("dd-MMM-yyyy") : "")</td>
+                    <td>@report.ReportTitle</td>
+
+                    <td>@(report.IsUpcoming ? "Upcoming" : "Published")</td>
+                    <td><a href="/report/@report.ReportUrl" target="_blank">@report.ReportUrl</a></td>
+                    <td>@(report.IsResellerDescriptionAdded ? "Yes" : "No")</td>
+                    <td><a href="@Url.Action("GenerateTOC", "Report", new { id = report.ReportId })">Generate TOC</a></td>
+                    <td><a href="@Url.Action("InsertOrUpdateResellerDescription", "Report", new { id = report.ReportId })">Reseller Description</a></td>
+                    <td><a href="@Url.Action("edit", "report", new { id = report.ReportId})">Edit</a></td>
+                    <td>
+                        @if (report.IsResellerDescriptionAdded)
+                        {
+                <a href="@Url.Action("Index", "Report", new { url = report.ReportUrl, area = string.Empty })?rs=true">Show Reseller Description</a>}
+                    </td>
+                    @*<td><a href="/report/@report.ReportUrl" target="_blank">Live</a></td>*@
+                </tr>
+}
+            </tbody>
+        </table>
+        @*TODO: Implement paging when search and filter*@
+        @Html.PagedListPager(Model, x => "/admin/report/index/" + x + (Request.QueryString["year"] != null ? "?year=" + Request.QueryString["year"] : string.Empty) + (Request.QueryString["monthyear"] != null ? "&monthyear=" + Request.QueryString["monthyear"] : string.Empty))
+    </div>
+</div>
+<script>
+    var searchValue = $("#searchText").val();
+    var isSearched = searchValue != null && searchValue != "";
+
+    $('.pagination li a').each(function (index) {
+        if (isSearched) {
+            $(this).attr("href", "/admin/report/search?id=" + searchValue + "&page=" + $(this).text() + "&showPublished=" + $("input[name=showPublished]").prop("checked") + "&showUpcoming=" + $("input[name=showUpcoming]").prop("checked"));
+            $(".PagedList-skipToNext > a").attr("href", "/admin/report/search?id=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) + 1) + "&showPublished=" + $("input[name=showPublished]").prop("checked") + "&showUpcoming=" + $("input[name=showUpcoming]").prop("checked"));
+            $(".PagedList-skipToPrevious > a").attr("href", "/admin/report/search?id=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) - 1) + "&showPublished=" + $("input[name=showPublished]").prop("checked") + "&showUpcoming=" + $("input[name=showUpcoming]").prop("checked"));
+        }
+    });
+</script>

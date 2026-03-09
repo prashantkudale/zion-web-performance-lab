@@ -1,0 +1,124 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{
+    ViewBag.Title = Model.ReportTitle;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    ViewBag.MetaKeywords = Model.MetaKeyword;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row" id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        @foreach (string c in Model.Categories)
+        {
+            <li>@Html.Raw(c)</li>
+        }
+
+    </ul>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-8">
+        <h1>@Model.ReportTitle</h1>
+        <p><i class="fa fa-calendar"></i>@Model.PublishedDate.Value.ToString("dd-MMM-yyyy") | <i class="fa fa-file-text" aria-hidden="true"></i>Pages:@Model.NumberOfPages | <i class="fa fa-file-code-o" aria-hidden="true"></i>Report Code: ZMR-@Model.ReportId | Report Format : <i class="fa fa-file-excel-o iconsize xl" aria-hidden="true"></i><i class="fa fa-file-pdf-o iconsize pdf" aria-hidden="true"></i><i class="fa fa-file-powerpoint-o iconsize ppt" aria-hidden="true"></i><i class="fa fa-envelope-o iconsize mail" aria-hidden="true"></i></p>
+        @*<h4>
+                <p>"Timetric’s 'Reinsurance in Luxembourg, Key Trends and Opportunities to 2019' report provides detailed analysis of the market trends, drivers and challenges in the Luxembourg reinsurance segment."</p>
+            </h4>*@
+        <div class="bs-example">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#sectionA">Report Details</a></li>
+                @*<li><a href="#sectionB">Table of Content</a></li>
+                <li><a href="#sectionC">Free Analysis </a></li>
+                <li><a href="#sectionD">Methodology </a></li>
+                <li><a href="#sectionE">Request Sample </a></li>*@
+                <li><a href="#sectionF">Buying Inquiry </a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="sectionA" class="tab-pane fade in active">
+                    <div id="content">
+                        @Html.Raw(Model.MainPageDescription)
+                    </div>
+                </div>
+                @*<div id="sectionB" class="tab-pane fade">
+                    <div id="toc">
+                        @Html.Raw(Model.TableOfContent)
+                    </div>
+                </div>
+                <div id="sectionC" class="tab-pane fade">
+                    @Html.Raw(Model.FreeAnalysis)
+                </div>
+                <div id="sectionD" class="tab-pane fade">
+                    @Html.Raw(Model.Methodology)
+                </div>*@
+                <div id="sectionE" class="tab-pane fade">
+                    @{Html.RenderAction("ShowForm", "Form", new { FormType = 0, ReportId = ViewBag.ReportId });}
+                </div>
+                <div id="sectionF" class="tab-pane fade">
+                    @{Html.RenderAction("ShowForm", "Form", new { FormType = 1, ReportId = ViewBag.ReportId });}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="panel panel-primary" id="chooselicense">
+            <div class="panel-heading"><strong>Choose License Type:</strong></div>
+            <div class="panel-body">
+                <div class="row" id="licensemode">
+                    <form role="form">
+                        <div id="licusers">
+                            <ul>
+                                <li>
+                                    <input type="radio" id="f-option" name="selector" onchange="jsLink('@ViewBag.SingleUserLink');" checked>
+                                    <label for="f-option">Single User | $@Model.SingleUser <span style="margin-left: 80px; font-size: 18px!important;"><a href="#" data-toggle="tooltip" class="tip-top" title="The report will be emailed to you. The report is sent in PDF format. This is a single user license, allowing one specific user access to the product."><i class="fa fa-question-circle" aria-hidden="true"></i></a></span></label>
+
+                                    <div class="check">
+                                        <div class="inside"></div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <input type="radio" id="s-option" name="selector" onchange="jsLink('@ViewBag.MultiUserLink');">
+                                    <label for="s-option">Multiuser User | $@Model.MultiUser  <span style="margin-left: 62px; font-size: 18px!important;"><a href="#" data-toggle="tooltip" class="tip-top" title="The report will be emailed to you. The report is sent in PDF format. This is a 1-5 user licence, allowing up to five users have access to the product."><i class="fa fa-question-circle" aria-hidden="true"></i></a></span></label>
+
+                                    <div class="check">
+                                        <div class="inside"></div>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <input type="radio" id="t-option" name="selector" onchange="jsLink('@ViewBag.CorporateUserLink');">
+                                    <label for="t-option">Corporate User | $@Model.CorporateUser <span style="margin-left: 50px; font-size: 18px!important;"><a href="#" data-toggle="tooltip" class="tip-top" title="The report will be emailed to you. The report is sent in PDF format. This is a 1-10 user licence, allowing up to ten users have access to the product."><i class="fa fa-question-circle" aria-hidden="true"></i></a></span></label>
+
+                                    <div class="check">
+                                        <div class="inside"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="row" id="buynowimg">
+                    <a href="" id="lnkBuyNow">
+                        <img src="/images/buy-now-button1.png" class="img-responsive col-sm-offset-3" data-toggle="modal" data-target="#reportpayment" id="buynowimg" />
+                    </a>
+                </div>
+                <div class="row" id="choosebtn">
+                    <div style="margin-left: 18%; margin-right: auto;">
+                        <img src="/images/SpeakAnalyst1.png" class="img-responsive" style="float: left;" />
+                        <a href="/custom/@Model.ReportId">
+                            <img src="/images/RequestCustomization11.png" class="img-responsive" style="float: left;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @{Html.RenderAction("latestupcomingreports", "report");}
+        @{Html.RenderAction("latestreport", "report");}
+    </div>
+</div>
+<script>
+    function jsLink(a) {
+        $("#lnkBuyNow").attr("href", "/buynow/" + a);
+    }
+</script>

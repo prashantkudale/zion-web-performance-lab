@@ -1,0 +1,37 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.LatestNewsView>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Latest Industry News: Zion Market Research | Page No " + Model.PageNumber;
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    ViewBag.MetaDescription = "Zion Market Research latest industry news covers all market news, size, share, trends and market forecast.";
+    ViewBag.MetaKeywords = "Latest press release, latest news, industry press release, industry news, market size, market share, market segments, industry trends";
+}
+
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "News");}
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>Press Release</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section_gap">
+    <div class="container">
+        <div class="col-md-8 col-sm-12">
+            <div>
+                @{ Html.RenderPartial("_NewsList", Model); }
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 tab">
+            <div>
+                <h3 class="sidebar-title">Upcoming Reports</h3>
+                @{ Html.RenderAction("LatestUpcomingReports", "Report"); }
+                <h3 class="sidebar-title">Latest Reports</h3>
+                @{ Html.RenderAction("LatestReport", "Report"); }
+            </div>
+        </div>
+    </div>
+</section>

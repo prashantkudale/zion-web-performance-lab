@@ -1,0 +1,91 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+@if (Request.Url.ToString().Contains("toc") || Request.Url.ToString().Contains("methodology"))
+{
+    @section metaTags{
+        <meta name="robots" content="noindex" />
+    }
+}
+<section id="report-title" class="report-title-image white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>@Html.Raw(Model.Categories[Model.Categories.Length - 1])</li>
+            <li class="active">@Model.ReportTitle.Substring(0, Model.ReportTitle.IndexOf("Market") + 6)</li>
+        </ul>
+        <div class="heading">
+            <div class="row">
+                <div class="col-sm-9">
+                    <h1 class="reporttitle animate__animated animate__bounce">
+                        @Model.ReportTitle
+                    </h1>
+                </div>
+                <div class="col-sm-3">
+                    <ul id="rept_info">
+                        @if (Model.PublishedDate != null)
+                        {
+                            <li><i class="fa fa-calendar" aria-hidden="true"></i> Published Date: @Model.PublishedDate.Value.ToString("dd-MMM-yyyy")</li>}
+                        @if (Model.Categories != null && Model.Categories.Length > 0)
+                        {
+                            <li><i class="fa fa-th-large" aria-hidden="true"></i> Category: @Html.Raw(Model.Categories[Model.Categories.Length - 1])</li>}
+                        <li><i class="fa fa-file-pdf-o"></i> Report Format : PDF</li>
+                        @if (Model.NumberOfPages != null && Model.NumberOfPages > 0)
+                        {
+                            <li><i class="fa fa-book" aria-hidden="true"></i> Pages: @Model.NumberOfPages</li>}
+                        <li><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Report Code: ZMR-@Model.ReportId</li>
+                        <li><i class="fa fa-tags" aria-hidden="true"></i> Status : @(!Model.IsUpcoming ? "Published" : "Upcoming")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 zero-padding">
+                <div class="link-btn divcenter animate__animated animate__delay-1s animate__zoomIn" style="margin-bottom: 50px;">
+                    <a href="@Url.Action("Index", "Custom", new { id = Model.ReportId })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request For Customization</a>
+                    <a href="@Url.Action("RequestBrochure", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Free Brochure</a>
+                    @*<a href="@Url.Action("RequestDiscount", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Discount</a>*@
+                    <a href="@Url.Action("Sample", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Free Sample</a>
+                    <a href="@Url.Action(!Model.IsUpcoming ? "Index" : "Prebook", "BuyNow", new { url = Model.ReportUrl, reporttype = "su" })" class="hvr-wobble-vertical" rel="nofollow noreferrer">@(!Model.IsUpcoming ? "Buy Now" : "Prebook") <i class="fa fa-arrow-right hvr-icon"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+@if (!Model.IsUpcoming)
+{
+    Html.RenderPartial("_PublishedReport", Model);
+}
+else if (Model.IsUpcoming)
+{
+    Html.RenderPartial("_UpcomingReport", Model);
+}
+@if (Model.FAQ != null && Model.FAQ.Count > 0)
+{
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @{Html.RenderPartial("_FAQ");}
+            </div>
+        </div>
+    </section>
+                    }
+@{ Html.RenderPartial("_PopForm", new ZionMarketResearch.Models.AvailPDF { ReportId = Model.ReportId, ReportTitle = Model.ReportTitle }); }
+<script>
+    $(document).ready(function () {
+        var urlSegment = document.URL.split("/");
+        if (urlSegment[urlSegment.length - 2] === 'toc') {
+            $('.nav-tabs a[data-target="TableOfContent"]').tab('show');
+            $("#TableOfContent").addClass("in active");
+        } else if (urlSegment[urlSegment.length - 2] === 'report') {
+            $('.nav-tabs a[data-target="Description"]').tab('show');
+            $("#Description").addClass("in active");
+        } else if (urlSegment[urlSegment.length - 2] === 'methodology') {
+            $('.nav-tabs a[data-target="Methodology"]').tab('show');
+            $("#Methodology").addClass("in active");
+        }
+    });
+</script>

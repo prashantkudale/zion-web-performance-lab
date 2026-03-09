@@ -1,0 +1,911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ZionDbModelStoreContainer" CdmEntityContainer="ZionDbEntities">
+    <EntitySetMapping Name="relactionroles">
+      <EntityTypeMapping TypeName="ZionDbModel.relactionrole">
+        <MappingFragment StoreEntitySet="relactionrole">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="relreportattributes">
+      <EntityTypeMapping TypeName="ZionDbModel.relreportattribute">
+        <MappingFragment StoreEntitySet="relreportattribute">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="AttributeID" ColumnName="AttributeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="relreportbuyers">
+      <EntityTypeMapping TypeName="ZionDbModel.relreportbuyer">
+        <MappingFragment StoreEntitySet="relreportbuyer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+          <ScalarProperty Name="ReportPrice" ColumnName="ReportPrice" />
+          <ScalarProperty Name="LicenseType" ColumnName="LicenseType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="relreportcategories">
+      <EntityTypeMapping TypeName="ZionDbModel.relreportcategory">
+        <MappingFragment StoreEntitySet="relreportcategory">
+          <ScalarProperty Name="relReportCategoryID" ColumnName="relReportCategoryID" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="relreportdomains">
+      <EntityTypeMapping TypeName="ZionDbModel.relreportdomain">
+        <MappingFragment StoreEntitySet="relreportdomain">
+          <ScalarProperty Name="relReportDomainID" ColumnName="relReportDomainID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stagging_tblreportinformation">
+      <EntityTypeMapping TypeName="ZionDbModel.stagging_tblreportinformation">
+        <MappingFragment StoreEntitySet="stagging_tblreportinformation">
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="TableofContents" ColumnName="TableofContents" />
+          <ScalarProperty Name="ListOfTable" ColumnName="ListOfTable" />
+          <ScalarProperty Name="ListOfFigure" ColumnName="ListOfFigure" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+          <ScalarProperty Name="ReportImage" ColumnName="ReportImage" />
+          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="PriceSingleUser" ColumnName="PriceSingleUser" />
+          <ScalarProperty Name="PriceEnterpriseLicense" ColumnName="PriceEnterpriseLicense" />
+          <ScalarProperty Name="PriceCUL" ColumnName="PriceCUL" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="NumberOfPage" ColumnName="NumberOfPage" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+          <ScalarProperty Name="DeliveryFormat" ColumnName="DeliveryFormat" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ReportUrl" ColumnName="ReportUrl" />
+          <ScalarProperty Name="ListOfCharts" ColumnName="ListOfCharts" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stagingtblreportinformations">
+      <EntityTypeMapping TypeName="ZionDbModel.stagingtblreportinformation">
+        <MappingFragment StoreEntitySet="stagingtblreportinformation">
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="TableofContents" ColumnName="TableofContents" />
+          <ScalarProperty Name="ListOfTable" ColumnName="ListOfTable" />
+          <ScalarProperty Name="ListOfFigure" ColumnName="ListOfFigure" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+          <ScalarProperty Name="ReportImage" ColumnName="ReportImage" />
+          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="PriceSingleUser" ColumnName="PriceSingleUser" />
+          <ScalarProperty Name="PriceEnterpriseLicense" ColumnName="PriceEnterpriseLicense" />
+          <ScalarProperty Name="PriceCUL" ColumnName="PriceCUL" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="NumberOfPage" ColumnName="NumberOfPage" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+          <ScalarProperty Name="DeliveryFormat" ColumnName="DeliveryFormat" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ReportUrl" ColumnName="ReportUrl" />
+          <ScalarProperty Name="ListOfCharts" ColumnName="ListOfCharts" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblactions">
+      <EntityTypeMapping TypeName="ZionDbModel.tblaction">
+        <MappingFragment StoreEntitySet="tblaction">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbladminlogins">
+      <EntityTypeMapping TypeName="ZionDbModel.tbladminlogin">
+        <MappingFragment StoreEntitySet="tbladminlogin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblauthors">
+      <EntityTypeMapping TypeName="ZionDbModel.tblauthor">
+        <MappingFragment StoreEntitySet="tblauthor">
+          <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+          <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+          <ScalarProperty Name="AuthorAddress" ColumnName="AuthorAddress" />
+          <ScalarProperty Name="AuthorContact" ColumnName="AuthorContact" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+          <ScalarProperty Name="AuthorDescription" ColumnName="AuthorDescription" />
+          <ScalarProperty Name="DomainId" ColumnName="DomainId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblbuyerinformations">
+      <EntityTypeMapping TypeName="ZionDbModel.tblbuyerinformation">
+        <MappingFragment StoreEntitySet="tblbuyerinformation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+          <ScalarProperty Name="GuId" ColumnName="GuId" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="PaymentThrough" ColumnName="PaymentThrough" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="razorpay_payment_id" ColumnName="razorpay_payment_id" />
+          <ScalarProperty Name="razorpay_order_id" ColumnName="razorpay_order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcarts">
+      <EntityTypeMapping TypeName="ZionDbModel.tblcart">
+        <MappingFragment StoreEntitySet="tblcart">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcartitems">
+      <EntityTypeMapping TypeName="ZionDbModel.tblcartitem">
+        <MappingFragment StoreEntitySet="tblcartitem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CartId" ColumnName="CartId" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="SelectedType" ColumnName="SelectedType" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemAmount" ColumnName="ItemAmount" />
+          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcategories">
+      <EntityTypeMapping TypeName="ZionDbModel.tblcategory">
+        <MappingFragment StoreEntitySet="tblcategory">
+          <ScalarProperty Name="pkCategoryID" ColumnName="pkCategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+          <ScalarProperty Name="PageHeading" ColumnName="PageHeading" />
+          <ScalarProperty Name="DomainId" ColumnName="DomainId" />
+          <ScalarProperty Name="SEOPageName" ColumnName="SEOPageName" />
+          <ScalarProperty Name="LinkTitle" ColumnName="LinkTitle" />
+          <ScalarProperty Name="TopDescription" ColumnName="TopDescription" />
+          <ScalarProperty Name="BottomDescription" ColumnName="BottomDescription" />
+          <ScalarProperty Name="HomePageDescription" ColumnName="HomePageDescription" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="SEOContentHeader" ColumnName="SEOContentHeader" />
+          <ScalarProperty Name="SEOFooter" ColumnName="SEOFooter" />
+          <ScalarProperty Name="HomePageImagePath" ColumnName="HomePageImagePath" />
+          <ScalarProperty Name="HomePageImageAltAttribute" ColumnName="HomePageImageAltAttribute" />
+          <ScalarProperty Name="MainPageImagePath" ColumnName="MainPageImagePath" />
+          <ScalarProperty Name="MainPageImageAltAttribute" ColumnName="MainPageImageAltAttribute" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CategoryUrl" ColumnName="CategoryUrl" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcolumns">
+      <EntityTypeMapping TypeName="ZionDbModel.tblcolumn">
+        <MappingFragment StoreEntitySet="tblcolumn">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+          <ScalarProperty Name="ColumnType" ColumnName="ColumnType" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcolumnvalues">
+      <EntityTypeMapping TypeName="ZionDbModel.tblcolumnvalue">
+        <MappingFragment StoreEntitySet="tblcolumnvalue">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ColumnID" ColumnName="ColumnID" />
+          <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcontinents">
+      <EntityTypeMapping TypeName="ZionDbModel.tblcontinent">
+        <MappingFragment StoreEntitySet="tblcontinents">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcountries">
+      <EntityTypeMapping TypeName="ZionDbModel.tblcountry">
+        <MappingFragment StoreEntitySet="tblcountries">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="iso3" ColumnName="iso3" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="continent_code" ColumnName="continent_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcountries1">
+      <EntityTypeMapping TypeName="ZionDbModel.tblcountry1">
+        <MappingFragment StoreEntitySet="tblcountry">
+          <ScalarProperty Name="lang" ColumnName="lang" />
+          <ScalarProperty Name="lang_name" ColumnName="lang_name" />
+          <ScalarProperty Name="country_alpha2_code" ColumnName="country_alpha2_code" />
+          <ScalarProperty Name="country_alpha3_code" ColumnName="country_alpha3_code" />
+          <ScalarProperty Name="country_numeric_code" ColumnName="country_numeric_code" />
+          <ScalarProperty Name="country_name" ColumnName="country_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbldomains">
+      <EntityTypeMapping TypeName="ZionDbModel.tbldomain">
+        <MappingFragment StoreEntitySet="tbldomain">
+          <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblfeedbacks">
+      <EntityTypeMapping TypeName="ZionDbModel.tblfeedback">
+        <MappingFragment StoreEntitySet="tblfeedback">
+          <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="FeedbackDateTime" ColumnName="FeedbackDateTime" />
+          <ScalarProperty Name="FeedbackFor" ColumnName="FeedbackFor" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblforms">
+      <EntityTypeMapping TypeName="ZionDbModel.tblform">
+        <MappingFragment StoreEntitySet="tblforms">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FormName" ColumnName="FormName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblinquiries">
+      <EntityTypeMapping TypeName="ZionDbModel.tblinquiry">
+        <MappingFragment StoreEntitySet="tblinquiry">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="DateOfInquiry" ColumnName="DateOfInquiry" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="IsMailSentToAdmin" ColumnName="IsMailSentToAdmin" />
+          <ScalarProperty Name="IsMailSentToUser" ColumnName="IsMailSentToUser" />
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblipaddresses">
+      <EntityTypeMapping TypeName="ZionDbModel.tblipaddress">
+        <MappingFragment StoreEntitySet="tblipaddress">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbljobapplications">
+      <EntityTypeMapping TypeName="ZionDbModel.tbljobapplication">
+        <MappingFragment StoreEntitySet="tbljobapplication">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="DateOfApplication" ColumnName="DateOfApplication" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbljobvacancies">
+      <EntityTypeMapping TypeName="ZionDbModel.tbljobvacancy">
+        <MappingFragment StoreEntitySet="tbljobvacancy">
+          <ScalarProperty Name="VacancyId" ColumnName="VacancyId" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="NumberOfVacancies" ColumnName="NumberOfVacancies" />
+          <ScalarProperty Name="InterviewDate" ColumnName="InterviewDate" />
+          <ScalarProperty Name="Displaydate" ColumnName="Displaydate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreadtedDate" ColumnName="CreadtedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="MinYearExperience" ColumnName="MinYearExperience" />
+          <ScalarProperty Name="MaxYearExperience" ColumnName="MaxYearExperience" />
+          <ScalarProperty Name="CanFresherApply" ColumnName="CanFresherApply" />
+          <ScalarProperty Name="InterviewDateTo" ColumnName="InterviewDateTo" />
+          <ScalarProperty Name="InterviewTime" ColumnName="InterviewTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblkeys">
+      <EntityTypeMapping TypeName="ZionDbModel.tblkey">
+        <MappingFragment StoreEntitySet="tblkey">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="GeneratedOn" ColumnName="GeneratedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UrlKey" ColumnName="UrlKey" />
+          <ScalarProperty Name="TempIPAddress" ColumnName="TempIPAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblmails">
+      <EntityTypeMapping TypeName="ZionDbModel.tblmail">
+        <MappingFragment StoreEntitySet="tblmail">
+          <ScalarProperty Name="SendingType" ColumnName="SendingType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblnews">
+      <EntityTypeMapping TypeName="ZionDbModel.tblnew">
+        <MappingFragment StoreEntitySet="tblnews">
+          <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+          <ScalarProperty Name="News" ColumnName="News" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="NewsTitle" ColumnName="NewsTitle" />
+          <ScalarProperty Name="NewsUrl" ColumnName="NewsUrl" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="SearchPageDescription" ColumnName="SearchPageDescription" />
+          <ScalarProperty Name="MainPageImagePath" ColumnName="MainPageImagePath" />
+          <ScalarProperty Name="SearchPageImagePath" ColumnName="SearchPageImagePath" />
+          <ScalarProperty Name="MainPageImageAltAttribute" ColumnName="MainPageImageAltAttribute" />
+          <ScalarProperty Name="SearchPageImageAltAttribute" ColumnName="SearchPageImageAltAttribute" />
+          <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+          <ScalarProperty Name="PublishedBy" ColumnName="PublishedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+          <ScalarProperty Name="IsArticle" ColumnName="IsArticle" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblpayerinformations">
+      <EntityTypeMapping TypeName="ZionDbModel.tblpayerinformation">
+        <MappingFragment StoreEntitySet="tblpayerinformation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PayerId" ColumnName="PayerId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblpaymentlinks">
+      <EntityTypeMapping TypeName="ZionDbModel.tblpaymentlink">
+        <MappingFragment StoreEntitySet="tblpaymentlink">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+          <ScalarProperty Name="SingleUserPrice" ColumnName="SingleUserPrice" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PaymentLink" ColumnName="PaymentLink" />
+          <ScalarProperty Name="MultiUserPrice" ColumnName="MultiUserPrice" />
+          <ScalarProperty Name="CorporateUserPrice" ColumnName="CorporateUserPrice" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblpublishers">
+      <EntityTypeMapping TypeName="ZionDbModel.tblpublisher">
+        <MappingFragment StoreEntitySet="tblpublisher">
+          <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="PublisherWebsite" ColumnName="PublisherWebsite" />
+          <ScalarProperty Name="PublisherUrl" ColumnName="PublisherUrl" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblredirections">
+      <EntityTypeMapping TypeName="ZionDbModel.tblredirection">
+        <MappingFragment StoreEntitySet="tblredirection">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OldUrl" ColumnName="OldUrl" />
+          <ScalarProperty Name="NewUrl" ColumnName="NewUrl" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblregisters">
+      <EntityTypeMapping TypeName="ZionDbModel.tblregister">
+        <MappingFragment StoreEntitySet="tblregister">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Industry" ColumnName="Industry" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="LoginBy" ColumnName="LoginBy" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblreportattributes">
+      <EntityTypeMapping TypeName="ZionDbModel.tblreportattribute">
+        <MappingFragment StoreEntitySet="tblreportattribute">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblreportfaqs">
+      <EntityTypeMapping TypeName="ZionDbModel.tblreportfaq">
+        <MappingFragment StoreEntitySet="tblreportfaq">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblreportinformations">
+      <EntityTypeMapping TypeName="ZionDbModel.tblreportinformation">
+        <MappingFragment StoreEntitySet="tblreportinformation">
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="TableofContents" ColumnName="TableofContents" />
+          <ScalarProperty Name="ListOfTable" ColumnName="ListOfTable" />
+          <ScalarProperty Name="ListOfFigure" ColumnName="ListOfFigure" />
+          <ScalarProperty Name="MainPageDescription" ColumnName="MainPageDescription" />
+          <ScalarProperty Name="SearchPageDescription" ColumnName="SearchPageDescription" />
+          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="PriceSingleUser" ColumnName="PriceSingleUser" />
+          <ScalarProperty Name="PriceEnterpriseLicense" ColumnName="PriceEnterpriseLicense" />
+          <ScalarProperty Name="PriceCUL" ColumnName="PriceCUL" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="NumberOfPage" ColumnName="NumberOfPage" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+          <ScalarProperty Name="DeliveryFormat" ColumnName="DeliveryFormat" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ReportUrl" ColumnName="ReportUrl" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="ListOfCharts" ColumnName="ListOfCharts" />
+          <ScalarProperty Name="IsUpComing" ColumnName="IsUpComing" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="Methodology" ColumnName="Methodology" />
+          <ScalarProperty Name="CategoryBreadCrumb" ColumnName="CategoryBreadCrumb" />
+          <ScalarProperty Name="FreeAnalysis" ColumnName="FreeAnalysis" />
+          <ScalarProperty Name="MainPageImagePath" ColumnName="MainPageImagePath" />
+          <ScalarProperty Name="SearchPageImagePath" ColumnName="SearchPageImagePath" />
+          <ScalarProperty Name="MainPageImageAltAttribute" ColumnName="MainPageImageAltAttribute" />
+          <ScalarProperty Name="SearchPageImageAltAttribute" ColumnName="SearchPageImageAltAttribute" />
+          <ScalarProperty Name="Tags" ColumnName="Tags" />
+          <ScalarProperty Name="MetaTitleSample" ColumnName="MetaTitleSample" />
+          <ScalarProperty Name="MetaDescriptionSample" ColumnName="MetaDescriptionSample" />
+          <ScalarProperty Name="MetaKeywordsSample" ColumnName="MetaKeywordsSample" />
+          <ScalarProperty Name="MetaTitleTOC" ColumnName="MetaTitleTOC" />
+          <ScalarProperty Name="MetaDescriptionTOC" ColumnName="MetaDescriptionTOC" />
+          <ScalarProperty Name="MetaKeywordsTOC" ColumnName="MetaKeywordsTOC" />
+          <ScalarProperty Name="MetaTitleFreeAnalysis" ColumnName="MetaTitleFreeAnalysis" />
+          <ScalarProperty Name="MetaDescriptionFreeAnalysis" ColumnName="MetaDescriptionFreeAnalysis" />
+          <ScalarProperty Name="MetaKeywordsFreeAnalysis" ColumnName="MetaKeywordsFreeAnalysis" />
+          <ScalarProperty Name="MetaTitleInquiry" ColumnName="MetaTitleInquiry" />
+          <ScalarProperty Name="MetaDescriptionInquiry" ColumnName="MetaDescriptionInquiry" />
+          <ScalarProperty Name="MetaKeywordsInquiry" ColumnName="MetaKeywordsInquiry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblreportscope_column">
+      <EntityTypeMapping TypeName="ZionDbModel.tblreportscope_column">
+        <MappingFragment StoreEntitySet="tblreportscope_column">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ColumnLabel" ColumnName="ColumnLabel" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblreportscope_table">
+      <EntityTypeMapping TypeName="ZionDbModel.tblreportscope_table">
+        <MappingFragment StoreEntitySet="tblreportscope_table">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ColumnID" ColumnName="ColumnID" />
+          <ScalarProperty Name="ColumnValue" ColumnName="ColumnValue" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblreporttypes">
+      <EntityTypeMapping TypeName="ZionDbModel.tblreporttype">
+        <MappingFragment StoreEntitySet="tblreporttype">
+          <ScalarProperty Name="ReportTypeID" ColumnName="ReportTypeID" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblreseller_reportinformation">
+      <EntityTypeMapping TypeName="ZionDbModel.tblreseller_reportinformation">
+        <MappingFragment StoreEntitySet="tblreseller_reportinformation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="MainPageDescription" ColumnName="MainPageDescription" />
+          <ScalarProperty Name="IsUpComing" ColumnName="IsUpComing" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblroles">
+      <EntityTypeMapping TypeName="ZionDbModel.tblrole">
+        <MappingFragment StoreEntitySet="tblroles">
+          <ScalarProperty Name="Roleid" ColumnName="Roleid" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblsearchhistories">
+      <EntityTypeMapping TypeName="ZionDbModel.tblsearchhistory">
+        <MappingFragment StoreEntitySet="tblsearchhistory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RegisterId" ColumnName="RegisterId" />
+          <ScalarProperty Name="SearchText" ColumnName="SearchText" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="SearchDate" ColumnName="SearchDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblsubscriptions">
+      <EntityTypeMapping TypeName="ZionDbModel.tblsubscription">
+        <MappingFragment StoreEntitySet="tblsubscription">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RegisterId" ColumnName="RegisterId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="SubscriptionDate" ColumnName="SubscriptionDate" />
+          <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbltags">
+      <EntityTypeMapping TypeName="ZionDbModel.tbltag">
+        <MappingFragment StoreEntitySet="tbltag">
+          <ScalarProperty Name="TagId" ColumnName="TagId" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+          <ScalarProperty Name="TagUrl" ColumnName="TagUrl" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="TagDescription" ColumnName="TagDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbluserroles">
+      <EntityTypeMapping TypeName="ZionDbModel.tbluserrole">
+        <MappingFragment StoreEntitySet="tbluserroles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblusers">
+      <EntityTypeMapping TypeName="ZionDbModel.tbluser">
+        <MappingFragment StoreEntitySet="tblusers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="IsRemote" ColumnName="IsRemote" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+          <ScalarProperty Name="RegisterIP" ColumnName="RegisterIP" />
+          <ScalarProperty Name="TempPermitIP" ColumnName="TempPermitIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblzioninnews">
+      <EntityTypeMapping TypeName="ZionDbModel.tblzioninnew">
+        <MappingFragment StoreEntitySet="tblzioninnews">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblzionmails">
+      <EntityTypeMapping TypeName="ZionDbModel.tblzionmail">
+        <MappingFragment StoreEntitySet="tblzionmail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+          <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="temptblreports3">
+      <EntityTypeMapping TypeName="ZionDbModel.temptblreports3">
+        <MappingFragment StoreEntitySet="temptblreports3">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblvisitors">
+      <EntityTypeMapping TypeName="ZionDbModel.tblvisitor">
+        <MappingFragment StoreEntitySet="tblvisitors">
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+          <ScalarProperty Name="DateNTime" ColumnName="DateNTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Zion_AddCategory" FunctionName="ZionDbModel.Store.Zion_AddCategory" />
+    <FunctionImportMapping FunctionImportName="Zion_AddNews" FunctionName="ZionDbModel.Store.Zion_AddNews" />
+    <FunctionImportMapping FunctionImportName="Zion_AddPaymentLink" FunctionName="ZionDbModel.Store.Zion_AddPaymentLink">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_AddPaymentLink_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_AddRedirectUrl" FunctionName="ZionDbModel.Store.Zion_AddRedirectUrl" />
+    <FunctionImportMapping FunctionImportName="Zion_AddRole" FunctionName="ZionDbModel.Store.Zion_AddRole" />
+    <FunctionImportMapping FunctionImportName="Zion_AddUser" FunctionName="ZionDbModel.Store.Zion_AddUser" />
+    <FunctionImportMapping FunctionImportName="Zion_AddUserRole" FunctionName="ZionDbModel.Store.Zion_AddUserRole" />
+    <FunctionImportMapping FunctionImportName="Zion_GetAllCountry" FunctionName="ZionDbModel.Store.Zion_GetAllCountry">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_GetAllCountry_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_GetAllFeaturedReports" FunctionName="ZionDbModel.Store.Zion_GetAllFeaturedReports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_GetAllFeaturedReports_Result">
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="ReportUrl" ColumnName="ReportUrl" />
+          <ScalarProperty Name="MainPageDescription" ColumnName="MainPageDescription" />
+          <ScalarProperty Name="SingleUser" ColumnName="SingleUser" />
+          <ScalarProperty Name="NumberOfPage" ColumnName="NumberOfPage" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="DeliveryFormat" ColumnName="DeliveryFormat" />
+          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_GetAllPublishedReports" FunctionName="ZionDbModel.Store.Zion_GetAllPublishedReports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_GetAllPublishedReports_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_GetAllUpcomingReports" FunctionName="ZionDbModel.Store.Zion_GetAllUpcomingReports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_GetAllUpcomingReports_Result">
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="ReportUrl" ColumnName="ReportUrl" />
+          <ScalarProperty Name="MainPageDescription" ColumnName="MainPageDescription" />
+          <ScalarProperty Name="SingleUser" ColumnName="SingleUser" />
+          <ScalarProperty Name="NumberOfPage" ColumnName="NumberOfPage" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="DeliveryFormat" ColumnName="DeliveryFormat" />
+          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="IsUpcoming" ColumnName="IsUpcoming" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_GetCategoryWithReportCount" FunctionName="ZionDbModel.Store.Zion_GetCategoryWithReportCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_GetCategoryWithReportCount_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_GetReportById" FunctionName="ZionDbModel.Store.Zion_GetReportById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_GetReportById_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_GetReportByUrl" FunctionName="ZionDbModel.Store.Zion_GetReportByUrl">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_GetReportByUrl_Result">
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="ReportUrl" ColumnName="ReportUrl" />
+          <ScalarProperty Name="MainPageDescription" ColumnName="MainPageDescription" />
+          <ScalarProperty Name="MainPageImagePath" ColumnName="MainPageImagePath" />
+          <ScalarProperty Name="MainPageImageAltAttribute" ColumnName="MainPageImageAltAttribute" />
+          <ScalarProperty Name="SingleUser" ColumnName="SingleUser" />
+          <ScalarProperty Name="MultiUser" ColumnName="MultiUser" />
+          <ScalarProperty Name="CorporateUser" ColumnName="CorporateUser" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="TableOfContents" ColumnName="TableOfContents" />
+          <ScalarProperty Name="FreeAnalysis" ColumnName="FreeAnalysis" />
+          <ScalarProperty Name="Methodology" ColumnName="Methodology" />
+          <ScalarProperty Name="ListOfFigure" ColumnName="ListOfFigure" />
+          <ScalarProperty Name="ListOfTable" ColumnName="ListOfTable" />
+          <ScalarProperty Name="MetaTitleSample" ColumnName="MetaTitleSample" />
+          <ScalarProperty Name="NumberOfPage" ColumnName="NumberOfPage" />
+          <ScalarProperty Name="DeliveryFormat" ColumnName="DeliveryFormat" />
+          <ScalarProperty Name="IsUpcoming" ColumnName="IsUpcoming" />
+          <ScalarProperty Name="RelatedNews" ColumnName="RelatedNews" />
+          <ScalarProperty Name="MetaDescriptionSample" ColumnName="MetaDescriptionSample" />
+          <ScalarProperty Name="MetaKeywordsSample" ColumnName="MetaKeywordsSample" />
+          <ScalarProperty Name="MetaTitleTOC" ColumnName="MetaTitleTOC" />
+          <ScalarProperty Name="MetaDescriptionTOC" ColumnName="MetaDescriptionTOC" />
+          <ScalarProperty Name="MetaKeywordsTOC" ColumnName="MetaKeywordsTOC" />
+          <ScalarProperty Name="MetaTitleFreeAnalysis" ColumnName="MetaTitleFreeAnalysis" />
+          <ScalarProperty Name="MetaDescriptionFreeAnalysis" ColumnName="MetaDescriptionFreeAnalysis" />
+          <ScalarProperty Name="MetaKeywordsFreeAnalysis" ColumnName="MetaKeywordsFreeAnalysis" />
+          <ScalarProperty Name="MetaTitleInquiry" ColumnName="MetaTitleInquiry" />
+          <ScalarProperty Name="MetaDescriptionInquiry" ColumnName="MetaDescriptionInquiry" />
+          <ScalarProperty Name="MetaKeywordsInquiry" ColumnName="MetaKeywordsInquiry" />
+          <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+          <ScalarProperty Name="CRMCategory" ColumnName="CRMCategory" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_GetZionInNewsLinks" FunctionName="ZionDbModel.Store.Zion_GetZionInNewsLinks">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_GetZionInNewsLinks_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_SearchReport" FunctionName="ZionDbModel.Store.Zion_SearchReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_SearchReport_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_SplitToInt" FunctionName="ZionDbModel.Store.Zion_SplitToInt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ZionDbModel.Zion_SplitToInt_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Zion_UpdateCategory" FunctionName="ZionDbModel.Store.Zion_UpdateCategory" />
+    <FunctionImportMapping FunctionImportName="Zion_UpdateNews" FunctionName="ZionDbModel.Store.Zion_UpdateNews" />
+    <FunctionImportMapping FunctionImportName="Zion_UpdatePaymentLInk" FunctionName="ZionDbModel.Store.Zion_UpdatePaymentLInk" />
+    <FunctionImportMapping FunctionImportName="Zion_UpdateRedrectUrl" FunctionName="ZionDbModel.Store.Zion_UpdateRedrectUrl" />
+    <FunctionImportMapping FunctionImportName="Zion_UpdateReportInformation" FunctionName="ZionDbModel.Store.Zion_UpdateReportInformation" />
+    <FunctionImportMapping FunctionImportName="Zion_UpdateRole" FunctionName="ZionDbModel.Store.Zion_UpdateRole" />
+    <FunctionImportMapping FunctionImportName="Zion_UpdateUser" FunctionName="ZionDbModel.Store.Zion_UpdateUser" />
+    <FunctionImportMapping FunctionImportName="Zion_AddReportinformation" FunctionName="ZionDbModel.Store.Zion_AddReportinformation" />
+  </EntityContainerMapping>
+</Mapping>

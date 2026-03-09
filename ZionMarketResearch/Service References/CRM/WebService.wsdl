@@ -1,0 +1,1277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateWithDomainName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReportID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportTitle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="InquiryTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="_DomainID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DomainName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LeadCategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LeadSourceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NameOfCompany" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Designation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PublisherName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateWithDomainNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertUpdateWithDomainNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReportID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportTitle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="InquiryTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DomainID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LeadCategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LeadSourceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NameOfCompany" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Designation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PublisherName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PublisherID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertUpdateKeyResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateKey_CatName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReportID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportTitle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="InquiryTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DomainID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LeadCategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LeadSourceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NameOfCompany" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Designation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PublisherName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PublisherID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateKey_CatNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertUpdateKey_CatNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateKeyLostLeads">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AgentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReportID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportTitle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="InquiryTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DomainID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LeadCategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LeadSourceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NameOfCompany" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Designation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PublisherName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PublisherID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreatedBy" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreatedDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateKeyLostLeadsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertUpdateKeyLostLeadsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Mode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeads">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Mode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeadsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLeadsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateAgentMachineInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AgentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MACID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CPUInformation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoginUser" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUpdateAgentMachineInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertUpdateAgentMachineInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgentMachineInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AgentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MACID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CPUInformation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoginUser" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgentMachineInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAgentMachineInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Mode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAgentResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Test">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="int" type="s:int" />
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateWithDomainNameSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUpdateWithDomainName" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateWithDomainNameSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUpdateWithDomainNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeySoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUpdateKey" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeySoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUpdateKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKey_CatNameSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUpdateKey_CatName" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKey_CatNameSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUpdateKey_CatNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyLostLeadsSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUpdateKeyLostLeads" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyLostLeadsSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUpdateKeyLostLeadsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSoapIn">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="GetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLeadsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLeads" />
+  </wsdl:message>
+  <wsdl:message name="GetLeadsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLeadsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateAgentMachineInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUpdateAgentMachineInfo" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateAgentMachineInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUpdateAgentMachineInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentMachineInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAgentMachineInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentMachineInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAgentMachineInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAgent" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestSoapIn">
+    <wsdl:part name="parameters" element="tns:Test" />
+  </wsdl:message>
+  <wsdl:message name="TestSoapOut">
+    <wsdl:part name="parameters" element="tns:TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetIn" />
+  <wsdl:message name="HelloWorldHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateWithDomainNameHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="ReportID" type="s:string" />
+    <wsdl:part name="ReportTitle" type="s:string" />
+    <wsdl:part name="InquiryTypeID" type="s:string" />
+    <wsdl:part name="_DomainID" type="s:string" />
+    <wsdl:part name="DomainName" type="s:string" />
+    <wsdl:part name="LeadCategoryID" type="s:string" />
+    <wsdl:part name="LeadSourceID" type="s:string" />
+    <wsdl:part name="SourceURL" type="s:string" />
+    <wsdl:part name="IPAddress" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="EmailID" type="s:string" />
+    <wsdl:part name="ContactNo" type="s:string" />
+    <wsdl:part name="NameOfCompany" type="s:string" />
+    <wsdl:part name="Designation" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="CountryName" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="TransactionID" type="s:string" />
+    <wsdl:part name="Token" type="s:string" />
+    <wsdl:part name="PublisherName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateWithDomainNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="ReportID" type="s:string" />
+    <wsdl:part name="ReportTitle" type="s:string" />
+    <wsdl:part name="InquiryTypeID" type="s:string" />
+    <wsdl:part name="DomainID" type="s:string" />
+    <wsdl:part name="LeadCategoryID" type="s:string" />
+    <wsdl:part name="LeadSourceID" type="s:string" />
+    <wsdl:part name="SourceURL" type="s:string" />
+    <wsdl:part name="IPAddress" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="EmailID" type="s:string" />
+    <wsdl:part name="ContactNo" type="s:string" />
+    <wsdl:part name="NameOfCompany" type="s:string" />
+    <wsdl:part name="Designation" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="CountryName" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="TransactionID" type="s:string" />
+    <wsdl:part name="Token" type="s:string" />
+    <wsdl:part name="PublisherName" type="s:string" />
+    <wsdl:part name="PublisherID" type="s:string" />
+    <wsdl:part name="Key" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKey_CatNameHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="ReportID" type="s:string" />
+    <wsdl:part name="ReportTitle" type="s:string" />
+    <wsdl:part name="InquiryTypeID" type="s:string" />
+    <wsdl:part name="DomainID" type="s:string" />
+    <wsdl:part name="LeadCategoryID" type="s:string" />
+    <wsdl:part name="LeadSourceID" type="s:string" />
+    <wsdl:part name="SourceURL" type="s:string" />
+    <wsdl:part name="IPAddress" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="EmailID" type="s:string" />
+    <wsdl:part name="ContactNo" type="s:string" />
+    <wsdl:part name="NameOfCompany" type="s:string" />
+    <wsdl:part name="Designation" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="CountryName" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="TransactionID" type="s:string" />
+    <wsdl:part name="Token" type="s:string" />
+    <wsdl:part name="PublisherName" type="s:string" />
+    <wsdl:part name="PublisherID" type="s:string" />
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="CategoryName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKey_CatNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyLostLeadsHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="AgentID" type="s:string" />
+    <wsdl:part name="ReportID" type="s:string" />
+    <wsdl:part name="ReportTitle" type="s:string" />
+    <wsdl:part name="InquiryTypeID" type="s:string" />
+    <wsdl:part name="DomainID" type="s:string" />
+    <wsdl:part name="LeadCategoryID" type="s:string" />
+    <wsdl:part name="LeadSourceID" type="s:string" />
+    <wsdl:part name="SourceURL" type="s:string" />
+    <wsdl:part name="IPAddress" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="EmailID" type="s:string" />
+    <wsdl:part name="ContactNo" type="s:string" />
+    <wsdl:part name="NameOfCompany" type="s:string" />
+    <wsdl:part name="Designation" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="CountryName" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+    <wsdl:part name="PublisherName" type="s:string" />
+    <wsdl:part name="PublisherID" type="s:string" />
+    <wsdl:part name="CreatedBy" type="s:string" />
+    <wsdl:part name="CreatedDate" type="s:string" />
+    <wsdl:part name="Key" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyLostLeadsHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetHttpGetIn">
+    <wsdl:part name="Mode" type="s:string" />
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetLeadsHttpGetIn">
+    <wsdl:part name="Mode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLeadsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateAgentMachineInfoHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="AgentID" type="s:string" />
+    <wsdl:part name="MACID" type="s:string" />
+    <wsdl:part name="CPUInformation" type="s:string" />
+    <wsdl:part name="LoginUser" type="s:string" />
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateAgentMachineInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentMachineInfoHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="AgentID" type="s:string" />
+    <wsdl:part name="MACID" type="s:string" />
+    <wsdl:part name="CPUInformation" type="s:string" />
+    <wsdl:part name="LoginUser" type="s:string" />
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentMachineInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentHttpGetIn">
+    <wsdl:part name="Mode" type="s:string" />
+    <wsdl:part name="LoginName" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="TestHttpGetIn" />
+  <wsdl:message name="TestHttpGetOut" />
+  <wsdl:message name="HelloWorldHttpPostIn" />
+  <wsdl:message name="HelloWorldHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateWithDomainNameHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="ReportID" type="s:string" />
+    <wsdl:part name="ReportTitle" type="s:string" />
+    <wsdl:part name="InquiryTypeID" type="s:string" />
+    <wsdl:part name="_DomainID" type="s:string" />
+    <wsdl:part name="DomainName" type="s:string" />
+    <wsdl:part name="LeadCategoryID" type="s:string" />
+    <wsdl:part name="LeadSourceID" type="s:string" />
+    <wsdl:part name="SourceURL" type="s:string" />
+    <wsdl:part name="IPAddress" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="EmailID" type="s:string" />
+    <wsdl:part name="ContactNo" type="s:string" />
+    <wsdl:part name="NameOfCompany" type="s:string" />
+    <wsdl:part name="Designation" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="CountryName" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="TransactionID" type="s:string" />
+    <wsdl:part name="Token" type="s:string" />
+    <wsdl:part name="PublisherName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateWithDomainNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="ReportID" type="s:string" />
+    <wsdl:part name="ReportTitle" type="s:string" />
+    <wsdl:part name="InquiryTypeID" type="s:string" />
+    <wsdl:part name="DomainID" type="s:string" />
+    <wsdl:part name="LeadCategoryID" type="s:string" />
+    <wsdl:part name="LeadSourceID" type="s:string" />
+    <wsdl:part name="SourceURL" type="s:string" />
+    <wsdl:part name="IPAddress" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="EmailID" type="s:string" />
+    <wsdl:part name="ContactNo" type="s:string" />
+    <wsdl:part name="NameOfCompany" type="s:string" />
+    <wsdl:part name="Designation" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="CountryName" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="TransactionID" type="s:string" />
+    <wsdl:part name="Token" type="s:string" />
+    <wsdl:part name="PublisherName" type="s:string" />
+    <wsdl:part name="PublisherID" type="s:string" />
+    <wsdl:part name="Key" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKey_CatNameHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="ReportID" type="s:string" />
+    <wsdl:part name="ReportTitle" type="s:string" />
+    <wsdl:part name="InquiryTypeID" type="s:string" />
+    <wsdl:part name="DomainID" type="s:string" />
+    <wsdl:part name="LeadCategoryID" type="s:string" />
+    <wsdl:part name="LeadSourceID" type="s:string" />
+    <wsdl:part name="SourceURL" type="s:string" />
+    <wsdl:part name="IPAddress" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="EmailID" type="s:string" />
+    <wsdl:part name="ContactNo" type="s:string" />
+    <wsdl:part name="NameOfCompany" type="s:string" />
+    <wsdl:part name="Designation" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="CountryName" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="TransactionID" type="s:string" />
+    <wsdl:part name="Token" type="s:string" />
+    <wsdl:part name="PublisherName" type="s:string" />
+    <wsdl:part name="PublisherID" type="s:string" />
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="CategoryName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKey_CatNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyLostLeadsHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="AgentID" type="s:string" />
+    <wsdl:part name="ReportID" type="s:string" />
+    <wsdl:part name="ReportTitle" type="s:string" />
+    <wsdl:part name="InquiryTypeID" type="s:string" />
+    <wsdl:part name="DomainID" type="s:string" />
+    <wsdl:part name="LeadCategoryID" type="s:string" />
+    <wsdl:part name="LeadSourceID" type="s:string" />
+    <wsdl:part name="SourceURL" type="s:string" />
+    <wsdl:part name="IPAddress" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="EmailID" type="s:string" />
+    <wsdl:part name="ContactNo" type="s:string" />
+    <wsdl:part name="NameOfCompany" type="s:string" />
+    <wsdl:part name="Designation" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="CountryName" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+    <wsdl:part name="PublisherName" type="s:string" />
+    <wsdl:part name="PublisherID" type="s:string" />
+    <wsdl:part name="CreatedBy" type="s:string" />
+    <wsdl:part name="CreatedDate" type="s:string" />
+    <wsdl:part name="Key" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateKeyLostLeadsHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetHttpPostIn">
+    <wsdl:part name="Mode" type="s:string" />
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetLeadsHttpPostIn">
+    <wsdl:part name="Mode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLeadsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateAgentMachineInfoHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="AgentID" type="s:string" />
+    <wsdl:part name="MACID" type="s:string" />
+    <wsdl:part name="CPUInformation" type="s:string" />
+    <wsdl:part name="LoginUser" type="s:string" />
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUpdateAgentMachineInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentMachineInfoHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="AgentID" type="s:string" />
+    <wsdl:part name="MACID" type="s:string" />
+    <wsdl:part name="CPUInformation" type="s:string" />
+    <wsdl:part name="LoginUser" type="s:string" />
+    <wsdl:part name="UserID" type="s:string" />
+    <wsdl:part name="IsActive" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentMachineInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentHttpPostIn">
+    <wsdl:part name="Mode" type="s:string" />
+    <wsdl:part name="LoginName" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="TestHttpPostIn" />
+  <wsdl:message name="TestHttpPostOut" />
+  <wsdl:portType name="WebServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateWithDomainName">
+      <wsdl:input message="tns:InsertUpdateWithDomainNameSoapIn" />
+      <wsdl:output message="tns:InsertUpdateWithDomainNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey">
+      <wsdl:input message="tns:InsertUpdateKeySoapIn" />
+      <wsdl:output message="tns:InsertUpdateKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey_CatName">
+      <wsdl:input message="tns:InsertUpdateKey_CatNameSoapIn" />
+      <wsdl:output message="tns:InsertUpdateKey_CatNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKeyLostLeads">
+      <wsdl:input message="tns:InsertUpdateKeyLostLeadsSoapIn" />
+      <wsdl:output message="tns:InsertUpdateKeyLostLeadsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input message="tns:GetSoapIn" />
+      <wsdl:output message="tns:GetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeads">
+      <wsdl:input message="tns:GetLeadsSoapIn" />
+      <wsdl:output message="tns:GetLeadsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateAgentMachineInfo">
+      <wsdl:input message="tns:InsertUpdateAgentMachineInfoSoapIn" />
+      <wsdl:output message="tns:InsertUpdateAgentMachineInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentMachineInfo">
+      <wsdl:input message="tns:GetAgentMachineInfoSoapIn" />
+      <wsdl:output message="tns:GetAgentMachineInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <wsdl:input message="tns:GetAgentSoapIn" />
+      <wsdl:output message="tns:GetAgentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <wsdl:input message="tns:TestSoapIn" />
+      <wsdl:output message="tns:TestSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebServiceHttpGet">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpGetIn" />
+      <wsdl:output message="tns:HelloWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateWithDomainName">
+      <wsdl:input message="tns:InsertUpdateWithDomainNameHttpGetIn" />
+      <wsdl:output message="tns:InsertUpdateWithDomainNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey">
+      <wsdl:input message="tns:InsertUpdateKeyHttpGetIn" />
+      <wsdl:output message="tns:InsertUpdateKeyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey_CatName">
+      <wsdl:input message="tns:InsertUpdateKey_CatNameHttpGetIn" />
+      <wsdl:output message="tns:InsertUpdateKey_CatNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKeyLostLeads">
+      <wsdl:input message="tns:InsertUpdateKeyLostLeadsHttpGetIn" />
+      <wsdl:output message="tns:InsertUpdateKeyLostLeadsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input message="tns:GetHttpGetIn" />
+      <wsdl:output message="tns:GetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeads">
+      <wsdl:input message="tns:GetLeadsHttpGetIn" />
+      <wsdl:output message="tns:GetLeadsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateAgentMachineInfo">
+      <wsdl:input message="tns:InsertUpdateAgentMachineInfoHttpGetIn" />
+      <wsdl:output message="tns:InsertUpdateAgentMachineInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentMachineInfo">
+      <wsdl:input message="tns:GetAgentMachineInfoHttpGetIn" />
+      <wsdl:output message="tns:GetAgentMachineInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <wsdl:input message="tns:GetAgentHttpGetIn" />
+      <wsdl:output message="tns:GetAgentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <wsdl:input message="tns:TestHttpGetIn" />
+      <wsdl:output message="tns:TestHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebServiceHttpPost">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpPostIn" />
+      <wsdl:output message="tns:HelloWorldHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateWithDomainName">
+      <wsdl:input message="tns:InsertUpdateWithDomainNameHttpPostIn" />
+      <wsdl:output message="tns:InsertUpdateWithDomainNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey">
+      <wsdl:input message="tns:InsertUpdateKeyHttpPostIn" />
+      <wsdl:output message="tns:InsertUpdateKeyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey_CatName">
+      <wsdl:input message="tns:InsertUpdateKey_CatNameHttpPostIn" />
+      <wsdl:output message="tns:InsertUpdateKey_CatNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKeyLostLeads">
+      <wsdl:input message="tns:InsertUpdateKeyLostLeadsHttpPostIn" />
+      <wsdl:output message="tns:InsertUpdateKeyLostLeadsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input message="tns:GetHttpPostIn" />
+      <wsdl:output message="tns:GetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeads">
+      <wsdl:input message="tns:GetLeadsHttpPostIn" />
+      <wsdl:output message="tns:GetLeadsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateAgentMachineInfo">
+      <wsdl:input message="tns:InsertUpdateAgentMachineInfoHttpPostIn" />
+      <wsdl:output message="tns:InsertUpdateAgentMachineInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentMachineInfo">
+      <wsdl:input message="tns:GetAgentMachineInfoHttpPostIn" />
+      <wsdl:output message="tns:GetAgentMachineInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <wsdl:input message="tns:GetAgentHttpPostIn" />
+      <wsdl:output message="tns:GetAgentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <wsdl:input message="tns:TestHttpPostIn" />
+      <wsdl:output message="tns:TestHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateWithDomainName">
+      <soap:operation soapAction="http://tempuri.org/InsertUpdateWithDomainName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey">
+      <soap:operation soapAction="http://tempuri.org/InsertUpdateKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey_CatName">
+      <soap:operation soapAction="http://tempuri.org/InsertUpdateKey_CatName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKeyLostLeads">
+      <soap:operation soapAction="http://tempuri.org/InsertUpdateKeyLostLeads" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeads">
+      <soap:operation soapAction="http://tempuri.org/GetLeads" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateAgentMachineInfo">
+      <soap:operation soapAction="http://tempuri.org/InsertUpdateAgentMachineInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentMachineInfo">
+      <soap:operation soapAction="http://tempuri.org/GetAgentMachineInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <soap:operation soapAction="http://tempuri.org/GetAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <soap:operation soapAction="http://tempuri.org/Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateWithDomainName">
+      <soap12:operation soapAction="http://tempuri.org/InsertUpdateWithDomainName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey">
+      <soap12:operation soapAction="http://tempuri.org/InsertUpdateKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey_CatName">
+      <soap12:operation soapAction="http://tempuri.org/InsertUpdateKey_CatName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKeyLostLeads">
+      <soap12:operation soapAction="http://tempuri.org/InsertUpdateKeyLostLeads" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap12:operation soapAction="http://tempuri.org/Get" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeads">
+      <soap12:operation soapAction="http://tempuri.org/GetLeads" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateAgentMachineInfo">
+      <soap12:operation soapAction="http://tempuri.org/InsertUpdateAgentMachineInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentMachineInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetAgentMachineInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <soap12:operation soapAction="http://tempuri.org/GetAgent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <soap12:operation soapAction="http://tempuri.org/Test" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateWithDomainName">
+      <http:operation location="/InsertUpdateWithDomainName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey">
+      <http:operation location="/InsertUpdateKey" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey_CatName">
+      <http:operation location="/InsertUpdateKey_CatName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKeyLostLeads">
+      <http:operation location="/InsertUpdateKeyLostLeads" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <http:operation location="/Get" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeads">
+      <http:operation location="/GetLeads" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateAgentMachineInfo">
+      <http:operation location="/InsertUpdateAgentMachineInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentMachineInfo">
+      <http:operation location="/GetAgentMachineInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <http:operation location="/GetAgent" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <http:operation location="/Test" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceHttpPost" type="tns:WebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateWithDomainName">
+      <http:operation location="/InsertUpdateWithDomainName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey">
+      <http:operation location="/InsertUpdateKey" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKey_CatName">
+      <http:operation location="/InsertUpdateKey_CatName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateKeyLostLeads">
+      <http:operation location="/InsertUpdateKeyLostLeads" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <http:operation location="/Get" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeads">
+      <http:operation location="/GetLeads" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUpdateAgentMachineInfo">
+      <http:operation location="/InsertUpdateAgentMachineInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentMachineInfo">
+      <http:operation location="/GetAgentMachineInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <http:operation location="/GetAgent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <http:operation location="/Test" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService">
+    <wsdl:port name="WebServiceSoap" binding="tns:WebServiceSoap">
+      <soap:address location="http://www.crmforzion.com/WebService/WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceSoap12" binding="tns:WebServiceSoap12">
+      <soap12:address location="http://www.crmforzion.com/WebService/WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceHttpGet" binding="tns:WebServiceHttpGet">
+      <http:address location="http://www.crmforzion.com/WebService/WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceHttpPost" binding="tns:WebServiceHttpPost">
+      <http:address location="http://www.crmforzion.com/WebService/WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

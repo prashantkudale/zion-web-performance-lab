@@ -1,0 +1,34 @@
+﻿@model List<ZionMarketResearch.Models.JobApplication>
+@{
+    ViewBag.Title = "ListJobApplications";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Job Applications</h2>
+<a href="@Url.Action("Index", "JobVacancy")" class="btn btn-primary" style="margin-bottom: 10px;">Back</a>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th colspan="2">Resume</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model)
+                {
+                    <tr>
+                        <td>@r.Name</td>
+                        <td>@r.Email</td>
+                        <td>@r.Mobile</td>
+                        <td><a href="/jobapplications/@r.FilePath">Download</a></td>
+                        <td><a target="_blank" href="@Url.Action("ViewResume", "JobVacancy", new { resumePath = r.FilePath })">View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

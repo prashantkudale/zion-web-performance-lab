@@ -1,0 +1,207 @@
+﻿@model ZionMarketResearch.Models.BuynowRepository
+@{
+    ViewBag.Title = "Buy Now : " + Model.OrderSummary[0].ReportTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-8">
+        <h1 class="reporttitle">@Model.OrderSummary[0].ReportTitle</h1>
+        <div class="container" id="paymentgateway">
+
+            <div class="stepwizard col-md-offset-3">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                        <p class="tcenter">Personal</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                        <p class="tcenter">Address</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                        <p class="tcenter">Payment</p>
+                    </div>
+                </div>
+            </div>
+            <form role="form" action="/buynow/submit" method="post">
+                @Html.Hidden("r", ZionMarketResearch.Util.Utility.Encryptstring(Model.OrderSummary[0].ReportUrl))
+                @Html.Hidden("l", ZionMarketResearch.Util.Utility.Encryptstring(Model.OrderSummary[0].SelectedReportType.ToString()))
+                <div class="row setup-content" id="step-1">
+                    <div class="col-xs-8 col-md-offset-2">
+                        <div class="col-md-12">
+                            <h3> Personal Details</h3>
+                            <div class="form-group">
+                                <label class="control-label"> Name:</label>
+                                @Html.TextBoxFor(f => f.Name, new { Class = "form-control", placeholder = "Enter Name", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Email:</label>
+                                @Html.TextBoxFor(f => f.Email, new { Class = "form-control", placeholder = "Enter Email", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Contact Number:</label>
+                                @Html.TextBoxFor(f => f.ContactNumber, new { Class = "form-control", placeholder = "Enter Contact Number", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Company Name:</label>
+                                @Html.TextBoxFor(f => f.Company, new { Class = "form-control", placeholder = "Enter Company Name", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Title/Designation:</label>
+                                @Html.TextBoxFor(f => f.Title, new { Class = "form-control", placeholder = "Enter Title/Designation", required = "required" })
+                            </div>
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="step-2">
+                    <div class="col-xs-8 col-md-offset-2">
+                        <div class="col-md-12">
+                            <h3>Address Details</h3>
+                            <div class="form-group">
+                                <label class="control-label">Address:</label>
+                                @Html.TextAreaFor(f => f.Address, new { Class = "form-control", placeholder = "Enter your address", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">City:</label>
+                                @Html.TextBoxFor(f => f.City, new { Class = "form-control", placeholder = "Enter City", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">State:</label>
+                                @Html.TextBoxFor(f => f.State, new { Class = "form-control", placeholder = "Enter State", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Zip Code:</label>
+                                @Html.TextBoxFor(f => f.ZipCode, new { Class = "form-control", placeholder = "Enter Zip Code", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Country:</label>
+                                @Html.DropDownListFor(f => f.Country, ZionMarketResearch.Models.CountryRepository.GetCountry(), "-Select Country-", new { Class = "form-control" })
+                            </div>
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="step-3">
+                    <div class="col-xs-10 col-md-offset-2">
+                        <div class="col-md-12">
+                            <h3> Please Select Payment Method</h3>
+                            <div class="form-group" id="pmode">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <div class="alert alert-danger"><strong>HDFC payment gateway activated for testing only.</strong><br /> If you want to purchase report, please <strong>do not choose HDFC option</strong>.</div>
+                                    <label class="btn">
+                                        <img src="/images/HDFC_Payment.png" class="img-responsive">
+                                        @Html.RadioButtonFor(f => f.PaymentType, 3, new { id = "hdfc"}) HDFC
+                                    </label>
+                                    <label class="btn active">
+                                        <img src="/images/paypal.jpg" class="img-responsive">
+                                        @Html.RadioButtonFor(f => f.PaymentType, 0, new { id = "paypal", Checked = "checked" }) PayPal
+                                    </label>
+                                    <label class="btn ">
+                                        <img src="/images/2checkout.png" class="img-responsive">
+                                        @Html.RadioButtonFor(f => f.PaymentType, 1, new { id = "2checkout" }) 2 Checkout
+                                    </label>
+                                    <label class="btn">
+                                        <img src="/images/wire-transfer.png" class="img-responsive">
+                                        @Html.RadioButtonFor(f => f.PaymentType, 2, new { id = "wiretransfer" }) Wire Transfer
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">captcha:</label>
+                                <img src="/captcha" class="img-responsive img-thumbnail" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Enter captcha:</label>
+                                @Html.TextBoxFor(f => f.Captcha, new { Class = "form-control", required = "required" })
+                            </div>
+                            <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary" style=" border-color:#cccccc;">
+            <div class="panel-heading" style="background-color:#FF9900!important;"><strong>Order Summary</strong></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <strong>License Type:</strong>
+                        <form role="form" action="" method="post">
+                            <select class="form-control" style="font-weight:bold;font-size:15px;" onchange="jsChange(this,'@Model.OrderSummary[0].ReportUrl')">
+                                <option value="su" @(Model.OrderSummary[0].SelectedReportType == 0 ? "selected" : string.Empty)>Single User | $@Model.OrderSummary[0].SingleUser USD</option>
+                                <option value="mu" @(Model.OrderSummary[0].SelectedReportType == 1 ? "selected" : string.Empty)>Multiuser User | $@Model.OrderSummary[0].MultiUser USD</option>
+                                <option value="cu" @(Model.OrderSummary[0].SelectedReportType == 2 ? "selected" : string.Empty)>Corporate User | $@Model.OrderSummary[0].CorporateUser USD</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    @*<div class="col-sm-8" title="@Model.OrderSummary[0].ReportTitle">@(Model.OrderSummary[0].ReportTitle.Length > 100 ? Model.OrderSummary[0].ReportTitle.Substring(0, 100) + "..." : Model.OrderSummary[0].ReportTitle)</div>*@
+                    @*<div class="col-sm-4"><strong>$(USD)@(Model.OrderSummary[0].SelectedReportType == 0 ? Model.OrderSummary[0].SingleUser : Model.OrderSummary[0].SelectedReportType == 1 ? Model.OrderSummary[0].MultiUser : Model.OrderSummary[0].SelectedReportType == 2 ? Model.OrderSummary[0].CorporateUser : 0)</strong></div>*@
+                </div>
+            </div>
+            <div class="panel-body" style="background-color:#CCCCCC;"><strong>Total : $@(Model.OrderSummary[0].SelectedReportType == 0 ? Model.OrderSummary[0].SingleUser : Model.OrderSummary[0].SelectedReportType == 1 ? Model.OrderSummary[0].MultiUser : Model.OrderSummary[0].SelectedReportType == 2 ? Model.OrderSummary[0].CorporateUser : 0) USD</strong> </div>
+        </div>
+        @{ Html.RenderPartial("_contact"); }
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var navListItems = $('div.setup-panel div a'),
+                allWells = $('.setup-content'),
+                allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                    $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-primary').addClass('btn-default');
+                $item.addClass('btn-primary');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url'],textarea[textarea]"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel div a.btn-primary').trigger('click');
+    });
+    function jsChange(ctl, url) {
+        window.location = "/buynow/" + $(ctl).val() + "/" + url;
+    }
+</script>
+<style>
+    label.btn.active {
+        background-color: #286090;
+        border-radius: 5px !important;
+        color: white;
+    }
+</style>

@@ -1,0 +1,17 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.SearchResultView>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Search Result";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+<section id="report-title" class="report-title-image white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "Search - " + Request.Params["q"]); }
+        <div class="col-md-9 col-xs-12">
+            @{ Html.RenderPartial("~/Views/Report/_ReportList.cshtml", Model); }
+            @{ Html.RenderPartial("_TotalRecord", ViewData.Model); }
+            @Html.PagedListPager(Model, p => Url.Action("SimpleSearch", "Search", new { page = p, q = Request.QueryString["q"] }), new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+        </div>
+    </div>
+</section>

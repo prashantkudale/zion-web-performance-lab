@@ -1,0 +1,61 @@
+﻿<!--menu start-->
+<div class="menu">
+    <div class="navbar-wrapper">
+        <div class="container-fluid">
+            <!-- Navbar start -->
+            <div class="navwrapper">
+                <div class="navbar navbar-inverse navbar-static-top">
+                    <div class="container-fluid">
+                        <a href="/" style="text-decoration:none;border:none;">
+                            <div class="logo">
+                                <h1><img src="~/images/zion-market-research-logo.png" class="img-responsive saturate1" width="104px" height="56px" 
+                                         alt="Zion Market Research" title="Zion Market Research - Delivering Market Intelligence Reports, Business Consulting Services & Solutions" width="223" height="112" /></h1>
+                            </div>
+                        </a>
+                        <nav class="navArea">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav" id="navigation">
+                                    <li class="menuItem" id="home"><a href="/" rel="nofollow">Home</a></li>
+                                    <li class="menuItem"><a href="@Url.Action("Index", "Category")">Industries</a></li>
+                                    <li class="menuItem"><a href="@Url.Action("AllReports", "Report")">Latest Reports</a></li>
+                                    <li class="menuItem"><a href="@Url.Action("AllUpcoming", "Report", new { page = default(int?) })">Ongoing Reports</a></li>
+                                    <li class="menuItem"><a href="@Url.Action("AllNews", "News")">Press Release</a></li>
+                                    <li><a href="https://zmrblog.net">Blog</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Company <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("AboutUs", "Home")">About Us</a></li>
+                                            <li><a href="@Url.Action("ContactUs", "Home")">Contact</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Navbar end -->
+        </div>
+    </div>
+</div>
+<!--menu end-->
+
+<style>
+    #navigation > li.dropdown.open > ul > li > a{
+        color: #123456 !important;
+        font-weight: bold;
+    }
+
+    .navbar-inverse .navbar-nav > .open > a {
+        background-color: inherit !important;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        //Just avoiding js error
+        $(".dropdown-toggle").unbind('click');
+    });
+</script>

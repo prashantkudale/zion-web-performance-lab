@@ -1,0 +1,152 @@
+﻿@model ZionMarketResearch.Models.NewsDeatils
+@{
+    ViewBag.Title = !string.IsNullOrEmpty(Model.MetaTile) ? Model.MetaTile : Model.NewsTitle;
+    ViewBag.MetaDescription = !string.IsNullOrEmpty(Model.MetaDescription) ? Model.MetaDescription : Model.NewsTitle;
+    ViewBag.MetaKeywords = !string.IsNullOrEmpty(Model.MetaKeywords) ? Model.MetaKeywords : Model.NewsTitle;
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+
+<style>
+    #news_section {
+        padding-top: 10px;
+        background: #e7ecea;
+    }
+
+        #news_section h3,
+        .benefits-bg h3 {
+            color: #084f72;
+        }
+
+        #news_section .news_bg {
+            padding-top: 10px;
+            background: #ffffff;
+            margin-bottom: 20px;
+        }
+
+    div#news {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    #news ul li {
+        margin-left: 20px;
+    }
+
+    .sub_heading {
+        color: #23527c;
+        font-size: 17px !important;
+    }
+
+    #news_section a {
+        color: #0982ef !important;
+    }
+
+    #news_section h1.page_title {
+        font-size: 50px !important;
+    }
+
+    #news_section .newsButton img {
+        display: inline !important;
+        margin-right: 10px;
+    }
+
+    #news_section .imgButton {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 12px;
+    }
+
+    #news_section a.newsButton {
+        margin-right: 30px;
+        text-decoration: none;
+    }
+
+    #news_section .btn-hot {
+        color: #ffffff !important;
+        background-color: #db5566;
+        border-bottom: 2px solid #af4451;
+    }
+
+    #news_section .btn-buynow {
+        background-color: #F50057;
+        border-color: #F50057;
+        color: #ffffff !important;
+    }
+
+    #news_section .btn-primary {
+        color: #ffffff !important;
+    }
+
+    #news_section h3 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 22px !important;
+    }
+
+    #report-title {
+        padding-bottom: 0px !important;
+    }
+</style>
+
+
+
+<section id="report-title" class="white_section section_gap">
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", (Model.IsArticle ? "<a href='/all-articles'>Article</a>|" : "<a href='/all-news'>News</a>|") + Model.NewsTitle); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1 class="page_title"> @Model.NewsTitle</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="news_section">
+    <div class="container">
+        <div class="col-sm-12 news_bg">
+            <p><strong style="color:#23527c;"><i class="fa fa-calendar"></i> @Model.PublishedDate.Value.ToString("dd-MMM-yyyy") | Zion Market Research</strong></p>
+            <div id="news">
+                @Html.Raw(Model.Description)
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+<script>
+    $(document).ready(function () {
+        var reportDescImg = $("#news img");
+
+        $(reportDescImg).addClass("img-responsive");
+        $(reportDescImg).css("margin", "0 auto");
+    });
+</script>
+
+<script type="application/ld+json">
+    {
+    "@@context": "http://www.schema.org/",
+    "@@type": "@(Model.IsArticle ? "Article" : "NewsArticle")",
+    "name": "@Model.NewsTitle",
+    "headline":"@Model.NewsTitle",
+    "image":{"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png", "height": "200px", "width": "200px"},
+    "author":
+    {
+    "@@type": "Organization",
+    "logo": {"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png"},
+    "name": "Zion Market Research"
+    },
+    "publisher":
+    {
+    "@@type": "Organization",
+    "name": "Zion Market Research",
+    "logo": {"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png"}
+    },
+    "articleBody": "@Html.Raw(Model.Description.Substring(0, Model.Description.IndexOf("</p>")).Replace("<p>", string.Empty).Replace("</p>", string.Empty).Replace("\"", "'"))",
+    "datePublished": "@Model.PublishedDate.Value.ToString("yyyyMMdd")",
+    "url": "https://zionmarketresearchstore.com/@(Model.IsArticle ? "article" : "news")/@Model.NewsUrl",
+    "dateModified": "@Model.PublishedDate.Value.ToString("yyyyMMdd")",
+    "mainEntityOfPage":"https://www.zionmarketresearch.com/news/@Model.NewsUrl"
+    }
+</script>

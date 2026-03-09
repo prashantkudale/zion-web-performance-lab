@@ -1,0 +1,91 @@
+﻿@model ZionMarketResearch.Models.CategoryReport
+@using PagedList.Mvc
+@{ ViewBag.Title = Model.MetaTitle;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    Layout = "~/Views/Shared/_LayoutOneCss.cshtml"; }
+<link rel="stylesheet" href="~/Content/css/industry_css.css" type="text/css" />
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "<a href=" + Url.Action("Index", "Category") + ">Category</a>" + "|" + Model.Category); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>@Model.Category, Market Research Reports</h1>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+            <div class="category-description">
+                <section class="minimise" style="">
+                    @Html.Raw(Model.Description)
+
+                </section>
+                <p><a onclick="readMore(this)" style="cursor: pointer;">Read More</a></p>
+            </div>}
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid">
+        <div class="col-md-9 col-sm-12">
+            <div>
+                @{ Html.RenderPartial("~/Views/Category/ReportTab.cshtml", Model); }
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div>
+                <h3 class="sidebar-title">Category Archive</h3>
+                @{Html.RenderAction("GetCategoryWithReportCount", "Category");}
+                @*<h3 class="sidebar-title">Upcoming Reports</h3>
+                @{ Html.RenderAction("LatestUpcomingReports", "Report", new { Count = 10 }); }
+                <h3 class="sidebar-title">Latest Reports</h3>
+                @{ Html.RenderAction("LatestReport", "Report", new { Count = 10 }); }*@
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    .category-description {
+        backdrop-filter: blur(10px);
+    }
+
+        .category-description p {
+            color: #000;
+            font-size: 18px !important;
+            padding: 15px 0;
+            text-align: justify;
+        }
+        .category-description h3 {
+            margin-bottom:0px;
+        }
+            .category-description ul li{
+            color: #000;
+            font-size:18px !important;
+        }
+
+    .minimise {
+        height: 130px;
+        overflow: hidden;
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .minimise {
+            height: 100px;
+        }
+    }
+
+    .maximise {
+        height: auto;
+    }
+
+</style>
+<script>
+    var isMaximise = false;
+
+    function readMore(ctl) {
+        $("section.minimise").toggleClass('maximise', 900, 'slide');
+        isMaximise = !isMaximise;
+        $(ctl).remove();
+    }</script>

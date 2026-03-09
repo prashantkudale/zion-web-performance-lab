@@ -1,0 +1,62 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+@{ Html.RenderPartial("_breadcrumb", "<a href='" + Url.Action("Index", "Report", new { url = Model.ReportUrl }) + "' title='" + Model.ReportTitle + "'>Back to Report: " + Model.ReportTitle.Substring(0, Model.ReportTitle.ToLower().IndexOf("market") + 6) + "</a> | " + (string)ViewBag.FormTitle + " " + Model.ReportTitle.Substring(0, Model.ReportTitle.ToLower().IndexOf("market") + 6)); }
+<h1 style="font-size: 25px !important;" class="formTitle">@ViewBag.FormTitle @Model.ReportTitle.Substring(0, Model.ReportTitle.ToLower().IndexOf("market") + 6)</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-info">
+            <b>Please fill out the form. We will contact you within 24 hours:</b>
+            <div style="font-size:15px;width:100%;"><label class="control-label required"></label> Indicates required fields</div>
+        </div>
+        @{Html.RenderAction("ShowForm", "Form", new { FormType = ViewBag.FormType, ReportId = ViewBag.ReportId });}
+    </div>
+    <div class="col-md-6">
+        @if (HttpContext.Current.Session["Discount"] != null)
+            {<a href="@Url.Action("NewsLetter", "Discount")"><img class="img-responsive" style="margin-bottom:10px;" src="~/saleimages/blackFriday_small.png" alt="black friday sale" /></a>}
+        <div class="formDiv">
+            <span style="font-size:20px;">Report Name</span>
+            <div class="reportTitle">
+                @Model.ReportTitle
+            </div>
+        </div>
+        <br />
+        @{ Html.RenderPartial("_ChooseUs"); }
+    </div>
+</div>
+<style>
+    .reportTitle {
+        font-size: 16px;
+        text-align: justify;
+        line-height: 28px;
+        margin-top: 10px;
+    }
+
+    .formDiv {
+        background-color: whitesmoke;
+        padding: 20px;
+        box-shadow: 0px 3px 2px 0px black;
+    }
+
+    h1.formTitle {
+        padding: 10px;
+        padding-left: 0px;
+        font-size: 30px !important;
+    }
+
+    h4.whychoose {
+        width: 87%;
+        padding-left: 18px;
+        margin-bottom: 3px;
+    }
+
+    #whychooseus > div.panel {
+        border: none;
+    }
+
+    .whychoose_text {
+        width: 85%;
+    }
+</style>

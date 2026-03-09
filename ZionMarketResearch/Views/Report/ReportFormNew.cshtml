@@ -1,0 +1,56 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+@{ Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+                var smallTitle = Model.ReportTitle.Substring(0, Model.ReportTitle.IndexOf("Market") + 6);
+                smallTitle = (Request.QueryString["covid19"] != null && Convert.ToBoolean(Request.QueryString["covid19"]) ?
+                    "Request COVID-19 Impact on the " : string.Empty) + smallTitle;
+}
+@section metaTags{
+    <meta name="robots" content="noindex,nofollow" />
+}
+<section id="report-title" class="white_section section_gap report-title-image">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>@ViewBag.RequestType</li>
+            <li><a href="@Url.Action("Index", "Report", new { url = Model.ReportUrl })">@smallTitle</a></li>
+        </ul>
+
+        @{ Html.RenderPartial("~/Views/Report/_ReportInfo.cshtml"); }
+    </div>
+</section>
+
+<section style="padding-top:10px;background: #e7ecea;">
+    <main class="d-flex align-items-center">
+        <div class="container">
+            <h3 class="form-title">@ViewBag.FormTitle @smallTitle</h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    @{Html.RenderAction("ShowForm", "Form", new { FormType = ViewBag.FormType, ReportId = ViewBag.ReportId });}
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+<style>
+    .form-title {
+        text-align: center;
+        padding: 10px;
+        background-color: darkmagenta;
+        color: white;
+        border-radius: 5px 5px 0px 0px;
+        margin-bottom: 0px;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('html, body').animate({
+            scrollTop: $(".form-title").offset().top
+        }, 1000);
+    });
+</script>

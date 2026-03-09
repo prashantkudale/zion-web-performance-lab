@@ -1,0 +1,114 @@
+﻿@model ZionMarketResearch.Models.VacancyEntity
+@{ ViewBag.Title = "CareerDetail";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml"; }
+<section id="report-title" class="white_section section_gap">
+    <div class="container">
+        @if (Model != null)
+        {
+<h2>@Model.JobTitle</h2>
+
+
+                <style>
+                    .details-box {
+                        padding: 10px;
+                        margin-top: 10px;
+                        box-shadow: 2px 1px 7px 0px black;
+                        font-size: 15px;
+                        font-weight: bold;
+                    }
+                </style>
+                                <script src="~/Scripts/career.js"></script> }
+                                            else
+                                            {
+                                <h2>We are sorry. There is no opening.</h2>}
+
+    </div>
+</section>
+
+<section>
+    <div class="container-fluid">
+        <div class="col-md-12 tab">
+            <div class="tab-content" style="text-align:justify;">
+                <div class="row">
+                    <div class="col-md-8 white_section" style="padding: 20px;">
+                        <span style="font-size:25px;">Job Description:</span>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th style="display:@(Model.NumberOfVacancies != null && Model.NumberOfVacancies > 0 ? "" : "none")">
+                                    Vacancy
+                                </th>
+                                <td style="display:@(Model.NumberOfVacancies != null && Model.NumberOfVacancies > 0 ? "" : "none")">@Model.NumberOfVacancies</td>
+                                <th>Experience</th>
+                                <td>@Model.MinYearExperience - @Model.MaxYearExperience yrs</td>
+                            </tr>
+                            @if (Model.InterviewDate != null)
+                            {
+                <tr>
+                    <th>Interview Date</th>
+                    <td>@(((DateTime)Model.InterviewDate).ToString("dd-MMM-yyyy") + " - " + ((DateTime)Model.InterviewToDate).ToString("dd-MMM-yyyy"))</td>
+                </tr>
+}
+                            @if (Model.InterviewTime != null && Model.InterviewTime != "|")
+                            {
+                <tr>
+                    <th>Interview Time</th>
+                    <td>@(Model.InterviewTime.Split('|')[0] + " - " + Model.InterviewTime.Split('|')[1])</td>
+                </tr>
+}
+                            <tr>
+                                <th>Fresher Allowed</th>
+                                <td>@(Model.CanFresherApply ? "Yes" : "No")</td>
+                                <th>Location</th>
+                                <td>@Model.Location</td>
+                            </tr>
+                        </table>
+                        <hr />
+                        <p>
+                            @Html.Raw(Model.JobDescription)
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3>Submit Your Resume</h3>
+                            </div>
+                            <form action="@Url.Action("ApplyJob", "Home")" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="JobID" value="@Model.VacancyId" />
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" name="Name" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" name="Email" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mobile</label>
+                                        <input type="tel" name="Mobile" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Attach Your Resume (.DOC, .DOCX, .PDF)</label>
+                                        <input type="file" class="form-control" name="file" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label required">Captcha</label>
+                                        <div class="col-md-8 inputGroupContainer">
+                                            <div class="input-group" style="width: 100%;">
+                                                <img src="/captcha" id="captcha" />
+                                                <input type="text" class="form-control" name="Captcha" placeholder="Captcha" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" id="btnSubmit">Submit</button>
+                                </div>
+                            </form>
+                            <div class="alert" id="message">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

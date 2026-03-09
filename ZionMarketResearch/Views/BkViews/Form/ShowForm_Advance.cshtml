@@ -1,0 +1,31 @@
+﻿@model ZionMarketResearch.Models.FormRepository
+@{Html.RenderPartial("_ValidationSummary", ViewData.ModelState);}
+<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+<link href="~/css/CustomForm.css" rel="stylesheet" />
+<form action="/form/submit" method="post" id="contact_form_@ViewBag.FormType"">
+    @Html.HiddenFor(f => f.ReportId, new { value = ViewBag.ReportId })
+    @Html.HiddenFor(f => f.FormType, new { value = ViewBag.FormType })
+    @Html.HiddenFor(f => f.SearchText, new { value = ViewBag.Search })
+    @*@Html.HiddenFor(f => f.ru, new { value = ZionMarketResearch.Util.Utility.Encryptstring(Request.RawUrl) })*@
+    <div class="section"><span>1</span>Name</div>
+    <div class="inner-wrap">
+        <label>Your Full Name @Html.TextBoxFor(f => f.Name, new { placeholder = "Name" })</label>
+        @Html.ValidationMessageFor(f => f.Name)
+    </div>
+
+    <div class="section"><span>2</span>Email &amp; Phone</div>
+    <div class="inner-wrap">
+        <label>Email Address @Html.TextBoxFor(f => f.Email, new { placeholder = "myname@example.com" })</label>
+        @Html.ValidationMessageFor(f => f.Email)
+        <label>Phone Number @Html.TextBoxFor(f => f.Phone)</label>
+        @Html.ValidationMessageFor(f => f.Phone)
+    </div>
+    <div class="alert alert-info">
+        <i class="fa fa-info-circle"></i> Your personal details are safe and secured with us. <a href="/privacy-policy" target="_blank" style="text-decoration:underline;" rel="nofollow">Privacy Policy</a>
+        <a href="https://seal.godaddy.com/verifySeal?sealID=eABH91l0h9MuYRpGoWkiG6NRu7Y2vaTxM5bjm0tMzUTDOhMYnSysInFUHWa0" target="_blank" rel="nofollow">
+            <img style="cursor:pointer;cursor:pointer;" src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" alt="SSL site seal - click to verify" />
+        </a>
+    </div>
+</form>
+
+@Scripts.Render("~/bundles/form-validation")

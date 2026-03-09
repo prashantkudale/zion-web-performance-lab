@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        a,
+        a:visited {
+            color: #93291b;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        p {
+            color: #333333;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.5625;
+            margin-bottom: 15px;
+        }
+
+        .bg {
+            background-color: #e5e5e5;
+        }
+
+        .box {
+            box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+            /*min-height: 200px;*/
+            /*width: 50vw;*/
+            margin: 5px auto;
+            background: white;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .container-bg {
+            background-color: #ffffff;
+        }
+
+        .box img {
+            width: 50px;
+            height: auto;
+        }
+
+        .box .different img {
+            width: 80% !important;
+        }
+
+        .ltbr {
+            border-left: 20px solid #fcb700 !important;
+            padding-left: 10px !important;
+        }
+
+        .box h2 {
+            color: #123456;
+        }
+
+        .bg11 {
+            background-color: #c5c5c5;
+            color: #ffffff !important;
+        }
+
+        .upto {
+            font-size: 30px;
+            color: #5e245f;
+            font-weight: bold;
+            text-decoration: underline;
+            background-color: #faba00 !important;
+            padding: 2px !important;
+            margin-top: 20px;
+        }
+
+        .form-control {
+            margin-bottom: 9px !important;
+        }
+
+        .ye-form {
+            background-color: #fcc800;
+            padding: 15px;
+            margin: 5px 0px 5px 0px;
+            border-radius: 5px;
+        }
+
+        .title-summary {
+            font-family: Georgia, serif;
+            font-size: 17px !important;
+            font-style: italic;
+            line-height: 25px;
+            position: relative;
+            color: #383838;
+            text-align: center;
+        }
+
+        .white-box {
+            background: #dce6e2 !important;
+            -webkit-border-radius: 0.5rem;
+            -moz-border-radius: 0.5rem;
+            -ms-border-radius: 0.5rem;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            -webkit-box-shadow: 0 1px 1px 1px #EBEBEB;
+            box-shadow: 0 1px 3px 1px #EBEBEB;
+        }
+    </style>
+</head>
+
+<body class="bg">
+    <div>
+        <img src="year_end_img/zion_yearEnd.jpg" class="img-responsive">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 box">
+                <h2 class="ltbr">What makes different than others, and here’s the reason why</h2>
+                <p>With ZionMarketResearch’s wide research coverage and in-depth data analysis, you’ll have the plan to execute your business strategy more effectively and efficiently.</p>
+                <div class="row different">
+                    <div class="col-sm-2">
+                        <img src="year_end_img/BusinessStrategy.png" class="img-responsive img-thumbnail">
+                        <p>Business Strategy</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="year_end_img/BusinessIncrease.png" class="img-responsive img-thumbnail">
+                        <p>Business Increase</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="year_end_img/MoreProfit1.png" class="img-responsive img-thumbnail">
+                        <p>More Profit</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="year_end_img/MaximizeBusiness.png" class="img-responsive img-thumbnail">
+                        <p>Maximize your business</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="year_end_img/Authority.png" class="img-responsive img-thumbnail">
+                        <p>Authority</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="year_end_img/SalesReport.png" class="img-responsive img-thumbnail">
+                        <p>Sales Report</p>
+                    </div>
+                </div>
+
+                <div class="white-box">
+                    <p class="title-summary">
+                        <i class="fa fa-quote-left"></i> Zion Market Research publishes high quality, in-depth market research reports that help clients in obtaining deep clarity on current business trends and future developments. We believe that only
+                        in-depth and detailed information can help clients take efficient business decisions. <i class="fa fa-quote-right"></i>
+                    </p>
+                </div>
+
+
+            </div>
+            <div class="col-sm-3 ye-form">
+                <div class="contact-form">
+                    @{ Html.RenderAction("ShowQuickInquiry", "Form", new { FormType = (int)GlobalConstant.FormType.YearEndSale, ReportId = 0 }); }
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 box bg1">
+                <h2 class="ltbr">To Our Amazing Customers</h2>
+                <p>This year has been incredible and we would like to thank you for making us your preferred market research company. </p>
+                <p>Your Success is Our Success! With 2021 practically around the corner, we have chosen to offer back to you with the best deals from our year-end advancement yet.</p>
+                <h2 class="headingspan ltbr">With your support &amp; encouragement that <span>Zion Market Research</span> has come this far.</h2>
+                <p>To date, we have successfully hit "10000+" registered clients and delivered more than "1000+" research reports - representing all small and big businesses including students &amp; Universities</p>
+                <p>With our vertical research reports, we help getting your business plan successful and help to reach targeted customers.</p>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <img src="year_end_img/reports.png">
+                            <span>No. of Reports</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <img src="year_end_img/Startups.png">
+                            <span>For Startups</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <img src="year_end_img/best-seller.png">
+                            <span>Bestsellers</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <img src="year_end_img/internships.png">
+                            <span>Students &amp; Universities</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 box">
+                <div class="text-center white_section" id="specialized" style="position:relative;">
+                    <p>With our vertical research reports, we help getting your business plan successful and help to reach targeted customers.</p>
+                    <h3>TIME’S RUNNING!</h3>
+                    <h3>
+                        DON’T MISS OUT THIS GREAT OFFER ON THIS YEAR END. GET YOUR RESEARCH REPORT NOW AT <span class="upto">UP TO "25%" DISCOUNT!</span>
+                    </h3>
+                    <p class="text-center" style="color:#FF0000; font-weight:bold;">Get in Touch with Zion Market Research</p>
+                    <p class="text-left">
+                        <b>Zion Market Research</b><br> Tel: +49-322 210 92714<br> USA/Canada Toll Free No.1-855-465-4651<br> Email: <a href="mailto:sales@zionmarketresearch.com">sales@zionmarketresearch.com</a><br> Blog: <a href="https://zionmarketresearch.wordpress.com">https://zionmarketresearch.wordpress.com</a>
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

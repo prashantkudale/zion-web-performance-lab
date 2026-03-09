@@ -1,0 +1,1592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3F48ADE9-D030-451B-AA8C-34444963B019}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZionMarketResearch</RootNamespace>
+    <AssemblyName>ZionMarketResearch</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <ApplicationInsightsResourceId>/subscriptions/8756a22a-f2e2-4c3a-b64c-00caf6e04cf0/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/ZionMarketResearch</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=2.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CsvHelper, Version=27.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.27.2.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.32.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.32.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.0.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlSanitizationLibrary.1.0.0\lib\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.3.8\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.3.8\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.14.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.14\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Linq, Version=3.6.0.125, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lucene.Net.Linq.3.6.0\lib\net40\Lucene.Net.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=9.6.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.9.6.0\lib\net48\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.EntityFramework, Version=8.0.28.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.EntityFramework.8.0.28\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>I:\MySqlConnector Assemblies 6.9.9\Assemblies\v4.5\MySql.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PaymentLibrary">
+      <HintPath>..\Backup DLL\PaymentLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Razorpay, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Razorpay.3.0.0\lib\net45\Razorpay.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=1.13.183.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.1.13.183.0\lib\net35\Remotion.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SRVTextToImage">
+      <HintPath>..\Backup DLL\SRVTextToImage.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=17.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.17.7.0\lib\net45\Stripe.net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ZstdSharp, Version=0.8.6.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZstdSharp.Port.0.8.6\lib\net462\ZstdSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JobVacancyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PaymentLinkController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RedirectUrlController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportAttributeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ZionInNewsController.cs" />
+    <Compile Include="Areas\Admin\Models\DatabaseContext.cs" />
+    <Compile Include="Areas\Admin\Models\LuceneSearch\LuceneReport.cs" />
+    <Compile Include="Areas\Admin\Models\LuceneSearch\LuceneSearch.cs" />
+    <Compile Include="Areas\Admin\Repository\ActionRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\ArchiveRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\CategoryRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\IJobApplicationRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\IReportAttributeRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\IVacancyRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\JobApplicationRespository.cs" />
+    <Compile Include="Areas\Admin\Repository\NewsRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\PaymentLinkRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\RedirectRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\ReportAttributeRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\ReportRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\RoleRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\UserRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\VacancyRepository.cs" />
+    <Compile Include="Areas\Admin\Repository\ZMRInNewsRepository.cs" />
+    <Compile Include="Areas\Admin\Security\Authorize.cs" />
+    <Compile Include="Areas\Admin\Security\UserCookie.cs" />
+    <Compile Include="Areas\Admin\Utility\Utility.cs" />
+    <Compile Include="constants\GlobalConstants.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\BuynowController.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CustomController.cs" />
+    <Compile Include="Controllers\DiscountController.cs" />
+    <Compile Include="Controllers\FormController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NotifyController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\RSSController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SitemapController.cs" />
+    <Compile Include="Controllers\StripeAPI.cs" />
+    <Compile Include="Cart\ErrorHandler\AiHandleErrorAttribute.cs" />
+    <Compile Include="Extension\Extension.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Log\LogException.cs" />
+    <Compile Include="Models\ArticleRepository.cs" />
+    <Compile Include="Models\AskForAnalystRepository.cs" />
+    <Compile Include="Models\CartRepository.cs" />
+    <Compile Include="Models\CategoryReport.cs" />
+    <Compile Include="Models\CategoryReportView.cs" />
+    <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\CorporateEmailID.cs" />
+    <Compile Include="Models\CountryRepository.cs" />
+    <Compile Include="Models\DiscountOrderSummaryRepository.cs" />
+    <Compile Include="Models\DiscountReportRepository.cs" />
+    <Compile Include="Models\Factory\ReportFactory.cs" />
+    <Compile Include="Models\FormRepository.cs" />
+    <Compile Include="Models\IJobVacancyRepository.cs" />
+    <Compile Include="Models\JobVacancyRepository.cs" />
+    <Compile Include="Models\ModalViewEntity.cs" />
+    <Compile Include="Models\NewsRepository.cs" />
+    <Compile Include="Models\NotifyMeRepository.cs" />
+    <Compile Include="Models\QuickInquiry.cs" />
+    <Compile Include="Models\RedirectRepository.cs" />
+    <Compile Include="Models\relactionrole.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\relreportattribute.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\relreportbuyer.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\relreportcategory.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\relreportdomain.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportRepository.cs" />
+    <Compile Include="Models\RSSRepository.cs" />
+    <Compile Include="Models\SendMail.cs" />
+    <Compile Include="Models\SitemapRepository.cs" />
+    <Compile Include="Models\stagging_tblreportinformation.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\stagingtblreportinformation.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StringExtension.cs" />
+    <Compile Include="Models\tblaction.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbladminlogin.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblauthor.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblbuyerinformation.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcart.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcartitem.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcategory.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcolumn.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcolumnvalue.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcontinent.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcountry.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcountry1.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbldomain.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblfeedback.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblform.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblinquiry.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblipaddress.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbljobapplication.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbljobvacancy.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblkey.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblmail.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblnew.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblpayerinformation.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblpaymentlink.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblpublisher.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblredirection.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblregister.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblreportattribute.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblreportfaq.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblreportinformation.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblreportscope_column.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblreportscope_table.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblreporttype.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblreseller_reportinformation.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblrole.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblsearchhistory.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblsubscription.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbltag.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbluser.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbluserrole.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblvisitor.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblzioninnew.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblzionmail.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\temptblreports3.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZionEntityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZionEntityModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZionEntityModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZionEntityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZionEntityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZionInNewsRepository.cs" />
+    <Compile Include="Models\Zion_AddPaymentLink_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_GetAllCountry_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_GetAllFeaturedReports_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_GetAllPublishedReports_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_GetAllUpcomingReports_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_GetCategoryWithReportCount_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_GetReportById_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_GetReportByUrl_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_GetZionInNewsLinks_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_SearchReport_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zion_SplitToInt_Result.cs">
+      <DependentUpon>ZionEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CRM\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\AllowCrossSiteAttribute.cs" />
+    <Compile Include="Utility\Interceptor\UrlBlockingModule.cs" />
+    <Compile Include="Utility\Message.cs" />
+    <Compile Include="Utility\OptionAttribute.cs" />
+    <Compile Include="Utility\PaymentErrorHandler.cs" />
+    <Compile Include="Utility\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Areas\Admin\Content\css\custom.css" />
+    <Content Include="Areas\Admin\Content\css\font-awesome.css" />
+    <Content Include="Areas\Admin\Content\css\switch.css" />
+    <Content Include="Areas\Admin\Content\css\verticalmenu.css" />
+    <Content Include="Areas\Admin\Content\css\ZionAdmin.css" />
+    <Content Include="Areas\Admin\Content\custom\MultiSelect.js" />
+    <Content Include="Areas\Admin\Content\custom\ValidateForm.js" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\Content\images\2checkout.png" />
+    <Content Include="Areas\Admin\Content\images\add_address.png" />
+    <Content Include="Areas\Admin\Content\images\add_release.png" />
+    <Content Include="Areas\Admin\Content\images\bg.png" />
+    <Content Include="Areas\Admin\Content\images\btn-search.png" />
+    <Content Include="Areas\Admin\Content\images\button-close.png" />
+    <Content Include="Areas\Admin\Content\images\buy-now-button.png" />
+    <Content Include="Areas\Admin\Content\images\buy-now-button1.png" />
+    <Content Include="Areas\Admin\Content\images\Captcha.png" />
+    <Content Include="Areas\Admin\Content\images\closebtn.png" />
+    <Content Include="Areas\Admin\Content\images\close_button.png" />
+    <Content Include="Areas\Admin\Content\images\consumer-goods.jpg" />
+    <Content Include="Areas\Admin\Content\images\download.png" />
+    <Content Include="Areas\Admin\Content\images\edit_account.png" />
+    <Content Include="Areas\Admin\Content\images\edit_business_user.png" />
+    <Content Include="Areas\Admin\Content\images\energy.jpg" />
+    <Content Include="Areas\Admin\Content\images\facebook-icon.png" />
+    <Content Include="Areas\Admin\Content\images\food-and-beverages.jpg" />
+    <Content Include="Areas\Admin\Content\images\GHr12sH.jpg" />
+    <Content Include="Areas\Admin\Content\images\google-icon.png" />
+    <Content Include="Areas\Admin\Content\images\hindi-thought-of-the-day-hindi-thought-thought-in-hindi-aaj-ka-thought-in-hindi.jpg" />
+    <Content Include="Areas\Admin\Content\images\history-icon.png" />
+    <Content Include="Areas\Admin\Content\images\icon-accountability.png" />
+    <Content Include="Areas\Admin\Content\images\image14.png" />
+    <Content Include="Areas\Admin\Content\images\images.jpg" />
+    <Content Include="Areas\Admin\Content\images\images.png" />
+    <Content Include="Areas\Admin\Content\images\linkedin-icon.png" />
+    <Content Include="Areas\Admin\Content\images\logo.png" />
+    <Content Include="Areas\Admin\Content\images\manage_release.png" />
+    <Content Include="Areas\Admin\Content\images\manufacturing-and-construction.jpg" />
+    <Content Include="Areas\Admin\Content\images\market-research-analyst-salary.jpg" />
+    <Content Include="Areas\Admin\Content\images\market-research.jpg" />
+    <Content Include="Areas\Admin\Content\images\market.png" />
+    <Content Include="Areas\Admin\Content\images\market1.png" />
+    <Content Include="Areas\Admin\Content\images\market2.png" />
+    <Content Include="Areas\Admin\Content\images\market3.png" />
+    <Content Include="Areas\Admin\Content\images\market4.png" />
+    <Content Include="Areas\Admin\Content\images\mobile-ready-website-ow-542x327.png" />
+    <Content Include="Areas\Admin\Content\images\multidevice.png" />
+    <Content Include="Areas\Admin\Content\images\multidevice1.png" />
+    <Content Include="Areas\Admin\Content\images\news_icon.png" />
+    <Content Include="Areas\Admin\Content\images\news_room.png" />
+    <Content Include="Areas\Admin\Content\images\order_history.png" />
+    <Content Include="Areas\Admin\Content\images\payment_21.png" />
+    <Content Include="Areas\Admin\Content\images\paypal.jpg" />
+    <Content Include="Areas\Admin\Content\images\Person_Undefined_Male_Dark.png" />
+    <Content Include="Areas\Admin\Content\images\pinterest-icon.png" />
+    <Content Include="Areas\Admin\Content\images\press_room.png" />
+    <Content Include="Areas\Admin\Content\images\preview-multidevice %281%29.png" />
+    <Content Include="Areas\Admin\Content\images\preview-multidevice.png" />
+    <Content Include="Areas\Admin\Content\images\Purple-Secure-Computing-Icon.png" />
+    <Content Include="Areas\Admin\Content\images\p_device_bg.png" />
+    <Content Include="Areas\Admin\Content\images\quienes.png" />
+    <Content Include="Areas\Admin\Content\images\s4.png" />
+    <Content Include="Areas\Admin\Content\images\twitter-icon.png" />
+    <Content Include="Areas\Admin\Content\images\user-permissions.png" />
+    <Content Include="Areas\Admin\Content\images\wat.png" />
+    <Content Include="Areas\Admin\Content\images\wat1.png" />
+    <Content Include="Areas\Admin\Content\images\wire-transfer.png" />
+    <Content Include="Areas\Admin\Content\images\world-map.png" />
+    <Content Include="Areas\Admin\Content\images\zionLogo.png" />
+    <Content Include="Areas\Admin\Content\images\zionLogo1.png" />
+    <Content Include="Areas\Admin\Content\images\zionLogo250x250.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\adapters\jquery.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\build-config.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\ckeditor.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\config.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\contents.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\af.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ar.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\az.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\bg.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\bn.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\bs.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ca.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\cs.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\cy.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\da.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\de-ch.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\de.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\el.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\en-au.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\en-ca.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\en-gb.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\en.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\eo.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\es-mx.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\es.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\et.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\eu.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\fa.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\fi.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\fo.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\fr-ca.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\fr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\gl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\gu.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\he.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\hi.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\hr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\hu.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\id.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\is.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\it.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ja.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ka.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\km.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ko.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ku.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\lt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\lv.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\mk.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\mn.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ms.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\nb.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\nl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\no.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\oc.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\pl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\pt-br.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\pt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ro.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ru.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\si.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\sk.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\sl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\sq.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\sr-latn.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\sr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\sv.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\th.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\tr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\tt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\ug.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\uk.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\vi.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\zh-cn.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\lang\zh.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\af.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\az.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\de-ch.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\en-au.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\en-gb.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\es-mx.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\eu.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fo.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ko.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\oc.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\tt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\zh.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\icons.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\magicline\images\hidpi\icon-rtl.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\magicline\images\icon-rtl.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\scayt\dialogs\dialog.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\scayt\skins\moono-lisa\scayt.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\af.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\az.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\da.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\de-ch.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\en-au.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\en-ca.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\en-gb.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\es-mx.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\eu.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\km.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\ko.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\lt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\oc.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\ro.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\tt.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\zh.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\tableselection\styles\tableselection.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\widget\images\handle.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\wsc\skins\moono-lisa\wsc.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\css\samples.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\img\github-top.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\img\header-bg.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\img\header-separator.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\img\logo.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\img\logo.svg" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\img\navigation-tip.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\index.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\js\sample.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\js\sf.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\ajax.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\api.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\appendto.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\assets\inlineall\logo.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\assets\posteddata.php" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\assets\sample.jpg" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\assets\uilanguages\languages.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\datafiltering.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\dialog\assets\my_dialog.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\dialog\dialog.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\divreplace.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\enterkey\enterkey.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.swf" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\htmlwriter\assets\outputforflash\swfobject.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\htmlwriter\outputforflash.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\htmlwriter\outputhtml.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\index.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\inlineall.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\inlinebycode.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\inlinetextarea.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\jquery.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\magicline\magicline.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\readonly.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\replacebyclass.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\replacebycode.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\sample.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\sample.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\sample_posteddata.php" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\tabindex.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\toolbar\toolbar.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\uicolor.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\uilanguages.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\wysiwygarea\fullpage.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\xhtmlstyle.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\font\LICENSE.txt" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\index.html" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\js\fulltoolbareditor.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\js\toolbarmodifier.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\js\toolbartextmodifier.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\dialog.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\dialog_ie.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\dialog_ie8.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\dialog_iequirks.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\editor.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\editor_gecko.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\editor_ie.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\editor_ie8.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\editor_iequirks.css" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\icons.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\icons_hidpi.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\arrow.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\close.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\hidpi\close.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\hidpi\lock-open.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\hidpi\lock.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\hidpi\refresh.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\lock-open.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\lock.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\refresh.png" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\images\spinner.gif" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\styles.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.form.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.min.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\CHANGES.md" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\LICENSE.md" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\scayt\CHANGELOG.md" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\scayt\README.md" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\README.md" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="Areas\Admin\Content\js\ckeditor_4.11.3_standard\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Areas\Admin\Content\js\jquery.validate-vsdoc.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.validate.min.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Areas\Admin\UploadFiles\05554eab-3226-431c-b912-8557bf7d4fe5.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\239378ea-4205-4f9f-a4b2-258c863bec43.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\54abcda5-a31e-4a6a-a355-1d39439887e8.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\60b9c041-e07b-4bd0-b2fe-eba3704864d6.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\715af325-e833-493c-af7d-afd8e808ee4a.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\78cd80f3-8f82-4c6d-a7ac-314828472537.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\7b0974d6-e72c-4abd-a141-c8f3c9b7c6a5.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\8b55e9d4-13f3-4cf1-a2aa-1db748a30720.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\932fc8e6-bf19-48d8-9316-7b3c9c824106.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\bb46fcd6-6cb0-4283-bf47-cce7440d21a3.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\e467ae20-41a1-4214-89cb-371ca5f747e1.jpg" />
+    <Content Include="Areas\Admin\UploadFiles\f6894027-8d95-46f5-bf8b-3ecf4cb0d09b.jpg" />
+    <Content Include="Cart\css\reset.css" />
+    <Content Include="Cart\css\style.css" />
+    <Content Include="Cart\img\cd-icon-arrow-next.svg" />
+    <Content Include="Cart\img\cd-icon-select.svg" />
+    <Content Include="Cart\img\cd-icons-cart-close.svg" />
+    <Content Include="Cart\img\product-preview.png" />
+    <Content Include="Cart\js\main.js" />
+    <Content Include="Content\autocomplete\autocomplete.css" />
+    <Content Include="Content\autocomplete\autocomplete.js" />
+    <Content Include="Content\autocomplete\jquery.autocomplete.js" />
+    <Content Include="Content\captcha\Captcha.js" />
+    <Content Include="Content\css\bd-wizard.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\custom.min.css" />
+    <Content Include="Content\css\default.css" />
+    <Content Include="Content\css\default.min.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\footer_css.css" />
+    <Content Include="Content\css\hover.css" />
+    <Content Include="Content\css\industry_css.css" />
+    <Content Include="Content\css\jquery-ui-1.8.16.custom.css" />
+    <Content Include="Content\css\lightbox.min.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\mediaquery.css" />
+    <Content Include="Content\css\news_css.css" />
+    <Content Include="Content\css\news_css_.css" />
+    <Content Include="Content\css\prettyPhoto.css" />
+    <Content Include="Content\css\RelatedNews.css" />
+    <Content Include="Content\css\reportslist_css.css" />
+    <Content Include="Content\css\report_css.css" />
+    <Content Include="Content\css\report_css1.css" />
+    <Content Include="Content\css\report_css_.css" />
+    <Content Include="Content\css\style_report3.css" />
+    <Content Include="Content\css\style_report32.css" />
+    <Content Include="Content\css_bk\bd-wizard.css" />
+    <Content Include="Content\css_bk\bootstrap.min.css" />
+    <Content Include="Content\css_bk\custom.css" />
+    <Content Include="Content\css_bk\default.css" />
+    <Content Include="Content\css_bk\font-awesome.min.css" />
+    <Content Include="Content\css_bk\hover.css" />
+    <Content Include="Content\css_bk\jquery-ui-1.8.16.custom.css" />
+    <Content Include="Content\css_bk\lightbox.min.css" />
+    <Content Include="Content\css_bk\main.css" />
+    <Content Include="Content\css_bk\mediaquery.css" />
+    <Content Include="Content\css_bk\prettyPhoto.css" />
+    <Content Include="Content\css_bk\style_report3.css" />
+    <Content Include="Content\css_bk\style_report32.css" />
+    <Content Include="Content\jqueryui\jquery-ui.min.css" />
+    <Content Include="Content\jqueryui\jquery-ui.min.js" />
+    <Content Include="Content\jqueryui\jquery-ui.structure.min.css" />
+    <Content Include="Content\jqueryui\jquery-ui.theme.min.css" />
+    <Content Include="Content\js\jquery.cookieMessage.min.js" />
+    <Content Include="Content\js\jquery.marquee.min.js" />
+    <Content Include="Content\js\jsLoadMore.js" />
+    <Content Include="Content\js\RelatedNews.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\report\Report.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="gss.xsl" />
+    <!--<Content Include="images\idea.png" />-->
+    <Content Include="images\001.png" />
+    <Content Include="images\002.png" />
+    <Content Include="images\2checkout_01.png" />
+    <Content Include="images\404.jpg" />
+    <Content Include="images\500.jpg" />
+    <Content Include="images\Ai-Will-Change-Everything-About-Market-Research_Guestpost.jpg" />
+    <Content Include="images\amazon.gif" />
+    <Content Include="images\benefits_icons01.png" />
+    <Content Include="images\Blog-Headers-16.jpg" />
+    <Content Include="images\blue-pattern.jpg" />
+    <Content Include="images\branding.jpg" />
+    <Content Include="images\captcha.png" />
+    <Content Include="images\category-icons\chemical.png" />
+    <Content Include="images\category-icons\electronics.png" />
+    <Content Include="images\category-icons\energy.png" />
+    <Content Include="images\category-icons\food.png" />
+    <Content Include="images\category-icons\food_bg.jpg" />
+    <Content Include="images\category-icons\healthcare.png" />
+    <Content Include="images\category-icons\heavy-industry.png" />
+    <Content Include="images\category-icons\packaging.png" />
+    <Content Include="images\category-icons\technology.png" />
+    <Content Include="images\category\Automotive.jpg" />
+    <Content Include="images\category\Automotive_lg.jpg" />
+    <Content Include="images\category\Biotechnology_lg.jpg" />
+    <Content Include="images\category\Biotechnology_lg21.jpg" />
+    <Content Include="images\category\Chemical-Materials.jpg" />
+    <Content Include="images\category\Chemical-Materials_lg.jpg" />
+    <Content Include="images\category\Chemical-Materials_lg2.jpg" />
+    <Content Include="images\category\Consumer-Goods.jpg" />
+    <Content Include="images\category\Consumer-Goods_lg.jpg" />
+    <Content Include="images\category\consumer-goods_lg2.jpg" />
+    <Content Include="images\category\Defense-Security_lg.jpg" />
+    <Content Include="images\category\Energy-Mining_lg.jpg" />
+    <Content Include="images\category\Food-Beverage.jpg" />
+    <Content Include="images\category\food-beverage_lg.jpg" />
+    <Content Include="images\category\Healthcare_lg.jpg" />
+    <Content Include="images\category\Heavy-Industry_lg.jpg" />
+    <Content Include="images\category\Medical-Device.jpg" />
+    <Content Include="images\category\Medical-Device_lg.jpg" />
+    <Content Include="images\category\Packaging_lg.jpg" />
+    <Content Include="images\category\Pharmaceutical.jpg" />
+    <Content Include="images\category\Pharmaceutical_lg.jpg" />
+    <Content Include="images\category\Semiconductor-Electronics.jpg" />
+    <Content Include="images\category\Semiconductor-Electronics_lg.jpg" />
+    <Content Include="images\category\technology-media.jpg" />
+    <Content Include="images\category\Technology-Media_lg.jpg" />
+    <Content Include="images\check-circle.gif" />
+    <Content Include="images\client_img\accenture.jpg" />
+    <Content Include="images\client_img\basf.jpg" />
+    <Content Include="images\client_img\bridgestone.jpg" />
+    <Content Include="images\client_img\deloitte.jpg" />
+    <Content Include="images\client_img\dow.jpg" />
+    <Content Include="images\client_img\fujifilm.jpg" />
+    <Content Include="images\client_img\gaf.jpg" />
+    <Content Include="images\client_img\ge.jpg" />
+    <Content Include="images\client_img\honeywell.jpg" />
+    <Content Include="images\client_img\ibm.jpg" />
+    <Content Include="images\client_img\ingredion.jpg" />
+    <Content Include="images\client_img\intel.jpg" />
+    <Content Include="images\client_img\leica.jpg" />
+    <Content Include="images\client_img\lg.jpg" />
+    <Content Include="images\client_img\mahindra.jpg" />
+    <Content Include="images\client_img\mckinsey.jpg" />
+    <Content Include="images\client_img\michelin.jpg" />
+    <Content Include="images\client_img\microsoft.jpg" />
+    <Content Include="images\client_img\panasonic.jpg" />
+    <Content Include="images\client_img\philips.jpg" />
+    <Content Include="images\client_img\pwc.jpg" />
+    <Content Include="images\client_img\rockwell.jpg" />
+    <Content Include="images\client_img\saint-gobain.jpg" />
+    <Content Include="images\client_img\selo.jpg" />
+    <Content Include="images\client_img\shell.jpg" />
+    <Content Include="images\client_img\sony.jpg" />
+    <Content Include="images\client_img\symantec.jpg" />
+    <Content Include="images\client_img\syngenta.jpg" />
+    <Content Include="images\client_img\ti.jpg" />
+    <Content Include="images\client_img\total.jpg" />
+    <Content Include="images\course1.jpg" />
+    <Content Include="images\course5.jpg" />
+    <Content Include="images\course6.jpg" />
+    <Content Include="images\course7.jpg" />
+    <Content Include="images\course8.jpg" />
+    <Content Include="images\COVID-19.gif" />
+    <Content Include="images\COVID-19_1.gif" />
+    <Content Include="images\Credit_Debit_Card.png" />
+    <Content Include="images\discover.gif" />
+    <Content Include="images\FI-2_-Market-Research-uai-1440x438.png" />
+    <Content Include="images\image01.jpg" />
+    <Content Include="images\image0111.jpg" />
+    <Content Include="images\image01_.jpg" />
+    <Content Include="images\image01_1.jpg" />
+    <Content Include="images\image02.jpg" />
+    <Content Include="images\image02_.jpg" />
+    <Content Include="images\images02.jpg" />
+    <Content Include="images\images03.jpg" />
+    <Content Include="images\images04.jpg" />
+    <Content Include="images\images05.png" />
+    <Content Include="images\images06.jpg" />
+    <Content Include="images\images061.jpeg" />
+    <Content Include="images\images07.jpg" />
+    <Content Include="images\images08.jpg" />
+    <Content Include="images\master.gif" />
+    <Content Include="images\paypal.gif" />
+    <Content Include="images\Role_of_Market_Analysis_in_Improving_Business_Growth.jpg" />
+    <Content Include="images\teacher2.jpg" />
+    <Content Include="images\visa.gif" />
+    <Content Include="images\What-is-Market-Research.png" />
+    <Content Include="images\wire_transfer_01.png" />
+    <Content Include="images\yearendsale.png" />
+    <Content Include="images\zionLogo.png" />
+    <Content Include="images\zion_for_linkedin.png" />
+    <Content Include="index.html" />
+    <Content Include="config\ccavenue.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="config\hdfc_usd.config" />
+    <Content Include="Areas\Admin\Views\ZionInNews\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ZionInNews\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ZionInNews\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\JobVacancy\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\JobVacancy\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\JobVacancy\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\JobVacancy\ListJobApplications.cshtml" />
+    <Content Include="Areas\Admin\Views\JobVacancy\ViewResume.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportAttribute\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportAttribute\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportAttribute\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ReportAttribute\ShowAttributeCheckbox.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\DownloadReports.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\ArchiveReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Edit_bk.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\GenerateTOC.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\InsertOrUpdateResellerDescription.cshtml" />
+    <None Include="bundleconfig.json" />
+    <None Include="config\paypal.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Content\js\bd-wizard.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\custom.js" />
+    <Content Include="Content\js\jquery-1.11.2.min.js" />
+    <Content Include="Content\js\jquery.easing.js" />
+    <Content Include="Content\js\jquery.flexslider.js" />
+    <Content Include="Content\js\jquery.isotope.js" />
+    <Content Include="Content\js\jquery.mousewheel.js" />
+    <Content Include="Content\js\jquery.prettyPhoto.js" />
+    <Content Include="Content\js\jquery.steps.min.js" />
+    <Content Include="Content\js\jquery.superslides.js" />
+    <Content Include="Content\js\jquery.ui.rlightbox.js" />
+    <Content Include="Content\js\jquery.ui.widget.min.js" />
+    <Content Include="Content\js\slideroption.js" />
+    <Content Include="Content\js\stickUp.js" />
+    <Content Include="Models\ZionEntityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ZionEntityModel.edmx</DependentUpon>
+      <LastGenOutput>ZionEntityModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ZionEntityModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ZionEntityModel.edmx</DependentUpon>
+      <LastGenOutput>ZionEntityModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <Content Include="ReportTable\ziontable.html" />
+    <Content Include="saleimages\Authority.png" />
+    <Content Include="saleimages\best-seller.png" />
+    <Content Include="saleimages\blackfriday.png" />
+    <Content Include="saleimages\blackFriday_small.png" />
+    <Content Include="saleimages\BusinessIncrease.png" />
+    <Content Include="saleimages\BusinessStrategy.png" />
+    <Content Include="saleimages\internships.png" />
+    <Content Include="saleimages\MaximizeBusiness.png" />
+    <Content Include="saleimages\MoreProfit.png" />
+    <Content Include="saleimages\MoreProfit1.png" />
+    <Content Include="saleimages\reports.png" />
+    <Content Include="saleimages\sale.png" />
+    <Content Include="saleimages\SalesReport.png" />
+    <Content Include="saleimages\sale_offerIndex.png" />
+    <Content Include="saleimages\Startups.png" />
+    <Content Include="Scripts\career.js" />
+    <Content Include="Scripts\checkout.js" />
+    <Content Include="Scripts\customrazorpay.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js.map" />
+    <Content Include="config\hdfc_inr.config" />
+    <Content Include="config\stripe.config" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="images\blue-pattern.webp" />
+    <Content Include="images\image01.webp" />
+    <Content Include="images\images06.webp" />
+    <Content Include="images\404.webp" />
+    <Content Include="images\500.webp" />
+    <EntityDeploy Include="Models\ZionEntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ZionEntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ZionEntityModel.edmx.diagram">
+      <DependentUpon>ZionEntityModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="images\twitter_x_logo.webp" />
+    <Content Include="images\check_12.webp" />
+    <None Include="Properties\PublishProfiles\ZionMarketResearch2.0.pubxml" />
+    <None Include="Service References\CRM\WebService.disco" />
+    <None Include="Service References\CRM\configuration91.svcinfo" />
+    <None Include="Service References\CRM\configuration.svcinfo" />
+    <None Include="Service References\CRM\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\serializeform.js" />
+    <Content Include="Utility\Template\AskToAnalyst.html" />
+    <Content Include="Utility\Template\BuyingEnquiry.html" />
+    <Content Include="Utility\Template\ContactUs.html" />
+    <Content Include="Utility\Template\NewsButton.html" />
+    <Content Include="Utility\Template\PaymentConfirm.html" />
+    <Content Include="Utility\Template\PaymentFailed.html" />
+    <Content Include="Utility\Template\PaymentInitiate.html" />
+    <Content Include="Utility\Template\RequestSample.html" />
+    <Content Include="Utility\Template\Subscription.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Views\Upload\Upload.cshtml" />
+    <Content Include="Cart\partials\_layout.scss" />
+    <Content Include="Cart\partials\_mixins.scss" />
+    <Content Include="Cart\partials\_variables.scss" />
+    <Content Include="Cart\scss\style.scss" />
+    <Content Include="config\twocheckout.config" />
+    <None Include="Properties\PublishProfiles\ZionMarketResearch.pubxml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\AllNews.cshtml" />
+    <Content Include="Views\Report\AllReports.cshtml" />
+    <Content Include="Views\Report\AllUpcoming.cshtml" />
+    <Content Include="Views\Buynow\process.cshtml" />
+    <Content Include="Views\Home\About-Us.cshtml" />
+    <Content Include="Views\Home\Contact-Us.cshtml" />
+    <Content Include="Views\Home\Disclaimer.cshtml" />
+    <Content Include="Views\Home\FAQs.cshtml" />
+    <Content Include="Views\Home\How-To-Order.cshtml" />
+    <Content Include="Views\Home\Privacy-Statement.cshtml" />
+    <Content Include="Views\Home\Return-Policy.cshtml" />
+    <Content Include="Views\Home\Terms-And-Conditions.cshtml" />
+    <Content Include="Views\Report\_UpcomingReport.cshtml" />
+    <Content Include="Views\Report\_PublishedReport.cshtml" />
+    <Content Include="Views\Report\RelatedReports.cshtml" />
+    <Content Include="Views\Article\AllArticles.cshtml" />
+    <Content Include="Views\Report\_BuynowControl.cshtml" />
+    <Content Include="Views\Shared\_LayoutInternal.cshtml" />
+    <Content Include="Views\Shared\_footer.cshtml" />
+    <Content Include="Views\Shared\_contact.cshtml" />
+    <Content Include="Views\Shared\_breadcrumb.cshtml" />
+    <Content Include="Views\Report\RelatedNewsView\_RelatedNews.cshtml" />
+    <None Include="Service References\CRM\WebService.wsdl" />
+    <Content Include="Views\Home\NotFound.cshtml" />
+    <Content Include="Views\Shared\_ValidationSummary.cshtml" />
+    <Content Include="Views\Report\_NotifyModal.cshtml" />
+    <Content Include="Views\Shared\_TotalRecord.cshtml" />
+    <Content Include="Views\Notify\Unsubscribe.cshtml" />
+    <Content Include="Views\Report\RightSideBar\_RightSideBarLatestReports.cshtml" />
+    <Content Include="Views\Report\RightSideBar\_RightSideBarLatestUpcomingReports.cshtml" />
+    <Content Include="Views\Form\ShowForm_Advance.cshtml" />
+    <Content Include="Views\Shared\_WithoutGoogleAnalytics.cshtml" />
+    <Content Include="Views\Discount\Report.cshtml" />
+    <Content Include="Views\Discount\Newsletter.cshtml" />
+    <Content Include="Views\Discount\YearEndSale.cshtml" />
+    <Content Include="Views\Report\AskToAnalyst.cshtml" />
+    <Content Include="Views\Report\_NewBuynowControl.cshtml" />
+    <Content Include="Views\Shared\_ChooseUs.cshtml" />
+    <Content Include="Views\Form\ShowAskToAnalyst.cshtml" />
+    <Content Include="Views\Form\ShowQuickInquiry.cshtml" />
+    <Content Include="Views\Shared\_GoToTop.cshtml" />
+    <Content Include="Views\Home\ZMRInNews.cshtml" />
+    <Content Include="Views\Report\ReportForm.cshtml" />
+    <Content Include="Views\Home\Career.cshtml" />
+    <Content Include="Views\Home\CareerDetail.cshtml" />
+    <Content Include="Views\Discount\BlackFriday.cshtml" />
+    <Content Include="Views\Report\LatestFeaturedReports.cshtml" />
+    <Content Include="Views\Report\AllFeaturedReports.cshtml" />
+    <Content Include="Views\Shared\error.cshtml" />
+    <Content Include="Views\Buynow\TestPayment.cshtml" />
+    <Content Include="Views\Buynow\RazorPayTest.cshtml" />
+    <Content Include="Views\Report\_FAQ.cshtml" />
+    <Content Include="Views\Report\_COVID19.cshtml" />
+    <Content Include="Views\Shared\_NavigationMenu.cshtml" />
+    <Content Include="Views\Report\_PopForm.cshtml" />
+    <Content Include="Views\News\LatestNewsOnHome.cshtml" />
+    <Content Include="Views\Form\NewForm.cshtml" />
+    <Content Include="Views\Report\ReportFormNew.cshtml" />
+    <Content Include="Views\Shared\_header.cshtml" />
+    <Content Include="Views\Report\_ReportList.cshtml" />
+    <Content Include="Views\Buynow\NewBuyNow.cshtml" />
+    <Content Include="Views\News\_NewsList.cshtml" />
+    <Content Include="Views\Shared\_LinkedInButton.cshtml" />
+    <Content Include="Views\Home\_HomeForm.cshtml" />
+    <Content Include="Views\Home\ServerError.cshtml" />
+    <Content Include="Views\Shared\_NewSearch.cshtml" />
+    <Content Include="Views\Home\_SearchHome.cshtml" />
+    <Content Include="Views\Shared\_Modal.cshtml" />
+    <Content Include="Views\Article\_ArticleList.cshtml" />
+    <Content Include="Views\Discount\YearEnd.cshtml" />
+    <Content Include="Views\Report\Index_bk.cshtml" />
+    <Content Include="Views\Report\_ReportInfo.cshtml" />
+    <Content Include="Views\Discount\NewDiscount.cshtml" />
+    <Content Include="Views\News\Index - Copy.cshtml" />
+    <Content Include="Views\Home\_TrendingReports.cshtml" />
+    <Content Include="Views\Report\_ReportListWithList.cshtml" />
+    <Content Include="Views\Category\ReportTab.cshtml" />
+    <Content Include="Views\Shared\_LayoutOneCss.cshtml" />
+    <Content Include="Views\Shared\_headerMS.cshtml" />
+    <Content Include="Views\Shared\_footerMS.cshtml" />
+    <Content Include="Views\Report\IndexMS.cshtml" />
+    <Content Include="Views\Report\VueJs\_VueReportList.cshtml" />
+    <Content Include="Views\Form\ShowCorporateEmail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\UploadedImages\" />
+    <Folder Include="year_end_img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\LatestReport.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="log4net.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\LatestReportDescriptionTemplate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\LatestUpcomingReports.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Form\ShowForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ThankYou.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Category\GetCategoryWithReportCount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\LatestNewsView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\LatestNews.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Custom\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\ShowSearch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\SearchResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\SearchResultDescription.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Category\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Category\CategoryWithReports.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Buynow\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Error\AccessDenied.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\AskPermission.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentLink\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentLink\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentLink\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RedirectUrl\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RedirectUrl\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RedirectUrl\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Admin\Content\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Admin\Content\images\Thumbs.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CRM\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:16687/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

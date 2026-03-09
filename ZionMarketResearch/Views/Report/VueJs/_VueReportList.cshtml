@@ -1,0 +1,105 @@
+﻿@model string
+@{ var uniqueID = Model.Replace("/", string.Empty).Replace("-", "_"); }
+<div id="reportList_@uniqueID">
+    <div class="heading reportlist_box" v-for="report in reports">
+        <div class="col-sm-12 zero-padding">
+            <div class="topbadge">
+                <span class="badge" v-if="report.PublishedDate !== null"><i class="fa fa-calendar" aria-hidden="true"></i>  {{report.PublishedDate | formatDate}} </span>
+                <span class="badge"> <i class="fa fa-tags" aria-hidden="true"></i> {{(!report.IsUpcoming ? "Published" : "Upcoming")}}  </span>
+            </div>
+            <div class="row">
+                @*<div class="col-sm-2">
+                    <img src="/images/report_img.png" alt="report icon" width="120px" height="143px" class="img-responsive report-img">
+                </div>*@
+                <div class="col-sm-12">
+                    <h2 class="reporttitle title-list-margin">
+                        <a :href='"/report/" + report.ReportUrl'>{{report.ReportTitle}}</a>
+                    </h2>
+                    <p>
+                        {{report.Description}}
+                    </p>
+                    @*<span class="bottombadge reportTitle-readmore" v-if="report.Category != null"><i class="fa fa-th-large" aria-hidden="true"></i> <span v-html="report.Category"></span> </span> <span class="bottombadge"><i class="fa fa-file-pdf-o"></i> Report Format : PDF</span> <span class="bottombadge"> <i class="fa fa-book" aria-hidden="true"></i> Pages: {{report.NumberOfPages}} </span>
+                    <span class="bottombadge reportTitle-readmore"> <a :href="'/report/' + report.ReportUrl" rel="nofollow">Read More <i class="fa fa-arrow-circle-right"></i></a></span>*@
+                </div>
+            </div>
+        </div>
+        @*<div class="col-sm-2 text-center lt-border">
+            <div class="rb_btn">
+                <h2> <span style="display:block;">$ {{report.SingleUser}}</span> <small> Single User </small></h2>
+                <a class="btn btn-warning btn-lg" :href="'/buynow/su/' + report.ReportUrl" rel="nofollow"> {{(!report.IsUpcoming ? "Buy Now" : "Prebook")}} </a>
+            </div>
+        </div>*@
+    </div>
+    <button class="btn btn-primary button-load-more" @@click="loadMore" :disabled="loading">Load More Reports...</button>
+</div>
+@*<style>
+    .reportTitle-readmore {
+        margin-left: 5px;
+    }
+
+        .reportTitle-readmore a {
+            color: #024973;
+            font-weight: bold;
+        }
+</style>*@
+
+@*<style>
+    .button-load-more {
+        margin-left: 35%;
+    }
+
+    @@media (min-width:500px) {
+        .button-load-more {
+            margin-left: 35%;
+        }
+    }
+
+    @@media (max-width:499px) {
+        .button-load-more {
+            margin-left: 0px;
+        }
+    }
+</style>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+    window['reportList_@uniqueID'] = new Vue({
+        el: '#reportList_@uniqueID',
+        data: {
+            reports: [],
+            page: 1,
+            loading: false,
+            reportLoadingUrl: '@Model'
+        },
+        mounted: function () {
+            //this.loading = true;
+            //fetch(this.reportLoadingUrl)
+            //    .then(res => res.json())
+            //    .then(res => {
+            //        this.reports = res;
+            //        this.loading = false;
+            //    });
+        },
+        methods: {
+            loadMore: function () {
+                debugger;
+                this.loading = true;
+                this.page++;
+                fetch(this.reportLoadingUrl + '?page=' + this.page)
+                    .then(res => res.json())
+                    .then(res => {
+                        this.reports = this.reports.concat(res);
+                        this.loading = false;
+                        //this.reports.push(res);
+                    });
+            }
+        }
+    });
+
+    Vue.filter('formatDate', function (value) {
+        if (value) {
+            return moment(String(value)).format('MMM-YYYY')
+        }
+    });
+</script>

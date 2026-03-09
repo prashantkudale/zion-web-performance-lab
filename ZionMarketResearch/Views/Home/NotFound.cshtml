@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Not Found";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+
+
+@section metaTags{
+    <meta name="robots" content="noindex" />
+}
+
+<section id="report-title" class="report-title-image white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "Not Found");}
+        <div class="col-md-12">
+            <h3>If you think the URL is valid. Let us know about the error.</h3>
+            @{ Html.RenderAction("ShowForm", "Form", new { FormType = (int)ZionMarketResearch.constants.GlobalConstant.FormType.NotFound}); }
+        </div>
+    </div>
+</section>

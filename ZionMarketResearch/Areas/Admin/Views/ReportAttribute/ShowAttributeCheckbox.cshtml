@@ -1,0 +1,8 @@
+﻿@model List<ZionMarketResearch.Models.tblreportattribute>
+@foreach (var rr in Model)
+{
+    <label>
+        <input type="checkbox" name="ReportAttribute" value="@rr.ID" @(ViewBag.SelectedAttributes != null && ((int[])ViewBag.SelectedAttributes).Contains(rr.ID) ? "checked" : string.Empty) />
+        @rr.AttributeName
+    </label>
+}

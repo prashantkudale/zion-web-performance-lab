@@ -1,0 +1,42 @@
+﻿@model ZionMarketResearch.Models.MainPageReportView
+<div class="report-box buynow-control">
+    <div class="lic_header contactInfo">
+        @*<h2 class="licheader__title">Choose License Type</h2>*@
+        <ul>
+            <li><img src="/images/zion-payment-modes.jpg" alt="zion payment modes" class="img-responsive" width="426px" height="47px"></li>
+           
+        </ul>
+    </div>
+
+    <div class="subscription-container">
+        @*<input type="radio" name="radio" id="option1" checked="checked" value="su">
+        <label for="option1" class="subscription__button">
+            <span class="subscription__main-feature">Single User License </span>
+            <span class="subscription__price">$@Model.SingleUser</span>
+        </label>
+
+        <input type="radio" name="radio" id="option2" value="mu">
+        <label for="option2" class="subscription__button">
+            <span class="subscription__main-feature">Multi User License </span>
+            <span class="subscription__price">$@Model.MultiUser</span>
+        </label>
+
+        <input type="radio" name="radio" id="option3" value="cu">
+        <label for="option3" class="subscription__button">
+            <span class="subscription__main-feature">Enterprise Access License </span>
+            <span class="subscription__price">$@Model.CorporateUser </span>
+        </label>*@
+        <button type="button" class="btn-4 sidebar-button buynow-button">Buy Now</button>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.buynow-button').click(function () {
+            let selected = 'su'; //$('.subscription-container input[type=radio]:checked').val();
+            //alert('MS : /buynow/' + selected + '/@Model.ReportUrl');
+            window.location.href = '/buynow/'+selected+'/@Model.ReportUrl';
+        });
+    });
+</script>

@@ -1,0 +1,146 @@
+﻿@model ZionAdmin.Repository.CategoryRepository
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create Category";
+}
+
+<h4>Create Category</h4>
+<hr />
+<div class="col-md-12">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert @(ViewBag.ErrorMessage.Contains("true") ? "alert-danger" : "alert-success")">
+            @ViewBag.ErrorMessage.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[0]
+            @Html.ValidationSummary()
+        </div>
+    }
+    @using (Html.BeginForm("Create", "Category", FormMethod.Post, new { Class = "form-horizontal", enctype = "multipart/form-data", id = "frmCategory" }))
+    {
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Category</label>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(c => c.CategoryName, new { Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.CategoryName)
+            </div>
+            <div class="col-sm-3">
+                <label class="control-label col-sm-7" for="AppendId">Append Id?</label>
+                <div class="col-sm-2">
+                    @Html.CheckBoxFor(c => c.AppendId)
+                    @Html.ValidationMessageFor(c => c.AppendId)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CategoryName" class="control-label col-sm-2">Url</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(c => c.CategoryUrl, new { Class = "form-control", placeholder = "Leave blank if want default url" })
+                @Html.ValidationMessageFor(c => c.CategoryUrl)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ParentCategoryId" class="control-label col-sm-2">Parent Category</label>
+            <div class="col-sm-10">
+                @Html.DropDownListFor(c => c.ParentCategoryId, from cat in ZionAdmin.Repository.CategoryRepository.List().ToList()
+                                                               select new SelectListItem
+                                                               {
+                                                                   Text = cat.CategoryName,
+                                                                   Value = cat.CategoryId.ToString()
+                                                               }, "-Select Parent Category-", new { Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.ParentCategoryId)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PageHeading" class="control-label col-sm-2">Page Heading</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(c => c.PageHeading, new { Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.PageHeading)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Title" class="control-label col-sm-2">Title</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(c => c.Title, new { Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Title)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="TopDescription" class="control-label col-sm-2">Description</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(c => c.TopDescription, new { Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.TopDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MainPageImageImagePath" class="control-label col-sm-2">Main Page Image</label>
+            <div class="col-sm-10">
+                @*@Html.TextBoxFor(c => c.MainPageImageImagePath, new { Class = "form-control" })*@
+                <label class="file">
+                    <input type="file" name="file1">
+                    <span class="file-custom"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MainPageImageAltAttribute" class="control-label col-sm-2">Main Page Alt Att</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(c => c.MainPageImageAltAttribute, new { Class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="HomePageDescription" class="control-label col-sm-2">Home Page Desc</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(c => c.HomePageDescription, new { Class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="HomePageImagePath" class="control-label col-sm-2">Home Page Image</label>
+            <div class="col-sm-10">
+                @*@Html.TextBoxFor(c => c.HomePageImagePath, new { Class = "form-control" })*@
+                <label class="file">
+                    <input type="file" name="file2">
+                    <span class="file-custom"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="HomePageImageAltAttribute" class="control-label col-sm-2">Home Page Alt Att</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(c => c.HomePageImageAltAttribute, new { Class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Keywords" class="control-label col-sm-2">Keywords</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(c => c.MetaKeyword, new { Class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MetaDescription" class="control-label col-sm-2">Meta Description</label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(c => c.MetaDescription, new { Class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-primary">Submit</button>
+                <a href="@Url.Action("index", "category")" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    }
+</div>
+<script src="https://cdn.ckeditor.com/4.5.2/standard-all/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('TopDescription');
+    CKEDITOR.replace('HomePageDescription');
+    $(document).ready(function () {
+        $('button').click(function (e) {
+            if (jsFormValidation("#frmCategory", null, null, null)) {
+                debugger;
+                $("#frmCategory").submit();
+            } else {
+                e.preventDefault();
+            }
+        });
+    });
+</script>

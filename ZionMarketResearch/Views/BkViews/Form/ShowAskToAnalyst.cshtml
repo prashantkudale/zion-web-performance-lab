@@ -1,0 +1,130 @@
+﻿@model ZionMarketResearch.Models.AskForAnalystRepository
+@{Html.RenderPartial("_ValidationSummary", ViewData.ModelState);}
+<form class="well form-horizontal zionform" action="/form/SubmitAskToAnalyst" method="post" id="contact_form_@ViewBag.FormType" style="background-color:inherit;border:none;">
+    @Html.HiddenFor(f => f.ReportId, new { value = ViewBag.ReportId })
+    <input type="hidden" value="@(Request.RawUrl.Contains("/news") ? 1 : 0)" name="fromNews" />
+    @*@Html.HiddenFor(f => f.ru, new { value = ZionMarketResearch.Util.Utility.Encryptstring(Request.RawUrl) })*@
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Name</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    @Html.TextBoxFor(f => f.Name, new { placeholder = "Name", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">E-Mail</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    @Html.TextBoxFor(f => f.Email, new { placeholder = "myname@example.com", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Email)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Phone #</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                    @Html.TextBoxFor(f => f.Phone, new { placeholder = "(845)555-1212", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Phone)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">@(Request.Url.ToString().Contains("/ask-to-analyst/") ? "Any Specific Interest ?" : "How can we help you ?")</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group" style="width: 100%;">
+                    @Html.TextAreaFor(f => f.Message, new { placeholder = "Customized multi-client reports being one of our unique selling points, do not hesitate to come up with your precise interests in substantially comprehensive way", Class = "form-control", style = "height: 200px !important;" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Message)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Schedule a Call <i class="fa fa-question-circle" id="chooseToolTip" data-toggle="tooltip" data-placement="bottom" title="We will call you on the date"></i></label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group date" style="width: 100%;" id="datepicker1">
+                    @Html.TextBoxFor(f => f.SelectedDate, new { Class = "form-control", @readonly = "readonly" })
+                    <span class="input-group-addon">
+                        <span class="fa fa-calendar"></span>
+                    </span>
+                </div>
+                @Html.ValidationMessageFor(f => f.SelectedDate)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Captcha</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group" style="width: 100%;">
+                    <img src="/captcha" id="captcha" /> <a id="refresh" title="Refresh Captcha" style="cursor:pointer;"> <img src="~/images/012_restart-128.png" style="width:32px;" /></a>
+                    @Html.TextBoxFor(f => f.Captcha, new { placeholder = "Captcha", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Captcha)
+            </div>
+        </div>
+        <!-- Success message -->
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-9">
+                <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="alert alert-info">
+        <i class="fa fa-info-circle"></i> Your personal details are safe and secured with us. <a href="/privacy-policy" target="_blank" style="text-decoration:underline;" rel="nofollow">Privacy Policy</a>
+        <a href="https://seal.godaddy.com/verifySeal?sealID=eABH91l0h9MuYRpGoWkiG6NRu7Y2vaTxM5bjm0tMzUTDOhMYnSysInFUHWa0" target="_blank" rel="nofollow">
+            <img style="cursor:pointer;cursor:pointer;" src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" alt="SSL site seal - click to verify" />
+        </a>
+    </div>
+</form>
+@Scripts.Render("~/bundles/form-validation")
+<style>
+    .control-label.required:after {
+        color: red;
+        content: "*";
+        padding-left: 2px;
+    }
+
+    textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+
+    textarea::-moz-placeholder { /* Firefox 19+ */
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+
+    textarea:-ms-input-placeholder { /* IE 10+ */
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+
+    textarea:-moz-placeholder { /* Firefox 18- */
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $("#SelectedDate").each(function () {
+            $(this).datetimepicker({
+                format: 'M/D/YYYY',
+                daysOfWeekDisabled: [0, 6],
+                minDate: new Date(),
+                icons: {
+                    next: 'fa fa-angle-right',
+                    previous: 'fa fa-angle-left',
+                    time: 'fa fa-clock'
+                },
+                ignoreReadonly: true
+            });
+        });
+    });
+</script>

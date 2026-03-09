@@ -1,0 +1,246 @@
+﻿@model ZionMarketResearch.Models.BuynowRepository
+@{
+    ViewBag.Title = (Model.OrderSummary[0].IsUpcoming ? "Prebook - " : "Buy Now - ") + Model.OrderSummary[0].ReportTitle.Substring(0, Model.OrderSummary[0].ReportTitle.ToLower().IndexOf("market") + 6);
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+<section id="report-title" class="white_section section_gap">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>Buy Now</li>
+            <li class="active">@Model.OrderSummary[0].ReportTitle.Substring(0, Model.OrderSummary[0].ReportTitle.IndexOf("Market") + 6)</li>
+        </ul>
+        <div class="heading">
+            <div class="col-sm-9">
+                <h1 class="reporttitle animate__animated animate__bounce">
+                    @Model.OrderSummary[0].ReportTitle
+                </h1>
+            </div>
+            <div class="col-sm-3">
+                <ul id="rept_info">
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i> 19-Oct-2020</li>
+                    <li><i class="fa fa-th-large" aria-hidden="true"></i> Technology &amp; Media</li>
+                    <li><i class="fa fa-file-pdf-o"></i> Report Format : pdf</li>
+                    <li><i class="fa fa-book" aria-hidden="true"></i> Pages: 122</li>
+                    <li><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Report Code: ZMR-176</li>
+                    <li><i class="fa fa-tags" aria-hidden="true"></i> Status : Published</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section>
+    <main class="d-flex align-items-center">
+        <div class="container">
+            <div class="col-sm-12">
+                <div id="wizard">
+                    <h3>Step 2 Title</h3>
+                    <section>
+                        <form id="bform" action="/buynow/@(Model.OrderSummary[0].IsUpcoming ? "prebook" : "index" )" method="post">
+                            @Html.HiddenFor(f => f.r, new { value = ZionMarketResearch.Util.Utility.Encryptstring(Model.OrderSummary[0].ReportUrl) })
+                            @Html.HiddenFor(f => f.l, new { value = ZionMarketResearch.Util.Utility.Encryptstring(Model.OrderSummary[0].SelectedReportType.ToString()) })
+                            <input type="hidden" name="PaymentType"/>
+                            <!--<h5 class="bd-wizard-step-title">Step 2</h5>-->
+                            <h2 class="section-heading">1. Enter your Personal Details</h2>
+                            <div class="row zero-padding">
+                                <h3>Personal Details:</h3>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Name" class="sr-only">Name</label>
+                                            @Html.TextBoxFor(model => model.Name, new { Class = "form-control", placeholder = "Name" })
+                                            @Html.ValidationMessageFor(model => model.Name)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Email" class="sr-only">Email Address</label>
+                                            @Html.TextBoxFor(model => model.Email, new { Class = "form-control", placeholder = "Email", type = "email" })
+                                            @Html.ValidationMessageFor(model => model.Email)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="ContactNumber" class="sr-only">Phone Number</label>
+                                            @Html.TextBoxFor(model => model.ContactNumber, new { Class = "form-control", placeholder = "Phone #", type = "tel" })
+                                            @Html.ValidationMessageFor(model => model.ContactNumber)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Company" class="sr-only">Company Name</label>
+                                            @Html.TextBoxFor(model => model.Company, new { Class = "form-control", placeholder = "Company" })
+                                            @Html.ValidationMessageFor(model => model.Company)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="user_desig" class="sr-only">Title/Desig.</label>
+                                            @Html.TextBoxFor(model => model.Title, new { Class = "form-control", placeholder = "Title/Designation" })
+                                            @Html.ValidationMessageFor(model => model.Title)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row zero-padding">
+                                <h3>Address Details:</h3>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Country" class="sr-only">Country</label>
+                                            @Html.DropDownListFor(f => f.Country, (List<SelectListItem>)ViewBag.Countries, "-Select Country-", new { Class = "form-control selectpicker" })
+                                            @Html.ValidationMessageFor(model => model.Country)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="user_state" class="sr-only">State</label>
+                                            @Html.TextBoxFor(model => model.State, new { Class = "form-control", placeholder = "State" })
+                                            @Html.ValidationMessageFor(model => model.State)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="City" class="sr-only">city</label>
+                                            @Html.TextBoxFor(model => model.City, new { Class = "form-control", placeholder = "City" })
+                                            @Html.ValidationMessageFor(model => model.City)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="ZipCode" class="sr-only">Zip</label>
+                                            @Html.TextBoxFor(model => model.ZipCode, new { Class = "form-control", placeholder = "ZIP" })
+                                            @Html.ValidationMessageFor(model => model.ZipCode)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="user_address" class="sr-only">Address</label>
+                                            @Html.TextAreaFor(model => model.Address, new { Class = "form-control", placeholder = "Address" })
+                                            @Html.ValidationMessageFor(model => model.Address)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <img src="/captcha">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="in_captcha" class="sr-only">Captcha</label>
+                                            @Html.TextBoxFor(model => model.Captcha, new { Class = "form-control", placeholder = "Captcha Code" })
+                                            @Html.ValidationMessageFor(model => model.Captcha)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <h3>Step 1 Title</h3>
+                    <section>
+                        <!--<h5 class="bd-wizard-step-title">Step 1</h5>-->
+                        <h2 class="section-heading">2. Choose License Type </h2>
+
+                        <div class="purpose-radios-wrapper">
+                            <div class="purpose-radio hvr-wobble-vertical">
+                                <input type="radio" name="lic_type" id="branding" class="purpose-radio-input" value="0" checked>
+                                <label for="branding" class="purpose-radio-label">
+                                    <span class="label-icon">
+                                        <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="label-text">$ @Model.OrderSummary[0].SingleUser<br />Single User License</span>
+                                </label>
+                            </div>
+                            <div class="purpose-radio hvr-wobble-vertical">
+                                <input type="radio" name="lic_type" id="mobile-design" class="purpose-radio-input" value="1">
+                                <label for="mobile-design" class="purpose-radio-label">
+                                    <span class="label-icon">
+                                        <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="label-text">$ @Model.OrderSummary[0].MultiUser<br />Multi User License</span>
+                                </label>
+                            </div>
+                            <div class="purpose-radio hvr-wobble-vertical">
+                                <input type="radio" name="lic_type" id="web-design" class="purpose-radio-input" value="2">
+                                <label for="web-design" class="purpose-radio-label">
+                                    <span class="label-icon">
+                                        <!--<img src="assets/images/icon_web_design.svg" alt="branding" class="label-icon-default">
+                        <img src="assets/images/icon_web_design_green.svg" alt="branding" class="label-icon-active">-->
+                                        <i class="fa fa-building fa-2x" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="label-text">$ @Model.OrderSummary[0].CorporateUser<br />Enterprise License</span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                    <h3>Step 3 Title</h3>
+                    <section>
+                        <!--<h5 class="bd-wizard-step-title">Step 3</h5>-->
+                        <h2 class="section-heading mb-5">3. Select your Payment Mode</h2>
+
+                        <div class="middle">
+                            <label>
+                                <input type="radio" name="pt" value="5" checked />
+                                <div class="front-end box hvr-float-shadow">
+                                    <span class="lic_span">Credit/Debit Card</span>
+
+                                </div>
+
+                            </label>
+
+                            <label>
+
+                                <input type="radio" name="pt" value="1" />
+                                <div class="second-end box hvr-float-shadow">
+                                    <span class="lic_span">2Checkout</span>
+
+                                </div>
+
+                            </label>
+
+                            <label>
+                                <input type="radio" name="pt" value="2" />
+                                <div class="back-end box hvr-float-shadow">
+                                    <span class="lic_span">Wire Transfer</span>
+
+                                </div>
+                            </label>
+
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</section>
+
+@section headStyle{
+    <link href="~/Content/css/bd-wizard.css" rel="stylesheet" />
+}
+
+
+@Scripts.Render("~/bundles/form-validation")
+@Scripts.Render("~/bundles/checkoutjs");
+@Scripts.Render("~/bundles/razorpayjs");
+<script src="~/Content/js/jquery.steps.min.js"></script>
+<script src="~/Content/js/bd-wizard.js"></script>
+<script src="~/Content/js/custom.js"></script>
+
+
+
+

@@ -1,0 +1,149 @@
+﻿@model ZionMarketResearch.Models.FormRepository
+@{Html.RenderPartial("_ValidationSummary", ViewData.ModelState);}
+<form class="well form-horizontal zionform" action="/form/submit" method="post" id="contact_form_@ViewBag.FormType" style="background-color:inherit;border:none;">
+    @Html.HiddenFor(f => f.ReportId, new { value = ViewBag.ReportId })
+    @Html.HiddenFor(f => f.FormType, new { value = ViewBag.FormType })
+    @Html.HiddenFor(f => f.SearchText, new { value = ViewBag.Search })
+    <input type="hidden" value="@(Request.QueryString["covid19"] != null ? Request.QueryString["covid19"] : "false" )" name="COVID19Analysis" />
+    <input type="hidden" value="@(Request.RawUrl.Contains("/news") ? 1 : 0)" name="fromNews" />
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Name</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    @Html.TextBoxFor(f => f.Name, new { placeholder = "Name", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">E-Mail</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    @Html.TextBoxFor(f => f.Email, new { placeholder = "myname@example.com", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Email)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Phone #</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                    @Html.TextBoxFor(f => f.Phone, new { placeholder = "(845)555-1212", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Phone)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Company</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                    @Html.TextBoxFor(f => f.Company, new { placeholder = "Company", Class = "form-control company" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Company)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Designation/Title</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                    @Html.TextBoxFor(f => f.Designation, new { placeholder = "Designation/Title", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Designation)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Country</label>
+            <div class="col-md-8 selectContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-plane"></i></span>
+                    @Html.DropDownListFor(f => f.Country, (List<SelectListItem>)ViewBag.Countries, "-Select Country-", new { Class = "form-control selectpicker" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Country)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">@(Request.Url.ToString().Contains("/ask-to-analyst/") ? "Any Specific Interest ?" : "How can we help you ?")</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group" style="width: 100%;">
+                    @Html.TextAreaFor(f => f.Comment, new { placeholder = "Customized multi-client reports being one of our unique selling points, do not hesitate to come up with your precise interests in substantially comprehensive way", Class = "form-control", style = "height: 200px !important;" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Comment)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label required">Captcha</label>
+            <div class="col-md-8 inputGroupContainer">
+                <div class="input-group" style="width: 100%;">
+                    <img src="/captcha" id="captcha" /> <a id="refresh" title="Refresh Captcha" style="cursor:pointer;"> <img src="~/images/012_restart-128.png" style="width:32px;" /></a>
+                    @Html.TextBoxFor(f => f.Captcha, new { placeholder = "Captcha", Class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(f => f.Captcha)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">
+                Auto Fill?
+            </label>
+            <div class="col-md-8 checkbox">
+                @Html.CheckBoxFor(f => f.AutoFill, new { id = "AutoFill_" + ViewBag.FormType, style = "width:50px;" })
+                <label for="AutoFill_@ViewBag.FormType">
+                    Select if you want to fill this form automatically next time.
+                </label>
+            </div>
+        </div>
+        <!-- Success message -->
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-9">
+                <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="alert alert-info">
+        <i class="fa fa-info-circle"></i> Your personal details are safe and secured with us. <a href="/privacy-policy" target="_blank" style="text-decoration:underline;" rel="nofollow">Privacy Policy</a>
+        <a href="https://seal.godaddy.com/verifySeal?sealID=eABH91l0h9MuYRpGoWkiG6NRu7Y2vaTxM5bjm0tMzUTDOhMYnSysInFUHWa0" target="_blank" rel="nofollow">
+            <img style="cursor:pointer;cursor:pointer;" src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" alt="SSL site seal - click to verify" />
+        </a>
+    </div>
+</form>
+@Scripts.Render("~/bundles/form-validation")
+<style>
+    .control-label.required:after {
+        color: red;
+        content: "*";
+        padding-left: 2px;
+    }
+
+    textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+
+    textarea::-moz-placeholder { /* Firefox 19+ */
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+
+    textarea:-ms-input-placeholder { /* IE 10+ */
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+
+    textarea:-moz-placeholder { /* Firefox 18- */
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        initCompany();
+    });
+</script>

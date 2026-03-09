@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ZionMarketResearch.Models.LatestReportView>
+<ul class="hover_listing row">
+    @foreach (var report in Model)
+    {
+        <li class="col-xs-12 col-sm-6 col-md-4 col-lg-4 noPadd">
+            <div class="title_bg box-container rpt-bg">
+                <h3 class="report-title"> <a title="@report.ReportTitle" href="@Url.Action("Index", "Report", new { url = report.ReportUrl })">@(report.ReportTitle.Length > 211 ? report.ReportTitle.Substring(0, 211) + "..." : report.ReportTitle)</a></h3>
+                <p class="rpt-desc">
+                    <span class="badge"><i class="fa fa-calendar"></i> @report.PublishedDate.Value.ToString("dd-MMM-yyyy")</span> <span class="badge">  @(report.Categories != null && report.Categories.Count() > 0 ? report.Categories[report.Categories.Length - 1] : string.Empty)</span>
+                </p>
+                <blockquote>
+                    <p class="parasize">
+                        @Html.DisplayFor(x => report.Description)
+                        <span><a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })" rel="nofollow">Read More <i class="fa fa-arrow-circle-right"></i></a></span>
+                    </p>
+                </blockquote>
+                <p class="link_btn"><a href="@Url.Action("Inquiry", "Report", new { url = report.ReportUrl })" class="btn_ib">Inquiry for Buying</a><a href="@Url.Action("Sample", "Report", new { url = report.ReportUrl })" class="btn_rs">Request Sample</a></p>
+
+            </div>
+        </li>
+    }
+</ul>

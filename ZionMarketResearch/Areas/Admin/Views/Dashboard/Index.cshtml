@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid" id="app">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Dashboard</h2>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Category</label>
+                <select v-model="selectedCategory" class="form-control">
+                    <option value="">-Select Category-</option>
+                    <option v-for="c in allCategories" :value="c.CategoryId">{{c.CategoryName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>From Date</label>
+                <vuejs-datepicker v-model="fromDate" :bootstrap-styling="true"></vuejs-datepicker>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>To Date</label>
+                <vuejs-datepicker v-model="toDate" :bootstrap-styling="true"></vuejs-datepicker>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" @@click="GetReportCount()" :disabled="showEnabled">Show</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="well">
+                <div class="card-header">
+                    Published <small class="badge">@DateTime.Now.ToString("MMM-yyyy")</small>
+                    Category <small class="badge">{{SelectedCategory}}</small>
+                </div>
+                <div class="card-body">
+                    <h2>{{publishedCount}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="well">
+                <div class="card-header">
+                    Upcoming <small class="badge">@DateTime.Now.ToString("MMM-yyyy")</small>
+                    Category <small class="badge">{{SelectedCategory}}</small>
+                </div>
+                <div class="card-body">
+                    <h2>{{upcomingCount}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="https://unpkg.com/vuejs-datepicker"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            publishedCount: 0,
+            upcomingCount: 0,
+            fromDate: '',
+            toDate: '',
+            showEnabled: true,
+            allCategories: [],
+            selectedCategory: ''
+        },
+        components: {
+            vuejsDatepicker
+        },
+        mounted: function () {
+            this.GetPublishedReportCount();
+            this.GetAllCategories();
+        },
+        computed: {
+            SelectedCategory: function () {
+                let filteredCategory = this.allCategories.filter(c => c.CategoryId === this.selectedCategory);
+                return filteredCategory.length > 0 ? filteredCategory[0].CategoryName : 'Not Selected';
+            }
+        },
+        methods: {
+            GetPublishedReportCount: function () {
+                this.showEnabled = false;
+                let dt = new Date();
+                let frmdate = this.fromDate == '' ? new Date() : this.fromDate;
+                let todate = this.toDate == '' ? new Date(dt.setDate(dt.getDate() + 30)) : this.toDate;
+                axios.post('/admin/dashboard/GetPublishedReportCount', { fromDate: frmdate, toDate: todate })
+                .then(res => {
+                    app.publishedCount = res.data;
+                });
+            },
+            GetUpcomingReportCount: function () {
+                let dt = new Date();
+                let frmdate = this.fromDate == '' ? new Date() : this.fromDate;
+                let todate = this.toDate == '' ? new Date(dt.setDate(dt.getDate() + 30)) : this.toDate;
+                axios.post('/admin/dashboard/GetUpcomingReportCount', { fromDate: frmdate, toDate: todate })
+                .then(res => {
+                    app.upcomingCount = res.data;
+                });
+            },
+            GetReportCount: function () {
+                this.GetPublishedReportCount();
+            },
+            GetAllCategories: function () {
+                axios.get('/admin/category/GetParentCategories')
+                .then(res => {
+                    this.allCategories = res.data;
+                });
+            }
+        }
+    });
+</script>

@@ -1,0 +1,43 @@
+﻿@model ZionMarketResearch.Models.QuickInquiry
+<div class="panel-group" id="whychooseus">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><strong>Request Free Brochure</strong></div>
+        <div class="panel-body">
+            <form style="padding: 13px;" action="/form/SubmitQuickInquiry">
+                <input type="hidden" name="ReportId" value="@ViewBag.ReportId" />
+                <input type="hidden" name="FormType" value="@ViewBag.FormType" />
+                <div class="form-group">
+                    <label class="col-md-3 control-label required">Name</label>
+                    @Html.TextBoxFor(f => f.Name, new { placeholder = "Name", Class = "form-control" })
+                    @Html.ValidationMessageFor(f => f.Name)
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label required">Email</label>
+                    @Html.TextBoxFor(f => f.Email, new { placeholder = "Email", Class = "form-control" })
+                    @Html.ValidationMessageFor(f => f.Email)
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label required">Phone</label>
+                    @Html.TextBoxFor(f => f.Phone, new { placeholder = "Phone", Class = "form-control" })
+                    @Html.ValidationMessageFor(f => f.Phone)
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label required">Message</label>
+                    @Html.TextAreaFor(f => f.Message, new { placeholder = "Message", Class = "form-control" })
+                    @Html.ValidationMessageFor(f => f.Message)
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label required">Captcha</label>
+                    <div class="input-group" style="width: 100%;">
+                        <img src="/captcha" id="captcha" /> <a id="refresh" title="Refresh Captcha" style="cursor:pointer;"> <img src="~/images/012_restart-128.png" style="width:32px;" /></a>
+                        @Html.TextBoxFor(f => f.Captcha, new { placeholder = "Captcha", Class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(f => f.Captcha)
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/form-validation")

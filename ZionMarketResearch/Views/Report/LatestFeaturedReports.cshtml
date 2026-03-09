@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ZionMarketResearch.Models.LatestReportView>
+<div class="panel panel-primary">
+    <div class="panel-heading"><strong><i class="fa fa-file-text" aria-hidden="true"></i> Latest Featured Reports</strong></div>
+    @foreach (var report in Model)
+    {
+        <div class="panel-body">
+            <p>
+                @(report.PublishedDate != null ? Html.Raw("<i class=\"fa fa-calendar\"></i> " + report.PublishedDate.Value.ToString("dd-MMM-yyyy") + " | ") : Html.Raw("")) @(report.Categories != null && report.Categories.Count() > 0 ? report.Categories[report.Categories.Length - 1] : string.Empty)
+                @if (HttpContext.Current.Session["Discount"] != null)
+                { <span style="color:red;font-weight:bold;">Flat 30% Off</span> }
+            </p>
+            <a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })">
+                <h3>
+                    @report.ReportTitle
+                    @*@(report.ReportAttribute != null ? Html.Raw("<span class='badge badge-primary' style='padding: 8px;background-color:#dc3545;'>" + string.Join(",", report.ReportAttribute) + "</span>") : new HtmlString(""))*@
+                </h3>
+            </a>
+            @*<blockquote>
+                <p class="parasize">
+                    @Html.DisplayFor(x => report.Description)
+                    <span><a href="@Url.Action("Index", "Report", new { url = report.ReportUrl })" rel="nofollow">Read More <i class="fa fa-arrow-circle-right"></i></a></span>
+                </p>
+            </blockquote>*@
+        </div>
+    }
+    <p class="read-more"><a href="@Url.Action("AllFeaturedReports", "Report")" rel="nofollow">View All Featured Reports <i class="fa fa-arrow-circle-right"></i></a></p>
+</div>

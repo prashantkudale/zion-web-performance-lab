@@ -1,0 +1,51 @@
+﻿@model ZionAdmin.Repository.RedirectRepository
+@{ ViewBag.Title = "Create Redirect Url";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
+
+<h4>Create Redirect Url</h4>
+<hr />
+<div class="col-md-12">
+    @if (ViewBag.ErrorMessage != null)
+    {
+<div class="alert @(ViewBag.ErrorMessage.Contains("true") ? "alert-danger" : "alert-success")">
+    @Html.ValidationSummary()
+</div>}
+    @using (Html.BeginForm("Create", "RedirectUrl", FormMethod.Post, new { Class = "form-horizontal", id = "frmRedirect" }))
+    {
+        if (ViewBag.Message != null)
+        {
+<div class="alert alert-danger">
+    @ViewBag.Message
+</div> }
+<div class="form-group">
+    <label for="MetaDescription" class="control-label col-sm-2">From Url</label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(r => r.FromUrl, new { Class = "form-control" })
+        @Html.ValidationMessageFor(r => r.FromUrl)
+    </div>
+</div>
+                <div class="form-group">
+                    <label for="MetaDescription" class="control-label col-sm-2">To Url</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(r => r.ToUrl, new { Class = "form-control" })
+                        @Html.ValidationMessageFor(r => r.ToUrl)
+                    </div>
+                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <a href="@Url.Action("index", "redirecturl")" class="btn btn-default">Cancel</a>
+                                    </div>
+                                </div>}
+</div>
+<script>
+    $(document).ready(function () {
+        $('button').click(function (e) {
+            if (jsFormValidation("#frmRedirect", null, null, null)) {
+                $("#frmRedirect").submit();
+            } else {
+                e.preventDefault();
+            }
+        });
+    });
+</script>

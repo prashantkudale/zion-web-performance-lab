@@ -1,0 +1,36 @@
+﻿@model ZionMarketResearch.Models.tblreportattribute
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Edit</h3>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>tblreportattribute</legend>
+
+                @Html.HiddenFor(model => model.ID)
+                <div class="form-group">
+                    <label>Attribute</label>
+                    @Html.TextBoxFor(model => model.AttributeName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AttributeName)
+                </div>
+                <p>
+                    <input type="submit" class="btn btn-primary" value="Save" />
+                </p>
+            </fieldset>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>

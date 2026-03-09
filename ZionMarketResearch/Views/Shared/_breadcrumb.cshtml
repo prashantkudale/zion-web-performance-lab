@@ -1,0 +1,62 @@
+﻿@model string
+@{ string[] sp = null;
+    bool isSplit = Model.Contains("|");
+    string json = "{\"@type\": \"ListItem\",\"position\":1, \"item\":{\"type\":\"Website\", \"@id\":\"https://www.zionmarketresearch.com\",\"name\": \"Home\"}},";
+    if (isSplit)
+    {
+        sp = Model.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+    }
+    var position = 2; }
+
+<ul class="breadcrumb">
+    <li><a href="/" rel="nofollow">Home</a></li>
+    @if (isSplit)
+    {
+        @*foreach (var x in sp)
+        {
+            //json += "{\"@type\": \"WebPage\",\"name\": \"" + x + "\",\"position\": " + (position++) + "},";
+            json += "{\"@type\": \"ListItem\",\"position\":  " + (position++)+",\"name\": \"" + x + "\"},";
+            <li>@Html.Raw(x)</li>
+        }*@
+    for (int i=0; i<sp.Length;i++)
+    {
+        //json += "{\"@type\": \"WebPage\",\"name\": \"" + x + "\",\"position\": " + (position++) + "},";
+        var temp = sp[i].Replace("<a href='", "");
+        var _url = "";
+        var _text = "";
+        if(sp[i].IndexOf("<a") > -1 && sp[i].IndexOf("'>")>-1 && sp[i].IndexOf("</a>") > -1 )
+        {
+            _url = temp.Substring(0, temp.IndexOf("'>"));
+            _text = temp.Substring(temp.IndexOf("'>")+2);
+            _text = _text.Substring(0, _text.IndexOf("</a>"));
+            json += "{\"@type\": \"ListItem\",\"position\":  " + (position++) + ",\"item\":{\"type\":\"Website\", \"@id\":\"" + _url + "\",\"name\": \"" + _text + "\"}},";
+        }
+        else
+        {
+            //json += "{\"@type\": \"ListItem\",\"position\":  " + (position++) + ",\"item\": \"" + sp[i] + "\"},";
+            json += "{\"@type\": \"ListItem\",\"position\":  " + (position++) + ",\"item\":{\"type\":\"Website\", \"@id\":\"" + Request.Url + "\",\"name\": \"" + sp[i] + "\"}},";
+        }
+
+            <li>@Html.Raw(sp[i])</li>
+        }
+        json = json.Substring(0, json.LastIndexOf(","));
+    }
+    else
+    {
+        <li>@Model</li>
+        //json += "{\"@type\": \"Thing\",\"name\": \"" + Model + "\",\"position\":" + (position++) + "}";
+        json += "{\"@type\": \"ListItem\",\"position\":  " + (position++) + ",\"item\":{\"type\":\"Website\", \"@id\":\"" + Request.Url + "\",\"name\": \"" + Model + "\"}}";
+    }
+</ul>
+
+
+
+<script type="application/ld+json">
+    {
+    "@@context": "https://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement":[
+    @Html.Raw(json)
+    ]
+    }
+</script>

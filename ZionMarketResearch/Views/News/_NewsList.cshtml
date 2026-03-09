@@ -1,0 +1,16 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.LatestNewsView>
+@using PagedList.Mvc
+@foreach (var news in Model)
+{
+    <div class="heading reportlist_box">
+        <div class="col-sm-12 zero-padding">
+            <div class="topbadge">
+                <span class="badge"><i class="fa fa-calendar" aria-hidden="true"></i>  @news.PublishedDate.Value.ToString("dd-MMM-yyyy") </span>
+            </div>
+            <h2 class="reporttitle"> <a href="@Url.Action("Index", "News", new { url = news.NewsUrl })">@news.NewsTitle</a></h2>
+            <p>@ZionMarketResearch.Util.Utility.StripHTML(news.Description).ZSubstring(0, 299) <span><a href="@Url.Action("Index", "News", new { url = news.NewsUrl})" rel="nofollow" style="color:#123456!important;">Read More <i class="fa fa-arrow-circle-right"></i></a></span></p>
+        </div>
+    </div>
+}
+@*@{ Html.RenderPartial("_TotalRecord100", ViewData.Model); }
+@Html.PagedListPager(Model, p => Url.Action("AllNews", "News", new { page = p }), GlobalConstant.GlobalPagedListOption)*@

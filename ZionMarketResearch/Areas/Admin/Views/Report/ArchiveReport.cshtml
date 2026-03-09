@@ -1,0 +1,28 @@
+﻿@model List<ZionAdmin.Repository.ReportRepository.ArchiveReportYear>
+@{ ViewBag.Title = "ArchiveReport";
+                Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
+
+<h2>ArchiveReport</h2>
+
+<ul>
+    @foreach (var ar in Model)
+    {
+        <li>
+        @if(ar.Year != null){
+            <a href="/admin/report?year=@ar.Year">@ar.Year (@ar.YearCount)</a>
+        } else {
+        <span>Unpublished (@ar.YearCount)</span>
+                }
+            @if (ar.Month != null)
+            {
+            <ul>
+                @foreach (var m in ar.Month)
+                {
+                <li><a href="/admin/report?year=@ar.Year&monthyear=@m.MonthNumber">@m.Month (@m.MonthCount)</a></li>
+                }
+            </ul>
+            }
+        </li>
+    }
+
+</ul>

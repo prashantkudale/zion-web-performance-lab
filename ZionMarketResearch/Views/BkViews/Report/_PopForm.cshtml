@@ -1,0 +1,237 @@
+﻿@model ZionMarketResearch.Models.AvailPDF
+<style>
+    #mypopreqModal .modal-header button {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        color: #fff;
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.26);
+        border-radius: 30px;
+        height: 30px;
+        width: 30px;
+    }
+
+    #mypopreqModal .grad-multi-160 {
+        background-color: #0093E9;
+        background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    }
+
+    #mypopreqModal .modal-content {
+        border-radius: 0px !important;
+    }
+
+    #mypopreqModal .btn {
+        padding: 6px 12px !important;
+        font-size: 15px !important;
+        border-radius: 0px !important;
+    }
+
+    #mypopreqModal .modal-header h4 {
+        font-size: 21px;
+        color: #fff;
+    }
+
+    #mypopreqModal .form-control {
+        border-radius: 0px !important;
+    }
+
+    #mypopreqModal .input-group-addon {
+        border-radius: 0px !important;
+    }
+
+    #mypopreqModal .select-addon {
+        padding: 6px 14px;
+    }
+
+    #mypopreqModal .hide-form-label label {
+        display: none !important;
+    }
+
+    #mypopreqModal .input-validation-error {
+        border: 1px solid red;
+    }
+
+    #mypopreqModal .field-validation-error {
+        color: red;
+    }
+
+    #frmAvailPDF input {
+        width: auto;
+    }
+</style>
+<div class="hide-form-label">
+    <div id="mypopreqModal" class="modal fade" role="dialog" style="z-index:10000;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="showMessage"></div>
+                <div class="modal-header grad-multi-160">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Avail PDF Sample Report</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="frmAvailPDF" novalidate="novalidate">
+                        <input name="ReportId" type="hidden" value="@Model.ReportId">
+                        <input type="hidden" name="ReportTitle" value="@Model.ReportTitle" />
+                        <div class="col-md-6 form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                @Html.TextBoxFor(model => model.Name, new { Class = "form-control", placeholder = "Name" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                @Html.TextBoxFor(model => model.Email, new { Class = "form-control", placeholder = "Email" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                @Html.TextBoxFor(model => model.Phone, new { Class = "form-control", placeholder = "Phone #" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Phone)
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                @Html.TextBoxFor(model => model.Company, new { Class = "form-control", placeholder = "Company" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Company)
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                @Html.TextBoxFor(model => model.Designation, new { Class = "form-control", placeholder = "Designation/Title" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Designation)
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon select-addon"><i class="fa fa-plane"></i></span>
+                                @Html.TextBoxFor(model => model.Country, new { Class = "form-control", placeholder = "Country" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Country)
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="input-group" style="width: 100%;">
+                                @Html.TextAreaFor(model => model.Message, new { Class = "form-control", placeholder = "Specific Requirements" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Message)
+                        </div>
+                        <!-- Success message -->
+                        <!-- Button -->
+                        <div class="text-center">
+                            <input type="button" class="btn-danger resetinfo btn-xs" value="Not Interested" data-dismiss="modal">
+                            <input type="button" class="btn btn-success subinfo" value="Request for free Sample" onclick="SubmitForm();">
+                        </div>
+                    </form>
+                    <div class="success-message">
+                        <div id="mailmessage" style="background-color: #F0F0F0; padding: 10px 10px 30px 30px;">
+                            <h4>Thank you for contacting us. </h4>
+                            <p style="color: #124476;">Thank you for your interest in our research report.</p>
+                            <p></p><p style="color: #124476;">We will be sending you the sample copy of the report shortly. Meanwhile, if you have any specific research requirement then please let us know. We will be glad to assist you in case you have any additional questions, so feel free to get in touch</p>
+                            <p style="color: #124476;"><strong>Thank you</strong></p>
+                            <hr style="color: #F4F4F4;">
+                            <div id="signature" style="font-size: 12px; color: #000046;">
+                                <strong>Warm regards</strong>,<br>
+
+                                Joel John | Manager - International Business and partner Relations<br />
+                                Direct line: + 1-855-465-4651<br />
+                                Zion Market Research<br />
+                                E-mail: <a href="mailto:sales@zionmarketresearch.com">sales@zionmarketresearch.com</a> | Web: <a href="https://www.zionmarketresearch.com">www.zionmarketresearch.com</a><br />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/form-validation")
+<script src="~/Scripts/serializeform.js"></script>
+<script type="text/javascript">
+    var savedInfo = false;
+    var popupTimer;
+    $(window).on('load', function () {
+        let rID = getCookie("PopForm");
+        setTimeout(() => {
+            if (!savedInfo && rID !== '@Model.ReportId') {
+                $('#mypopreqModal').modal('show');
+            }
+        }, 10000);
+    });
+    function SubmitForm() {
+        if ($("#frmAvailPDF").valid()) {
+            $.ajax({
+                url: '/form/SubmitSampleRequest',
+                type: 'POST',
+                data: JSON.stringify($("#frmAvailPDF").serializeFormJSON()),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (res) {
+                    $(".alert").remove();
+                    if (res && res.Success) {
+                        $("#frmAvailPDF").hide();
+                        $(".success-message").show();
+                        $(".modal-footer").show();
+                        setCookie("PopForm", @Model.ReportId, 1);
+                    } else {
+                        $(".showMessage").html("<div class='alert alert-danger'>Error While Submitting your form. Please try again.</div>");
+                    }
+                    savedInfo = true;
+                },
+                error: function (err) {
+                    $(".showMessage").html("<div class='alert alert-danger'>" + err.message + "</div>");
+                }
+            });
+        }
+    }
+    $(document).ready(function () {
+        $(".success-message").hide();
+        $(".modal-footer").hide();
+        $.ajax({
+            url: "/form/GetCountry",
+            type: 'GET',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            success: function (json) {
+                $("#mypopreqModal #Country").val(json.Response.country);
+            },
+            error: function (err) {
+                console.log("Request failed, error= " + err);
+            }
+        });
+    })
+
+    function setCookie(cname, cvalue, hours) {
+        var d = new Date();
+        d.setTime(d.getTime() + (hours * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+</script>

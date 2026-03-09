@@ -1,0 +1,42 @@
+﻿@model PagedList.IPagedList<ZionMarketResearch.Models.ZionInNewsRepository>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "ZMR In the News";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+}
+<style>
+    ul.link-list li {
+        list-style: none;
+        list-style-type: none;
+        line-height: 30px;
+    }
+
+        ul.link-list li a::before {
+            content: circle;
+        }
+
+</style>
+<section id="report-title" class="white_section section_gap">
+    @{ Html.RenderPartial("_NewSearch"); }
+    <div class="container">
+        @{ Html.RenderPartial("_breadcrumb", "ZMR In News"); }
+        <div class="heading">
+            <div class="col-sm-12">
+                <h1>ZMR in News</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="col-md-12 tab">
+            <ul class="link-list tab-content">
+                @foreach (var l in (IEnumerable<ZionMarketResearch.Models.ZionInNewsRepository>)Model)
+                {
+                    <li><i class="fa fa-angle-double-right mstyle"></i>&nbsp;<a style="color:#337ab7;" class="anchorStyle" rel="nofollow" href="@l.URL">@l.LinkText</a></li>
+                }
+            </ul>
+            @Html.PagedListPager(Model, p => "/zmr-in-news/" + p, new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToLastPageFormat = ">>", LinkToNextPageFormat = "Next", LinkToPreviousPageFormat = "Prev", DisplayLinkToFirstPage = PagedListDisplayMode.Always, DisplayLinkToLastPage = PagedListDisplayMode.Always, DisplayLinkToNextPage = PagedListDisplayMode.Always, DisplayLinkToPreviousPage = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+        </div>
+    </div>
+</section>

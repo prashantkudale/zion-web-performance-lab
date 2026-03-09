@@ -1,0 +1,65 @@
+﻿@model PagedList.IPagedList<ZionAdmin.Repository.RedirectRepository>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Redirect Url</h4>
+<hr />
+<div class="col-md-12">
+    <div class="row margin-bottom-15">
+        <div class="row margin-bottom-15">
+            <a href="@Url.Action("create", "redirecturl")">Create New</a>
+        </div>
+    </div>
+    <div class="row margin-bottom-15">
+        @using (Html.BeginForm("search", "redirecturl", FormMethod.Get, new { Class = "form-inline" }))
+            {
+            <div class="input-group col-md-12">
+                <input type="text" name="id" style="width: 100%;" class="form-control" placeholder="Search" id="searchText" value="@ViewBag.SearchText" />
+                <span class="input-group-btn" style="width: 70px !important;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </span>
+            </div>
+        }
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>From Url</th>
+                    <th>To Url</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model)
+                {
+                    <tr>
+                        <td><a href="@r.FromUrl">@r.FromUrl</a></td>
+                        <td>@r.ToUrl</td>
+                        <td><a href="@Url.Action("edit", "redirecturl", new { id = r.Id})">Edit</a></td>
+                        <td><a href="@Url.Action("delete", "redirecturl", new { id = r.Id})">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, x => "/admin/redirecturl/index/" + x)
+    </div>
+
+</div>
+
+<script>
+    var searchValue = $("#searchText").val();
+    var isSearched = searchValue != null && searchValue != "";
+
+    $('.pagination li a').each(function (index) {
+        if (isSearched) {
+            $(this).attr("href", "/admin/redirecturl/search?id=" + searchValue + "&page=" + $(this).text());
+            $(".PagedList-skipToNext > a").attr("href", "/admin/redirecturl/search?id=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) + 1));
+            $(".PagedList-skipToPrevious > a").attr("href", "/admin/redirecturl/search?id=" + searchValue + "&page=" + (parseInt($(".pagination .active").text()) - 1));
+        }
+    });
+</script>

@@ -1,0 +1,15 @@
+﻿.we-social {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color:#fff !important;
+}
+#cookie-msg {
+    font-size: 14px;
+    padding: 10px 50px;
+}
+@media only screen and (max-width: 600px) {
+    #cookie-msg {
+        font-size: 12px;
+        padding: 5px 10px
+    }
+}

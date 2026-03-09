@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="92ea98330d02434eb88b8f1c380d0bc7" Name="Diagram1">
+        <EntityTypeShape EntityType="zionmysqldbModel.relactionrole" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.relreportbuyer" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.relreportcategory" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.relreportdomain" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblaction" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tbladminlogin" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblauthor" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblbuyerinformation" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblcart" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblcartitem" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblcategory" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblcontinent" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblcountry" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblcountry1" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tbldomain" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblfeedback" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblform" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblinquiry" Width="1.5" PointX="10.75" PointY="10.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblipaddress" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblkey" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblmail" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblnew" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblpayerinformation" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblpaymentlink" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblpublisher" Width="1.5" PointX="4.75" PointY="13.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblredirection" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblregister" Width="1.5" PointX="14.75" PointY="4.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblreportinformation" Width="1.5" PointX="6.75" PointY="14.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblreporttype" Width="1.5" PointX="14.75" PointY="9.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblrole" Width="1.5" PointX="14.75" PointY="13.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblsearchhistory" Width="1.5" PointX="8.75" PointY="15.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblsubscription" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tbltag" Width="1.5" PointX="16.75" PointY="4.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tbluserrole" Width="1.5" PointX="16.75" PointY="8.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tbluser" Width="1.5" PointX="16.75" PointY="11.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblzionmail" Width="1.5" PointX="10.75" PointY="17.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblvisitor" Width="1.5" PointX="12.75" PointY="17.75" />
+        <AssociationConnector Association="zionmysqldbModel.fk_countries_continents" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblzioninnew" Width="1.5" PointX="15.375" PointY="17.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tbljobvacancy" Width="1.5" PointX="17.375" PointY="17.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tbljobapplication" Width="1.5" PointX="0.75" PointY="18.75" />
+        <AssociationConnector Association="zionmysqldbModel.fk_JobID" />
+        <EntityTypeShape EntityType="zionmysqldbModel.relreportattribute" Width="1.5" PointX="3.375" PointY="18.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblreportattribute" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="zionmysqldbModel.tblreportfaq" Width="1.5" PointX="19.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
