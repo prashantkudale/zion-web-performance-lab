@@ -24,10 +24,25 @@
                         </div>
                     </div>
                     <!--slid1 end-->
-                    <img src="~/images/image01.webp" alt="image01" width="1920"
-     height="800"
-     fetchpriority="high"
-     decoding="async"/>
+                    <img src="/images/image01-1920.webp"
+                         srcset="
+          /images/image01-640.webp 640w,
+          /images/image01-1024.webp 1024w,
+          /images/image01-1440.webp 1440w,
+          /images/image01-1920.webp 1920w
+        "
+                         sizes="100vw"
+                         alt="image01"
+                         width="1920"
+                         height="800"
+                         loading="eager"
+                         fetchpriority="high"
+                         decoding="async" />
+
+                    @*<img src="~/images/image01.webp" alt="image01" width="1920"
+                        height="800"
+                        fetchpriority="high"
+                        decoding="async" />*@
                 </div>
                 <div class="slide">
                     <!--slid2 start-->
@@ -39,10 +54,26 @@
                         </div>
                     </div>
                     <!--slid2 end-->
-                    <img src="images/image02.webp" alt="image01" width="1920"
-     height="800"
-     fetchpriority="high"
-     decoding="async"/>
+
+                    <img src="/images/image02-1920.webp"
+                         srcset="
+  /images/image02-640.webp 640w,
+  /images/image02-1024.webp 1024w,
+  /images/image02-1440.webp 1440w,
+  /images/image02-1920.webp 1920w
+"
+                         sizes="100vw"
+                         alt="image01"
+                         width="1920"
+                         height="800"
+                         loading="eager"
+                         fetchpriority="high"
+                         decoding="async" />
+
+                    @*<img src="images/image02.webp" alt="image01" width="1920"
+                        height="800"
+                        fetchpriority="high"
+                        decoding="async"/>*@
                 </div>
                 <!--background slide show end-->
             </div>
@@ -602,28 +633,36 @@
     </div>
 </section>
 @*<section class="white_section section_gap hidden-xs trending_bg">
-    <div class="container">
-        <div class="heading">
-            <h2><span>Trending </span>Reports</h2>
+        <div class="container">
+            <div class="heading">
+                <h2><span>Trending </span>Reports</h2>
+            </div>
+            <div class="row trending_content">
+                @{ Html.RenderPartial("_TrendingReports"); }
+            </div>
         </div>
-        <div class="row trending_content">
-            @{ Html.RenderPartial("_TrendingReports"); }
-        </div>
-    </div>
-</section>*@
+    </section>*@
 
-<script defer src="/Scripts/serializeform.js"></script>
+@*<script defer src="/Scripts/serializeform.js"></script>
+    <script defer src="~/Content/js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>*@
 <script type="text/javascript">
     //$('.header_v3 #banner').superslides({
     //    animation: 'fade',
     //    play: 5000
     //});
-    window.addEventListener("load", function () {
+    //window.addEventListener("load", function () {
+    //    $('.header_v3 #banner').superslides({
+    //        animation: 'fade',
+    //        play: 5000
+    //    });
+    //});
+    document.addEventListener("DOMContentLoaded", function () {
         $('.header_v3 #banner').superslides({
             animation: 'fade',
             play: 5000
         });
     });
+
 </script>
 <!--Logo Schema-->
 <script type="application/ld+json">
@@ -660,21 +699,21 @@
     }
 </script>
 @*<div class="modal" tabindex="-1" role="dialog" id="blackFriday" style="margin-top: 200px;">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body" style="padding: 0px !important;">
-                <a href="@Url.Action("ContactUs", "Home")"><img src="~/images/blackfriday_zion_2.png" class="dialog-image" /></a>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="padding: 0px !important;">
+                    <a href="@Url.Action("ContactUs", "Home")"><img src="~/images/blackfriday_zion_2.png" class="dialog-image" /></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    $(document).ready(function () {
-        setTimeout(() => {
-            $('#blackFriday').modal('show');
-        }, 3000);
-    })
-</script>*@
+    <script>
+        $(document).ready(function () {
+            setTimeout(() => {
+                $('#blackFriday').modal('show');
+            }, 3000);
+        })
+    </script>*@
 <style>
     .dialog-image {
         max-width: 100%;
@@ -684,3 +723,8 @@
         margin: 0px;
     }
 </style>
+
+@section IndexScripts{
+    <script defer src="/Scripts/serializeform.js"></script>
+    <script defer src="~/Content/js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
+}

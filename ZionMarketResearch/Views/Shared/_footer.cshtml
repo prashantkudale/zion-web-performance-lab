@@ -6,8 +6,8 @@
             <!-- Footer About us start-->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bottomAbout">
                 <!-- <h5 class="heading">About us</h5>
-    <p>Zion Market Research is an obligated company. We create futuristic, cutting edge, informative reports ranging from industry reports, company reports to country reports..</p>
-    -->
+                <p>Zion Market Research is an obligated company. We create futuristic, cutting edge, informative reports ranging from industry reports, company reports to country reports..</p>
+                -->
                 <p class="we-social">Office Address</p>
                 <p class="we-social">Contact Us</p>
                 <p>
@@ -16,14 +16,14 @@
                     USA/Canada Toll Free No.<a href="tel:+1 (855) 465-4651">+1 (855) 465-4651</a>
                 </p>
                 @*<h5>Corporate Office</h5>
-        <p>
-            Zion Market Research
-            244 Fifth Avenue, Suite N202
-            New York, 10001, United States<br />
+                    <p>
+                        Zion Market Research
+                        244 Fifth Avenue, Suite N202
+                        New York, 10001, United States<br />
 
-            Tel: <a href="tel:+1 (844) 845-5245">+1 (844) 845-5245</a><br />
-            USA/Canada Toll Free No.<a href="tel:+1 (855) 465-4651">+1 (855) 465-4651</a>
-        </p>*@
+                        Tel: <a href="tel:+1 (844) 845-5245">+1 (844) 845-5245</a><br />
+                        USA/Canada Toll Free No.<a href="tel:+1 (855) 465-4651">+1 (855) 465-4651</a>
+                    </p>*@
 
                 <p class="we-social">Asia Pacific Office</p>
                 <p>
@@ -55,18 +55,18 @@
             <!-- Footer Recent news start-->
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 @*<p class="we-social">Industry Press Release</p>
-                <ul class="footerLinks">
-                    @foreach (var n in Model)
-                    {
-        <li><h5><a href="@Url.Action("Index", "News", new { url = n.NewsUrl })">@n.NewsTitle</a> <span>by Zion Market Research on @n.PublishedDate.Value.ToString("dd-MMM-yyyy")</span></h5></li>
-}
-                </ul>*@
+                                    <ul class="footerLinks">
+                                        @foreach (var n in Model)
+                                        {
+                            <li><h5><a href="@Url.Action("Index", "News", new { url = n.NewsUrl })">@n.NewsTitle</a> <span>by Zion Market Research on @n.PublishedDate.Value.ToString("dd-MMM-yyyy")</span></h5></li>
+                    }
+                                    </ul>*@
                 <div class="contactInfo" style="margin-top: 10px;">
                     <p class="we-social">We Accept</p>
                     <p>We have secured system to process your transaction.</p>
                     <ul>
                         <li><img src="/images/zion-payment-modes.jpg" loading="lazy" alt="payment methods" class="img-responsive" /></li>
-                       
+
                     </ul>
                 </div>
 
@@ -128,8 +128,8 @@
             </div>
             <div class="col-sm-2"></div>
             @*<div class="col-sm-3" style="text-align: left;">
-            <p>Powered By <img src="~/images/mrs_pvt_ltd.png" alt="MRS Research Pvt. Ltd." class="img-responsive" style="width: 20px;margin: 0px; display: inline;"> MRS Research Pvt. Ltd.</p>
-        </div>*@
+                    <p>Powered By <img src="~/images/mrs_pvt_ltd.png" alt="MRS Research Pvt. Ltd." class="img-responsive" style="width: 20px;margin: 0px; display: inline;"> MRS Research Pvt. Ltd.</p>
+                </div>*@
         </div>
     </div>
 </footer>
@@ -161,8 +161,8 @@
 <!--<script type="text/javascript" src="js/jquery.placeholder.js"></script> -->
 <!--for header jquery-->
 <!--for portfolio jquery-->
-<script src="~/Content/js/jquery.isotope.js" type="text/javascript"></script>
-<link type="text/css" rel="stylesheet" id="theme" href="~/Content/css/jquery-ui-1.8.16.custom.css" />
+@*<script src="~/Content/js/jquery.isotope.js" type="text/javascript"></script>*@
+@*<link type="text/css" rel="stylesheet" id="theme" href="~/Content/css/jquery-ui-1.8.16.custom.css" />*@
 <!--<link type="text/css" rel="stylesheet" href="css/lightbox.min.css">
 <script type="text/javascript" src="js/jquery.ui.widget.min.js"></script>
 <script type="text/javascript" src="js/jquery.ui.rlightbox.js"></script> -->
@@ -174,7 +174,7 @@
 <!--about jquery-->
 <!--<script src="js/jquery.classyloader.min.js"></script> -->
 @*<script src="~/Content/js/jquery.flexslider.js"></script>*@
-<script src="~/Content/js/jquery.easing.js"></script>
+@*<script src="~/Content/js/jquery.easing.js"></script>*@
 <!--<script src="js/jquery.mousewheel.js"></script>
 <script defer src="js/slideroption.js"></script> -->
 <!--Home Testimonial -->
@@ -185,69 +185,75 @@
 
 <!--for coundown jquary-->
 <!--<script type="text/javascript" src="js/jquery.countTo.js"></script> -->
-<script type="text/javascript">
-    jQuery(function ($) {
-        $(document).ready(function () {
-            //enabling stickUp on the '.navbar-wrapper' class
+@section FooterScripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).ready(function () {
+                //enabling stickUp on the '.navbar-wrapper' class
 
-            // run rlightbox
-            //$(".lb").rlightbox();
-            //$(".lb_title-overwritten").rlightbox({ overwriteTitle: true });
+                // run rlightbox
+                //$(".lb").rlightbox();
+                //$(".lb_title-overwritten").rlightbox({ overwriteTitle: true });
 
-            //$('.flexslider').flexslider({
-            //    animation: "fade",
-            //    animationLoop: true,
-            //    slideshow: true,
-            //    pauseOnAction: false,
-            //    slideshowSpeed: 7000,
-            //    controlNav: true,
-            //    start: function (slider) {
-            //        $('body').removeClass('loading');
-            //    }
-            //});
+                //$('.flexslider').flexslider({
+                //    animation: "fade",
+                //    animationLoop: true,
+                //    slideshow: true,
+                //    pauseOnAction: false,
+                //    slideshowSpeed: 7000,
+                //    controlNav: true,
+                //    start: function (slider) {
+                //        $('body').removeClass('loading');
+                //    }
+                //});
 
-            var activeImage;
+                var activeImage;
 
-            var getmaxHeight = 0;
-            $(".testimonialText li").each(function (index, element) {
-                if ($(this).height() > getmaxHeight) {
-                    getmaxHeight = $(this).height();
-                    $(".footerTopContent").height(getmaxHeight);
+                var getmaxHeight = 0;
+                $(".testimonialText li").each(function (index, element) {
+                    if ($(this).height() > getmaxHeight) {
+                        getmaxHeight = $(this).height();
+                        $(".footerTopContent").height(getmaxHeight);
+                    }
+                });
+
+                $(".testimonialText li").fadeTo("fast", 0);
+                $(".testimonialText li:first").fadeTo("fast", 1);
+                $(".imageSlide .imageBox").removeClass("activeImage");
+                $(".imageSlide .imageBox:first").addClass("activeImage");
+                $(".imageSlide .imageBox").mouseenter(function () {
+                    if (!$(this).hasClass("activeImage")) {
+                        var gi = $(this).index();
+                        //console.log(gi);
+                        $(".imageSlide .imageBox").removeClass("activeImage");
+                        $(this).addClass("activeImage");
+                        $(".testimonialText li").fadeTo("fast", 0);
+                        $(".testimonialText li:eq(" + gi + ")").fadeTo("fast", 1);
+                    }
+                })
+
+
+                // for client work jquary
+                var windowBottom = $(window).height() + 0;
+                var index = 0;
+
+
+
+                function count(options) {
+                    var $this = $(this);
+                    options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+                    $this.countTo(options);
                 }
+
+
             });
 
-            $(".testimonialText li").fadeTo("fast", 0);
-            $(".testimonialText li:first").fadeTo("fast", 1);
-            $(".imageSlide .imageBox").removeClass("activeImage");
-            $(".imageSlide .imageBox:first").addClass("activeImage");
-            $(".imageSlide .imageBox").mouseenter(function () {
-                if (!$(this).hasClass("activeImage")) {
-                    var gi = $(this).index();
-                    //console.log(gi);
-                    $(".imageSlide .imageBox").removeClass("activeImage");
-                    $(this).addClass("activeImage");
-                    $(".testimonialText li").fadeTo("fast", 0);
-                    $(".testimonialText li:eq(" + gi + ")").fadeTo("fast", 1);
-                }
-            })
-
-
-            // for client work jquary
-            var windowBottom = $(window).height() + 0;
-            var index = 0;
-
-
-
-            function count(options) {
-                var $this = $(this);
-                options = $.extend({}, options || {}, $this.data('countToOptions') || {});
-                $this.countTo(options);
-            }
-
-
         });
+    </script>
 
-    });
-</script>
+    <script defer src="~/Content/js/jquery.easing.js"></script>
+    <script defer src="~/Content/js/jquery.isotope.js"></script>
+    <script defer src="~/Content/js/custom.js"></script>
+}
 <!--for theme custom jquery-->
-<script src="~/Content/js/custom.js"></script>
+@*<script src="~/Content/js/custom.js"></script>*@

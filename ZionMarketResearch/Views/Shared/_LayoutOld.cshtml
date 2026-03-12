@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+@{ if (ViewBag.Lang == null) { ViewBag.Lang = "en"; }}
+<html lang="@ViewBag.Lang">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title lang="@ViewBag.Lang">@ViewBag.Title</title>
+    <meta id="MetaAuthor" name="AUTHOR" content="Zion Market Research" />
+    <meta name="REVISIT-AFTER" content="1 DAYS" />
+    <meta name="RATING" content="GENERAL" />
+    <meta http-equiv="PAGE-ENTER" content="RevealTrans(duration=5,transition=12)" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="text/javascript" http-equiv="Content-Script-Type" />
+    <meta content="text/css" http-equiv="Content-Style-Type" />
+    <meta name="language" content="@ViewBag.Lang" />
+    <meta id="MetaKeywords" lang="@ViewBag.Lang" name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta id="MetaDescription" lang="@ViewBag.Lang" name="description" content="@ViewBag.MetaDescription" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="canonical" href="@String.Concat("https://www.zionmarketresearch.com", Request.RawUrl)" />
+    <link rel="alternate" href="@String.Concat("https://www.zionmarketresearch.com", Request.RawUrl)" hreflang="@ViewBag.Lang" />
+
+    <!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">-->
+    <!--main style-->
+    @*<link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" preload />
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/favicon.ico" type="image/ico" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/main.min.css" preload />
+    @*<link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/default.min.css" data-name="skins" preload />*@
+    <link rel="stylesheet" href="~/Content/css/custom.min.css" type="text/css" preload />
+    <link rel="stylesheet" href="~/Content/css/footer_css.css" type="text/css" preload />
+    <!--Theme Switcher -->
+    @*<link rel="stylesheet" type="text/css" href="~/Content/switcher/css/switcher.css" media="screen" />*@
+    <!--google font style-->
+    <!--jquary min js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    @*<script src="~/Content/js/bootstrap.min.js"></script>*@
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" async></script>
+
+    @*<script type="text/javascript" src="~/Content/js/stickUp.js"></script>*@
+    <script src="~/Content/js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .navbar-wrapper {
+            background: #123456 !important;
+        }
+
+        .navbar.navbar-inverse.navbar-static-top a {
+            color: #ffffff !important;
+            padding: 31px 12px 20px 15px !important;
+            line-height: 5px !important;
+        }
+    </style>
+    @*<script async>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-81189834-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>*@
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZ4QTE5YV4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YZ4QTE5YV4');
+    </script>
+    <script async>
+        $(document).ready(function () {
+            $('.count').each(function () {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 8000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    },
+                    complete: function () {
+                        if ($(this).hasClass("plus")) {
+                            $(this).text($(this).text() + "+");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <script async>
+        $(document).ready(function () {
+            if ($(window).width() < 514) {
+                $('#pricing .container ul').removeClass('three');
+
+            } else {
+                $('#pricing .container ul').addClass('three');
+            }
+        });
+    </script>
+    @RenderSection("HeadScript", false)
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript" async>
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5ff828e3a9a34e36b96a4b7a/1erglvfhg';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+</head>
+<body>
+    <div class="wrapper" id="wrapper">
+        @RenderBody()
+        @{Html.RenderAction("Footer", "Home");}
+    </div>
+    <!--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap' rel='stylesheet' type='text/css' />-->
+    <!--font-family: 'Metrophobic', sans-serif;-->
+    <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700&display=swap' rel='stylesheet' type='text/css' preload />-->
+    <!--font-family: 'Open Sans', sans-serif; -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,400italic,500,300italic,300,100,500italic&display=swap' rel='stylesheet' type='text/css' preload />
+    <!--font-family: 'Roboto', sans-serif; -->
+    <!-- font icon css style-->
+    @*<link rel="stylesheet" href="~/Content/css/font-awesome.min.css" type="text/css" rel="preload" as="font" />*@
+    @*<script src="https://kit.fontawesome.com/370a8ee1e3.js" crossorigin="anonymous"></script>*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    @*<script src="~/Content/js/jquery.cookieMessage.min.js"></script>
+
+        <script type="text/javascript">
+            $.cookieMessage({
+                'mainMessage': 'This website uses cookies. By using this website you consent to our use of these cookies. For more information visit <a href="/privacy-policy">Privacy Policy</a>. ',
+                'acceptButton': 'OK',
+                'fontSize': '16px',
+                'backgroundColor': '#222',
+            });
+        </script>*@
+    @Styles.Render("~/bundles/autocompletecss")
+    @Scripts.Render("~/bundles/autocompletejs")
+    <script>
+        function SimpleSearch() {
+            window.location.href = "/simplesearch?q=" + encodeURIComponent($("#q").val());
+        }
+
+        function KeyUp(e) {
+            if (e.keyCode === 13) {
+                SimpleSearch();
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="~/Content/css/mediaquery.css" type="text/css" />
+    @RenderSection("scripts", false)
+
+    <div class="gtranslate_wrapper"></div>
+    <script>window.gtranslateSettings = { "default_language": "en", "url_structure": "sub_directory", "languages": ["en", "fr", "de"], "wrapper_selector": ".gtranslate_wrapper" }</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+    <script async>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-81189834-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+</body>
+</html>

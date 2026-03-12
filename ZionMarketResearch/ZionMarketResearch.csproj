@@ -1273,6 +1273,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js.map" />
     <Content Include="config\hdfc_inr.config" />
     <Content Include="config\stripe.config" />
+    <Content Include="Scripts\layout.js" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="images\blue-pattern.webp" />
     <Content Include="images\image01.webp" />
@@ -1288,6 +1289,17 @@
     </Content>
     <Content Include="images\twitter_x_logo.webp" />
     <Content Include="images\check_12.webp" />
+    <Content Include="images\image02.webp" />
+    <Content Include="images\zion-market-research-logo.webp" />
+    <Content Include="images\image01_New.webp" />
+    <Content Include="images\image01-1024.webp" />
+    <Content Include="images\image01-1440.webp" />
+    <Content Include="images\image01-1920.webp" />
+    <Content Include="images\image01-640.webp" />
+    <Content Include="images\image02-1024.webp" />
+    <Content Include="images\image02-1440.webp" />
+    <Content Include="images\image02-1920.webp" />
+    <Content Include="images\image02-640.webp" />
     <None Include="Properties\PublishProfiles\ZionMarketResearch2.0.pubxml" />
     <None Include="Service References\CRM\WebService.disco" />
     <None Include="Service References\CRM\configuration91.svcinfo" />
@@ -1417,6 +1429,7 @@
     <Content Include="Views\Report\IndexMS.cshtml" />
     <Content Include="Views\Report\VueJs\_VueReportList.cshtml" />
     <Content Include="Views\Form\ShowCorporateEmail.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1458,7 +1471,7 @@
     <Content Include="Views\Report\LatestUpcomingReports.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutOld.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Report\Index.cshtml" />

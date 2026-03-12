@@ -8,8 +8,17 @@
                     <div class="container-fluid">
                         <a href="/" style="text-decoration:none;border:none;">
                             <div class="logo">
-                                <h1><img src="~/images/zion-market-research-logo.png" class="img-responsive saturate1" width="104px" height="56px" 
-                                         alt="Zion Market Research" title="Zion Market Research - Delivering Market Intelligence Reports, Business Consulting Services & Solutions" width="223" height="112" /></h1>
+                                <h1>
+                                    @*<img src="~/images/zion-market-research-logo.png" class="img-responsive saturate1" width="104px" height="56px"
+        alt="Zion Market Research" title="Zion Market Research - Delivering Market Intelligence Reports, Business Consulting Services & Solutions" width="223" height="112" />*@
+                                    <img src="~/images/zion-market-research-logo.webp"
+                                         class="img-responsive saturate1"
+                                         width="104"
+                                         height="56"
+                                         alt="Zion Market Research"
+                                         title="Zion Market Research - Delivering Market Intelligence Reports, Business" />
+
+                                </h1>
                             </div>
                         </a>
                         <nav class="navArea">
@@ -44,7 +53,7 @@
 <!--menu end-->
 
 <style>
-    #navigation > li.dropdown.open > ul > li > a{
+    #navigation > li.dropdown.open > ul > li > a {
         color: #123456 !important;
         font-weight: bold;
     }
@@ -52,10 +61,21 @@
     .navbar-inverse .navbar-nav > .open > a {
         background-color: inherit !important;
     }
+    .navbar-wrapper {
+        background: #123456 !important;
+    }
+
+    .navbar.navbar-inverse.navbar-static-top a {
+        color: #ffffff !important;
+        padding: 31px 12px 20px 15px !important;
+        line-height: 5px !important;
+    }
 </style>
-<script>
-    $(document).ready(function () {
-        //Just avoiding js error
-        $(".dropdown-toggle").unbind('click');
-    });
-</script>
+@section MenuScripts {
+    <script>
+        $(document).ready(function () {
+            //Just avoiding js error nav
+            $(".dropdown-toggle").unbind('click');
+        });
+    </script>
+}

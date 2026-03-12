@@ -18,7 +18,7 @@ namespace ZionMarketResearch.App_Start
             //bundles.Add(new ScriptBundle("~/bundles/bootstrapjs", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"));
 
 
-            bundles.Add(new StyleBundle("~/bundles/career")
+            bundles.Add(new ScriptBundle("~/bundles/career")
                     .Include("~/Scripts/career.js")
                     );
 
@@ -73,6 +73,21 @@ namespace ZionMarketResearch.App_Start
                 .Include("~/Content/css/main.css")
                 .Include("~/Content/css/default.css")
                 .Include("~/Content/css/custom.css"));
+
+
+            //#region layout JS
+
+            //bundles.Add(new ScriptBundle("~/bundles/core")
+            //       .Include(
+            //        "~/Content/js/jquery.superslides.js",
+            //        "~/Content/js/jquery.isotope.js",
+            //        "~/Content/js/jquery.easing.js",
+            //        "~/Content/js/custom.js",
+            //        "~/Scripts/serializeform.js",
+            //        "~/Scripts/layout.js"
+            //        ));
+
+            //#endregion
         }
     }
 }

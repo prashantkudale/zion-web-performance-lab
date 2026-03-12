@@ -1645,6 +1645,16 @@ ul.list li {
 }
 
 .avoid {color: #ff0000;}
+
+.navbar-wrapper {
+	background: #123456 !important;
+}
+
+.navbar.navbar-inverse.navbar-static-top a {
+	color: #ffffff !important;
+	padding: 31px 12px 20px 15px !important;
+	line-height: 5px !important;
+}
 /*----------------------------------------------------
 	 14. Responsive style
 ------------------------------------------------------*/
