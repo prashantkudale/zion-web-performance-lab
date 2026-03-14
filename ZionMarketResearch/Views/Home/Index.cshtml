@@ -40,9 +40,9 @@
                          decoding="async" />
 
                     @*<img src="~/images/image01.webp" alt="image01" width="1920"
-                        height="800"
-                        fetchpriority="high"
-                        decoding="async" />*@
+            height="800"
+            fetchpriority="high"
+            decoding="async" />*@
                 </div>
                 <div class="slide">
                     <!--slid2 start-->
@@ -71,9 +71,9 @@
                          decoding="async" />
 
                     @*<img src="images/image02.webp" alt="image01" width="1920"
-                        height="800"
-                        fetchpriority="high"
-                        decoding="async"/>*@
+            height="800"
+            fetchpriority="high"
+            decoding="async"/>*@
                 </div>
                 <!--background slide show end-->
             </div>
@@ -642,28 +642,6 @@
             </div>
         </div>
     </section>*@
-
-@*<script defer src="/Scripts/serializeform.js"></script>
-    <script defer src="~/Content/js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>*@
-<script type="text/javascript">
-    //$('.header_v3 #banner').superslides({
-    //    animation: 'fade',
-    //    play: 5000
-    //});
-    //window.addEventListener("load", function () {
-    //    $('.header_v3 #banner').superslides({
-    //        animation: 'fade',
-    //        play: 5000
-    //    });
-    //});
-    document.addEventListener("DOMContentLoaded", function () {
-        $('.header_v3 #banner').superslides({
-            animation: 'fade',
-            play: 5000
-        });
-    });
-
-</script>
 <!--Logo Schema-->
 <script type="application/ld+json">
     {
@@ -726,5 +704,14 @@
 
 @section IndexScripts{
     <script defer src="/Scripts/serializeform.js"></script>
-    <script defer src="~/Content/js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if ($.fn.superslides) {
+                $('.header_v3 #banner').superslides({
+                    animation: 'fade',
+                    play: 5000
+                });
+            }
+        });
+    </script>
 }

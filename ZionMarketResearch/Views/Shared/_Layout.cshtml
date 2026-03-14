@@ -55,13 +55,20 @@
     </noscript>
 
     <!-- Bootstrap CSS via CDN with preload and local fallback -->
-    <link rel="preload" href="~/Content/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="~/Content/css/bootstrap.min.css"></noscript>
+    @*<link rel="preload" href="~/Content/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="~/Content/css/bootstrap.min.css"></noscript>*@
+
+    <link rel="preload" href="~/Content/css/bootstrap.custom.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="~/Content/css/bootstrap.custom.min.css"></noscript>
 
     <!-- Font Awesome Async -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+    @*<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        </noscript>*@
+    <link rel="preload" href="~/Content/css/font-awesome.custom.css" as="style" onload="this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="~/Content/css/font-awesome.custom.min.css">
     </noscript>
 
     <!-- Autocomplete -->
@@ -76,19 +83,22 @@
     <link rel="preload" as="image" href="/images/image02.webp" fetchpriority="high">
 
     <!-- CSS  -->
-
     <link rel="preload" href="/Content/css/main.min.css" as="style" onload="this.rel='stylesheet'">
+    @*<link rel="preload" href="~/Content/css/main.custom.min.css" as="style" onload="this.rel='stylesheet'">*@
     <link rel="preload" href="/Content/css/custom.min.css" as="style" onload="this.rel='stylesheet'">
+    @*<link rel="preload" href="~/Content/css/custom.purge.min.css" as="style" onload="this.rel='stylesheet'">*@
     <link rel="preload" href="/Content/css/footer_css.css" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="/Content/css/mediaquery.css" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="/Content/css/jquery-ui-1.8.16.custom.css" as="style" onload="this.rel='stylesheet'">
+    @*<link rel="preload" href="/Content/css/mediaquery.css" as="style" onload="this.rel='stylesheet'">*@
+    @*<link rel="preload" href="/Content/css/jquery-ui-1.8.16.custom.css" as="style" onload="this.rel='stylesheet'">*@
 
     <noscript>
-        <link rel="stylesheet" href="/Content/css/main.min.css">
-        <link rel="stylesheet" href="/Content/css/custom.min.css">
+        @*<link rel="stylesheet" href="/Content/css/main.min.css">*@
+        <link rel="stylesheet" href="~/Content/css/main.custom.min.css">
+        @*<link rel="stylesheet" href="/Content/css/custom.min.css">*@
+        <link rel="stylesheet" href="~/Content/css/custom.purge.min.css">
         <link rel="stylesheet" href="/Content/css/footer_css.css">
-        <link rel="stylesheet" href="/Content/css/mediaquery.css">
-        <link rel="stylesheet" href="/Content/css/jquery-ui-1.8.16.custom.css">
+        @*<link rel="stylesheet" href="/Content/css/mediaquery.css">*@
+        @*<link rel="stylesheet" href="/Content/css/jquery-ui-1.8.16.custom.css">*@
     </noscript>
 
     <!-- Page-specific head scripts -->
@@ -114,6 +124,7 @@
     <!-- Bootstrap JS CDN with local fallback -->
 
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script defer src="~/Content/js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- SCRIPTS: Dependency Order -->
     @RenderSection("MenuScripts", required: false)    <!-- Nav menu scripts -->
@@ -130,24 +141,24 @@
     <!-- Google Analytics -->
 
     <script>
-            function loadGA(){
-                if(window.gaLoaded) return;
-                window.gaLoaded = true;
+        function loadGA() {
+            if (window.gaLoaded) return;
+            window.gaLoaded = true;
 
-                var s = document.createElement('script');
-                s.src = "https://www.googletagmanager.com/gtag/js?id=G-YZ4QTE5YV4";
-                s.async = true;
-                document.head.appendChild(s);
+            var s = document.createElement('script');
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-YZ4QTE5YV4";
+            s.async = true;
+            document.head.appendChild(s);
 
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                window.gtag = gtag;
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            window.gtag = gtag;
 
-                gtag('js', new Date());
-                gtag('config', 'G-YZ4QTE5YV4');
-            }
+            gtag('js', new Date());
+            gtag('config', 'G-YZ4QTE5YV4');
+        }
 
-            setTimeout(loadGA, 4000);
+        setTimeout(loadGA, 4000);
     </script>
 
     <!-- GTranslate -->
@@ -155,21 +166,21 @@
     <div class="gtranslate_wrapper"></div>
 
     <script>
-        setTimeout(function(){
-           var s=document.createElement("script");
-           s.src="https://cdn.gtranslate.net/widgets/latest/float.js";
-           s.async=true;
-           document.body.appendChild(s);
-        },5000);
+        setTimeout(function () {
+            var s = document.createElement("script");
+            s.src = "https://cdn.gtranslate.net/widgets/latest/float.js";
+            s.async = true;
+            document.body.appendChild(s);
+        }, 5000);
     </script>
 
     <script>
         window.gtranslateSettings = {
-        default_language: "en",
-        url_structure: "sub_directory",
-        languages: ["en","fr","de"],
-        wrapper_selector: ".gtranslate_wrapper"
-    };
+            default_language: "en",
+            url_structure: "sub_directory",
+            languages: ["en", "fr", "de"],
+            wrapper_selector: ".gtranslate_wrapper"
+        };
     </script>
 
     <!-- Universal Analytics (UA) -->
@@ -201,8 +212,8 @@
         }
 
         // Load after user interaction
-        ['scroll','mousemove','touchstart','click'].forEach(function(event){
-            window.addEventListener(event, loadTawk, {once:true});
+        ['scroll', 'mousemove', 'touchstart', 'click'].forEach(function (event) {
+            window.addEventListener(event, loadTawk, { once: true });
         });
 
         // Backup: load after 8 seconds

@@ -1029,11 +1029,17 @@
     <Content Include="Content\autocomplete\jquery.autocomplete.js" />
     <Content Include="Content\captcha\Captcha.js" />
     <Content Include="Content\css\bd-wizard.css" />
+    <Content Include="Content\css\bootstrap.custom.css" />
+    <Content Include="Content\css\bootstrap.custom.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\custom.purge.css" />
     <Content Include="Content\css\custom.min.css" />
+    <Content Include="Content\css\custom.purge.min.css" />
     <Content Include="Content\css\default.css" />
     <Content Include="Content\css\default.min.css" />
+    <Content Include="Content\css\font-awesome.custom.css" />
+    <Content Include="Content\css\font-awesome.custom.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\footer_css.css" />
     <Content Include="Content\css\hover.css" />
@@ -1041,6 +1047,8 @@
     <Content Include="Content\css\jquery-ui-1.8.16.custom.css" />
     <Content Include="Content\css\lightbox.min.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\main.custom.css" />
+    <Content Include="Content\css\main.custom.min.css" />
     <Content Include="Content\css\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
