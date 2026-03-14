@@ -3,6 +3,20 @@
     ViewBag.MetaKeywords = "Market Research Reports, Market Trends, Market Share, Market Size, Industry Analysis, Market Forecast, Revenue, marketing research company, Market Research, ZMR, Zion Market Research";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
+@section HeadPreloads {
+    @*
+        Preload the LCP hero image with correct responsive srcset hints.
+        This fires at the very top of <head> (before fonts, CSS, JS)
+        so the image fetch starts in parallel with everything else.
+        imagesrcset lets the browser pick the right size for the viewport.
+    *@
+    <link rel="preload" as="image"
+          href="/images/image01-1920.webp"
+          imagesrcset="/images/image01-640.webp 640w, /images/image01-1024.webp 1024w, /images/image01-1440.webp 1440w, /images/image01-1920.webp 1920w"
+          imagesizes="100vw"
+          fetchpriority="high">
+}
+
 <!--Header start -->
 <header>
     @{ Html.RenderAction("NavigationMenu", "Home"); }
@@ -40,9 +54,9 @@
                          decoding="async" />
 
                     @*<img src="~/images/image01.webp" alt="image01" width="1920"
-            height="800"
-            fetchpriority="high"
-            decoding="async" />*@
+                        height="800"
+                        fetchpriority="high"
+                        decoding="async" />*@
                 </div>
                 <div class="slide">
                     <!--slid2 start-->
@@ -63,17 +77,17 @@
   /images/image02-1920.webp 1920w
 "
                          sizes="100vw"
-                         alt="image01"
+                         alt="image02"
                          width="1920"
                          height="800"
-                         loading="eager"
-                         fetchpriority="high"
+                         loading="lazy"
+                         fetchpriority="low"
                          decoding="async" />
 
                     @*<img src="images/image02.webp" alt="image01" width="1920"
-            height="800"
-            fetchpriority="high"
-            decoding="async"/>*@
+                        height="800"
+                        fetchpriority="high"
+                        decoding="async"/>*@
                 </div>
                 <!--background slide show end-->
             </div>
@@ -441,7 +455,7 @@
                     <div class="category-item first">
                         <div class="category-item-wrapper">
                             <div class="category-item-image">
-                                <img src="/images/category/Chemical-Materials.webp" alt="Chemical-Materials" width="291" height="199" />
+                                <img src="/images/category/Chemical-Materials.webp" alt="Chemical-Materials" width="291" height="199" loading="lazy" />
                                 <p class="category-item-overlay"> </p>
                                 <div class="category-item-button"><a href="@Url.Action("CategoryWithReports", "Category", new { url = "chemical-materials" })">View</a></div>
                             </div>
@@ -460,7 +474,7 @@
                     <div class="category-item first">
                         <div class="category-item-wrapper">
                             <div class="category-item-image">
-                                <img src="/images/category/Medical-Device.webp" alt="Medical-Device" width="291" height="199" />
+                                <img src="/images/category/Medical-Device.webp" alt="Medical-Device" width="291" height="199" loading="lazy" />
                                 <p class="category-item-overlay"> </p>
                                 <div class="category-item-button"><a href="@Url.Action("CategoryWithReports", "Category", new { url = "medical-device" })">View</a></div>
                             </div>
@@ -477,7 +491,7 @@
                     <div class="category-item first">
                         <div class="category-item-wrapper">
                             <div class="category-item-image">
-                                <img src="/images/category/Consumer-Goods.webp" alt="Consumer-Goods" width="291" height="199" />
+                                <img src="/images/category/Consumer-Goods.webp" alt="Consumer-Goods" width="291" height="199" loading="lazy" />
                                 <p class="category-item-overlay"> </p>
                                 <div class="category-item-button"><a href="@Url.Action("CategoryWithReports", "Category", new { url = "consumer-goods" })">View</a></div>
                             </div>
@@ -493,7 +507,7 @@
                     <div class="category-item first">
                         <div class="category-item-wrapper">
                             <div class="category-item-image">
-                                <img src="/images/category/Food-Beverage.webp" alt="Food-Beverage" width="291" height="199" />
+                                <img src="/images/category/Food-Beverage.webp" alt="Food-Beverage" width="291" height="199" loading="lazy" />
                                 <p class="category-item-overlay"> </p>
                                 <div class="category-item-button"><a href="@Url.Action("CategoryWithReports", "Category", new { url = "food-beverage" })">View</a></div>
                             </div>
@@ -510,7 +524,7 @@
                     <div class="category-item first">
                         <div class="category-item-wrapper">
                             <div class="category-item-image">
-                                <img src="/images/category/Semiconductor-Electronics.webp" alt="Semiconductor-Electronics" width="291" height="199" />
+                                <img src="/images/category/Semiconductor-Electronics.webp" alt="Semiconductor-Electronics" width="291" height="199" loading="lazy" />
                                 <p class="category-item-overlay"> </p>
                                 <div class="category-item-button"><a href="@Url.Action("CategoryWithReports", "Category", new { url = "semiconductor-electronics" })">View</a></div>
                             </div>
@@ -527,7 +541,7 @@
                     <div class="category-item first">
                         <div class="category-item-wrapper">
                             <div class="category-item-image">
-                                <img src="/images/category/Pharmaceutical.webp" alt="Pharmaceutical" width="291" height="199" />
+                                <img src="/images/category/Pharmaceutical.webp" alt="Pharmaceutical" width="291" height="199" loading="lazy" />
                                 <p class="category-item-overlay"> </p>
                                 <div class="category-item-button"><a href="@Url.Action("CategoryWithReports", "Category", new { url = "pharmaceutical" })">View</a></div>
                             </div>
@@ -544,7 +558,7 @@
                     <div class="category-item first">
                         <div class="category-item-wrapper">
                             <div class="category-item-image">
-                                <img src="/images/category/Automotive.webp" alt="Automotive" width="291" height="199" />
+                                <img src="/images/category/Automotive.webp" alt="Automotive" width="291" height="199" loading="lazy" />
                                 <p class="category-item-overlay"> </p>
                                 <div class="category-item-button"><a href="@Url.Action("CategoryWithReports", "Category", new { url = "automotive" })">View</a></div>
                             </div>

@@ -71,19 +71,13 @@ namespace ZionMarketResearch.App_Start
                 .Include("~/Content/css/custom.css"));
 
 
-            //#region layout JS
+             bundles.Add(new StyleBundle("~/bundles/abovefoldcss")
+                    .Include("~/Content/css/font-awesome.custom.css")
+                    .Include("~/Content/autocomplete/autocomplete.css")
+                    .Include("~/Content/css/main.css")
+                    .Include("~/Content/css/custom.css")
+                    .Include("~/Content/css/footer_css.css"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/core")
-            //       .Include(
-            //        "~/Content/js/jquery.superslides.js",
-            //        "~/Content/js/jquery.isotope.js",
-            //        "~/Content/js/jquery.easing.js",
-            //        "~/Content/js/custom.js",
-            //        "~/Scripts/serializeform.js",
-            //        "~/Scripts/layout.js"
-            //        ));
-
-            //#endregion
         }
     }
 }
