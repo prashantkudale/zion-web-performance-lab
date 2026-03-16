@@ -18,22 +18,45 @@
     //    });
     //});
 
+    //const observer = new IntersectionObserver(entries => {
+    //    entries.forEach(entry => {
+    //        if (entry.isIntersecting) {
+
+    //            $(entry.target).prop('Counter', 0).animate({
+    //                Counter: $(entry.target).text()
+    //            }, {
+    //                duration: 2000,
+    //                easing: 'swing',
+    //                step: function (now) {
+    //                    $(entry.target).text(Math.ceil(now));
+    //                }
+    //            });
+
+    //            observer.unobserve(entry.target);
+    //        }
+    //    });
+    //});
+
+    //document.querySelectorAll('.count').forEach(el => observer.observe(el));
+
+    // REPLACE the IntersectionObserver block in layout.js with this:
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseFloat(el.textContent) || 0;
+            const duration = 2000;
+            const start = performance.now();
 
-                $(entry.target).prop('Counter', 0).animate({
-                    Counter: $(entry.target).text()
-                }, {
-                    duration: 2000,
-                    easing: 'swing',
-                    step: function (now) {
-                        $(entry.target).text(Math.ceil(now));
-                    }
-                });
-
-                observer.unobserve(entry.target);
+            function tick(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                el.textContent = Math.ceil(progress * target);
+                if (progress < 1) requestAnimationFrame(tick);
             }
+
+            requestAnimationFrame(tick);
+            observer.unobserve(el);
         });
     });
 

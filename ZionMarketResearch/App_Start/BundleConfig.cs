@@ -14,9 +14,9 @@ namespace ZionMarketResearch.App_Start
             //bundles.Add(new ScriptBundle("~/bundles/bootstrapjs", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"));
 
 
-            bundles.Add(new ScriptBundle("~/bundles/career")
-                    .Include("~/Scripts/career.js")
-                    );
+            //bundles.Add(new ScriptBundle("~/bundles/career")
+            //        .Include("~/Scripts/career.js")
+            //        );
 
             bundles.Add(new StyleBundle("~/bundles/maincss")
                     .Include("~/css/scroll_Image.css")
@@ -40,11 +40,11 @@ namespace ZionMarketResearch.App_Start
                 );
             #endregion
 
-            #region Buynow Control
-            bundles.Add(new StyleBundle("~/bundles/buynowcss")
-                    .Include("~/css/buynow.css")
-                    );
-            #endregion
+            //#region Buynow Control
+            //bundles.Add(new StyleBundle("~/bundles/buynowcss")
+            //        .Include("~/css/buynow.css")
+            //        );
+            //#endregion
 
 
             #region FormValidation
@@ -65,18 +65,18 @@ namespace ZionMarketResearch.App_Start
                 .Include("~/Scripts/customrazorpay.js"));
 
 
-            bundles.Add(new StyleBundle("~/customcss")
-                .Include("~/Content/css/main.css")
-                .Include("~/Content/css/default.css")
-                .Include("~/Content/css/custom.css"));
+            //bundles.Add(new StyleBundle("~/customcss")
+            //    .Include("~/Content/css/main.css")
+            //    .Include("~/Content/css/default.css")
+            //    .Include("~/Content/css/custom.css"));
 
 
-             bundles.Add(new StyleBundle("~/bundles/abovefoldcss")
-                    .Include("~/Content/css/font-awesome.custom.css")
-                    .Include("~/Content/autocomplete/autocomplete.css")
-                    .Include("~/Content/css/main.css")
-                    .Include("~/Content/css/custom.css")
-                    .Include("~/Content/css/footer_css.css"));
+            bundles.Add(new StyleBundle("~/bundles/abovefoldcss")
+                   .Include("~/Content/css/font-awesome.custom.css")
+                   .Include("~/Content/autocomplete/autocomplete.css")
+                   .Include("~/Content/css/main.css")
+                   .Include("~/Content/css/custom.css")
+                   .Include("~/Content/css/footer_css.css"));
 
         }
     }
