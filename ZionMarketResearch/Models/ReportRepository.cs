@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using PagedList;
+﻿using PagedList;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 using ZionMarketResearch.Models;
 
 namespace ZionMarketResearch.Controllers
