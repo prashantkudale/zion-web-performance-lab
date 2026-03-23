@@ -1,0 +1,323 @@
+﻿/* critical.css — inline this in <head> or load it blocking */
+
+/* Reset */
+*, :before, :after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 14px;
+    line-height: 24px;
+    color: #333333;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    background: #fff;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #7a6000;
+    outline: none;
+}
+
+/* Typography */
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    padding-bottom: 22px;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 15px;
+}
+
+h2 {
+    font-size: 43px;
+    color: #273342;
+    line-height: 57px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin: 0 0 15px;
+}
+
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 22px;
+}
+
+/* Layout */
+.wrapper {
+    width: 100%;
+}
+
+.sec_top_gp {
+    padding-top: 68px;
+}
+
+.section_gap {
+    padding: 79px 0 65px;
+}
+
+.noPadd {
+    padding: 0 !important;
+}
+
+.noMar {
+    margin: 0 !important;
+}
+
+/* Heading component */
+.heading {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+    .heading .container {
+        padding: 0 15px;
+    }
+
+    .heading h2 {
+        color: #273342;
+        display: block;
+        line-height: 50px;
+        text-transform: uppercase;
+        padding: 22px;
+        border-left: 8px solid;
+    }
+
+    .heading p {
+        font-size: 16px;
+        font-weight: 400;
+        color: #333333;
+        line-height: 24px;
+    }
+
+    body {
+    color: #767676 !important;
+    }
+
+    .heading p {
+    color: #767676 !important;
+    }
+
+    #course p,
+    #course ul li,
+    #course .heading p {
+    color: #ffffff !important;
+    }
+
+    .plan-features p.rpt-desc,
+    .plan-features p.para-padding {
+        color: #6d6d6d !important;
+    }
+
+    .category-item-title h3 {
+        color: #1a1a1a !important;
+    }
+    .grey_section .heading p {
+        color: #696969 !important;
+    }
+
+    .bottomAbout p a {
+        color: #dcdce5 !important;
+        text-decoration: underline !important;
+    }
+
+/* Preserve footer link styles after removing h5 tags */
+.how-it-work li a,
+.our-company li a {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #dcdce5 !important;
+    text-decoration: none;
+}
+
+/* Navbar wrapper (paints header background immediately) */
+.navbar-wrapper {
+    background: #123456 !important;
+    margin-top: 0;
+    height: 70px;
+    position: relative;
+    z-index: 15;
+}
+
+    .navbar-wrapper .container {
+        padding: 0;
+    }
+
+.menu {
+    position: absolute;
+    z-index: 9999;
+    margin-top: 25px;
+    left: 0;
+    right: 0;
+}
+
+.logo {
+    float: left;
+    width: auto;
+    height: auto;
+    margin-top: 2px;
+}
+
+.navbar.navbar-inverse.navbar-static-top {
+    margin: 0 auto;
+    background: none;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+    .navbar.navbar-inverse.navbar-static-top a {
+        color: #ffffff !important;
+        padding: 31px 12px 20px 15px !important;
+        line-height: 5px !important;
+    }
+
+.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin: 8px 15px 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+/* The active header variant only (use whichever v1–v5 your homepage uses) */
+.header_v1 .banner {
+    overflow: hidden;
+    margin: 0 auto !important;
+    background: #CACACA;
+}
+
+.header_v1 .hedaer-inner {
+    height: 100%;
+    position: relative;
+}
+
+.header_v1 .bannerText {
+    width: 580px;
+    height: 218px;
+    border-left: 3px solid #fff;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    text-align: left;
+    margin-top: -109px;
+    padding: 30px 0 0 30px;
+    z-index: 999999;
+}
+
+    .header_v1 .bannerText h3 {
+        color: #fefefe;
+        font-size: 37px;
+        line-height: 36px;
+        font-weight: 700;
+        letter-spacing: -2px;
+        margin-bottom: 20px;
+    }
+
+/* Preloader (blocks paint until hidden) */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 9999999999;
+}
+
+/* Section colours */
+.white_section {
+    background-color: #fff;
+}
+
+.grey_section {
+    background-color: #fafafb;
+}
+
+.blue_section {
+    background-color: #2f4e71;
+}
+/* ─── NAVBAR: reserve height from first paint — prevents navbar CLS ────── */
+.navbar-wrapper {
+    height: 70px;
+    min-height: 70px;
+    background: #123456;
+}
+
+.menu {
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+}
+
+/* ─── LOGO: reserve exact dimensions from first paint ───────────────────── */
+.logo img,
+img.zion-logo,
+img.saturate1 {
+    width: 104px;
+    height: 56px;
+    display: block;
+}
+
+/* ─── BANNER: lock height from first paint — prevents banner CLS ────────── */
+/*#banner {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}*/
+
+#banner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 768px) {
+    #banner {
+        aspect-ratio: 9 / 14;
+    }
+}
+
+/* ─── SEARCH BUTTON: prevent shift ──────────────────────────────────────── */
+.searchButton {
+    display: inline-block;
+}
+
+/* ─── MOBILE: smaller banner height ─────────────────────────────────────── */
+/*@media screen and (max-width: 810px) {
+    #banner {
+        height: 100vh;
+        min-height: 100vh;
+    }
+}*/

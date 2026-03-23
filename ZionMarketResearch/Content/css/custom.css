@@ -1,4 +1,4 @@
-
+﻿
 /* ---------- start myclientCarousel ---- */
 .item_width {
     width: 19%;
@@ -45,7 +45,10 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .img-responsive { height:auto !important; }
+    .img-responsive {
+        height: auto !important;
+    }
+
     .item_width {
         width: 32%;
         display: inline-block;
@@ -442,7 +445,7 @@ img {
     background-position: 100%;
     -webkit-transition: background 300ms ease-in-out;
     transition: background 300ms ease-in-out;
-    height:500px;
+    height: 500px;
 }
 
     .rpt-bg:hover {
@@ -578,13 +581,11 @@ ul.pricing-boxes li.best-plan .btn-primary {
 .search-bar .form-group {
     margin: 0;
     padding: 20px;
-    &:first-child;
-
-{
-    border-color: transparent;
 }
 
-}
+    .search-bar .form-group:first-child {
+        border-color: transparent;
+    }
 
 .search-bar .form-control {
     padding: 0px 10px 0 20px;
@@ -1277,7 +1278,7 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,62,99,1) 45%);
             background: #3c2a44;
         }
 
-    /*.link-btn a:nth-child(4) {
+/*.link-btn a:nth-child(4) {
         background: #123c69;
     }
 
@@ -1285,7 +1286,7 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,62,99,1) 45%);
             background: #1a3f53;
         }*/
 
-    /*.link-btn a:last-child {
+/*.link-btn a:last-child {
         background: #123457;
     }
 
@@ -1867,9 +1868,17 @@ blockquote {
 }
 
 .sidebar-title {
-        margin-top: 16px;
-        background-color: #123456;
-        color: #fff;
-        padding: 10px;
-        margin-bottom: 2px;
-    }
+    margin-top: 16px;
+    background-color: #123456;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 2px;
+}
+
+.heading p {
+    color: #767676 !important;
+}
+
+body {
+    color: #767676 !important;
+}

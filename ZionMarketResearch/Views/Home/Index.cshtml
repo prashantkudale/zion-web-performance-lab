@@ -10,11 +10,14 @@
         so the image fetch starts in parallel with everything else.
         imagesrcset lets the browser pick the right size for the viewport.
     *@
-    <link rel="preload" as="image"
-          href="/images/image01-1920.webp"
-          imagesrcset="/images/image01-640.webp 640w, /images/image01-1024.webp 1024w, /images/image01-1440.webp 1440w, /images/image01-1920.webp 1920w"
-          imagesizes="100vw"
-          fetchpriority="high">
+<link rel="preload" as="image"
+      href="/images/image01-1440.webp"
+      imagesrcset="/images/image01-640.webp 640w,
+                   /images/image01-1024.webp 1024w,
+                   /images/image01-1440.webp 1440w,
+                   /images/image01-1920.webp 1920w"
+      imagesizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, (max-width: 1440px) 1440px, 1920px"
+      fetchpriority="high">
 }
 
 <!--Header start -->
@@ -26,7 +29,7 @@
             <div class="">
                 @{ Html.RenderPartial("_SearchHome"); }
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadd slides-container" style="height:100%">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadd slides-container" style="height:100%; margin:0; padding:0; list-style:none; position:relative;">
                 <!--background slide show start-->
                 <div class="slide">
                     <!--slid1 start-->
@@ -38,25 +41,26 @@
                         </div>
                     </div>
                     <!--slid1 end-->
-                    <img src="/images/image01-1920.webp"
+                    <img src="/images/image01-640.webp"
                          srcset="
-          /images/image01-640.webp 640w,
-          /images/image01-1024.webp 1024w,
-          /images/image01-1440.webp 1440w,
-          /images/image01-1920.webp 1920w
-        "
-                         sizes="100vw"
+                                /images/image01-640.webp 640w,
+                                /images/image01-1024.webp 1024w,
+                                /images/image01-1440.webp 1440w,
+                                /images/image01-1920.webp 1920w
+                                "
+                         sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, (max-width: 1440px) 1440px, 1920px"
                          alt="image01"
-                         width="1920"
-                         height="800"
+                         @*width="1920"
+                         height="800"*@
                          loading="eager"
                          fetchpriority="high"
-                         decoding="async" />
+                         decoding="async"
+                         style="width:100%; height:100%; object-fit:cover;"/>
 
                     @*<img src="~/images/image01.webp" alt="image01" width="1920"
-                        height="800"
-                        fetchpriority="high"
-                        decoding="async" />*@
+            height="800"
+            fetchpriority="high"
+            decoding="async" />*@
                 </div>
                 <div class="slide">
                     <!--slid2 start-->
@@ -71,23 +75,23 @@
 
                     <img src="/images/image02-1920.webp"
                          srcset="
-  /images/image02-640.webp 640w,
-  /images/image02-1024.webp 1024w,
-  /images/image02-1440.webp 1440w,
-  /images/image02-1920.webp 1920w
-"
+                              /images/image02-640.webp 640w,
+                              /images/image02-1024.webp 1024w,
+                              /images/image02-1440.webp 1440w,
+                              /images/image02-1920.webp 1920w
+                            "
                          sizes="100vw"
                          alt="image02"
-                         width="1920"
-                         height="800"
+                         @*width="1920"
+                         height="800"*@
                          loading="lazy"
                          fetchpriority="low"
                          decoding="async" />
 
                     @*<img src="images/image02.webp" alt="image01" width="1920"
-                        height="800"
-                        fetchpriority="high"
-                        decoding="async"/>*@
+            height="800"
+            fetchpriority="high"
+            decoding="async"/>*@
                 </div>
                 <!--background slide show end-->
             </div>
@@ -302,7 +306,8 @@
                     <h2><span>Client</span>Testimonial</h2>
                 </div>
                 <!--<div class="seprator"></div>-->
-                <div id="carousel-testimonial" class="carousel slide" data-ride="carousel">
+                @*<div id="carousel-testimonial" class="carousel slide" data-ride="carousel">*@
+                <div id="carousel-testimonial" class="carousel slide">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
@@ -360,11 +365,21 @@
                     </div>
                 </div>
                 <div class="controls testimonial_control pull-right">
-                    <a class="left fa fa-chevron-left btn btn-default testimonial_btn" href="#carousel-testimonial"
-                       data-slide="prev"></a>
+                    @*<a class="left fa fa-chevron-left btn btn-default testimonial_btn" href="#carousel-testimonial"
+           data-slide="prev"></a>
 
-                    <a class="right fa fa-chevron-right btn btn-default testimonial_btn" href="#carousel-testimonial"
-                       data-slide="next"></a>
+        <a class="right fa fa-chevron-right btn btn-default testimonial_btn" href="#carousel-testimonial"
+           data-slide="next"></a>*@
+
+                    <a class="left fa fa-chevron-left btn btn-default testimonial_btn"
+                       href="#carousel-testimonial" data-slide="prev"
+                       aria-label="Previous testimonial">
+                    </a>
+
+                    <a class="right fa fa-chevron-right btn btn-default testimonial_btn"
+                       href="#carousel-testimonial" data-slide="next"
+                       aria-label="Next testimonial">
+                    </a>
                 </div>
 
 
@@ -604,7 +619,7 @@
             <h2><span>Happy</span>Clients</h2>
             <p>To provide our clients with in-depth, quantitative, and high quality market research analysis in order to help our clients make strategic business decisions for great success in future.</p>
         </div>
-        <div id="myclientCarousel" class="carousel slide" data-ride="carousel">
+        <div id="myclientCarousel" class="carousel slide">
             <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#myclientCarousel" data-slide-to="0" class="active"></li>
@@ -714,19 +729,141 @@
         max-height: 100%;
         margin: 0px;
     }
+    .slides-container .slide:first-child {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 1;
+    }
+
+    .slides-container .slide:first-child img {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    body {
+        font-size-adjust: 0.5;
+    }
 </style>
 
 @section IndexScripts{
     <script defer src="/Scripts/serializeform.js"></script>
-    <script defer src="~/Content/js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
-    <script>
+    <script defer src="~/Content/js/jquery.superslides.js"></script>
+
+    <script defer>
+        (function () {
+            if (typeof jQuery === 'undefined') return;
+
+            // ── FIX 1: intercept removeAttr ──────────────────────────────────
+            var _removeAttr = $.fn.removeAttr;
+            $.fn.removeAttr = function (name) {
+                if (
+                    (name === 'width' || name === 'height') &&
+                    this[0] &&
+                    this[0].tagName === 'IMG' &&
+                    this.closest('#banner').length
+                ) {
+                    return this;
+                }
+                return _removeAttr.apply(this, arguments);
+            };
+
+            // ── FIX 2: intercept css() for banner images + block #banner height mutation
+            var _css = $.fn.css;
+            $.fn.css = function (prop) {
+                // Block superslides mutating #banner height after first paint
+                if (
+                    this[0] &&
+                    this[0].id === 'banner' &&
+                    typeof prop === 'object' &&
+                    prop['height'] !== undefined &&
+                    prop['position'] === undefined
+                ) {
+                    delete prop['height'];
+                    if (Object.keys(prop).length === 0) return this;
+                }
+
+                // Fix unsized banner images
+                if (
+                    this[0] &&
+                    this[0].tagName === 'IMG' &&
+                    this.closest('#banner').length &&
+                    typeof prop === 'object' &&
+                    prop['-webkit-backface-visibility'] === 'hidden'
+                ) {
+                    prop['width'] = '100%';
+                    prop['height'] = '100%';
+                    prop['object-fit'] = 'cover';
+                    prop['max-width'] = '100%';
+                }
+                return _css.apply(this, arguments);
+            };
+
+            // ── FIX 3: intercept fadeIn on slides-container ───────────────────
+            var _fadeIn = $.fn.fadeIn;
+            $.fn.fadeIn = function (speed, callback) {
+                if (this.hasClass('slides-container')) {
+                    if (typeof callback === 'function') callback();
+                    return this.show();
+                }
+                return _fadeIn.apply(this, arguments);
+            };
+
+        }());
+
+        // ── Superslides + Carousels init ──────────────────────────────────────
         document.addEventListener("DOMContentLoaded", function () {
+
+            // ── Superslides init ──────────────────────────────────────────────
             if ($.fn.superslides) {
-                $('.header_v3 #banner').superslides({
-                    animation: 'fade',
-                    play: 5000
+                var bannerEl = document.getElementById('banner');
+                var bannerH = bannerEl ? bannerEl.offsetHeight : window.innerHeight;
+
+                var initSlider = function () {
+                    $('.header_v3 #banner').superslides({
+                        animation: 'fade',
+                        play: 5000,
+                        inherit_width_from: bannerEl,
+                        inherit_height_from: {
+                            jquery: '3.7.1',
+                            0: bannerEl,
+                            height: function () { return bannerH; },
+                            width: function () { return bannerEl ? bannerEl.offsetWidth : window.innerWidth; }
+                        }
+                    });
+                };
+
+                // Wait for LCP image to load before starting slider
+                var lcpImg = document.querySelector('#banner .slide:first-child img');
+                if (lcpImg && !lcpImg.complete) {
+                    lcpImg.addEventListener('load', initSlider);
+                } else {
+                    initSlider();
+                }
+            }
+
+            // ── Carousels ─────────────────────────────────────────────────────
+            if ('IntersectionObserver' in window) {
+                var carousels = [
+                    { id: '#carousel-testimonial', interval: 4000 },
+                    { id: '#myclientCarousel', interval: 3000 }
+                ];
+                carousels.forEach(function (cfg) {
+                    var el = document.querySelector(cfg.id);
+                    if (!el) return;
+                    var obs = new IntersectionObserver(function (entries) {
+                        if (!entries[0].isIntersecting) return;
+                        $(cfg.id).carousel({ interval: cfg.interval });
+                        obs.disconnect();
+                    }, { threshold: 0.1 });
+                    obs.observe(el);
                 });
+            } else {
+                $('#carousel-testimonial').carousel({ interval: 4000 });
+                $('#myclientCarousel').carousel({ interval: 3000 });
             }
         });
     </script>
+
+
 }

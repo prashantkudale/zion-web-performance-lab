@@ -71,12 +71,27 @@ namespace ZionMarketResearch.App_Start
             //    .Include("~/Content/css/custom.css"));
 
 
+            //bundles.Add(new StyleBundle("~/bundles/abovefoldcss")
+            //       .Include("~/Content/css/font-awesome.custom.css")
+            //       .Include("~/Content/autocomplete/autocomplete.css")
+            //       .Include("~/Content/css/main.css")
+            //       .Include("~/Content/css/custom.css")
+            //       .Include("~/Content/css/footer_css.css"));
+
+            // CRITICAL — only what paints above the fold
             bundles.Add(new StyleBundle("~/bundles/abovefoldcss")
-                   .Include("~/Content/css/font-awesome.custom.css")
+                   .Include("~/Content/css/critical.css"));
+
+
+            bundles.Add(new Bundle("~/bundles/faicons")             // plain Bundle = no minification attempt
+                   .Include("~/Content/css/font-awesome.custom.css"));
+
+            // Move the full files to belowfold (already deferred with media="print")
+            bundles.Add(new StyleBundle("~/bundles/belowfoldcss")
                    .Include("~/Content/autocomplete/autocomplete.css")
-                   .Include("~/Content/css/main.css")
-                   .Include("~/Content/css/custom.css")
-                   .Include("~/Content/css/footer_css.css"));
+                   .Include("~/Content/css/footer_css.css")
+                   .Include("~/Content/css/main.css")        
+                   .Include("~/Content/css/custom.css"));    
 
         }
     }

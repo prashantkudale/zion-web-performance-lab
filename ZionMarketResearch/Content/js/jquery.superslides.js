@@ -152,16 +152,17 @@ var css = {
     var $images = that.$container.find('img')
                                  .not(that.options.elements.preserve)
 
-    $images.removeAttr('width').removeAttr('height')
-      .css({
-        "-webkit-backface-visibility": 'hidden',
-        "-ms-interpolation-mode": 'bicubic',
-        "position": 'absolute',
-        "left": '0',
-        "top": '0',
-        "z-index": '-1',
-        "max-width": 'none'
-      });
+      $images.removeAttr('width').removeAttr('height')
+          .css({
+              "-webkit-backface-visibility": 'hidden',
+              "-ms-interpolation-mode": 'bicubic',
+              "position": 'absolute',
+              "left": '0',
+              "top": '0',
+              "z-index": '-1',
+              "max-width": 'none',
+              "will-change": 'transform'
+          });
 
     $images.each(function() {
       var image_aspect_ratio = that.image._aspectRatio(this),
@@ -304,24 +305,28 @@ var fx = {
 fx = $.extend(fx, $.fn.superslides.fx);
 
 var image = {
-  _centerY: function(image) {
-    var $img = $(image);
+    _centerY: function (image) {
+        var $img = $(image);
+        var offsetY = (that.height - $img.height()) / 2;
+        $img.css({ top: '0', transform: 'translateY(' + offsetY + 'px)' });
+    },
+    _centerX: function (image) {
+        var $img = $(image);
+        var current = $img.css('transform') || '';
+        var offsetX = (that.width - $img.width()) / 2;
+        $img.css({ left: '0', transform: 'translateX(' + offsetX + 'px)' });
+    },
+    _center: function (image) {
+        var $img = $(image);
+        var offsetX = (that.width - $img.width()) / 2;
+        var offsetY = (that.height - $img.height()) / 2;
 
-    $img.css({
-      top: (that.height - $img.height()) / 2
-    });
-  },
-  _centerX: function(image) {
-    var $img = $(image);
-
-    $img.css({
-      left: (that.width - $img.width()) / 2
-    });
-  },
-  _center: function(image) {
-    that.image._centerX(image);
-    that.image._centerY(image);
-  },
+        $img.css({
+            left: '0',
+            top: '0',
+            transform: 'translateX(' + offsetX + 'px) translateY(' + offsetY + 'px)'
+        });
+    },
   _aspectRatio: function(image) {
     if (!image.naturalHeight && !image.naturalWidth) {
       var img = new Image();

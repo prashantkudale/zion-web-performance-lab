@@ -52,28 +52,62 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    @*<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">*@
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500,300&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+    @*<noscript>
+            <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500,300&display=swap" rel="stylesheet">
+        </noscript>*@
     <noscript>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500,300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500,300&display=optional" rel="stylesheet">
     </noscript>
 
     <!-- Bootstrap CSS — render-blocking, needed for above-fold layout -->
+    @*<link rel="preload" href="~/Content/css/bootstrap.custom.min.css" as="style">
+        <link rel="stylesheet" href="/Content/css/bootstrap.custom.min.css">*@
 
-    <link rel="preload" href="~/Content/css/bootstrap.custom.min.css" as="style">
-    <link rel="stylesheet" href="/Content/css/bootstrap.custom.min.css">
+    <link rel="stylesheet"
+          href="/Content/css/bootstrap.custom.min.css"
+          media="print"
+          onload="this.media='all'">
+
+    @*<link rel="preload"
+        href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/abovefoldcss", true)"
+        as="style">*@
+
+    @*<link rel="stylesheet"
+        href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/abovefoldcss", true)">*@
 
     <link rel="preload"
           href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/abovefoldcss", true)"
           as="style">
-
     <link rel="stylesheet"
           href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/abovefoldcss", true)">
+
+    <!-- Font Awesome — separate, deferred, no minification -->
+    <link rel="stylesheet"
+          href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/faicons", true)"
+          media="print"
+          onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+              href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/faicons", true)">
+    </noscript>
+
+    <!-- Deferred non-critical CSS — loads without blocking render -->
+    <link rel="stylesheet"
+          href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/belowfoldcss", true)"
+          media="print"
+          onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+              href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/belowfoldcss", true)">
+    </noscript>
 
     <!-- Page-specific head scripts -->
     @RenderSection("HeadScript", required: false)
 
 
-    <style>
+<style>
         #lcp-paint-shield {
             position: absolute;
             top: 0;
@@ -87,7 +121,102 @@
         .superslides-loaded #lcp-paint-shield {
             display: none;
         }
-    </style>
+
+        img[src*="gtranslate.net"],
+        img[src*="/flags/svg/"],
+        img[src*="/flags/png/"] {
+            width: 20px !important;
+            height: 15px !important;
+            min-width: 20px !important;
+            min-height: 15px !important;
+            display: inline-block !important;
+            aspect-ratio: 4 / 3 !important;
+            vertical-align: middle !important;
+        }
+        /* Navbar — reserve space before any CSS file loads */
+        .navbar-wrapper {
+            height: 70px;
+            min-height: 70px;
+            background: #123456;
+            position: relative;
+            z-index: 15;
+        }
+        /* Logo — reserve exact dimensions */
+        .logo img, img.zion-logo, img.saturate1 {
+            width: 104px;
+            height: 56px;
+            display: block;
+        }
+        /* Banner — lock height before superslides runs */
+        #banner {
+            height: 100vh;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .searchButton {
+            display: inline-block;
+            position: relative;
+        }
+
+        .menu {
+            position: absolute;
+            z-index: 9999;
+            left: 0;
+            right: 0;
+            margin-top: 0;
+        }
+    @@font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-display: optional;
+        src: local('Roboto'), local('Roboto-Regular');
+    }
+
+    @@font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-display: optional;
+        src: local('Roboto Bold'), local('Roboto-Bold');
+    }
+
+    @@font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: optional;
+        src: local('Montserrat'), local('Montserrat-Regular');
+    }
+
+    @@font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: optional;
+        src: local('Open Sans'), local('OpenSans');
+    }
+
+    .slides-container {
+        display: block;
+        margin: 0px !important;
+        padding: 0px !important;
+        list-style: none !important;
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+  /*  body {
+        color: #767676 !important;
+    }
+
+    .heading p {
+        color: #767676 !important;
+    }*/
+</style>
 
 </head>
 
@@ -132,21 +261,27 @@
         function loadGA() {
             if (window.gaLoaded) return;
             window.gaLoaded = true;
-
             var s = document.createElement('script');
             s.src = "https://www.googletagmanager.com/gtag/js?id=G-YZ4QTE5YV4";
             s.async = true;
             document.head.appendChild(s);
-
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             window.gtag = gtag;
-
             gtag('js', new Date());
             gtag('config', 'G-YZ4QTE5YV4');
         }
 
-        setTimeout(loadGA, 4000);
+        ['scroll', 'mousemove', 'touchstart', 'click'].forEach(function (evt) {
+            window.addEventListener(evt, loadGA, { once: true });
+        });
+
+        // Idle fallback — fires after page is fully settled
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadGA, { timeout: 10000 });
+        } else {
+            setTimeout(loadGA, 10000); // Safari fallback
+        }
     </script>
 
     <!-- GTranslate -->

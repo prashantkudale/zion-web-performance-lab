@@ -1,82 +1,59 @@
-﻿$(document).ready(function () {
+﻿// ─── Counter animation via IntersectionObserver — zero forced reflow ────────
+const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
 
-    // counter animation
-    //$('.count').each(function () {
-    //    $(this).prop('Counter', 0).animate({
-    //        Counter: $(this).text()
-    //    }, {
-    //        duration: 8000,
-    //        easing: 'swing',
-    //        step: function (now) {
-    //            $(this).text(Math.ceil(now));
-    //        },
-    //        complete: function () {
-    //            if ($(this).hasClass("plus")) {
-    //                $(this).text($(this).text() + "+");
-    //            }
-    //        }
-    //    });
-    //});
+        const el = entry.target;
+        // Read target value ONCE before any writes — avoids read-after-write reflow
+        const target = parseFloat(el.dataset.countTarget) || 0;
+        const hasPlus = el.classList.contains("plus");
+        const duration = 2000;
+        const start = performance.now();
 
-    //const observer = new IntersectionObserver(entries => {
-    //    entries.forEach(entry => {
-    //        if (entry.isIntersecting) {
+        function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            // easeOutQuad — feels more natural than linear
+            const eased = 1 - (1 - progress) * (1 - progress);
+            el.textContent = Math.ceil(eased * target) + (progress >= 1 && hasPlus ? "+" : "");
+            if (progress < 1) requestAnimationFrame(tick);
+        }
 
-    //            $(entry.target).prop('Counter', 0).animate({
-    //                Counter: $(entry.target).text()
-    //            }, {
-    //                duration: 2000,
-    //                easing: 'swing',
-    //                step: function (now) {
-    //                    $(entry.target).text(Math.ceil(now));
-    //                }
-    //            });
-
-    //            observer.unobserve(entry.target);
-    //        }
-    //    });
-    //});
-
-    //document.querySelectorAll('.count').forEach(el => observer.observe(el));
-
-    // REPLACE the IntersectionObserver block in layout.js with this:
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target;
-            const target = parseFloat(el.textContent) || 0;
-            const duration = 2000;
-            const start = performance.now();
-
-            function tick(now) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                el.textContent = Math.ceil(progress * target);
-                if (progress < 1) requestAnimationFrame(tick);
-            }
-
-            requestAnimationFrame(tick);
-            observer.unobserve(el);
-        });
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
     });
-
-    document.querySelectorAll('.count').forEach(el => observer.observe(el));
-
-    // pricing responsive fix
-    if ($(window).width() < 514) {
-        $('#pricing .container ul').removeClass('three');
-    } else {
-        $('#pricing .container ul').addClass('three');
-    }
-
 });
 
+// Batch all DOM reads before observer starts — no read-after-write
+document.querySelectorAll(".count").forEach(el => {
+    // Store target in data attribute — avoids reading textContent after any write
+    el.dataset.countTarget = el.textContent.trim().replace("+", "");
+    counterObserver.observe(el);
+});
+
+// ─── Pricing responsive fix — use ResizeObserver, zero forced reflow ─────────
+// Old: $(window).width() — reads offsetWidth = forced reflow
+// New: ResizeObserver — browser pushes size to us, no JS geometry read needed
+const pricingList = document.querySelector("#pricing .container ul");
+
+if (pricingList) {
+    const resizeObserver = new ResizeObserver(entries => {
+        // entries[0].contentRect.width is provided by browser — no reflow
+        const width = entries[0].contentRect.width;
+        if (width < 514) {
+            pricingList.classList.remove("three");
+        } else {
+            pricingList.classList.add("three");
+        }
+    });
+    resizeObserver.observe(document.body);
+}
+
+// ─── Search helpers ───────────────────────────────────────────────────────────
 function SimpleSearch() {
-    window.location.href = "/simplesearch?q=" + encodeURIComponent($("#q").val());
+    const q = document.getElementById("q");
+    if (q) window.location.href = "/simplesearch?q=" + encodeURIComponent(q.value);
 }
 
 function KeyUp(e) {
-    if (e.keyCode === 13) {
-        SimpleSearch();
-    }
+    if (e.keyCode === 13) SimpleSearch();
 }
