@@ -5,15 +5,15 @@
         <div class="col-md-9 col-sm-12">
             <div class="tab" role="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a data-target="Description" href="@Url.Action("Index", "Report", new { url = Model.ReportUrl })" aria-controls="home" rel="nofollow"><i class="fa fa-align-left" aria-hidden="true"></i> Description</a></li>
+                    <li role="presentation" class="active"><a data-toggle="tab"  role="tab" data-target="Description" href="@Url.Action("Index", "Report", new { url = Model.ReportUrl })" aria-controls="home" rel="nofollow"><i class="fa fa-align-left" aria-hidden="true"></i> Description</a></li>
                     <li role="presentation">
-                        <a data-target="TableOfContent" href="@Url.Action("TOC","Report", new { url = Model.ReportUrl })" rel="nofollow" aria-controls="profile">
+                        <a a data-toggle="tab"  role="tab" data-target="TableOfContent" href="@Url.Action("TOC","Report", new { url = Model.ReportUrl })" rel="nofollow" aria-controls="profile">
                             <i class="fa fa-list" aria-hidden="true"></i><span>Table of Content</span>
                         </a>
                     </li>
                     <!--<li role="presentation"><a href="@Url.Action("Sample", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-paper-plane" aria-hidden="true"></i> Request Free Sample </a></li>-->
-                    <li role="presentation"><a href="@Url.Action("Inquiry", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Buying Inquiry </a></li>
-                    <li role="presentation"><a style="background-color: #e00; color: #fff; " href="@Url.Action("Sample", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-paper-plane" aria-hidden="true"></i> Request Free Sample </a></li>
+                    <li role="presentation"><a  data-toggle="tab"  role="tab" data-target="Buying Inquiry" href="@Url.Action("Inquiry", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Buying Inquiry </a></li>
+                    <li role="presentation"><a data-toggle="tab"  role="tab" data-target="Request Free Sample" style="background-color: #e00; color: #fff; " href="@Url.Action("Sample", "Report", new { url = Model.ReportUrl })" aria-controls="messages" rel="nofollow"><i class="fa fa-paper-plane" aria-hidden="true"></i> Request Free Sample </a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content tabs">
@@ -82,7 +82,7 @@
                     @foreach (var n in Model.RelatedNews)
                     {
     @Html.Raw(n)
-                        <li></li>
+                        <li role="presentation"></li>
 }
                 </ul>
             </div>

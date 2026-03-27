@@ -11,23 +11,27 @@
     <p class="top-heading"><span>Frequently</span>Asked Questions</p>
 </div>
 <div class="faq-content">
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    @*<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">*@
+    <div class="panel-group" id="accordion" role="list">
         @for (int i = 0; i < Model.FAQ.Count; i++)
         {
-<div class="panel panel-default">
-    <div class="panel-heading" role="tab">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="@("#faq" + i)">
-            <h4 class="panel-title">
-                <span>@Model.FAQ[i].Question</span>
-            </h4>
-        </a>
-    </div>
-    <div id="@("faq" + i)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-        <div class="panel-body">
-            @Html.Raw(Model.FAQ[i].Answer)
-        </div>
-    </div>
-</div>}
+            @*<div class="panel panel-default">*@
+        <div class="panel panel-default" role="listitem">
+            @*<div class="panel-heading" role="tab">*@
+            <div class="panel-heading">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="@("#faq" + i)">
+                    <h4 class="panel-title">
+                        <span>@Model.FAQ[i].Question</span>
+                    </h4>
+                </a>
+            </div>
+            @*<div id="@("faq" + i)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">*@
+            <div id="@("faq" + i)" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Raw(Model.FAQ[i].Answer)
+                </div>
+            </div>
+        </div>}
     </div>
 </div>
 @if (Model.IsUpcoming)

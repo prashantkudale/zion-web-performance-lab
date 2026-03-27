@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using PagedList;
+﻿using PagedList;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +6,7 @@ using System.Data.Entity.SqlServer;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
@@ -162,6 +162,16 @@ namespace ZionMarketResearch.Models
         /// <returns>MainPageReportView object for Report Detail View</returns>
         public static MainPageReportView GetReportByUrl(string url, bool showSellerDescription = false)
         {
+            // STEP 1: Cache Check
+            var cacheKey = $"report_{url?.ToLowerInvariant()}";
+            var cachedReport = MemoryCache.Default.Get(cacheKey) as MainPageReportView;
+
+            if (cachedReport != null)
+            {
+                Console.WriteLine("Loaded from cache");
+                return cachedReport;
+            }
+
             MainPageReportView report = default;
             //string[] surl = url.Split(new char[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries);
             //todo: implement lucene
@@ -187,7 +197,7 @@ namespace ZionMarketResearch.Models
                         LuceneSearch.AddUpdateLuceneIndex(rep);
                     }
                 }
-
+                
                 if (rep != null)
                 {
 
@@ -257,20 +267,45 @@ namespace ZionMarketResearch.Models
 
                 if (report != null)
                 {
-                    report.FAQ = (from faq in db.tblreportfaqs
-                                  where faq.ReportID == report.ReportId
-                                  select new ReportFAQ
-                                  {
-                                      Question = faq.Question,
-                                      Answer = faq.Answer,
-                                      RowNumber = (int)faq.RowNumber
-                                  }).ToList();
+                    //report.FAQ = (from faq in db.tblreportfaqs
+                    //              where faq.ReportID == report.ReportId
+                    //              select new ReportFAQ
+                    //              {
+                    //                  Question = faq.Question,
+                    //                  Answer = faq.Answer,
+                    //                  RowNumber = (int)faq.RowNumber
+                    //              }).ToList();
+                    //if (showSellerDescription)
+                    //{
+                    //    report.MainPageDescription = (from reseller in db.tblreseller_reportinformation
+                    //                                  where reseller.ReportID == report.ReportId
+                    //                                  select reseller.MainPageDescription).FirstOrDefault();
+                    //}
+
+                    #region Fetch FAQ in same DB context
+
+                    report.FAQ =  db.tblreportfaqs
+                                    .Where(f => f.ReportID == report.ReportId)
+                                    .Select(f => new ReportFAQ
+                                    {
+                                        Question = f.Question,
+                                        Answer = f.Answer,
+                                        RowNumber = (int)f.RowNumber
+                                    }).ToList();
+
+                    #endregion
+
+                    #region Fetch seller description in same DB context
+
                     if (showSellerDescription)
                     {
-                        report.MainPageDescription = (from reseller in db.tblreseller_reportinformation
-                                                      where reseller.ReportID == report.ReportId
-                                                      select reseller.MainPageDescription).FirstOrDefault();
+                        report.MainPageDescription =  db.tblreseller_reportinformation
+                                                        .Where(r => r.ReportID == report.ReportId)
+                                                        .Select(r => r.MainPageDescription)
+                                                        .FirstOrDefault();
                     }
+
+                    #endregion
 
                     // Commented by Mahesh : for removing Report Scope: from upcomming reports
                     //report.MainPageDescription = ReplaceTableImage(report.MainPageDescription, !report.IsUpcoming);
@@ -278,6 +313,15 @@ namespace ZionMarketResearch.Models
             });
             if(report!=null)
                 report = getAllHeadingTags(report);
+
+            
+
+            //STEP 1: Store in Cache
+            if (report != null)
+            {
+                MemoryCache.Default.Set(cacheKey, report, DateTimeOffset.Now.AddMinutes(10));
+            }
+
             return report;
         }
 
@@ -379,10 +423,36 @@ namespace ZionMarketResearch.Models
                 #endregion
 
                 #region MetaTitle
+                //if (report != null && !string.IsNullOrEmpty(report.ReportTitle))
+                //    report.BreadCrumbTitle = !string.IsNullOrEmpty(report.MetaTitle) && report.MetaTitle.ToLower().Contains("market")
+                //        ? report.MetaTitle.Substring(0, report.MetaTitle.ToLower().IndexOf("market") + 6)
+                //        : !string.IsNullOrEmpty(report.ReportTitle) && report.ReportTitle.ToLower().Contains("market") ? report.ReportTitle.Substring(0, report.ReportTitle.ToLower().IndexOf("market") + 6) : string.Empty;
+
                 if (report != null && !string.IsNullOrEmpty(report.ReportTitle))
-                    report.BreadCrumbTitle = !string.IsNullOrEmpty(report.MetaTitle) && report.MetaTitle.ToLower().Contains("market")
-                        ? report.MetaTitle.Substring(0, report.MetaTitle.ToLower().IndexOf("market") + 6)
-                        : !string.IsNullOrEmpty(report.ReportTitle) && report.ReportTitle.ToLower().Contains("market") ? report.ReportTitle.Substring(0, report.ReportTitle.ToLower().IndexOf("market") + 6) : string.Empty;
+                {
+                    string breadCrumb = string.Empty;
+
+                    if (!string.IsNullOrEmpty(report.MetaTitle))
+                    {
+                        int index = report.MetaTitle.IndexOf("market", StringComparison.OrdinalIgnoreCase);
+                        if (index >= 0)
+                        {
+                            breadCrumb = report.MetaTitle.Substring(0, index + 6);
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(breadCrumb) && !string.IsNullOrEmpty(report.ReportTitle))
+                    {
+                        int index = report.ReportTitle.IndexOf("market", StringComparison.OrdinalIgnoreCase);
+                        if (index >= 0)
+                        {
+                            breadCrumb = report.ReportTitle.Substring(0, index + 6);
+                        }
+                    }
+
+                    report.BreadCrumbTitle = breadCrumb;
+                }
+
                 #endregion
                 if (report != null)
                     report = getAllHeadingTags(report);

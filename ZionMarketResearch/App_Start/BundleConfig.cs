@@ -73,6 +73,10 @@ namespace ZionMarketResearch.App_Start
                 .Include("~/Content/css/main.css")
                 .Include("~/Content/css/default.css")
                 .Include("~/Content/css/custom.css"));
+
+            bundles.Add(new Bundle("~/bundles/faicons")             
+                 .Include("~/Content/css/font-awesome.custom.css"));
+
         }
     }
 }

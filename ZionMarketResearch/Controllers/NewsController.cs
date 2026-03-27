@@ -11,7 +11,7 @@ namespace ZionMarketResearch.Controllers
     {
         //
         // GET: /News/
-
+        [OutputCache(Duration = 3600, VaryByParam = "url")]
         public ActionResult Index(string url)
         {
             var news = NewsRepository.GetNewsByUrl(url);

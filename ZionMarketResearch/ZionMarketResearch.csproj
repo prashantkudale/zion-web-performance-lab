@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -73,10 +73,10 @@
       <HintPath>..\packages\CsvHelper.27.2.1\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.32.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.32.0\lib\net45\Google.Protobuf.dll</HintPath>
@@ -147,8 +147,8 @@
     <Reference Include="MySql.Data, Version=9.6.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.9.6.0\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data.EntityFramework, Version=8.0.28.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.EntityFramework.8.0.28\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
+    <Reference Include="MySql.Data.EntityFramework, Version=9.6.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.EntityFramework.9.6.0\lib\net48\MySql.Data.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Web, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -209,6 +209,7 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -1029,11 +1030,16 @@
     <Content Include="Content\autocomplete\jquery.autocomplete.js" />
     <Content Include="Content\captcha\Captcha.js" />
     <Content Include="Content\css\bd-wizard.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.custom-3.4.1.css" />
+    <Content Include="Content\css\bootstrap.custom.css" />
+    <Content Include="Content\css\bootstrap.custom.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\custom.min.css" />
     <Content Include="Content\css\default.css" />
     <Content Include="Content\css\default.min.css" />
+    <Content Include="Content\css\font-awesome.custom.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\footer_css.css" />
     <Content Include="Content\css\hover.css" />
@@ -1174,7 +1180,6 @@
     <Content Include="images\image01.jpg" />
     <Content Include="images\image0111.jpg" />
     <Content Include="images\image01_.jpg" />
-    <Content Include="images\image01_1.jpg" />
     <Content Include="images\image02.jpg" />
     <Content Include="images\image02_.jpg" />
     <Content Include="images\images02.jpg" />
@@ -1248,7 +1253,6 @@
       <DependentUpon>ZionEntityModel.edmx</DependentUpon>
       <LastGenOutput>ZionEntityModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <Content Include="ReportTable\ziontable.html" />
     <Content Include="saleimages\Authority.png" />
     <Content Include="saleimages\best-seller.png" />
@@ -1265,14 +1269,18 @@
     <Content Include="saleimages\SalesReport.png" />
     <Content Include="saleimages\sale_offerIndex.png" />
     <Content Include="saleimages\Startups.png" />
+    <Content Include="Scripts\bootstrap-3-3-7.js" />
+    <Content Include="Scripts\bootstrap-3-3-7.min.js" />
     <Content Include="Scripts\career.js" />
     <Content Include="Scripts\checkout.js" />
     <Content Include="Scripts\customrazorpay.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js.map" />
     <Content Include="config\hdfc_inr.config" />
     <Content Include="config\stripe.config" />
+    <Content Include="Scripts\layoutOne.js" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="images\blue-pattern.webp" />
     <Content Include="images\image01.webp" />
@@ -1288,7 +1296,14 @@
     </Content>
     <Content Include="images\twitter_x_logo.webp" />
     <Content Include="images\check_12.webp" />
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <Content Include="images\report_img.webp" />
+    <Content Include="images\zion-payment-modes.webp" />
+    <Content Include="images\zion-market-research-logo.webp" />
     <None Include="Properties\PublishProfiles\ZionMarketResearch2.0.pubxml" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="purge-html\ReportIndex.cshtml" />
+    <Content Include="purge-html\NewsIndex.cshtml" />
     <None Include="Service References\CRM\WebService.disco" />
     <None Include="Service References\CRM\configuration91.svcinfo" />
     <None Include="Service References\CRM\configuration.svcinfo" />
@@ -1411,12 +1426,15 @@
     <Content Include="Views\Home\_TrendingReports.cshtml" />
     <Content Include="Views\Report\_ReportListWithList.cshtml" />
     <Content Include="Views\Category\ReportTab.cshtml" />
-    <Content Include="Views\Shared\_LayoutOneCss.cshtml" />
+    <Content Include="Views\Shared\_LayoutOneCssOld.cshtml" />
     <Content Include="Views\Shared\_headerMS.cshtml" />
     <Content Include="Views\Shared\_footerMS.cshtml" />
     <Content Include="Views\Report\IndexMS.cshtml" />
     <Content Include="Views\Report\VueJs\_VueReportList.cshtml" />
     <Content Include="Views\Form\ShowCorporateEmail.cshtml" />
+    <Content Include="Views\Shared\_LayoutOneCss.cshtml" />
+    <Content Include="Views\Report\_BuynowControlAnother.cshtml" />
+    <Content Include="Views\News\VueJs\_VueJsAllNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1497,9 +1515,6 @@
     <Content Include="Views\Category\CategoryWithReports.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Buynow\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Admin\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1539,7 +1554,6 @@
     <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Areas\Admin\Content\images\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -1579,10 +1593,10 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

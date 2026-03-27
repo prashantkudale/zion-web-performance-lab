@@ -12,16 +12,16 @@
     <li><a href="/" rel="nofollow">Home</a></li>
     @if (isSplit)
     {
-        @*foreach (var x in sp)
-        {
-            //json += "{\"@type\": \"WebPage\",\"name\": \"" + x + "\",\"position\": " + (position++) + "},";
-            json += "{\"@type\": \"ListItem\",\"position\":  " + (position++)+",\"name\": \"" + x + "\"},";
-            <li>@Html.Raw(x)</li>
-        }*@
-    for (int i=0; i<sp.Length;i++)
+    @*foreach (var x in sp)
     {
-        //json += "{\"@type\": \"WebPage\",\"name\": \"" + x + "\",\"position\": " + (position++) + "},";
-        var temp = sp[i].Replace("<a href='", "");
+    //json += "{\"@type\": \"WebPage\",\"name\": \"" + x + "\",\"position\": " + (position++) + "},";
+    json += "{\"@type\": \"ListItem\",\"position\":  " + (position++)+",\"name\": \"" + x + "\"},";
+    <li>@Html.Raw(x)</li>
+    }*@
+    for (int i=0; i
+    <sp.Length;i++) {
+                    //json +="{\" @type\": \"WebPage\",\"name\": \"" + x + "\" ,\"position\": " + (position++) + " },";
+                    var temp=sp[i].Replace("<a href='", "");
         var _url = "";
         var _text = "";
         if(sp[i].IndexOf("<a") > -1 && sp[i].IndexOf("'>")>-1 && sp[i].IndexOf("</a>") > -1 )

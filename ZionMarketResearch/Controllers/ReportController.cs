@@ -21,6 +21,7 @@ namespace ZionMarketResearch.Controllers
         //
         // GET: /Report/
 
+        [OutputCache(Duration = 3600, VaryByParam = "url")]
         public ActionResult Index(string url, string reffer, string Lang)
         {
             ViewBag.Lang = Lang != "" ? Lang : "en";
@@ -36,7 +37,7 @@ namespace ZionMarketResearch.Controllers
 
             MainPageReportView report = ReportFactory.GetReportByUrl(url, 0);
 
-                  
+            
             if (report == null || string.IsNullOrEmpty(report.ReportTitle))
                 return HttpNotFound("Report URL not found. Please contact to https://zionmarketresearch.com for more details.");
             

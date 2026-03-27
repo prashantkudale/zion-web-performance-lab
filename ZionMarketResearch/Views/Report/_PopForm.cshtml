@@ -1,4 +1,10 @@
 ﻿@model ZionMarketResearch.Models.AvailPDF
+<!--
+    NOTE: All JavaScript for this form (SubmitForm, setCookie, getCookie,
+    popup trigger, country AJAX) has been consolidated into Index.cshtml's
+    section NewsIndexScript to avoid duplicate script evaluation and the
+    two competing $(document).ready handlers that were causing TBT.
+-->
 <style>
     #mypopreqModal .modal-header button {
         position: absolute;
@@ -6,7 +12,7 @@
         top: 10px;
         color: #fff;
         opacity: 1;
-        background-color: rgba(0, 0, 0, 0.26);
+        background-color: rgba(0,0,0,.26);
         border-radius: 30px;
         height: 30px;
         width: 30px;
@@ -18,13 +24,13 @@
     }
 
     #mypopreqModal .modal-content {
-        border-radius: 0px !important;
+        border-radius: 0 !important;
     }
 
     #mypopreqModal .btn {
         padding: 6px 12px !important;
         font-size: 15px !important;
-        border-radius: 0px !important;
+        border-radius: 0 !important;
     }
 
     #mypopreqModal .modal-header h4 {
@@ -33,11 +39,11 @@
     }
 
     #mypopreqModal .form-control {
-        border-radius: 0px !important;
+        border-radius: 0 !important;
     }
 
     #mypopreqModal .input-group-addon {
-        border-radius: 0px !important;
+        border-radius: 0 !important;
     }
 
     #mypopreqModal .select-addon {
@@ -63,7 +69,6 @@
 <div class="hide-form-label">
     <div id="mypopreqModal" class="modal fade" role="dialog" style="z-index:10000;">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
                 <div class="showMessage"></div>
                 <div class="modal-header grad-multi-160">
@@ -122,10 +127,7 @@
                             </div>
                             @Html.ValidationMessageFor(model => model.Message)
                         </div>
-                        <!-- Success message -->
-                        <!-- Button -->
                         <div class="text-center">
-                            @*<button type="button" class="btn-danger resetinfo btn-xs" data-dismiss="modal">Not Interested</button>*@
                             <button type="button" class="btn btn-success subinfo" onclick="SubmitForm(this);">Request for free Sample</button>
                         </div>
                         <div class="alert alert-info" style="margin-top: 10px"><i class="fa fa-info-circle"></i> This website is secure and your personal details are safe.</div>
@@ -139,12 +141,10 @@
                             <hr style="color: #F4F4F4;">
                             <div id="signature" style="font-size: 12px; color: #000046;">
                                 <strong>Warm regards</strong>,<br>
-
                                 Joel John | Manager - International Business and partner Relations<br />
                                 Direct line: + 1-855-465-4651<br />
                                 Zion Market Research<br />
                                 E-mail: <a href="mailto:sales@zionmarketresearch.com">sales@zionmarketresearch.com</a> | Web: <a href="https://www.zionmarketresearch.com">www.zionmarketresearch.com</a><br />
-
                             </div>
                         </div>
                     </div>
@@ -156,100 +156,3 @@
         </div>
     </div>
 </div>
-@Scripts.Render("~/bundles/form-validation")
-<script defer src="~/Scripts/serializeform.js"></script>
-<script type="text/javascript">
-    var savedInfo = false;
-    var popupTimer;
-    $(window).on('load', function () {
-        let rID = getCookie("PopForm");
-        setTimeout(() => {
-            if (!savedInfo && rID !== '@Model.ReportId') {
-                $('#mypopreqModal').modal('show');
-            }
-        }, 10000);
-    });
-    function SubmitForm(ctl) {
-        if ($("#frmAvailPDF").valid()) {
-            if (ctl) {
-                $(ctl).text('Processing...');
-                $(ctl).prop('disabled', true);
-            }
-            //ga('send','event', 'Popup Form', 'submit', '@Request.Url', {
-                /*hitCallback: function () {*/
-                        $.ajax({
-                        url: '/form/SubmitSampleRequest',
-                        type: 'POST',
-                        data: JSON.stringify($("#frmAvailPDF").serializeFormJSON()),
-                        contentType: "application/json;charset=utf-8",
-                        dataType: "json",
-                            success: function (res) {
-                                if (ctl) {
-                                    $(ctl).text('Submit');
-                                    $(ctl).prop('disabled', false);
-                                }
-                            $(".alert").remove();
-                            if (res && res.Success) {
-                                ga('send', 'pageview', '/thankyou/@Model.ReportId?src=popup');
-                                $("#frmAvailPDF").hide();
-                                $(".success-message").show();
-                                $(".modal-footer").show();
-                                setCookie("PopForm", @Model.ReportId, 1);
-                            } else {
-                                $(".showMessage").html("<div class='alert alert-danger'>Error While Submitting your form. Please try again.</div>");
-                            }
-                            savedInfo = true;
-                        },
-                            error: function (err) {
-                                if (ctl) {
-                                    $(ctl).text('Submit');
-                                    $(ctl).prop('disabled', false);
-                                }
-                            $(".showMessage").html("<div class='alert alert-danger'>" + err.message + "</div>");
-                        }
-                    });
-                //}
-            //});
-        }
-    }
-    $(document).ready(function () {
-        $(".success-message").hide();
-        $(".modal-footer").hide();
-        $.ajax({
-            url: "/form/GetCountry",
-            type: 'GET',
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            success: function (json) {
-                $("#mypopreqModal #Country").val(json.Response.country);
-            },
-            error: function (err) {
-                console.log("Request failed, error= " + err);
-            }
-        });
-    })
-
-    function setCookie(cname, cvalue, hours) {
-        var d = new Date();
-        d.setTime(d.getTime() + (hours * 60 * 60 * 1000));
-        var expires = "expires=" + d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    }
-
-    function getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-</script>

@@ -3,7 +3,7 @@
     <div class="lic_header contactInfo">
         @*<h2 class="licheader__title">Choose License Type</h2>*@
         <ul>
-            <li><img src="/images/zion-payment-modes.jpg" alt="zion payment modes" class="img-responsive" width="426px" height="47px"></li>
+            <li><img fetchpriority="high" loading="eager" decoding="sync" src="~/images/zion-payment-modes.webp" alt="zion payment modes" class="img-responsive" width="426" height="47"></li>
            
         </ul>
     </div>
@@ -31,7 +31,7 @@
 
 </div>
 
-<script>
+@*<script>
     $(document).ready(function () {
         $('.buynow-button').click(function () {
             let selected = 'su'; //$('.subscription-container input[type=radio]:checked').val();
@@ -39,4 +39,4 @@
             window.location.href = '/buynow/'+selected+'/@Model.ReportUrl';
         });
     });
-</script>
+</script>*@

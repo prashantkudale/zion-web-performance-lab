@@ -339,7 +339,11 @@ ul.footerLinks li span{display:block;color:#c0c0ca;}
 ul.list{padding:0;margin:0;list-style-position:inside;}
 ul.list li{font-family:'Open Sans',sans-serif;font-size:13px;line-height:24px;font-weight:400;color:#dcdce5;text-decoration:none;padding:0;margin:0 0 5px;}
 .footer{background-color:#243c58;padding:39px 0;}
-.footer p{font-size:13px;color:#dcdce5;padding:0;}
+    .footer p {
+        font-size: 13px;
+        color: #ffffff;
+        padding: 0;
+    }
 .gototop{display:inline-block;font-size:13px;color:#dcdce5;}
 .gototop i{color:#dcdce5;line-height:13px;margin-left:8px;}
 .gototop:hover{color:#fff;}

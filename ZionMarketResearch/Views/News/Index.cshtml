@@ -1,37 +1,35 @@
 ﻿@model ZionMarketResearch.Models.NewsDeatils
 @{ ViewBag.Title = !string.IsNullOrEmpty(Model.MetaTile) ? Model.MetaTile : Model.NewsTitle;
-                ViewBag.MetaDescription = !string.IsNullOrEmpty(Model.MetaDescription) ? Model.MetaDescription : Model.NewsTitle;
-                ViewBag.MetaKeywords = !string.IsNullOrEmpty(Model.MetaKeywords) ? Model.MetaKeywords : Model.NewsTitle;
-                Layout = "~/Views/Shared/_LayoutOneCss.cshtml"; }
+    ViewBag.MetaDescription = !string.IsNullOrEmpty(Model.MetaDescription) ? Model.MetaDescription : Model.NewsTitle;
+    ViewBag.MetaKeywords = !string.IsNullOrEmpty(Model.MetaKeywords) ? Model.MetaKeywords : Model.NewsTitle;
+    Layout = "~/Views/Shared/_LayoutOneCss.cshtml"; }
 
-<style>
-    
+    <!--
+    All page-specific styles moved here (single
+    block).
+    Avoids multiple style recalculation passes the browser would otherwise
+    trigger when encountering <style > tags spread across partial views.
+    -->
+    <style>
     .pulse-button {
         position: relative;
-        /*width: 100px;
-    height: 100px;*/
-        padding: 15px 30px 15px 30px !important;
+        padding: 15px 30px !important;
         border: none;
-        box-shadow: 0 0 0 0 rgba(255, 191, 9, 0.7);
+        box-shadow: 0 0 0 0 rgba(255,191,9,.7);
         border-radius: 25px;
         font-weight: bold;
         font-size: 17px;
         background-color: #ffbf09;
         cursor: pointer;
-        -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-        -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-        -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-        animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+        animation: pulse 1.25s infinite cubic-bezier(.66,0,0,1);
         color: black;
     }
 
     .pulse-button:hover {
-        -webkit-animation: none;
-        -moz-animation: none;
-        -ms-animation: none;
         animation: none;
-        color: #ffffff;
+        color: #fff;
     }
+
     #news_section {
         padding-top: 10px;
         background: #e7ecea;
@@ -44,7 +42,7 @@
 
         #news_section .news_bg {
             padding-top: 10px;
-            background: #ffffff;
+            background: #fff;
             margin-bottom: 20px;
         }
 
@@ -92,7 +90,7 @@
     }
 
     #news_section .btn-hot {
-        color: #ffffff !important;
+        color: #fff !important;
         background-color: #db5566;
         border-bottom: 2px solid #af4451;
     }
@@ -100,11 +98,11 @@
     #news_section .btn-buynow {
         background-color: #F50057;
         border-color: #F50057;
-        color: #ffffff !important;
+        color: #fff !important;
     }
 
     #news_section .btn-primary {
-        color: #ffffff !important;
+        color: #fff !important;
     }
 
     #news_section h3 {
@@ -112,8 +110,6 @@
         font-size: 22px !important;
     }
 </style>
-
-
 
 <section id="report-title" class="white_section section_gap">
     @{ Html.RenderPartial("_NewSearch"); }
@@ -124,11 +120,6 @@
                 <h1 class="reporttitle"> @Model.NewsTitle</h1>
             </div>
         </div>
-        @*<div class="row" style="text-align:center;">
-            <div class="col-md-12">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
-        </div>*@
     </div>
 </section>
 
@@ -139,53 +130,154 @@
             <div id="news" class="tab-content" style="text-align:justify;">
                 @Html.Raw(Model.Description)
             </div>
-
         </div>
     </div>
-
-
 </section>
 
 @if (Model.ReportId != null && Model.ReportId > 0) { Html.RenderPartial("~/Views/Report/_PopForm.cshtml", new ZionMarketResearch.Models.AvailPDF { ReportId = (int)Model.ReportId, ReportTitle = Model.ReportTitle }); }
 
-<script>
-    $(document).ready(function () {
-        var reportDescImg = $("#news img");
-
-        $(reportDescImg).addClass("img-responsive");
-        $(reportDescImg).css("margin", "0 auto");
-        $("#news_section a").css("word-break", "break-all");
-    });
-</script>
-
-<script type="application/ld+json">
-    {
-    "@@context": "http://www.schema.org/",
-    "@@type": "@(Model.IsArticle ? "Article" : "NewsArticle")",
-    "name": "@Model.NewsTitle",
-    "headline":"@Model.NewsTitle",
-    "image":{"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png", "height": "200px", "width": "200px"},
-    "author":
-    {
-    "@@type": "Organization",
-    "logo": {"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png"},
-    "name": "Zion Market Research",
-    "url": "https://www.zionmarketresearch.com/@(Model.IsArticle ? Url.Action("AllNews", "News") : Url.Action("AllArticles", "Article"))"
-    },
-    "publisher":
-    {
-    "@@type": "Organization",
-    "name": "Zion Market Research",
-    "logo": {"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png"}
-    },
-    "articleBody": "@Html.Raw(Model.Description.Substring(0, Model.Description.IndexOf("</p>")).Replace("<p>", string.Empty).Replace("</p>", string.Empty).Replace("\"", "'"))",
-    "datePublished": "@Model.PublishedDate.Value.ToString("yyyyMMdd")",
-    "url": "https://zionmarketresearchstore.com/@(Model.IsArticle ? "article" : "news")/@Model.NewsUrl",
-    "dateModified": "@Model.PublishedDate.Value.ToString("yyyyMMdd")",
-    "mainEntityOfPage":"https://www.zionmarketresearch.com/news/@Model.NewsUrl"
-    }
-</script>
 @section metaTags{
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    @*<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-624d9996e3915482"></script>*@
+    <!-- Social sharing meta is already in the layout; nothing extra needed here. -->
+}
+
+@section NewsIndexScript
+{
+    <!--
+    Structured data — placed early in section so crawlers find it
+    without executing JS.
+    -->
+    <script type="application/ld+json">
+        {
+            "@@context": "http://www.schema.org/",
+            "@@type": "@(Model.IsArticle ? "Article" : "NewsArticle")",
+            "name": "@Model.NewsTitle",
+            "headline":"@Model.NewsTitle",
+            "image":{"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png", "height": "200px", "width": "200px"},
+            "author":
+            {
+            "@@type": "Organization",
+            "logo": {"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png"},
+            "name": "Zion Market Research",
+            "url": "https://www.zionmarketresearch.com/@(Model.IsArticle ? Url.Action("AllNews", "News") : Url.Action("AllArticles", "Article"))"
+            },
+            "publisher":
+            {
+            "@@type": "Organization",
+            "name": "Zion Market Research",
+            "logo": {"@@type": "ImageObject","url":"https://www.zionmarketresearch.com/images/zionLogo01.png"}
+            },
+            "articleBody": "@Html.Raw(Model.Description.Substring(0, Model.Description.IndexOf("</p>")).Replace("<p>", string.Empty).Replace("</p>", string.Empty).Replace("\"", "'"))",
+            "datePublished": "@Model.PublishedDate.Value.ToString("yyyyMMdd")",
+            "url": "https://zionmarketresearchstore.com/@(Model.IsArticle ? "article" : "news")/@Model.NewsUrl",
+            "dateModified": "@Model.PublishedDate.Value.ToString("yyyyMMdd")",
+            "mainEntityOfPage":"https://www.zionmarketresearch.com/news/@Model.NewsUrl"
+        }
+    </script>
+
+    <!-- Form validation bundle — deferred, only needed when popup is shown -->
+    <script defer src="@BundleTable.Bundles.ResolveBundleUrl("~/bundles/form-validation")"></script>
+    <script defer src="~/Scripts/serializeform.js"></script>
+
+    <script>
+    // ─── News image fix ───────────────────────────────────────────────────────
+    // Uses requestAnimationFrame so layout reads happen AFTER first paint,
+    // preventing a forced reflow / layout thrash on page load.
+    // Single consolidated $(document).ready — no nested $(function(){...}) wrapper.
+    $(function () {
+        requestAnimationFrame(function () {
+            var imgs = document.querySelectorAll('#news img');
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].classList.add('img-responsive');
+                imgs[i].style.margin = '0 auto';
+            }
+            // word-break via CSS class is preferred; keep JS fallback minimal
+            var links = document.querySelectorAll('#news_section a');
+            for (var j = 0; j < links.length; j++) {
+                links[j].style.wordBreak = 'break-all';
+            }
+        });
+    });
+
+    // ─── Popup form logic ────────────────────────────────────────────────────
+    (function () {
+        var savedInfo = false;
+
+        // Cookie helpers
+        function setCookie(name, value, hours) {
+            var d = new Date();
+            d.setTime(d.getTime() + hours * 3600000);
+            document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/';
+        }
+        function getCookie(name) {
+            var prefix = name + '=';
+            var parts  = decodeURIComponent(document.cookie).split(';');
+            for (var i = 0; i < parts.length; i++) {
+                var c = parts[i].trim();
+                if (c.indexOf(prefix) === 0) return c.slice(prefix.length);
+            }
+            return '';
+        }
+
+        // Expose SubmitForm globally (called from inline onclick in _PopForm)
+        window.SubmitForm = function (ctl) {
+            if (!$('#frmAvailPDF').valid()) return;
+            if (ctl) { $(ctl).text('Processing...').prop('disabled', true); }
+            $.ajax({
+                url: '/form/SubmitSampleRequest',
+                type: 'POST',
+                data: JSON.stringify($('#frmAvailPDF').serializeFormJSON()),
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                success: function (res) {
+                    if (ctl) { $(ctl).text('Submit').prop('disabled', false); }
+                    $('.alert').remove();
+                    if (res && res.Success) {
+                        if (window.gtag) gtag('event', 'page_view', { page_path: '/thankyou/@Model.ReportId?src=popup' });
+                        $('#frmAvailPDF').hide();
+                        $('.success-message').show();
+                        $('.modal-footer').show();
+                        setCookie('PopForm', '@Model.ReportId', 1);
+                    } else {
+                        $('.showMessage').html("<div class='alert alert-danger'>Error submitting form. Please try again.</div>");
+                    }
+                    savedInfo = true;
+                },
+                error: function (err) {
+                    if (ctl) { $(ctl).text('Submit').prop('disabled', false); }
+                    $('.showMessage').html("<div class='alert alert-danger'>" + (err.message || 'Unknown error') + "</div>");
+                }
+            });
+        };
+
+        $(function () {
+            // Hide success/footer until form submits
+            $('.success-message').hide();
+            $('.modal-footer').hide();
+
+            // ── Popup trigger: show 10 s after window load ──
+            // Use a single window-load listener; do NOT nest inside $(document).ready
+            $(window).one('load', function () {
+                
+                var rID = getCookie('PopForm');
+                setTimeout(function () {
+                    if (!savedInfo && rID !== '@Model.ReportId') {
+                       
+                        $('#mypopreqModal').modal('show');
+
+                        // Lazy-load country only when popup is actually displayed
+                        // Avoids an AJAX call on every page load for every visitor
+                        $.ajax({
+                            url: '/form/GetCountry',
+                            type: 'GET',
+                            success: function (json) {
+                                $('#mypopreqModal #Country').val(json.Response.country);
+                            },
+                            error: function () { /* silent fail — country is optional */ }
+                        });
+                    }
+                }, 10000);
+            });
+        });
+    })();
+    </script>
 }

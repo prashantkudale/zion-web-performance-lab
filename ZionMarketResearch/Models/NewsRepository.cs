@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -30,13 +32,65 @@ namespace ZionMarketResearch.Models
             }
         }
 
+        //public static NewsDeatils GetNewsByUrl(string url)
+        //{
+        //    using (ZionDbEntities db = new ZionDbEntities())
+        //    {
+        //        var news = (from n in db.tblnews
+        //                    where n.NewsUrl == url && n.IsDeleted == false && n.IsActive == true && n.IsArticle == false
+        //                    join r in db.tblreportinformations on n.ReportId equals r.ReportID into leftjoin
+        //                    from subjoin in leftjoin.DefaultIfEmpty()
+        //                    select new NewsDeatils
+        //                    {
+        //                        NewsId = n.NewsID,
+        //                        NewsTitle = n.NewsTitle,
+        //                        Description = n.News,
+        //                        MetaTile = n.MetaTitle,
+        //                        MetaDescription = n.MetaDescription,
+        //                        MetaKeywords = n.MetaKeywords,
+        //                        NewsUrl = n.NewsUrl,
+        //                        PublishedBy = n.PublishedBy,
+        //                        PublishedDate = n.PublishedDate,
+        //                        ReportId = n.ReportId,
+        //                        ReportTitle = subjoin.ReportTitle,
+        //                        ReportUrl = subjoin.ReportUrl
+        //                    }).FirstOrDefault();
+        //        if (news != null && news.ReportId != null && news.ReportId > 0)
+        //        {
+        //            news.Description = EmbedHTML(news.Description, "/custom/" + news.ReportId, "/buynow/su/" + news.ReportUrl, "/sample/" + news.ReportUrl);
+        //        }
+
+        //        if (news != null && news.ReportId != null && news.ReportId > 0)
+        //        {
+        //            var report = ReportRepository.GetReportById((int)news.ReportId);
+        //            var keyword = report.ReportTitle.Substring(0, report.ReportTitle.IndexOf("Market") + 6).Replace("Global", string.Empty).Trim();
+
+        //            news.Description = EmbedUrl(news.Description, keyword, report.ReportUrl);
+        //        }
+        //        return news;
+        //    }
+        //}
+
         public static NewsDeatils GetNewsByUrl(string url)
         {
-            using (ZionDbEntities db = new ZionDbEntities())
+            var cacheKey = $"news_{url?.ToLowerInvariant()}";
+            var cached = MemoryCache.Default.Get(cacheKey) as NewsDeatils;
+
+            if (cached != null)
             {
-                var news = (from n in db.tblnews
-                            where n.NewsUrl == url && n.IsDeleted == false && n.IsActive == true && n.IsArticle == false
-                            join r in db.tblreportinformations on n.ReportId equals r.ReportID into leftjoin
+                Console.WriteLine("Loaded from cache");
+                return cached;
+            }
+
+            using (var db = new ZionDbEntities())
+            {
+                var news = (from n in db.tblnews.AsNoTracking()
+                            where n.NewsUrl == url
+                                  && n.IsDeleted == false
+                                  && n.IsActive == true
+                                  && n.IsArticle == false
+                            join r in db.tblreportinformations.AsNoTracking()
+                                on n.ReportId equals r.ReportID into leftjoin
                             from subjoin in leftjoin.DefaultIfEmpty()
                             select new NewsDeatils
                             {
@@ -53,18 +107,46 @@ namespace ZionMarketResearch.Models
                                 ReportTitle = subjoin.ReportTitle,
                                 ReportUrl = subjoin.ReportUrl
                             }).FirstOrDefault();
-                if (news != null && news.ReportId != null && news.ReportId > 0)
+
+                if (news != null && news.ReportId.HasValue && news.ReportId > 0)
                 {
-                    news.Description = EmbedHTML(news.Description, "/custom/" + news.ReportId ,"/buynow/su/" + news.ReportUrl, "/sample/" + news.ReportUrl);
+                    //CPU - bound → keep sync
+                    news.Description = EmbedHTML(
+                        news.Description,
+                        "/custom/" + news.ReportId,
+                        "/buynow/su/" + news.ReportUrl,
+                        "/sample/" + news.ReportUrl
+                    );
+
+                    if (!string.IsNullOrEmpty(news.ReportTitle))
+                    {
+                        int index = news.ReportTitle.IndexOf("Market", StringComparison.OrdinalIgnoreCase);
+
+                        if (index >= 0)
+                        {
+                            // Old logic for fetching only ReportTitle and ReportUrl calling GetReportById method 
+                            // this prop are already present in new object
+                            //var report = ReportRepository.GetReportById((int)news.ReportId);
+                            //var keyword = report.ReportTitle.Substring(0, report.ReportTitle.IndexOf("Market") + 6).Replace("Global", string.Empty).Trim();
+
+                            //news.Description = EmbedUrl(news.Description, keyword, report.ReportUrl);
+
+                            // New logic fetching ReportTitle and ReportUrlfrom news object
+                            var keyword = news.ReportTitle
+                                              .Substring(0, index + 6)
+                                              .Replace("Global", string.Empty)
+                                              .Trim();
+
+                            news.Description = EmbedUrl(news.Description, keyword, news.ReportUrl);
+                        }
+                    }
                 }
 
-                if (news != null && news.ReportId != null && news.ReportId > 0)
+                if (news != null)
                 {
-                    var report = ReportRepository.GetReportById((int)news.ReportId);
-                    var keyword = report.ReportTitle.Substring(0, report.ReportTitle.IndexOf("Market") + 6).Replace("Global", string.Empty).Trim();
-
-                    news.Description = EmbedUrl(news.Description, keyword, report.ReportUrl);
+                    MemoryCache.Default.Set(cacheKey, news, DateTimeOffset.Now.AddMinutes(10));
                 }
+
                 return news;
             }
         }

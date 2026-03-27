@@ -1,377 +1,360 @@
 ﻿@model ZionMarketResearch.Models.MainPageReportView
-@using ZionAdmin.Security;
-@using ZionMarketResearch.Models;
-@{ Layout = "~/Views/Shared/_LayoutOneCss.cshtml";
-    var smallTitleIndex = Model.ReportTitle.IndexOf(new string[] { " Market ", " Market:", " Market,", " Market-", ":" });
-    var h1Title = smallTitleIndex > -1 ? Model.ReportTitle.Substring(0, smallTitleIndex).Replace("Global ", string.Empty) : Model.ReportUrl.Replace("-", " ").ToProperCasing().Replace("Global", string.Empty).Replace(" Market", string.Empty);
-    var h1Title1 = h1Title.Length > 94 ? h1Title.Substring(0, 93) : h1Title;
-    var userIdentity = ((ZionAdmin.Security.CustomPrincipal)System.Web.HttpContext.Current.Session["User"]);
+@using ZionAdmin.Security
+@using ZionMarketResearch.Models
 
+@{
+    Layout = "~/Views/Shared/_LayoutOneCss.cshtml";
+
+    var smallTitleIndex = Model.ReportTitle.IndexOf(new string[] { " Market ", " Market:", " Market,", " Market-", ":" });
+
+    var h1Title = smallTitleIndex > -1
+        ? Model.ReportTitle.Substring(0, smallTitleIndex).Replace("Global ", string.Empty)
+        : Model.ReportUrl.Replace("-", " ").ToProperCasing().Replace("Global", string.Empty).Replace(" Market", string.Empty);
+
+    var h1Title1 = h1Title.Length > 94 ? h1Title.Substring(0, 93) : h1Title;
+
+    var userIdentity = ((ZionAdmin.Security.CustomPrincipal)System.Web.HttpContext.Current.Session["User"]);
 }
 
 <section id="report-title" class="report-title-image white_section section_gap">
-    @{ Html.RenderPartial("_NewSearch"); }
-    <div class="container-fluid">
-        @{ Html.RenderPartial("_breadcrumb", Html.Raw(Model.Categories[Model.Categories.Length - 1]) + "|" + (Model.ReportTitle.Contains("Market") ? (Model.ReportTitle.Substring(0, Model.ReportTitle.IndexOf(new string[] { "Market ", "Market-", "Market:", "Market," })) + " Market") : Model.ReportUrl.Replace("-", " ").ToProperCasing().Replace("Global", string.Empty).Replace(" Market", string.Empty) + " Market"));}
-        <div id="heading-bg" style="position:relative; margin-bottom: 8px; background: rgb(23,66,173); background: linear-gradient(355deg, rgba(23,66,173,1) 8%, rgba(29,106,156,1) 87%); font-size: 16px; text-align: center; padding: 20px 0px 15px;">
-            <h1 style="color:#ffffff; font-size:20px;">
-                @if (!String.IsNullOrEmpty(Model.MetaKeywordsSample))
-                {@Html.Raw(Model.MetaKeywordsSample) }
-            else
-            {
-                if (Request.Path.Contains("/market-analysis/"))
-                {@h1Title1 @Html.Raw(" Market - Global Industry Analysis")}
-            else
-            { @h1Title1 @Html.Raw(" Market Size, Share, Growth Report 2032")}
-    }
-            </h1>
 
+    @{ Html.RenderPartial("_NewSearch"); }
+
+    <div class="container-fluid">
+
+        @{
+            Html.RenderPartial(
+                "_breadcrumb",
+                Html.Raw(Model.Categories[Model.Categories.Length - 1]) + "|" +
+                (Model.ReportTitle.Contains("Market")
+                    ? (Model.ReportTitle.Substring(0, Model.ReportTitle.IndexOf(new string[] { "Market ", "Market-", "Market:", "Market," })) + " Market")
+                    : Model.ReportUrl.Replace("-", " ").ToProperCasing().Replace("Global", string.Empty).Replace(" Market", string.Empty) + " Market")
+            );
+        }
+
+        <div id="heading-bg" style="position:relative;margin-bottom:8px;background:linear-gradient(355deg, rgba(23,66,173,1) 8%, rgba(29,106,156,1) 87%);font-size:16px;text-align:center;padding:20px 0 15px;">
+            <h1 style="color:#ffffff;font-size:20px;">
+                @if (!String.IsNullOrEmpty(Model.MetaKeywordsSample))
+                {
+                    @Html.Raw(Model.MetaKeywordsSample)
+                }
+                else if (Request.Path.Contains("/market-analysis/"))
+                {
+                    @h1Title1 @Html.Raw(" Market - Global Industry Analysis")
+                }
+                else
+                {
+                    @h1Title1 @Html.Raw(" Market Size, Share, Growth Report 2032")
+                }
+            </h1>
         </div>
+
         @{ Html.RenderPartial("_ReportInfo"); }
+
         <div class="row hide" id="reportButtons">
             <div class="container-fluid">
+
                 <div class="col-sm-2">
                     <a href="/" style="text-decoration:none;border:none;">
                         <div class="logo">
-                            <img src="/images/zion-market-research-logo.png" class="img-responsive saturate1" width="104px" height="56px" title="Zion Market Research - @h1Title, Business Consulting Services &amp; Solutions" alt="Zion Market Research">
+                            <img src="~/images/zion-market-research-logo.png"
+                                 class="img-responsive saturate1"
+                                 width="104"
+                                 height="56"
+                                 title="Zion Market Research - @h1Title, Business Consulting Services &amp; Solutions"
+                                 alt="Zion Market Research">
                         </div>
                     </a>
                 </div>
+
                 <div class="col-sm-8">
-                    <p style="color: #024973; font-size: 20px !important; margin: 0px; padding: 22px 0px; font-weight: 700; font-family: 'Montserrat',sans-serif !important;"> @h1Title1 Market</p>
+                    <p class="report-sticky-title" style="color:#024973;font-size:20px!important;margin:0;padding:22px 0;font-weight:700;font-family:'Montserrat',sans-serif!important;">
+                        @h1Title1 Market
+                    </p>
                 </div>
 
                 <div class="col-sm-2 zero-padding">
-                    <div class="link-btn divright animate__animated animate__delay-1s animate__zoomIn" style="margin-bottom: 10px;margin-top:25px;">
-                        @*<a rel="nofollow" href="@Url.Action("Index", "Custom", new { id = Model.ReportId })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request For Customization</a>*@
-                        @*<a href="@Url.Action("RequestBrochure", "Report", new { url = Model.ReportUrl })" class="hvr-wobble-vertical" rel="nofollow noreferrer">Request Free Brochure</a>*@
-                        <a rel="nofollow" href="@Url.Action("Sample", "Report" , new { url=Model.ReportUrl })" class="hvr-wobble-vertical pulse-button" rel="nofollow noreferrer">Request Free Sample</a>
-                        @*<a rel="nofollow" href="@Url.Action(!Model.IsUpcoming ? "Index" : "Prebook" , "BuyNow" , new { url=Model.ReportUrl, reporttype="su" })" class="pulse-button" rel="nofollow noreferrer">@(!Model.IsUpcoming ? "Buy Now" : "Prebook") <i class="fa fa-arrow-right hvr-icon"></i></a>*@
+                    <div class="link-btn divright animate__animated animate__delay-1s animate__zoomIn" style="margin:25px 0 10px;">
+                        <a rel="nofollow noreferrer"
+                           href="@Url.Action("Sample", "Report", new { url = Model.ReportUrl })"
+                           class="hvr-wobble-vertical pulse-button">
+                            Request Free Sample
+                        </a>
                     </div>
                 </div>
+
             </div>
         </div>
-        @*<div class="row">
-                <div class="col-md-12">
-                    <div class="addthis_inline_share_toolbox" style="text-align:center"></div>
-                </div>
-            </div>*@
+
     </div>
+
     @if (userIdentity != null && (userIdentity.IsInRole("Admin") || userIdentity.IsInRole("EditReport")))
     {
         <section class="container">
             <div class="row">
-                <div class="col-md-12" style="text-align:center;">
+                <div class="col-md-12 text-center">
                     <button class="btn btn-primary" onclick="UpdateChanges()">Save</button>
-                    <label style="color: black;"><input type="checkbox" value="true" id="copyToReseller" /> Copy To Reseller?</label>
+                    <label style="color:black;">
+                        <input type="checkbox" value="true" id="copyToReseller" />
+                        Copy To Reseller?
+                    </label>
                 </div>
             </div>
-        </section>}
+        </section>
+    }
+
 </section>
 
 @if (!Model.IsUpcoming)
 {
     Html.RenderPartial("_PublishedReport", Model);
 }
-else if (Model.IsUpcoming)
+else
 {
     Html.RenderPartial("_UpcomingReport", Model);
 }
 
 <script type="application/ld+json" data-structured-data>
-    [
-        {
-  "@@context": "https://schema.org",
-  "@@graph": [
+[
     {
-      "@@type": "Dataset",
-      "name": "@Model.ReportTitle",
-      "temporalCoverage": "2022/2030",
-      "spatialCoverage": "Global",
-      "license":"https://www.zionmarketresearch.com/privacy-policy",
-      "creator": {
-        "@@type": "Organization",
-        "url": "https://www.zionmarketresearch.com",
-        "name": "Zion Market Research"
-      },
-      "includedInDataCatalog": {
-        "@@type": "DataCatalog",
-        "name": "Zion Market Research",
-        "url": "https://www.zionmarketresearch.com"
-      },
-      "dateModified": "@DateTime.Now.AddDays(-10).ToString("yyyy-MM-dd")",
-      "keywords": [
-        "@Model.ReportTitle"
-      ],
-      "url": "@String.Format("{0}{1}","https://www.zionmarketresearch.com",Url.Action("Index", "Report", new { url = Model.ReportUrl }))",
-          "sameAs": "@String.Format("{0}{1}","https://www.zionmarketresearch.com",Url.Action("Index", "Report", new { url = Model.ReportUrl }))",
-          "description": "@ViewBag.MetaDescription",
-      "distribution": [
-        {
-              "@@type": "DataDownload",
-          "contentUrl": "@String.Format("{0}{1}","https://www.zionmarketresearch.com",Url.Action("Sample", "Report", new { url = Model.ReportUrl }))",
-              "encodingFormat": "pdf"
-        }
-      ]
-    }
-  ]
-}
-    ]
-</script>
-<script>
-    $(document).on('click', '.smooth-anchor', function (e) {
-        e.preventDefault();
-
-        let href = $(this).attr('href');
-        let target = $.attr(this, 'href');
-
-        if ($(target).length > 0) {
-
-            if (href.length > 1 && href.indexOf('#') != -1) {
-                $('html, body').animate({
-                    scrollTop: $(target).offset().top - 100
-                }, 1000);
+        "@@context": "https://schema.org",
+        "@@graph": [
+            {
+                "@@type": "Dataset",
+                "name": "@Model.ReportTitle",
+                "temporalCoverage": "2022/2030",
+                "spatialCoverage": "Global",
+                "license": "https://www.zionmarketresearch.com/privacy-policy",
+                "creator": {
+                    "@@type": "Organization",
+                    "url": "https://www.zionmarketresearch.com",
+                    "name": "Zion Market Research"
+                },
+                "includedInDataCatalog": {
+                    "@@type": "DataCatalog",
+                    "name": "Zion Market Research",
+                    "url": "https://www.zionmarketresearch.com"
+                },
+                "dateModified": "@DateTime.Now.AddDays(-10).ToString("yyyy-MM-dd")",
+                "keywords": ["@Model.ReportTitle"],
+                "url": "@String.Format("{0}{1}", "https://www.zionmarketresearch.com", Url.Action("Index", "Report", new { url = Model.ReportUrl }))",
+                "sameAs": "@String.Format("{0}{1}", "https://www.zionmarketresearch.com", Url.Action("Index", "Report", new { url = Model.ReportUrl }))",
+                "description": "@ViewBag.MetaDescription",
+                "distribution": [
+                    {
+                        "@@type": "DataDownload",
+                        "contentUrl": "@String.Format("{0}{1}", "https://www.zionmarketresearch.com", Url.Action("Sample", "Report", new { url = Model.ReportUrl }))",
+                        "encodingFormat": "pdf"
+                    }
+                ]
             }
-        }
-    })
+        ]
+    }
+]
 </script>
+
+<script type="application/ld+json">
+{
+    "@@context": "https://schema.org",
+    "@@type": "WebPage",
+    "name": "@ViewBag.Title",
+    "description": "@Model.MetaDescription",
+    "thumbnailUrl": "@ViewBag.Firstimage"
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@@context": "https://schema.org",
+    "@@type": "Article",
+    "mainEntityOfPage": {
+        "@@type": "WebPage",
+        "@@id": "@Request.Url"
+    },
+    "headline": "@ViewBag.Title",
+    "description": "@Model.MetaDescription",
+    "image": {
+        "@@type": "ImageObject",
+        "url": "@ViewBag.Firstimage",
+        "width": 2020,
+        "height": 1156
+    },
+    "author": {
+        "@@type": "Organization",
+        "name": "Zion Market Research",
+        "url": "https://www.zionmarketresearch.com/"
+    },
+    "publisher": {
+        "@@type": "Organization",
+        "name": "Zion Market Research",
+        "logo": {
+            "@@type": "ImageObject",
+            "url": "https://www.zionmarketresearch.com/images/zion-market-research-logo.png"
+        }
+    },
+    "datePublished": "@(Model.PublishedDate.HasValue ? Model.PublishedDate.Value.ToString("yyyy-MM-dd") : DateTime.Now.AddDays(-5).ToString("yyyy-MM-dd"))",
+    "dateModified": "@(Model.PublishedDate.HasValue ? Model.PublishedDate.Value.ToString("yyyy-MM-dd") : DateTime.Now.AddDays(-5).ToString("yyyy-MM-dd"))"
+}
+</script>
+
 <section class="white_section section_gap testimonialOffset" id="testimonial">
     <div class="container">
         <div class="heading">
             <p class="top-heading"><span>Happy</span>Clients</p>
         </div>
+
         <div id="myclientCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
+
             <ol class="carousel-indicators">
                 <li data-target="#myclientCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myclientCarousel" data-slide-to="1"></li>
                 <li data-target="#myclientCarousel" data-slide-to="2"></li>
             </ol>
 
-            <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_1.png" alt="bridgestone" width="1030px" height="259px" loading="lazy" />
-                    </div>
-                </div>
-                <div class="item">
-
-                    <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_2.png" alt="mckinsey" width="1030px" height="259px" loading="lazy" />
+                        <img src="/images/client_img/zmr_client_slider_1.png" loading="lazy" alt="bridgestone" />
                     </div>
                 </div>
                 <div class="item">
                     <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_3.png" alt="ti" width="1030px" height="259px" loading="lazy" />
+                        <img src="/images/client_img/zmr_client_slider_2.png" loading="lazy" alt="mckinsey" />
                     </div>
-
-
                 </div>
-
+                <div class="item">
+                    <div class="l-box">
+                        <img src="/images/client_img/zmr_client_slider_3.png" loading="lazy" alt="ti" />
+                    </div>
+                </div>
             </div>
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myclientCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myclientCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
 
+        </div>
     </div>
 </section>
-@*@{ Html.RenderPartial("_PopForm", new ZionMarketResearch.Models.AvailPDF { ReportId = Model.ReportId, ReportTitle = Model.ReportTitle }); }*@
 
-@if (userIdentity != null && (userIdentity.IsInRole("Admin") || userIdentity.IsInRole("EditReport")))
+@if (Model.ReportId != null && Model.ReportId > 0)
 {
-
-    <script src="/Areas/Admin/Content/js/ckeditor_4.11.3_standard/ckeditor/ckeditor.js"></script>
-    <script>
-                    var descriptionEditor = CKEDITOR.inline('Descriptionss');
-
-                    $("#Descriptionss").attr('contenteditable', 'true');
-                    //CKEDITOR.inline('TableOfContentss');
-
-                    //descriptionEditor.config.disallowed = 'table';
-
-                    function UpdateChanges() {
-                        $.ajax({
-                            url: '/updatereportdescription',
-                            type: 'POST',
-                            contentType: 'application/json; charset=utf-8',
-                            data: JSON.stringify({
-                                ReportID: @ZionMarketResearch.Util.Utility.Decryptstring(ViewBag.ReportID),
-                                ReportDescription: descriptionEditor.getData(),
-                                CopyToReseller: $("#copyToReseller").prop('checked')
-                            }),
-                            success: function (res) {
-                                if (res > 0) {
-                                    alert('Report has been updated.');
-                                }
-                            },
-                            error: function (err) {
-                                console.log(err);
-                            }
-                        });
-                    }
-    </script>
+    Html.RenderPartial("~/Views/Report/_PopForm.cshtml",
+        new ZionMarketResearch.Models.AvailPDF
+        {
+            ReportId = (int)Model.ReportId,
+            ReportTitle = Model.ReportTitle
+        });
 }
 
-<script>
+@section ReportIndexScripts {
 
-    $(document).ready(function () {
-        try {
-            var urlSegment = document.URL.split("/");
-            if (urlSegment[urlSegment.length - 2] === 'toc') {
-                $('.nav-tabs a[data-target="TableOfContent"]').tab('show');
-                $("#TableOfContent").addClass("in active");
-            } else if (urlSegment[urlSegment.length - 2] === 'report') {
-                $('.nav-tabs a[data-target="Description"]').tab('show');
-                $("#Description").addClass("in active");
-            } else if (urlSegment[urlSegment.length - 2] === 'methodology') {
-                $('.nav-tabs a[data-target="Methodology"]').tab('show');
-                $("#Methodology").addClass("in active");
-            } else if (urlSegment[urlSegment.length - 2] === 'market-analysis') {
-                $('.nav-tabs a[data-target="FreeAnalysis"]').tab('show');
-                $("#FreeAnalysis").addClass("in active");
-            }
-        }
-        catch (error) {
-            if (urlSegment[urlSegment.length - 2] === 'report') {
-                $("#Description").addClass("in active");
-            }
-        }
-
-        var reportDescImg = $("#report-desc img");
-
-        //$(reportDescImg).addClass("img-responsive");
-        //$(reportDescImg).css("margin", "0 auto");
-
-        $('#Descriptionss img')
-            .addClass('img-responsive')
-            //.attr('loading', 'lazy')
-            .removeAttr('style');
-
-
-        //$('#Descriptionss img').each(function () {
-        //    debugger;
-        //    var _width = $(this).Width();
-        //    alert(_width);
-        //    if (_width < 1) { _width = 750; }
-        //    $(this).attr('width', _width + 'px').attr('height', $(this).Height() + 'px')
-        //});
-        // CHANGE THE WIDTH AND HEIGHT AND SEE THE RESULT.
-
-    });
-</script>
-
-
-@if (!Request.Browser.IsMobileDevice)
-{
     <script>
-        window.onscroll = function () {
-            if (window.screen.width > 800) {
-                myFunction();
+        $(function () {
+
+            $(document).on('click', '.smooth-anchor', function (e) {
+                e.preventDefault();
+
+                var href = $(this).attr('href');
+                var target = $.attr(this, 'href');
+
+                if ($(target).length > 0 && href.length > 1 && href.indexOf('#') !== -1) {
+                    $('html, body').animate({
+                        scrollTop: $(target).offset().top - 100
+                    }, 1000);
+                }
+            });
+
+            try {
+                var lastSegment = document.URL.split("/").slice(-2, -1)[0];
+
+                var tabMap = {
+                    'toc': 'TableOfContent',
+                    'report': 'Description',
+                    'methodology': 'Methodology',
+                    'market-analysis': 'FreeAnalysis'
+                };
+
+                var targetTab = tabMap[lastSegment];
+
+                if (targetTab) {
+                    $('.nav-tabs a[data-target="' + targetTab + '"]').tab('show');
+                    $("#" + targetTab).addClass("in active");
+                }
+            } catch (error) {
+                var urlSegment = document.URL.split("/");
+                if (urlSegment[urlSegment.length - 2] === 'report') {
+                    $("#Description").addClass("in active");
+                }
             }
-        };
-        // Get the header
-        var header = document.getElementById("reportButtons");
 
-        // Get the offset position of the navbar
-        var sticky = header.offsetTop;
+            $('#Descriptionss img')
+                .addClass('img-responsive')
+                .removeAttr('style');
 
-        var buynow = document.getElementsByClassName('buynow-control');
-        var buynowOffset = buynow[0].offsetHeight;
-
-        // Get the offset position of the List of Contents
-        var fixTOCTop = $('.TOCfix-div').offset().top;
-        var testimonialOffset = $('.testimonialOffset').offset().top;
-
-
-        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-                header.classList.remove("row");
-                header.classList.remove("hide");
-            } else {
-                header.classList.remove("sticky");
-                header.classList.add("row");
-                header.classList.add("hide");
-            }
-            if (window.pageYOffset > buynowOffset + 1000) {
-                $(".buynow-control").addClass("sticky-right-sidebar");
-            } else {
-                $(".buynow-control").removeClass("sticky-right-sidebar");
-            }
-
-            if (window.pageYOffset > $(".buynow-control").parent()[0].offsetHeight + 1000) {
-                $(".buynow-control").addClass('stick-to-bottm');
-            } else {
-                $(".buynow-control").removeClass('stick-to-bottm');
-            }
-            //console.log('fixTOCTop : ' + fixTOCTop + ' | window.pageYOffset : ' + window.pageYOffset);
-            if (window.pageYOffset >= fixTOCTop && window.pageYOffset <= document.body.scrollHeight - 2000) {           // apply position: fixed if you
-                $('.TOCfix-div').css({                      // scroll to that element or below it
-                    position: 'fixed',
-                    top: '75px',
-                    right: '15px',
-                    width: '22.7%'
-
-                });
-            } else {                                   // apply position: static
-                $('.TOCfix-div').css({                      // if you scroll above it
-                    position: 'static',
-                    width: 'auto'
-                });
-            }
-        }
+        });
     </script>
+
+    @if (!Request.Browser.IsMobileDevice)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                var carousel = document.querySelector('#myclientCarousel');
+
+                if (carousel && 'IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver(function (entries) {
+                        if (entries[0].isIntersecting) {
+                            $(carousel).carousel();
+                            observer.disconnect();
+                        }
+                    });
+
+                    observer.observe(carousel);
+                }
+
+            });
+        </script>
+    }
+
+    @if (userIdentity != null && (userIdentity.IsInRole("Admin") || userIdentity.IsInRole("EditReport")))
+    {
+        <script defer src="/Areas/Admin/Content/js/ckeditor_4.11.3_standard/ckeditor/ckeditor.js"></script>
+
+        <script>
+            $(function () {
+
+                var descriptionEditor = CKEDITOR.inline('Descriptionss');
+                $("#Descriptionss").attr('contenteditable', 'true');
+
+                function UpdateChanges() {
+                    $.ajax({
+                        url: '/updatereportdescription',
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({
+                            ReportID: @ZionMarketResearch.Util.Utility.Decryptstring(ViewBag.ReportID),
+                            ReportDescription: descriptionEditor.getData(),
+                            CopyToReseller: $("#copyToReseller").prop('checked')
+                        }),
+                        success: function (res) {
+                            if (res > 0) alert('Report has been updated.');
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+
+            });
+        </script>
+
+        <script>
+            $(function () {
+
+                $('.buynow-button').on('click', function () {
+                    let selected = 'su';
+                    window.location.href = '/buynow/' + selected + '/@Model.ReportUrl';
+                });
+
+            });
+        </script>
+    }
+
 }
-
-<script type="application/ld+json">
-    {
-        "@@context": "https://schema.org",
-        "@@type": "WebPage",
-        "name": "@ViewBag.Title",
-        "description": "@Model.MetaDescription",
-        "thumbnailUrl": "@ViewBag.Firstimage"
-    }
-</script>
-
-<script type="application/ld+json">
-    {
-        "@@context": "https://schema.org",
-        "@@type": "Article",
-        "mainEntityOfPage": {
-        "@@type": "WebPage",
-        "@@id": "@Request.Url"
-        },
-        "headline": "@ViewBag.Title",
-        "description": "@Model.MetaDescription",
-        "image": {
-            "@@type": "ImageObject",
-            "url": "@ViewBag.Firstimage",
-            "width": 2020,
-            "height": 1156
-        },
-        "author": {
-            "@@type": "Organization",
-            "name": "Zion Market Research",
-            "url": "https://www.zionmarketresearch.com/"
-        },
-        "publisher": {
-            "@@type": "Organization",
-            "name": "Zion Market Research",
-            "logo": {
-                "@@type": "ImageObject",
-                "url": "https://www.zionmarketresearch.com/images/zion-market-research-logo.png"
-            }
-        },
-        "datePublished": "@(Model.PublishedDate.HasValue ? Model.PublishedDate.Value.ToString("yyyy-MM-dd"): DateTime.Now.AddDays(-5).ToString("yyyy-MM-dd"))",
-        "dateModified": "@(Model.PublishedDate.HasValue ? Model.PublishedDate.Value.ToString("yyyy-MM-dd"): DateTime.Now.AddDays(-5).ToString("yyyy-MM-dd"))"
-    }
-</script>
