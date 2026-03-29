@@ -10,13 +10,13 @@
                             <a href="/" style="text-decoration:none;border:none;">
                                 <div class="logo">
                                     <img src="~/images/zion-market-research-logo.png" class="img-responsive saturate1" width="104px" height="56px"
-                                         title="Zion Market Research - Delivering Market Intelligence Reports, Business Consulting Services & Solutions" 
+                                         title="Zion Market Research - Delivering Market Intelligence Reports, Business Consulting Services & Solutions"
                                          alt="Zion Market Research">
                                 </div>
                             </a>
                             <nav class="navArea">
                                 <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Toggle navigation"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                                 </div>
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav" id="navigation">
@@ -60,9 +60,11 @@
         background-color: inherit !important;
     }
 </style>
-<script>
-    $(document).ready(function () {
-        //Just avoiding js error
-        $(".dropdown-toggle").unbind('click');
-    });
-</script>
+@section HeaderScripts {
+    <script>
+        $(document).ready(function () {
+            //Just avoiding js error nav
+            $(".dropdown-toggle").unbind('click');
+        });
+    </script>
+}

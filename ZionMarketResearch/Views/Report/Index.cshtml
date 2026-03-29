@@ -16,6 +16,18 @@
     var userIdentity = ((ZionAdmin.Security.CustomPrincipal)System.Web.HttpContext.Current.Session["User"]);
 }
 
+<style>
+    #report-title {
+        box-sizing: border-box;
+    }
+
+    @@media (max-width: 768px) {
+        /* Reserve exact measured height */
+        #report-title {
+            min-height: 500px;
+        }
+    }
+</style>
 <section id="report-title" class="report-title-image white_section section_gap">
 
     @{ Html.RenderPartial("_NewSearch"); }
@@ -214,17 +226,35 @@ else
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_1.png" loading="lazy" alt="bridgestone" />
+                        @*<img src="/images/client_img/zmr_client_slider_1.png" loading="lazy" alt="bridgestone" />*@
+                        <img src="/images/client_img/zmr_client_slider_1.png"
+                             loading="lazy"
+                             alt="bridgestone"
+                             width="1331"
+                             height="335"
+                             style="width:100%; height:auto;">
                     </div>
                 </div>
                 <div class="item">
                     <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_2.png" loading="lazy" alt="mckinsey" />
+                        @*<img src="/images/client_img/zmr_client_slider_2.png" loading="lazy" alt="mckinsey" />*@
+                        <img src="/images/client_img/zmr_client_slider_2.png"
+                             loading="lazy"
+                             alt="mckinsey"
+                             width="1331"
+                             height="335"
+                             style="width:100%; height:auto;">
                     </div>
                 </div>
                 <div class="item">
                     <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_3.png" loading="lazy" alt="ti" />
+                        @*<img src="/images/client_img/zmr_client_slider_3.png" loading="lazy" alt="ti" />*@
+                        <img src="/images/client_img/zmr_client_slider_3.png"
+                             loading="lazy"
+                             alt="ti"
+                             width="1331"
+                             height="335"
+                             style="width:100%; height:auto;">
                     </div>
                 </div>
             </div>
@@ -355,6 +385,7 @@ else
 
             });
         </script>
+
     }
 
 }

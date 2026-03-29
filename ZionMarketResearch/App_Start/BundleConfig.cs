@@ -18,7 +18,7 @@ namespace ZionMarketResearch.App_Start
             //bundles.Add(new ScriptBundle("~/bundles/bootstrapjs", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"));
 
 
-            bundles.Add(new StyleBundle("~/bundles/career")
+            bundles.Add(new ScriptBundle("~/bundles/career")
                     .Include("~/Scripts/career.js")
                     );
 
@@ -74,7 +74,7 @@ namespace ZionMarketResearch.App_Start
                 .Include("~/Content/css/default.css")
                 .Include("~/Content/css/custom.css"));
 
-            bundles.Add(new Bundle("~/bundles/faicons")             
+            bundles.Add(new Bundle("~/bundles/faicons")
                  .Include("~/Content/css/font-awesome.custom.css"));
 
         }
