@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using ZionMarketResearch.constants;
 using ZionMarketResearch.Extension;
 using ZionMarketResearch.Log;
@@ -21,7 +22,7 @@ namespace ZionMarketResearch.Controllers
         //
         // GET: /Report/
 
-        [OutputCache(Duration = 3600, VaryByParam = "url")]
+        [OutputCache(Duration = 3600, VaryByParam = "url", Location = OutputCacheLocation.Server)]
         public ActionResult Index(string url, string reffer, string Lang)
         {
             ViewBag.Lang = Lang != "" ? Lang : "en";

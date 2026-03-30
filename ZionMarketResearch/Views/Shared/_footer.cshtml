@@ -1,11 +1,10 @@
 ﻿@model List<ZionMarketResearch.Models.LatestNewsView>
-
 <section class="blue_section section_gap">
     <div class="container-fluid">
         <div class="row bottomfourcol">
 
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bottomAbout">
-                <p class="we-social">Office Address__</p>
+                <p class="we-social">Office Address</p>
                 <p class="we-social">Contact Us</p>
 
                 <p>
@@ -67,10 +66,13 @@
                     <p>We have secured system to process your transaction.</p>
                     <ul>
                         <li>
-                            <img src="/images/zion-payment-modes.jpg"
+                            <img src="~/images/zion-payment-modes.webp"
                                  loading="lazy"
                                  alt="payment methods"
-                                 class="img-responsive" />
+                                 class="img-responsive"
+                                 width="210"
+                                 height="91"
+                                 style="width:100%;height:auto;max-width:210px;"/>
                         </li>
                     </ul>
                 </div>
@@ -141,10 +143,10 @@
 </footer>
 
 <style>
-    a {
+   /* a {
         text-decoration: underline;
         color: #333;
-    }
+    }*/
 
         a:hover,
         a:focus {
@@ -160,6 +162,24 @@
         .footer-link:hover,
         .footer-link:focus {
             color: #e0e0e0 !important;
+        }
+
+    .socialshare a {
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        text-align: center;
+        vertical-align: top;
+    }
+
+        .socialshare a i,
+        .socialshare .fa-brands {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            line-height: 50px;
+            font-style: normal;
         }
 </style>
 

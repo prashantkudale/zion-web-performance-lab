@@ -17,16 +17,6 @@
 }
 
 <style>
-    #report-title {
-        box-sizing: border-box;
-    }
-
-    @@media (max-width: 768px) {
-        /* Reserve exact measured height */
-        #report-title {
-            min-height: 500px;
-        }
-    }
 </style>
 <section id="report-title" class="report-title-image white_section section_gap">
 
@@ -44,7 +34,9 @@
             );
         }
 
-        <div id="heading-bg" style="position:relative;margin-bottom:8px;background:linear-gradient(355deg, rgba(23,66,173,1) 8%, rgba(29,106,156,1) 87%);font-size:16px;text-align:center;padding:20px 0 15px;">
+        @*<div id="heading-bg" style="position:relative;margin-bottom:8px;background:linear-gradient(355deg, rgba(23,66,173,1) 8%, rgba(29,106,156,1) 87%);font-size:16px;text-align:center;padding:20px 0 15px;">*@
+        <div id="heading-bg">
+
             <h1 style="color:#ffffff;font-size:20px;">
                 @if (!String.IsNullOrEmpty(Model.MetaKeywordsSample))
                 {
@@ -63,7 +55,7 @@
 
         @{ Html.RenderPartial("_ReportInfo"); }
 
-        <div class="row hide" id="reportButtons">
+        @*<div class="row hide" id="reportButtons">
             <div class="container-fluid">
 
                 <div class="col-sm-2">
@@ -96,7 +88,7 @@
                 </div>
 
             </div>
-        </div>
+        </div>*@
 
     </div>
 
@@ -117,14 +109,75 @@
 
 </section>
 
-@if (!Model.IsUpcoming)
+@*@if (!Model.IsUpcoming)
 {
     Html.RenderPartial("_PublishedReport", Model);
 }
 else
 {
     Html.RenderPartial("_UpcomingReport", Model);
-}
+}*@
+
+@*<section class="white_section section_gap testimonialOffset" id="testimonial">
+    <div class="container">
+        <div class="heading">
+            <p class="top-heading"><span>Happy</span>Clients</p>
+        </div>
+
+        <div id="myclientCarousel" class="carousel slide" data-ride="carousel">
+
+            <ol class="carousel-indicators">
+                <li data-target="#myclientCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myclientCarousel" data-slide-to="1"></li>
+                <li data-target="#myclientCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="l-box">
+                        <img src="/images/client_img/zmr_client_slider_1.png"
+                             loading="lazy"
+                             alt="bridgestone"
+                             width="1331"
+                             height="335"
+                             style="width:100%; height:auto;">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="l-box">
+                        <img src="/images/client_img/zmr_client_slider_2.png"
+                             loading="lazy"
+                             alt="mckinsey"
+                             width="1331"
+                             height="335"
+                             style="width:100%; height:auto;">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="l-box">
+                        <img src="/images/client_img/zmr_client_slider_3.png"
+                             loading="lazy"
+                             alt="ti"
+                             width="1331"
+                             height="335"
+                             style="width:100%; height:auto;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>*@
+
+@*@if (Model.ReportId != null && Model.ReportId > 0)
+{
+    Html.RenderPartial("~/Views/Report/_PopForm.cshtml",
+        new ZionMarketResearch.Models.AvailPDF
+        {
+            ReportId = (int)Model.ReportId,
+            ReportTitle = Model.ReportTitle
+        });
+}*@
 
 <script type="application/ld+json" data-structured-data>
 [
@@ -208,70 +261,6 @@ else
     "dateModified": "@(Model.PublishedDate.HasValue ? Model.PublishedDate.Value.ToString("yyyy-MM-dd") : DateTime.Now.AddDays(-5).ToString("yyyy-MM-dd"))"
 }
 </script>
-
-<section class="white_section section_gap testimonialOffset" id="testimonial">
-    <div class="container">
-        <div class="heading">
-            <p class="top-heading"><span>Happy</span>Clients</p>
-        </div>
-
-        <div id="myclientCarousel" class="carousel slide" data-ride="carousel">
-
-            <ol class="carousel-indicators">
-                <li data-target="#myclientCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myclientCarousel" data-slide-to="1"></li>
-                <li data-target="#myclientCarousel" data-slide-to="2"></li>
-            </ol>
-
-            <div class="carousel-inner">
-                <div class="item active">
-                    <div class="l-box">
-                        @*<img src="/images/client_img/zmr_client_slider_1.png" loading="lazy" alt="bridgestone" />*@
-                        <img src="/images/client_img/zmr_client_slider_1.png"
-                             loading="lazy"
-                             alt="bridgestone"
-                             width="1331"
-                             height="335"
-                             style="width:100%; height:auto;">
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="l-box">
-                        @*<img src="/images/client_img/zmr_client_slider_2.png" loading="lazy" alt="mckinsey" />*@
-                        <img src="/images/client_img/zmr_client_slider_2.png"
-                             loading="lazy"
-                             alt="mckinsey"
-                             width="1331"
-                             height="335"
-                             style="width:100%; height:auto;">
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="l-box">
-                        @*<img src="/images/client_img/zmr_client_slider_3.png" loading="lazy" alt="ti" />*@
-                        <img src="/images/client_img/zmr_client_slider_3.png"
-                             loading="lazy"
-                             alt="ti"
-                             width="1331"
-                             height="335"
-                             style="width:100%; height:auto;">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-@if (Model.ReportId != null && Model.ReportId > 0)
-{
-    Html.RenderPartial("~/Views/Report/_PopForm.cshtml",
-        new ZionMarketResearch.Models.AvailPDF
-        {
-            ReportId = (int)Model.ReportId,
-            ReportTitle = Model.ReportTitle
-        });
-}
 
 @section ReportIndexScripts {
 
