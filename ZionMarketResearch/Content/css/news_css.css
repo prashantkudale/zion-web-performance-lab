@@ -41,7 +41,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url(https://www.zionmarketresearch.com/images/images06.webp) !important;
+    /*background-image: url(https://www.zionmarketresearch.com/images/images06.webp) !important;*/
     background-position: center;
     background-size: cover;
     opacity: .4;
@@ -237,5 +237,13 @@ p,li{font-size:15px!important;line-height:28px!important;}
 .blue_section{background-color:#2f4e71;}.blue_section a{color:#F8EABA;}.blue_section a:hover{color:#fff;}
 .bottomfourcol p{color:#fff;font-weight:400;font-size:13px;line-height:24px;margin-bottom:20px;padding:0;}
 #news_section table td{text-align:left;padding:10px;border:1px solid black;border:400;font-weight:bold;background-color:transparent;}
+.gototop{display:inline-block;font-size:13px;color:#dcdce5;}
+.gototop i{color:#dcdce5;line-height:13px;margin-left:8px;}
+.gototop:hover{color:#fff;}
+.gototop{font-size:28px;padding:3px 10px 6px 2px;}
+.goto{text-align:right;border-radius:50px;background-color:#e8910e;z-index:99999;margin-top:-53px;position:absolute;width:50px;height:50px;right:0px;margin-right:15px;}
 /*! CSS Used fontfaces */
 @font-face{font-family:'Roboto';font-style:italic;font-weight:300;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TjASc3CsTKlA.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+
+
+

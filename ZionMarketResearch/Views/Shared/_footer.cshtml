@@ -127,17 +127,13 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-2"></div>
-
-            <div class="col-sm-8" style="text-align:center;padding-top:10px;">
+            <div class="col-sm-12 text-center" style="padding-top:10px;">
                 <p>
                     Copyright © 2015 - @DateTime.Now.Year,
                     All Rights Reserved by
                     <a class="footer-link" href="/">Zion Market Research</a>
                 </p>
             </div>
-
-            <div class="col-sm-2"></div>
         </div>
     </div>
 </footer>
@@ -181,6 +177,59 @@
             line-height: 50px;
             font-style: normal;
         }
+    .footerTopContent {
+        min-height: 120px; /* prevents JS height mutation from causing shift */
+        overflow: hidden;
+        position: relative;
+    }
+
+    .testimonialText li {
+        opacity: 0; /* pre-hidden via CSS — JS fadeTo becomes a no-op visually */
+        position: absolute; /* stacked, not flowing — zero layout impact */
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity 0.3s;
+    }
+
+        .testimonialText li:first-child {
+            opacity: 1; /* first visible by default — no JS needed for initial state */
+        }
+    .blue_section {
+        min-height: 320px; /* adjust if needed */
+    }
+    .bottomfourcol > div {
+        min-height: 250px;
+    }
+    .bottomfourcol > div {
+        min-height: 250px;
+    }
+    .fa-brands, .fa {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+    }
+    .bottomfourcol img {
+        max-width: 210px;
+        height: auto;
+        display: block;
+    }
+    .blue_section p {
+        line-height: 1.5;
+        min-height: 20px;
+    }
+    .blue_section {
+        contain: layout;
+    }
+    .footer {
+        min-height: 60px;
+        font-family: Arial, sans-serif;
+    }
+        .footer p {
+            margin: 0;
+            line-height: 1.5;
+            min-height: 20px;
+        }
 </style>
 
 @section FooterMSScripts {
@@ -188,17 +237,9 @@
         jQuery(function ($) {
             $(document).ready(function () {
 
-                var getmaxHeight = 0;
-
-                $(".testimonialText li").each(function () {
-                    if ($(this).height() > getmaxHeight) {
-                        getmaxHeight = $(this).height();
-                        $(".footerTopContent").height(getmaxHeight);
-                    }
-                });
-
-                $(".testimonialText li").fadeTo("fast", 0);
-                $(".testimonialText li:first").fadeTo("fast", 1);
+                // ── Testimonial fade init ──────────────────────────────────────
+                $(".testimonialText li").fadeTo(0, 0);       // instant hide (no "fast" animation)
+                $(".testimonialText li:first").fadeTo(0, 1); // instant show first item
 
                 $(".imageSlide .imageBox").removeClass("activeImage");
                 $(".imageSlide .imageBox:first").addClass("activeImage");

@@ -144,11 +144,11 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.28.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.28\lib\net48\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=9.6.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.9.6.0\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data.EntityFramework, Version=8.0.28.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.EntityFramework.8.0.28\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
+    <Reference Include="MySql.Data.EntityFramework, Version=9.6.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.EntityFramework.9.6.0\lib\net48\MySql.Data.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Web, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -271,15 +271,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.28\lib\net48\Ubiety.Dns.Core.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.28\lib\net48\ZstdNet.dll</HintPath>
     </Reference>
     <Reference Include="ZstdSharp, Version=0.8.6.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
       <HintPath>..\packages\ZstdSharp.Port.0.8.6\lib\net462\ZstdSharp.dll</HintPath>
@@ -1027,6 +1021,7 @@
     <Content Include="Content\captcha\Captcha.js" />
     <Content Include="Content\css\bd-wizard.css" />
     <Content Include="Content\css\bootstrap.custom-3.4.1.css" />
+    <Content Include="Content\css\bootstrap.custom-3.4.1.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\custom.min.css" />
@@ -1303,6 +1298,16 @@
     <Content Include="images\category\Pharmaceutical.webp" />
     <Content Include="images\category\Semiconductor-Electronics.webp" />
     <Content Include="images\category\technology-media.webp" />
+    <Content Include="images\client_img\zmr_client_slider_1.webp" />
+    <Content Include="images\client_img\zmr_client_slider_2.webp" />
+    <Content Include="images\zion-market-research-logo.webp" />
+    <Content Include="images\client_img\zmr_client_slider_1-600w.webp" />
+    <Content Include="images\client_img\zmr_client_slider_2-600w.webp" />
+    <Content Include="images\client_img\zmr_client_slider_1-1200w.webp" />
+    <Content Include="images\client_img\zmr_client_slider_1-400w.webp" />
+    <Content Include="images\client_img\zmr_client_slider_1-800w.webp" />
+    <Content Include="images\client_img\zmr_client_slider_2-400w.webp" />
+    <Content Include="images\client_img\zmr_client_slider_2-800w.webp" />
     <None Include="Properties\PublishProfiles\ZionMarketResearch2.0.pubxml" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <None Include="Service References\CRM\WebService.disco" />

@@ -44,9 +44,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style>
-        /* ═══ NAVBAR stability — supplements blocking Bootstrap CSS ═══ */
-
-        /* Locks navbar height so no shift when JS initializes */
         .navbar-wrapper {
             margin-top: 0 !important;
             height: 70px !important;
@@ -64,8 +61,6 @@
             height: 5px !important;
             display: block !important;
         }
-
-        /* Header layout — must match main.css to prevent shift on load */
 
         header {
             position: relative;
@@ -108,7 +103,6 @@
             height: 5px !important;
         }
 
-        /* ═══ DESKTOP: navbar visible before Bootstrap JS loads ═══ */
         @@media (min-width: 768px) {
             .navbar-toggle {
                 display: none !important;
@@ -138,7 +132,6 @@
                     }
         }
 
-        /* ═══ MOBILE: collapsed state stable before Bootstrap JS loads ═══ */
         @@media (max-width: 767px) {
             .navbar-header {
                 float: none;
@@ -170,7 +163,7 @@
                 }
         }
 
-        /* ═══ Other CLS reservations ═══ */
+
         .fa, [class^="fa-"], [class*=" fa-"] {
             display: inline-block;
             width: 1em;
@@ -180,9 +173,17 @@
         }
 
         .heading {
-            min-height: 60px;
+            min-height: 80px;
             contain: layout paint;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
         }
+
+            .heading .top-heading {
+                font-size: clamp(20px, 3vw, 28px);
+                line-height: 1.3;
+                min-height: 36px;
+                display: block;
+            }
 
         #myclientCarousel .l-box {
             aspect-ratio: 1331/335;
@@ -202,10 +203,7 @@
             display: block;
         }
 
-        @@font-face {
-            font-family: 'Roboto';
-            font-display: optional;
-        }
+
 
         @@media (max-width: 768px) {
             .reporttitle {
@@ -239,8 +237,7 @@
 
         footer,
         .footer {
-            content-visibility: auto;
-            contain-intrinsic-size: 0 300px;
+            contain: layout paint;
         }
 
         .row {
@@ -254,7 +251,7 @@
                 clear: both;
             }
 
-        /* All columns base */
+
         .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4,
         .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8,
         .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12,
@@ -273,7 +270,7 @@
             padding-left: 15px;
         }
 
-        /* xs always float */
+
         .col-xs-12 {
             float: left;
             width: 100%;
@@ -299,7 +296,7 @@
             width: 16.66666667%;
         }
 
-        /* sm grid */
+
         @@media (min-width: 768px) {
             .col-sm-12 {
                 float: left;
@@ -342,7 +339,7 @@
             }
         }
 
-        /* md grid — col-md-10 is the shifting culprit */
+
         @@media (min-width: 992px) {
             .col-md-12 {
                 float: left;
@@ -380,7 +377,7 @@
             }
         }
 
-        /* lg grid */
+
         @@media (min-width: 1200px) {
             .col-lg-12 {
                 float: left;
@@ -403,12 +400,12 @@
             }
         }
 
-        /* ═══ BODY / WRAPPER base — prevents body shift ═══ */
+
         body {
             margin: 0;
             padding: 0;
             background-color: #fff;
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
             font-size: 14px;
             line-height: 1.42857143;
             color: #333;
@@ -420,13 +417,13 @@
         }
 
         .header_v3.report-page + * {
-            /* banner is 5px height, no extra offset needed */
         }
+
         section#report-title {
             position: relative;
             background-color: #e7ecea;
             margin-top: 70px !important;
-            padding-top: 20px !important; /* ADD THIS — creates gap */
+            padding-top: 20px !important;
             min-height: 250px;
         }
 
@@ -437,7 +434,7 @@
             }
         }
 
-        /* ═══ CONTENT AREA — report page structure ═══ */
+
         #report-title {
             position: relative;
             background-color: #e7ecea;
@@ -457,11 +454,13 @@
         .moHide {
             display: none !important
         }
+
         @@media (min-width: 992px) {
             .moHide {
                 display: block !important;
             }
         }
+
         @@media (max-width: 600px) {
             .reportin-info {
                 display: none;
@@ -476,7 +475,7 @@
             background-color: #fff;
         }
 
-        /* Breadcrumb reservation */
+
         .breadcrumb {
             padding: 8px 15px;
             margin-bottom: 8px !important;
@@ -497,7 +496,7 @@
                     content: "/\00a0";
                 }
 
-        /* Tab structure reservation */
+
         .tab .nav-tabs {
             background: #fff;
             padding: 5px 0;
@@ -519,7 +518,7 @@
             padding: 20px 25px;
         }
 
-        /* Report box */
+
         .report-box {
             margin-top: 5px;
             background: #fdffff;
@@ -528,7 +527,7 @@
             box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
         }
 
-        /* Link buttons */
+
         .link-btn a {
             font-size: 14px;
             text-align: center;
@@ -548,7 +547,7 @@
                 background: #376e6f;
             }
 
-        /* Blue section */
+
         .blue_section {
             background-color: #2f4e71;
         }
@@ -560,7 +559,7 @@
                 contain: layout paint;
             }
 
-        /* Grey section */
+
         .grey_section {
             background-color: #e7ecea !important;
         }
@@ -568,30 +567,28 @@
         .blue_section .row {
             min-height: 200px;
         }
-        html {
-            font-display: swap;
-        }
 
         .navbar-nav > li > a,
         .navbar.navbar-inverse.navbar-static-top a {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
         }
 
         body, p, li {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
         }
 
         .reportin-info.moHide {
-            /* Don't let visibility change collapse the space */
             min-height: 176px;
-            visibility: hidden; /* hides visually but keeps space */
+            visibility: hidden;
         }
+
         @@media (min-width: 992px) {
             .reportin-info.moHide {
                 display: block !important;
                 visibility: visible;
             }
         }
+
         @@media (max-width: 600px) {
             .reportin-info {
                 display: none !important;
@@ -634,30 +631,30 @@
             position: relative;
             margin-bottom: 8px;
             background: linear-gradient(355deg, rgba(23,66,173,1) 8%, rgba(29,106,156,1) 87%);
-            height: 80px; /* ✅ FIXED HEIGHT (critical) */
-            padding: 0 16px; /* remove vertical padding */
-
+            height: 80px;
+            padding: 0 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             overflow: hidden;
         }
+
             #heading-bg h1 {
                 margin: 0;
-                font-size: 20px;
+                font-size: 28px;
                 line-height: 1.3;
-                color: #fff;
+                color: #ffffff;
                 word-break: break-word;
                 display: -webkit-box;
-                -webkit-line-clamp: 2; /* max 2 lines */
+                -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+                font-weight: 600;
             }
 
         .reportin-info img {
             width: 148px;
-            height: 176px;
             object-fit: cover;
             display: block;
         }
@@ -671,6 +668,49 @@
             overflow: hidden;
         }
 
+        .how-it-work.list .fa,
+        .our-company.list .fa,
+        .how-it-work.list [class^="fa-"],
+        .our-company.list [class^="fa-"] {
+            display: inline-block;
+            width: 14px;
+            min-width: 14px;
+            height: 1em;
+            line-height: 1;
+            vertical-align: middle;
+            font-style: normal;
+        }
+
+
+        .how-it-work.list li,
+        .our-company.list li {
+            min-height: 24px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #testimonial .l-box {
+            aspect-ratio: 1331 / 335;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #testimonial img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gtranslate_wrapper img,
+        .goog-te-menu-value img,
+        .goog-te-gadget img {
+            width: 24px !important;
+            height: 18px !important;
+            aspect-ratio: 4 / 3;
+            display: inline-block;
+        }
     </style>
 
     @RenderSection("metaTags", false)
@@ -696,21 +736,23 @@
           as="image"
           href="/images/zion-market-research-logo.png"
           fetchpriority="high" />
-
+    <link rel="preload"
+          as="image"
+          href="/images/images06.webp"
+          imagesrcset="/images/images06.webp"
+          fetchpriority="high">
     <link rel="preload"
           href="@Url.Content("~/Content/css/" + ViewBag.css)"
           as="style"
           fetchpriority="high" />
 
     <link rel="preload"
-          href="@Url.Content("~/Content/css/bootstrap.custom-3.4.1.css")"
+          href="@Url.Content("~/Content/css/bootstrap.custom-3.4.1.min.css")"
           as="style"
           fetchpriority="high" />
 
     <link rel="stylesheet"
-          href="@Url.Content("~/Content/css/" + ViewBag.css)"
-          media="print"
-          onload="this.media='all'" />
+          href="@Url.Content("~/Content/css/" + ViewBag.css)" />
 
     <noscript>
         <link rel="stylesheet"
@@ -718,13 +760,11 @@
     </noscript>
 
     <link rel="stylesheet"
-          href="@Url.Content("~/Content/css/bootstrap.custom-3.4.1.css")"
-          media="print"
-          onload="this.media='all'" />
+          href="@Url.Content("~/Content/css/bootstrap.custom-3.4.1.min.css")" />
 
     <noscript>
         <link rel="stylesheet"
-              href="@Url.Content("~/Content/css/bootstrap.custom-3.4.1.css")" />
+              href="@Url.Content("~/Content/css/bootstrap.custom-3.4.1.min.css")" />
     </noscript>
 
     <link rel="stylesheet"
@@ -747,19 +787,9 @@
               href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/autocompletecss", true)" />
     </noscript>
 
-    <!-- Step 1: Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    @*<link rel="preconnect" href="https://fonts.googleapis.com"  />
 
-    <!-- Step 3: Load stylesheet non-blocking -->
-    <link rel="preload"
-          href="https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2"
-          as="font" type="font/woff2" crossorigin />
-
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=optional"
-          media="print"
-          onload="this.media='all'" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">*@
 </head>
 
 
@@ -805,9 +835,7 @@
     <div class="google_translate_element"></div>
 
     <script>
-        function loadGTranslate() {
-            if (window.gtranslateLoaded) return;
-            window.gtranslateLoaded = true;
+        setTimeout(function () {
             window.gtranslateSettings = {
                 default_language: "en",
                 url_structure: "sub_directory",
@@ -815,25 +843,11 @@
                 wrapper_selector: ".google_translate_element"
             };
 
-            var s2 = document.createElement("script");
-            s2.src = "https://cdn.gtranslate.net/widgets/latest/float.js";
-            s1.charset = "UTF-8";
-            s1.setAttribute("crossorigin", "*");
-            s2.async = true;
-            document.body.appendChild(s2);
-
-            if (document.visibilityState === 'visible') {
-                // Already visible — wait for user interaction
-                document.addEventListener('click', loadGTranslate, { once: true });
-                document.addEventListener('keydown', loadGTranslate, { once: true });
-                document.addEventListener('touchstart', loadGTranslate, { once: true });
-            }
-            document.addEventListener('visibilitychange', function () {
-                if (document.visibilityState === 'visible') {
-                    loadGTranslate();
-                }
-            }, { once: true });
-        }
+            var s = document.createElement("script");
+            s.src = "https://cdn.gtranslate.net/widgets/latest/float.js";
+            s.async = true;
+            document.body.appendChild(s);
+        }, 5000);
     </script>
 
     <script>

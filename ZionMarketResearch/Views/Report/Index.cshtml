@@ -37,7 +37,7 @@
         @*<div id="heading-bg" style="position:relative;margin-bottom:8px;background:linear-gradient(355deg, rgba(23,66,173,1) 8%, rgba(29,106,156,1) 87%);font-size:16px;text-align:center;padding:20px 0 15px;">*@
         <div id="heading-bg">
 
-            <h1 style="color:#ffffff;font-size:20px;">
+            <h1 data-lcp="true">
                 @if (!String.IsNullOrEmpty(Model.MetaKeywordsSample))
                 {
                     @Html.Raw(Model.MetaKeywordsSample)
@@ -55,16 +55,19 @@
 
         @{ Html.RenderPartial("_ReportInfo"); }
 
-        @*<div class="row hide" id="reportButtons">
+        <div class="row hide" id="reportButtons">
             <div class="container-fluid">
 
                 <div class="col-sm-2">
                     <a href="/" style="text-decoration:none;border:none;">
                         <div class="logo">
-                            <img src="~/images/zion-market-research-logo.png"
+                            <img src="~/images/zion-market-research-logo.webp"
                                  class="img-responsive saturate1"
                                  width="104"
                                  height="56"
+                                 fetchpriority="high"
+                                 loading="eager"
+                                 decoding="sync"
                                  title="Zion Market Research - @h1Title, Business Consulting Services &amp; Solutions"
                                  alt="Zion Market Research">
                         </div>
@@ -88,7 +91,7 @@
                 </div>
 
             </div>
-        </div>*@
+        </div>
 
     </div>
 
@@ -109,16 +112,16 @@
 
 </section>
 
-@*@if (!Model.IsUpcoming)
+@if (!Model.IsUpcoming)
 {
     Html.RenderPartial("_PublishedReport", Model);
 }
 else
 {
     Html.RenderPartial("_UpcomingReport", Model);
-}*@
+}
 
-@*<section class="white_section section_gap testimonialOffset" id="testimonial">
+<section class="white_section section_gap testimonialOffset" id="testimonial">
     <div class="container">
         <div class="heading">
             <p class="top-heading"><span>Happy</span>Clients</p>
@@ -135,39 +138,47 @@ else
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_1.png"
-                             loading="lazy"
+                        <img src="/images/client_img/zmr_client_slider_1.webp"
+                             srcset="
+                                    /images/client_img/zmr_client_slider_1-400w.webp 400w,
+                                    /images/client_img/zmr_client_slider_1-600w.webp 600w,
+                                    /images/client_img/zmr_client_slider_1-800w.webp 800w,
+                                    /images/client_img/zmr_client_slider_1-1200w.webp 1200w"
+                             sizes="(max-width: 600px) 100vw,
+                                        (max-width: 992px) 80vw,
+                                        60vw"
                              alt="bridgestone"
                              width="1331"
                              height="335"
+                             fetchpriority="high"
+                             loading="eager"
                              style="width:100%; height:auto;">
                     </div>
                 </div>
                 <div class="item">
                     <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_2.png"
-                             loading="lazy"
-                             alt="mckinsey"
+                        <img src="/images/client_img/zmr_client_slider_2.webp"
+                             srcset="
+                                /images/client_img/zmr_client_slider_2-400w.webp 400w,
+                                /images/client_img/zmr_client_slider_2-600w.webp 600w,
+                                /images/client_img/zmr_client_slider_2-800w.webp 800w"
+                             sizes="(max-width: 600px) 100vw,
+                                    (max-width: 992px) 90vw,
+                                    620px"
+                             alt="bridgestone"
                              width="1331"
                              height="335"
+                             fetchpriority="high"
+                             loading="eager"
                              style="width:100%; height:auto;">
                     </div>
                 </div>
-                <div class="item">
-                    <div class="l-box">
-                        <img src="/images/client_img/zmr_client_slider_3.png"
-                             loading="lazy"
-                             alt="ti"
-                             width="1331"
-                             height="335"
-                             style="width:100%; height:auto;">
-                    </div>
-                </div>
+
             </div>
 
         </div>
     </div>
-</section>*@
+</section>
 
 @*@if (Model.ReportId != null && Model.ReportId > 0)
 {
@@ -254,7 +265,7 @@ else
         "name": "Zion Market Research",
         "logo": {
             "@@type": "ImageObject",
-            "url": "https://www.zionmarketresearch.com/images/zion-market-research-logo.png"
+            "url": "https://www.zionmarketresearch.com/images/zion-market-research-logo.webp"
         }
     },
     "datePublished": "@(Model.PublishedDate.HasValue ? Model.PublishedDate.Value.ToString("yyyy-MM-dd") : DateTime.Now.AddDays(-5).ToString("yyyy-MM-dd"))",
@@ -314,21 +325,75 @@ else
     {
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-
                 var carousel = document.querySelector('#myclientCarousel');
-
-                if (carousel && 'IntersectionObserver' in window) {
-                    const observer = new IntersectionObserver(function (entries) {
-                        if (entries[0].isIntersecting) {
-                            $(carousel).carousel();
-                            observer.disconnect();
-                        }
-                    });
-
-                    observer.observe(carousel);
+                if (carousel && typeof $.fn.carousel === "function") {
+                    $(carousel).carousel();
                 }
-
             });
+        </script>
+    }
+
+    @if (!Request.Browser.IsMobileDevice)
+    {
+        <script>
+            window.onscroll = function () {
+                if (window.screen.width > 800) {
+                    myFunction();
+                }
+            };
+            // Get the header
+            var header = document.getElementById("reportButtons");
+
+            // Get the offset position of the navbar
+            var sticky = header.offsetTop;
+
+            //var buynow = document.getElementsByClassName('buynow-control');
+            //var buynowOffset = buynow[0].offsetHeight;
+
+            //// Get the offset position of the List of Contents
+            // fixTOCTop = $('.TOCfix-div').offset().top;
+        
+            // testimonialOffset = $('.testimonialOffset').offset().top;
+
+
+            // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+            function myFunction() {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add("sticky");
+                    header.classList.remove("row");
+                    header.classList.remove("hide");
+                } else {
+                    header.classList.remove("sticky");
+                    header.classList.add("row");
+                    header.classList.add("hide");
+                }
+                //if (window.pageYOffset > buynowOffset + 1000) {
+                //    $(".buynow-control").addClass("sticky-right-sidebar");
+                //} else {
+                //    $(".buynow-control").removeClass("sticky-right-sidebar");
+                //}
+
+                //if (window.pageYOffset > $(".buynow-control").parent()[0].offsetHeight + 1000) {
+                //    $(".buynow-control").addClass('stick-to-bottm');
+                //} else {
+                //    $(".buynow-control").removeClass('stick-to-bottm');
+                //}
+                ////console.log('fixTOCTop : ' + fixTOCTop + ' | window.pageYOffset : ' + window.pageYOffset);
+                //if (window.pageYOffset >= fixTOCTop && window.pageYOffset <= document.body.scrollHeight - 2000) {           // apply position: fixed if you
+                //    $('.TOCfix-div').css({                      // scroll to that element or below it
+                //        position: 'fixed',
+                //        top: '75px',
+                //        right: '15px',
+                //        width: '22.7%'
+
+                //    });
+                //} else {                                   // apply position: static
+                //    $('.TOCfix-div').css({                      // if you scroll above it
+                //        position: 'static',
+                //        width: 'auto'
+                //    });
+                //}
+            }
         </script>
     }
 

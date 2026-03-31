@@ -513,7 +513,7 @@ li{font-size:14px!important;line-height:22px!important;}
 .navbar.navbar-inverse.navbar-static-top a{color:#fff!important;}
 }
 /*! CSS Used from: https://www.zionmarketresearch.com/Content/css/style_report32.min.css */
-body,p,li{font-family:'Roboto',sans-serif!important;}
+body,p,li{font-family:sans-serif!important;}
 p,li{font-size:15px!important;line-height:28px!important;}
 .link-btn a:hover{color:#fff;}
 .patternOverlay{z-index:-999!important;display:none!important;}
